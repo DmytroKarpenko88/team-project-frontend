@@ -1,16 +1,12 @@
+import { Route, Routes } from 'react-router-dom';
+import SharedLayout from './SharedLayout/SharedLayout';
+// import Loader from './Loader/Loader';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      React template
-    </div>
+    // <Loader />
+    <Routes>
+      <Route path="/" element={<SharedLayout />}></Route>
+    </Routes>
   );
 };
