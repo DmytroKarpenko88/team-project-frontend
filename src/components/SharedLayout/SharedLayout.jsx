@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-const { LayoutContainer } = require('./SharedLayout.styled');
+import { LayoutContainer } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (

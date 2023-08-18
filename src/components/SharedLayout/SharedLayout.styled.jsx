@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LayoutContainer = styled.div`
+export const LayoutContainer = styled.div`
   box-sizing: border-box;
   min-width: 320px;
   margin: 0 auto;
@@ -15,5 +15,3 @@ const LayoutContainer = styled.div`
     padding: 30px 16px 0;
   }
 `;
-
-export { LayoutContainer };
