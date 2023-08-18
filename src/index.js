@@ -9,7 +9,7 @@ import { GlobalStyles, theme } from 'styles';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/team-project-frontend">
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyles} />
         <App />
