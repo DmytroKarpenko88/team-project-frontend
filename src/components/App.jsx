@@ -1,14 +1,14 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import SharedLayout from './SharedLayout/SharedLayout';
-import Register from './Register/Register';
 import Main from './Main/Main';
 import Notices from './Notices/Notices';
 import AddPet from './AddPet/AddPet';
-import Login from './Login/Login';
 import PageNotFound from 'pages/PageNotFound';
 // import Loader from './Loader/Loader';
 
+const Register = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const Login = lazy(() => import('pages/LoginPage/LoginPage'));
 const User = lazy(() => import('pages/User/User'));
 
 export const App = () => {
