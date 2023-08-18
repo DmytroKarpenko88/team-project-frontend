@@ -5,6 +5,7 @@ import { LogoutBtn } from './Logout.styled';
 const Logout = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  console.log(isModalOpen);
   const closeModal = () => {
     setIsModalOpen(prevState => !prevState);
   };
