@@ -4,6 +4,8 @@ import Register from './Register/Register';
 import Main from './Main/Main';
 import Notices from './Notices/Notices';
 import AddPet from './AddPet/AddPet';
+import Login from './Login/Login';
+import User from './User/User';
 // import Loader from './Loader/Loader';
 
 export const App = () => {
