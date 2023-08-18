@@ -1,4 +1,5 @@
 export const theme = Object.freeze({
+
   colors: {
     yellow: '#FFC107',
     grey: '#888888',
@@ -42,3 +43,4 @@ export const theme = Object.freeze({
   },
   transition: { main: 'cubic-bezier(0.4, 0, 0.2, 1)' },
 });
+
