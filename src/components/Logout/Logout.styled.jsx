@@ -1,29 +1,35 @@
 import { styled } from 'styled-components';
+import { theme } from 'styles';
 
 export const LogoutBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  /* gap: 12px; */
+  gap: ${theme.spacing.step * 4}px;
   border-color: transparent;
   font-family: inherit;
-  font-size: 16px;
+  /* font-size: 16px; */
+  font-size: ${theme.fontSizes.m};
+
   font-weight: 500px;
   line-height: normal;
   letter-spacing: 0.64px;
-  color: #888888;
+  /* color: #888888; */
+  color: ${theme.colors.grey};
   background-color: transparent;
   cursor: pointer;
   svg {
     width: 24px;
     height: 24px;
-    fill: #54adff;
+    /* fill: #54adff; */
+    fill: ${theme.colors.blue};
   }
   &:hover,
   &:focus {
-    color: #ffc107;
+    color: ${theme.colors.yellow};
     svg {
-      fill: #ffc107;
+      fill: ${theme.colors.yellow};
     }
   }
 `;
