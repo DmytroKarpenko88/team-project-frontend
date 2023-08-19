@@ -6,8 +6,8 @@ function Header() {
       <header>
           <div>
               <span className='logo'>Your pet</span>
-              <AuthNav/>
           </div>
+          <AuthNav/>
     </header>
   )
 }
