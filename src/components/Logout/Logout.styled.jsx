@@ -6,7 +6,7 @@ export const LogoutBtn = styled.button`
   justify-content: center;
   align-items: center;
   /* gap: 12px; */
-  gap: ${theme.spacing.step * 4}px;
+  gap: ${theme.spacing.step * 3}px;
   border-color: transparent;
   font-family: inherit;
   /* font-size: 16px; */
@@ -19,6 +19,7 @@ export const LogoutBtn = styled.button`
   color: ${theme.colors.grey};
   background-color: transparent;
   cursor: pointer;
+  transition: color var(--duration) var(--cubic);
   svg {
     width: 24px;
     height: 24px;

@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-// import { theme } from 'styles/theme';
+import { theme } from 'styles/theme';
 
 export const GlobalStyles = css`
   html {
@@ -9,9 +9,11 @@ export const GlobalStyles = css`
 
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-      'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', sans-serif;
+    font-family: ${theme.fonts.main.regular};
+    font-size: ${theme.fontSizes.m};
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
 
     font-style: normal;

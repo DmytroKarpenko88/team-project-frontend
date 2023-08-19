@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MainContainer = styled.section`
@@ -70,4 +71,46 @@ const EditBtn = styled.button`
   }
 `;
 
-export { UserCardContainer, MainContainer, Title, EditBtn };
+const PetsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+`;
+
+const AddPetBtn = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #ffffff;
+  font-weight: 700;
+  width: 134px;
+  padding: 8px 20px;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: 0.64px;
+  background-color: var(--btn-bg-color);
+  border: none;
+  border-radius: 40px;
+  box-shadow: 3px 8px 14px 0px #88c6fd30;
+  transition: background-color var(--duration) var(--cubic);
+  &:hover,
+  &:focus {
+    background: var(--hover-btn-bg-color);
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+export {
+  UserCardContainer,
+  MainContainer,
+  Title,
+  EditBtn,
+  PetsContainer,
+  AddPetBtn,
+};
