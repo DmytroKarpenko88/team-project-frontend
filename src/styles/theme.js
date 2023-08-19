@@ -1,5 +1,4 @@
 export const theme = Object.freeze({
-
   colors: {
     yellow: '#FFC107',
     grey: '#888888',
@@ -16,6 +15,20 @@ export const theme = Object.freeze({
     white: '#FFFFFF',
     bgColor: ' #FEF9F9',
   },
+
+  fonts: {
+    main: {
+      light: 'Manrope-Light', //300
+      regular: 'Manrope-Regular', //400
+      medium: 'Manrope-Medium', //500
+      semiBold: 'Manrope-SemiBold', //600
+      bold: 'Manrope-Bold', //700
+    },
+    secondary: {
+      regular: 'Inter-Regular', //400
+      medium: 'Inter-Medium', //500
+    },
+  },
   fontSizes: {
     xs: '12px',
     s: '14px',
@@ -26,6 +39,7 @@ export const theme = Object.freeze({
     xxxl: '48px',
     heroTitle: '68px',
   },
+
   breakpoints: {
     mobile: '320px',
     tablet: '768px',
@@ -43,4 +57,3 @@ export const theme = Object.freeze({
   },
   transition: { main: 'cubic-bezier(0.4, 0, 0.2, 1)' },
 });
-
