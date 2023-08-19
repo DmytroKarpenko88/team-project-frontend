@@ -1,11 +1,13 @@
 {
   "files": {
     "main.css": "/team-project-frontend/static/css/main.ef9c640a.css",
-    "main.js": "/team-project-frontend/static/js/main.dc8a0a2f.js",
-    "static/js/589.4e6ff26c.chunk.js": "/team-project-frontend/static/js/589.4e6ff26c.chunk.js",
-    "static/js/664.54a27e57.chunk.js": "/team-project-frontend/static/js/664.54a27e57.chunk.js",
-    "static/js/250.ab0d683c.chunk.js": "/team-project-frontend/static/js/250.ab0d683c.chunk.js",
-    "static/js/28.d8b7c026.chunk.js": "/team-project-frontend/static/js/28.d8b7c026.chunk.js",
+    "main.js": "/team-project-frontend/static/js/main.afbfc279.js",
+    "static/js/812.ac2a14cd.chunk.js": "/team-project-frontend/static/js/812.ac2a14cd.chunk.js",
+    "static/js/516.232d54de.chunk.js": "/team-project-frontend/static/js/516.232d54de.chunk.js",
+    "static/js/250.433b2127.chunk.js": "/team-project-frontend/static/js/250.433b2127.chunk.js",
+    "static/js/762.a552eec0.chunk.js": "/team-project-frontend/static/js/762.a552eec0.chunk.js",
+    "static/js/344.5723b7ea.chunk.js": "/team-project-frontend/static/js/344.5723b7ea.chunk.js",
+    "static/js/28.4c194ffb.chunk.js": "/team-project-frontend/static/js/28.4c194ffb.chunk.js",
     "static/media/Inter-Medium.ttf": "/team-project-frontend/static/media/Inter-Medium.6dcbc9bed1ec438907ee.ttf",
     "static/media/Inter-Regular.ttf": "/team-project-frontend/static/media/Inter-Regular.e89cb19905e7db5591b0.ttf",
     "static/media/Manrope-SemiBold.ttf": "/team-project-frontend/static/media/Manrope-SemiBold.310f108cc524df0e5ffc.ttf",
@@ -13,16 +15,19 @@
     "static/media/Manrope-Regular.ttf": "/team-project-frontend/static/media/Manrope-Regular.a9b9e09fe6b69741f316.ttf",
     "static/media/Manrope-Bold.ttf": "/team-project-frontend/static/media/Manrope-Bold.47f6d7143da9d8c0e480.ttf",
     "static/media/Manrope-Light.ttf": "/team-project-frontend/static/media/Manrope-Light.2bf511c25636c7d7a4ce.ttf",
+    "static/media/bg-desktop@1x.png": "/team-project-frontend/static/media/bg-desktop@1x.9a27caa66920ee30a180.png",
     "index.html": "/team-project-frontend/index.html",
     "main.ef9c640a.css.map": "/team-project-frontend/static/css/main.ef9c640a.css.map",
-    "main.dc8a0a2f.js.map": "/team-project-frontend/static/js/main.dc8a0a2f.js.map",
-    "589.4e6ff26c.chunk.js.map": "/team-project-frontend/static/js/589.4e6ff26c.chunk.js.map",
-    "664.54a27e57.chunk.js.map": "/team-project-frontend/static/js/664.54a27e57.chunk.js.map",
-    "250.ab0d683c.chunk.js.map": "/team-project-frontend/static/js/250.ab0d683c.chunk.js.map",
-    "28.d8b7c026.chunk.js.map": "/team-project-frontend/static/js/28.d8b7c026.chunk.js.map"
+    "main.afbfc279.js.map": "/team-project-frontend/static/js/main.afbfc279.js.map",
+    "812.ac2a14cd.chunk.js.map": "/team-project-frontend/static/js/812.ac2a14cd.chunk.js.map",
+    "516.232d54de.chunk.js.map": "/team-project-frontend/static/js/516.232d54de.chunk.js.map",
+    "250.433b2127.chunk.js.map": "/team-project-frontend/static/js/250.433b2127.chunk.js.map",
+    "762.a552eec0.chunk.js.map": "/team-project-frontend/static/js/762.a552eec0.chunk.js.map",
+    "344.5723b7ea.chunk.js.map": "/team-project-frontend/static/js/344.5723b7ea.chunk.js.map",
+    "28.4c194ffb.chunk.js.map": "/team-project-frontend/static/js/28.4c194ffb.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ef9c640a.css",
-    "static/js/main.dc8a0a2f.js"
+    "static/js/main.afbfc279.js"
   ]
 }
