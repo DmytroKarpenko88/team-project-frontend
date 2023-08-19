@@ -11,4 +11,9 @@ export const Box = styled.div`
   .user-icon svg {
     stroke: ${theme.colors.yellow};
   }
+  .user-icon:hover {
+    svg {
+      stroke: ${theme.colors.red};
+    }
+  }
 `;
