@@ -4,7 +4,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { theme } from 'styles';
 
-export const FormContainer = styled.main`
+export const MainLogForm = styled.main`
 position: relative;
 margin: 0 auto;
 padding:  40px 12px;
@@ -13,13 +13,14 @@ justify-content: center;
 background-color: ${theme.colors.white};
 border-radius: 20px;
 width: 280px;
-height: 479px;
+height: 425px;
 `;
 
 export const Titel = styled.h1`
 font-size: ${theme.fontSizes.xl};
 margin-bottom: 20px;
 `;
+
 
 export const InputForm = styled.input`
 padding: 12px 16px;
@@ -31,38 +32,24 @@ border: solid 1px ${theme.colors.blue};
 border-radius: 40px;
 `;
 
-export const OnIconPass = styled(VisibilityIcon)`
+export const OnIcon = styled(VisibilityIcon)`
 position: absolute;
 color: ${theme.colors.blue};
-top: 225px;
+top: 165px;
 left:230px;
 `;
 
-export const OffIconPass = styled(VisibilityOffIcon)`
+export const OffIcon = styled(VisibilityOffIcon)`
 position: absolute;
 color: ${theme.colors.blue};
-top: 225px;
-left:230px;
-`;
-
-export const OnIconConPass = styled(VisibilityIcon)`
-position: absolute;
-color: ${theme.colors.blue};
-top: 287px;
-left:230px;
-`;
-
-export const OffIconConPass = styled(VisibilityOffIcon)`
-position: absolute;
-color: ${theme.colors.blue};
-top: 287px;
+top: 165px;
 left:230px;
 `;
 
 export const Button = styled.button`
 width: 100%;
 height: 48px;
-margin-top: 26px;
+margin-top: 96px;
 margin-bottom: 8px;
 font-size: ${theme.fontSizes.l};
 color: ${theme.colors.white};
@@ -70,7 +57,7 @@ border-radius: 40px;
 background-color: ${theme.colors.blue};
 `;
 
-export const ToLogin = styled.p`
+export const ToRegister = styled.p`
 color: ${theme.colors.grey};
 font-size: ${theme.fontSizes.xs};
 `;
