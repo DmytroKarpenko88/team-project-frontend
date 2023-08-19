@@ -18,5 +18,9 @@ code {
 :root {
     --header-items-color: #ffc107;
     --btn-bg-color: #54adff;
+    --hover-btn-bg-color: linear-gradient(315deg, #419ef1 0%, #9bd0ff 100%);
 
+
+    --duration: 250ms;
+    --cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
