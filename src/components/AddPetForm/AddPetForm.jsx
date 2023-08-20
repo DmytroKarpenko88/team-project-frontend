@@ -138,9 +138,9 @@ function AddPetForm() {
         <li>
           <button type="button" onClick={() => insertForm()}>
             Next
-            <svg class="icon" width="32" height="32">
+            {/* <svg class="icon" width="32" height="32">
               <use href="../../icons/paw1.svg"></use>
-            </svg>
+            </svg> */}
           </button>
         </li>
 
