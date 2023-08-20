@@ -20,7 +20,7 @@ export default function AuthForm() {
             <Titel>Registration</Titel>
             <div >
               <InputForm
-                autoFocus="autofocus"
+                // autoFocus="autofocus"
                 name="name"
                 type="name"
                 placeholder="Name"
