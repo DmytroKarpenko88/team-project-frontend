@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Background,
-  Page,
-  Container,
-  Title,
-  Gif,
-  Wrapper,
-} from './Main.styled.jsx';
+import { Background, Page, Container, Title, Wrapper } from './Main.styled.jsx';
 
 export const Main = () => {
   return (
@@ -17,7 +10,6 @@ export const Main = () => {
         </Container>
         <Wrapper>
           <Page />
-          <Gif frameBorder="0" allowFullScreen />
         </Wrapper>
       </Background>
     </>
