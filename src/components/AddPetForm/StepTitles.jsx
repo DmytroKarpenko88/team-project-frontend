@@ -1,20 +1,20 @@
 const StepTitles = ({ step }) => {
   return (
-    <div>
-      <span>
+    <ul>
+      <li>
         Choose option
         <div className="line"></div>
-      </span>
+      </li>
 
-      <span>
+      <li>
         Personal details
         <div className="line"></div>
-      </span>
-      <span>
+      </li>
+      <li>
         More info
         <div className="line"></div>
-      </span>
-    </div>
+      </li>
+    </ul>
   );
 };
 export default StepTitles;

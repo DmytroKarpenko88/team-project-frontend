@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { CiLogout } from 'react-icons/ci';
-import { LogoutBtn } from './Logout.styled';
+import { Logout } from '../icons/index';
+import { LogoutBtnStyled } from './Logout.styled';
 
-const Logout = () => {
+const LogoutBtn = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   console.log(isModalOpen);
@@ -12,12 +12,12 @@ const Logout = () => {
 
   return (
     <div style={{ marginTop: '25px' }}>
-      <LogoutBtn type="button" onClick={closeModal}>
-        <CiLogout />
+      <LogoutBtnStyled type="button" onClick={closeModal}>
+        <Logout />
         Log Out
-      </LogoutBtn>
+      </LogoutBtnStyled>
     </div>
   );
 };
 
-export default Logout;
+export default LogoutBtn;

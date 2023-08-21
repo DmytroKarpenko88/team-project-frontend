@@ -1,14 +1,14 @@
 const getTitle = data => {
-  let title = 'Add pet';
+  let title = 'Add';
   switch (data.option) {
     case 'sell':
-      title = `${title} for sell`;
+      title = `${title} pet for sale`;
       break;
     case 'lostFound':
-      title = `${title} for 'lost/found'`;
+      title = `${title} lost or found pet`;
       break;
     case 'hands':
-      title = `${title} for 'in good hands'`;
+      title = `${title} pet for 'in good hands'`;
       break;
     default:
       title = 'Add pet';
