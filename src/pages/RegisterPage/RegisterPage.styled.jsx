@@ -8,11 +8,11 @@ import imageBgDesc1 from '../../images/background/bg-desktop@1x.png';
 // import imageBgDesc2 from '../../images/background/bg-desktop@2x.png'
 
 export const RegisterContainer = styled.main`
-  padding: 0px 20px 34px 20px;
   margin: 0 auto;
+  padding: 40px 20px 34px 20px;
   width: 320px;
   background-image: url(${imageBgMob1});
-  background-color: rgb(254, 249, 249);
+  /* background-color: rgb(254, 249, 249); */
 
   @media screen and (min-width: 768px) {
     width: 768px;

@@ -26,7 +26,7 @@ color: ${theme.colors.white};
 border: solid 2px ${theme.colors.yellow};
 border-radius: 40px;
 background-color: ${theme.colors.yellow};
-&:focus {
+&.active {
 color: ${theme.colors.yellow};
 background-color: ${theme.colors.white};
 };
@@ -54,7 +54,7 @@ svg {
     margin-bottom: 2px;
   };
 
-&:focus {
+&.active {
 color: ${theme.colors.yellow};
 background-color: ${theme.colors.white};
 svg {
