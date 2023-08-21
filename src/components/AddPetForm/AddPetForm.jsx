@@ -1,5 +1,5 @@
 import React from 'react'; // { useState }
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 
 // import StepTitles from './stepTitles';
@@ -59,13 +59,9 @@ function AddPetForm() {
 
       {/* ----------- second step content */}
 
-      <form
-        className="input"
-        action=""
-        // onSubmit={formSubmit}
-      >
+      <form>
         {/* тут умова для Title of add поле в разі певних опшинів радіокнопок*/}
-        <label className="input">
+        <label>
           Title of add
           <TextField
             // <input> tag
@@ -134,6 +130,26 @@ function AddPetForm() {
 
       {/* ----------- third step content */}
 
+      <div className="thirdStep">
+        <label id="photo">
+          Add photo
+          <input type="file" name="photo" alt="pet`s photo" required />
+          <img alt="pet preview"></img>
+        </label>
+
+        <label id="comments">
+          Comments
+          <textarea
+            type="text"
+            name="comments"
+            placeholder="Field is required"
+            required
+          />
+        </label>
+      </div>
+
+      {/* ----------- */}
+
       <ul>
         <li>
           <button type="button" onClick={() => insertForm()}>
@@ -146,7 +162,7 @@ function AddPetForm() {
 
         <li>
           {/* повернути на сторінку з якої прийшов */}
-          <NavLink to="/user">Сancel</NavLink>
+          <Link to="/user">Cancel or Back</Link>
         </li>
       </ul>
     </form>
