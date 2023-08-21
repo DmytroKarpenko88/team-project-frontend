@@ -13,9 +13,9 @@ export const ChevronUp = () => {
       <path
         d="M20 15L12 7L4 15"
         stroke=""
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </SVGStyledStroke>
   );

@@ -13,9 +13,9 @@ export const Check = () => {
       <path
         d="M20.0001 7L9.0001 18L4 13"
         stroke=""
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </SVGStyledStroke>
   );
