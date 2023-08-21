@@ -37,8 +37,8 @@ const FirstStepForm = ({ data, setData }) => {
         <input
           type="radio"
           name="option"
-          value="lostFond"
-          checked={option === 'lostFond'}
+          value="lostFound"
+          checked={option === 'lostFound'}
           onChange={handleChange}
         />
         lost/found
