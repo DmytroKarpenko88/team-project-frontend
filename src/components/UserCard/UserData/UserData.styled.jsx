@@ -1,34 +1,35 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { theme } from 'styles';
 
 const MainContainer = styled.section`
   max-width: 100vw;
   margin-top: 44px;
   display: flex;
   flex-direction: column;
-  gap: 46px;
+  gap: ${theme.spacing.step * 11.5}px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: raw;
     gap: 32px;
+    gap: ${theme.spacing.step * 8}px;
   }
 `;
 
 const Title = styled.h2`
-  color: #000;
-  font-family: Manrope;
-  font-size: 20px;
+  color: ${theme.colors.black};
+  font-family: ${theme.fonts.main.medium};
+  font-size: ${theme.fontSizes.l};
   font-style: normal;
-  font-weight: 500;
   line-height: normal;
   letter-spacing: 0.8px;
   margin-bottom: 18px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 28px;
     margin-bottom: 48px;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     margin-bottom: 24px;
   }
 `;
@@ -37,10 +38,10 @@ const UserCardContainer = styled.div`
   position: relative;
   padding: 20px;
   border-radius: 40px;
-  background: #fff;
-  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+  background: ${theme.colors.white};
+  box-shadow: ${theme.boxShadows.main};
 
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     height: max-content;
   }
 `;
@@ -58,15 +59,15 @@ const EditBtn = styled.button`
   svg {
     width: 24px;
     height: 24px;
-    fill: var(--btn-bg-color);
+    fill: ${theme.colors.blue};
   }
   &:hover {
     svg {
-      fill: var(--header-items-color);
+      fill: ${theme.colors.yellow};
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     right: 18px;
   }
 `;
@@ -83,26 +84,28 @@ const AddPetBtn = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  color: #ffffff;
+  gap: ${theme.spacing.step * 1}px;
+  color: ${theme.colors.white};
   font-weight: 700;
   width: 134px;
   padding: 8px 20px;
-  font-size: 16px;
+  font-size: ${theme.fontSizes.m};
   line-height: normal;
   letter-spacing: 0.64px;
-  background-color: var(--btn-bg-color);
+  background: ${theme.colors.blue};
   border: none;
   border-radius: 40px;
-  box-shadow: 3px 8px 14px 0px #88c6fd30;
+  box-shadow: ${theme.boxShadows.main};
   transition: background-color var(--duration) var(--cubic);
+  svg {
+    stroke: ${theme.colors.white};
+  }
   &:hover,
   &:focus {
-    background: var(--hover-btn-bg-color);
-  }
-  svg {
-    width: 24px;
-    height: 24px;
+    background: ${theme.colors.grBlue2};
+    svg {
+      stroke: ${theme.colors.white};
+    }
   }
 `;
 

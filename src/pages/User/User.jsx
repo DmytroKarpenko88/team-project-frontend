@@ -1,4 +1,3 @@
-import { BsPlus } from 'react-icons/bs';
 import UserData from 'components/UserCard/UserData/UserData';
 import {
   AddPetBtn,
@@ -7,6 +6,7 @@ import {
   Title,
 } from 'components/UserCard/UserData/UserData.styled';
 import PetsData from 'components/UserCard/PetsData/PetsData';
+import { PlusSmall } from 'components/icons';
 
 const User = () => {
   return (
@@ -21,7 +21,7 @@ const User = () => {
           <PetsContainer>
             <Title>My pets:</Title>
             <AddPetBtn to="/add-pet">
-              Add Pet <BsPlus />
+              Add Pet <PlusSmall />
             </AddPetBtn>
           </PetsContainer>
           <PetsData />
