@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 
 
-export const NavMenu = styled.ul`
+export const NavMenu = styled.ul.withConfig({
+    shouldForwardProp: prop => prop !== 'click',
+  })`
 // height: 100%;
 display:flex;
 justify-content: center;
@@ -12,7 +14,7 @@ align-items: center;
 z-index: 0;
 
 @media screen and (min-width: ${theme.breakpoints.desktop}){
-    margin-right: 329px;
+    // margin-right: auto;
 }
 
 @media screen and (max-width: 767px){
@@ -23,7 +25,7 @@ z-index: 0;
 @media screen and (min-width:768px ) and (max-width:1279px){
     top: 44px;
     padding: 94px 0 700px 0;
-    // opacity: ${({click})=> click ? "1" : "0"};
+    
 
 }
 
@@ -34,7 +36,8 @@ z-index: 0;
     position: absolute;    
     left: 0;
     flex-direction: column-reverse;
-    opacity: ${({click})=> click ? "1" : "0"};
+    display: ${({click})=> click ? "visible" : "none"};
+    
     text-align: center;
     transition: 0.1s all ease-in;
     background-color: ${theme.colors.bgColor}
@@ -44,7 +47,7 @@ z-index: 0;
 `
 
 
-export const MenuItem = styled.li`
+export const NavMenuItem = styled.li`
 height: 100%;
 display: flex;
 justify-content: center;
@@ -72,7 +75,7 @@ align-items: center;
 
 
 
-export const MenuItemLink = styled(Link)`
+export const NavMenuItemLink = styled(Link)`
 color: ${theme.colors.black};
 font-size: ${theme.fontSizes.l};
 text-decoration: none;

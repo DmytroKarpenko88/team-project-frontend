@@ -3,11 +3,11 @@ import {
   Auth,
   AuthContainer,
   CrossButton,
+  HeaderContainer,
+  HeaderMenu,
+  HeaderWrapper,
   IconOpenMenu,
-  Menu,
   MenuButton,
-  NavbarContainer,
-  NavbarWrapper
 } from './Header.styled'
 import Logo from 'components/Logo/Logo'
 import { Cross, MenuHamburger } from 'components/icons'
@@ -23,11 +23,11 @@ export const Header = () => {
   }
 
   return (
-    <NavbarContainer>
-      <NavbarWrapper>
+    <HeaderContainer>
+      <HeaderWrapper>
         <Logo onClick={() => changeClick()}/>
         
-        <Menu>
+        <HeaderMenu>
           <AuthContainer>
             <Auth />
           </AuthContainer>
@@ -38,11 +38,11 @@ export const Header = () => {
         </IconOpenMenu>
         
           <Nav click={click } onClick={() => changeClick()}/>  
-        </Menu>
+        </HeaderMenu>
              
         
-      </NavbarWrapper>      
-   </NavbarContainer>
+      </HeaderWrapper>      
+   </HeaderContainer>
   )
 }
 
