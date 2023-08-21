@@ -1,62 +1,61 @@
 import { ArrowLeft, Paw } from 'components/icons';
-import React from 'react'; // { useState }
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import StepTitles from './StepTitles';
+import getFormBasedOnStep from './getFormBasedOnStep';
+import getTitle from './getTitle';
 
 // import StepTitles from './stepTitles';
 
-function AddPetForm() {
-  // const [step, setStep] = useState(1);
-  // const [data, setData] = useState({ option: 'pet' });
+const AddPetForm = () => {
+  const [step, setStep] = useState(1);
+  const [data, setData] = useState({ option: 'pet' });
 
-  const insertForm = () => {};
-  // const title = getTitle(data);
+  // console.log('data', data);
+  // console.log('setData', setData);
 
-  // if (click on btn next) {
-  //   return setStep(2);
-  // }
+  const title = getTitle(data);
+
+  const onClick = e => {
+    const btn = e.target.innerHTML;
+
+    console.log(e);
+    console.log(btn);
+
+    if (btn.includes('Next')) {
+      return setStep(2);
+    }
+  };
 
   return (
-    <form>
+    <form onClick={onClick}>
       {/* --------------------- title of form ---------------------- */}
 
       <div>
         <h2 className="title">
-          Add pet
-          {/* рендеримо відповідний заголовок форми
-          {title} */}
+          {/* рендеримо відповідний заголовок форми */}
+          {/* Add pet */}
+          {title}
         </h2>
+        {/* передаємо крок і рендеримо кольори опцій у відповідності 
+        Choose option Personal details Personal details*/}
+        <StepTitles step={step} />
       </div>
-      <ul>
-        <li>
-          {/* 
-          передаємо крок і рендеримо кольори опцій 
-          <StepTitles step={step} /> 
-          */}
-          Choose option
-        </li>
-        <li>Personal details</li>
-        <li>More info</li>
-      </ul>
 
       {/* ----------- content for form based on step -------------- */}
-      <getFormBasedOnStep
-      // step={step} data={data}
-      />
+      {getFormBasedOnStep(step, data, setData)}
 
       {/* ------------------------ buttons ------------------------ */}
       <ul>
         <li>
-          <button type="button" onClick={() => insertForm()}>
+          <button type="button">
             Next or Done
             <Paw />
-            {/* <svg class="icon" width="32" height="32">
-              <use href="../../icons/paw1.svg"></use>
-            </svg> */}
           </button>
         </li>
 
         <li>
-          {/* повернути на сторінку з якої прийшов */}
+          {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
           <Link to="/user">
             <ArrowLeft /> Cancel or Back
           </Link>
@@ -64,6 +63,6 @@ function AddPetForm() {
       </ul>
     </form>
   );
-}
+};
 
 export default AddPetForm;
