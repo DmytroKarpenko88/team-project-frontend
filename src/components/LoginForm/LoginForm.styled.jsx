@@ -15,7 +15,7 @@ border-radius: 20px;
 width: 280px;
 height: 425px;
 box-shadow: 7px 10px 14px rgba(63, 143, 248, 0.11);
-z-index: 99;
+z-index: 0;
 @media (min-width: 768px) {
     padding:  60px 75px;
     width: 608px;

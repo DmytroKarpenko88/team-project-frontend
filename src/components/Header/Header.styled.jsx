@@ -5,7 +5,7 @@ import { AuthNav } from 'components/AuthNav/AuthNav'
 
 
 
-export const NavbarContainer = styled.div`
+export const HeaderContainer = styled.div`
 width: 100%;
 height: 48px;
 position: sticky;
@@ -25,7 +25,7 @@ background-color: ${theme.colors.bgColor};
 }
 `
 
-export const NavbarWrapper = styled.div`
+export const HeaderWrapper = styled.div`
 margin:auto;
 width: 100%;
 max-width: 1280px;
@@ -36,12 +36,15 @@ flex-wrap: wrap;
 justify-content: space-between;
 `
 
-export const Menu = styled.div`
+export const HeaderMenu = styled.div`
 display:flex;
 
 @media screen and (min-width: ${theme.breakpoints.desktop}){
 flex-direction: row-reverse;
-
+width: 959px;
+height: 28px;
+justify-content: space-between;
+align-items: center;
 }
 `
 
