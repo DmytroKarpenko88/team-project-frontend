@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { ArrowLeft, Paw } from 'components/icons';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -63,6 +65,12 @@ const AddPetForm = () => {
       </ul>
     </form>
   );
+};
+
+AddPetForm.propTypes = {
+  title: PropTypes.string.isRequired,
+  step: PropTypes.number.isRequired,
+  setData: PropTypes.func.isRequired,
 };
 
 export default AddPetForm;
