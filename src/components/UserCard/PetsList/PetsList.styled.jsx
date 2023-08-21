@@ -1,23 +1,25 @@
 import styled from 'styled-components';
+import { theme } from 'styles';
 
 export const PetsListStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: ${theme.spacing.step * 5}px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     align-items: flex-start;
   }
 `;
 
 export const Title = styled.h2`
-  font-size: 20px;
+  font-size: ${theme.fontSizes.l};
   font-weight: 500;
   line-height: normal;
   letter-spacing: 0.8px;
-  color: #000000;
-  @media screen and (min-width: 768px) {
+  color: ${theme.colors.black};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 28px;
   }
 `;
