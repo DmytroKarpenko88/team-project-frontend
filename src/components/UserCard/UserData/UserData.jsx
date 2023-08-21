@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { BiEditAlt } from 'react-icons/bi';
-import { LiaTimesSolid } from 'react-icons/lia';
 import { EditBtn, UserCardContainer } from './UserData.styled';
-import Logout from 'components/Logout/Logout';
+import LogoutBtn from 'components/Logout/LogoutBtn';
+import { Cross, Edit } from 'components/icons';
+import UserForm from '../UserForm/UserForm';
 
 const UserData = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
@@ -18,14 +18,18 @@ const UserData = () => {
       <UserCardContainer>
         {isFormDisabled ? (
           <EditBtn onClick={() => setIsFormDisabled(false)}>
-            <BiEditAlt />
+            <Edit />
           </EditBtn>
         ) : (
           <EditBtn onClick={() => setIsFormDisabled(true)}>
-            <LiaTimesSolid />
+            <Cross />
           </EditBtn>
         )}
-        {isFormDisabled && <Logout />}
+        <UserForm
+          disabled={isFormDisabled}
+          setIsFormDisabled={setIsFormDisabled}
+        />
+        {isFormDisabled && <LogoutBtn />}
       </UserCardContainer>
     </>
   );

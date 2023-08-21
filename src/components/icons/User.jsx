@@ -13,9 +13,9 @@ export const User = ({ className }) => {
       <path
         d="M22 24V22C22 19.7909 20.2091 18 18 18H10C7.79086 18 6 19.7909 6 22V24M18 10C18 12.2091 16.2091 14 14 14C11.7909 14 10 12.2091 10 10C10 7.79086 11.7909 6 14 6C16.2091 6 18 7.79086 18 10Z"
         stroke=""
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <rect
         x="0.75"
@@ -24,7 +24,7 @@ export const User = ({ className }) => {
         height="26.5"
         rx="13.25"
         stroke=""
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
     </SVGStyledStroke>
   );

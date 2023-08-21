@@ -13,9 +13,9 @@ export const Filer = () => {
       <path
         d="M4.75781 4L9.75781 12V18L15.7578 21V12L20.7578 4H4.75781Z"
         stroke=""
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </SVGStyledStroke>
   );
