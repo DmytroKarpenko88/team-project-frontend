@@ -1,5 +1,6 @@
-import styled from 'styled-components';
-
-const ModalApproveAction = styled.div``;
-
-export { ModalApproveAction };
+import styled from '@emotion/styled';
+export const ModalApproveAction = styled.div`
+  body {
+    background-color: 'green'
+  }
+`;
