@@ -2,8 +2,8 @@ import React from 'react'
 import {
   AuthContainerMobile,
   NavMenu,
-  MenuItem,
-  MenuItemLink,
+  NavMenuItemLink,
+  NavMenuItem,
 } from './Nav.styled'
 import { AuthNav } from 'components/AuthNav/AuthNav'
 
@@ -15,23 +15,23 @@ export const Nav = ({click, onClick}) => {
     return (
     
         <NavMenu click={click}>
-            <MenuItem onClick={onClick}>
-                <MenuItemLink to="/friends">
+            <NavMenuItem onClick={onClick}>
+                <NavMenuItemLink to="/friends">
                     Our friends
-                </MenuItemLink>
-            </MenuItem>
+                </NavMenuItemLink>
+            </NavMenuItem>
             
-            <MenuItem onClick={onClick}>
-                <MenuItemLink to="/notice">
+            <NavMenuItem onClick={onClick}>
+                <NavMenuItemLink to="/notice">
                     Find pet
-                </MenuItemLink>
-            </MenuItem>
+                </NavMenuItemLink>
+            </NavMenuItem>
   
-            <MenuItem onClick={onClick}>
-                <MenuItemLink to="/news">
+            <NavMenuItem onClick={onClick}>
+                <NavMenuItemLink to="/news">
                     News
-                </MenuItemLink>
-            </MenuItem>
+                </NavMenuItemLink>
+            </NavMenuItem>
             
             <AuthContainerMobile onClick={onClick}>
                 <AuthNav />
