@@ -2,18 +2,19 @@ import FirstStepForm from './FirstStepForm';
 import SecondStepForm from './SecondStepForm';
 import ThirdStepForm from './ThirdStepForm';
 
-const getFormBasedOnStep = (step, data) => {
+const getFormBasedOnStep = (step, data, setData) => {
+  let formBasedOnStep;
   switch (step) {
     case 2:
-      <SecondStepForm data={data} />;
+      formBasedOnStep = <SecondStepForm />;
       break;
     case 3:
-      <ThirdStepForm data={data} />;
+      formBasedOnStep = <ThirdStepForm />;
       break;
 
     default:
-      <FirstStepForm data={data} />;
+      formBasedOnStep = <FirstStepForm data={data} setData={setData} />;
   }
-  return;
+  return formBasedOnStep;
 };
 export default getFormBasedOnStep;

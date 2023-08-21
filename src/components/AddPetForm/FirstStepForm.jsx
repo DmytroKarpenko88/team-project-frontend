@@ -1,18 +1,24 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-const FirstStepForm = props => {
-  const handleChange = () => {};
+const FirstStepForm = ({ data, setData }) => {
+  const handleChange = e => {
+    const value = e.target.value;
+    console.log(e.target.value);
+
+    setData(prev => ({ ...prev, option: value }));
+  };
+  const { option } = data;
 
   return (
-    <form className="firstStep">
-      {/* ----------- first step content radio btn */}
+    <div className="firstStep">
+      {/* ----------- first step content radio btn ------------- */}
       <label>
         <input
           type="radio"
           name="option"
           value="pet"
-          checked
+          checked={option === 'pet'}
           onChange={handleChange}
         />
         your pet
@@ -22,7 +28,7 @@ const FirstStepForm = props => {
           type="radio"
           name="option"
           value="sell"
-          checked
+          checked={option === 'sell'}
           onChange={handleChange}
         />
         sell
@@ -32,7 +38,7 @@ const FirstStepForm = props => {
           type="radio"
           name="option"
           value="lostFond"
-          checked
+          checked={option === 'lostFond'}
           onChange={handleChange}
         />
         lost/found
@@ -42,12 +48,12 @@ const FirstStepForm = props => {
           type="radio"
           name="option"
           value="hands"
-          checked
+          checked={option === 'hands'}
           onChange={handleChange}
         />
         in good hands
       </label>
-    </form>
+    </div>
   );
 };
 
