@@ -5,7 +5,7 @@ import Main from './Main/Main';
 import Notices from './Notices/Notices';
 import AddPet from './AddPet/AddPet';
 import PageNotFound from 'pages/PageNotFound';
-
+import ModalApproveAction from './ModalApproveAction';
 // import Loader from './Loader/Loader';
 
 const Register = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -26,6 +26,7 @@ export const App = () => {
           <Route path="user" element={<User />} />
           <Route path="add-pet" element={<AddPet />} />
           <Route path="icons" element={<IconPage />} />
+          <Route path="modal-approve-action" element={<ModalApproveAction/>}/>
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
