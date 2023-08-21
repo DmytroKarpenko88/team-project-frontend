@@ -13,9 +13,9 @@ export const MenuHamburger = () => {
       <path
         d="M4 7H20M4 12H20M4 17H20"
         stroke=""
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </SVGStyledStroke>
   );

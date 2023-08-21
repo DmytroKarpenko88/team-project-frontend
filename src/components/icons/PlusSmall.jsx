@@ -13,9 +13,9 @@ export const PlusSmall = () => {
       <path
         d="M12 7V17M7 12L17 12"
         stroke=""
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </SVGStyledStroke>
   );

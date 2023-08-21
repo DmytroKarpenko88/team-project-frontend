@@ -4,7 +4,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { theme } from 'styles';
 
-export const FormContainer = styled.main`
+export const FormContainer = styled.div`
 position: relative;
 margin: 0 auto;
 padding:  40px 12px;
@@ -14,11 +14,28 @@ background-color: ${theme.colors.white};
 border-radius: 20px;
 width: 280px;
 height: 479px;
+box-shadow: 7px 10px 14px rgba(63, 143, 248, 0.11);
+/* z-index: 99; */
+@media (min-width: 768px) {
+    padding:  60px 75px;
+    width: 608px;
+    height: 629px;
+    border-radius: 40px;
+    /* z-index: 99; */
+  }
+@media screen and (min-width: 1281px) {
+    height: 617px;
+  }
 `;
 
 export const Titel = styled.h1`
 font-size: ${theme.fontSizes.xl};
+font-family: ${theme.fonts.main.medium};
 margin-bottom: 20px;
+@media (min-width: 768px) {
+    font-size: ${theme.fontSizes.xxl};
+    margin-bottom: 40px;
+}
 `;
 
 export const InputForm = styled.input`
@@ -26,9 +43,14 @@ padding: 12px 16px;
 width: 100%;
 height: 48px;
 font-size: ${theme.fontSizes.m};
+font-family: ${theme.fonts.main.regular};
 margin-bottom: 14px;
 border: solid 1px ${theme.colors.blue};
 border-radius: 40px;
+@media (min-width: 768px) {
+    font-size: ${theme.fontSizes.m};
+    margin-bottom: 32px;
+}
 `;
 
 export const OnIconPass = styled(VisibilityIcon)`
@@ -36,6 +58,10 @@ position: absolute;
 color: ${theme.colors.blue};
 top: 225px;
 left:230px;
+@media (min-width: 768px) {
+    top: 315px;
+    left:492px; 
+}
 `;
 
 export const OffIconPass = styled(VisibilityOffIcon)`
@@ -43,6 +69,10 @@ position: absolute;
 color: ${theme.colors.blue};
 top: 225px;
 left:230px;
+@media (min-width: 768px) {
+    top: 315px;
+    left:492px; 
+}
 `;
 
 export const OnIconConPass = styled(VisibilityIcon)`
@@ -50,6 +80,10 @@ position: absolute;
 color: ${theme.colors.blue};
 top: 287px;
 left:230px;
+@media (min-width: 768px) {
+    top: 395px;
+    left:492px;
+}
 `;
 
 export const OffIconConPass = styled(VisibilityOffIcon)`
@@ -57,6 +91,10 @@ position: absolute;
 color: ${theme.colors.blue};
 top: 287px;
 left:230px;
+@media (min-width: 768px) {
+    top: 395px;
+    left:492px;
+}
 `;
 
 export const Button = styled.button`
@@ -68,16 +106,26 @@ font-size: ${theme.fontSizes.l};
 color: ${theme.colors.white};
 border-radius: 40px;
 background-color: ${theme.colors.blue};
+@media (min-width: 768px) {
+    margin-top: 30px;
+    margin-bottom: 16px;
+font-family: ${theme.fonts.main.semiBold};
+}
+@media screen and (min-width: 1281px) {
+    margin-top: 8px;
+  }
 `;
 
 export const ToLogin = styled.p`
 color: ${theme.colors.grey};
 font-size: ${theme.fontSizes.xs};
+font-family: ${theme.fonts.main.regular};
 `;
 
 export const LinkStyled = styled(NavLink)`
 color: ${theme.colors.blue};
 font-size: ${theme.fontSizes.xs};
+font-family: ${theme.fonts.main.regular};
 margin-left: 4px;
 text-decoration: underline;
 `;

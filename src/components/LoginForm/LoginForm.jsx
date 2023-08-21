@@ -28,7 +28,7 @@ export default function LoginForm() {
             <Titel>Login</Titel>
 
             <InputForm
-              autoFocus="autofocus"
+            //   autoFocus="autofocus"
               name="email"
               type="email"
               placeholder="Email"
