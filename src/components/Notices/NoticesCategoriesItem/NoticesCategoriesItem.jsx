@@ -17,7 +17,7 @@ import { Heart, Location, Clock, Female, Paw } from 'components/icons';
 export const NoticesCategoriesItem = () => {
   const [
     favorite,
-    //  setFavorite
+    // setFavorite
   ] = useState(false);
   // const [showModal, setShowModal] = useState(false);
 

@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import 'modern-normalize';
 import { Global, ThemeProvider } from '@emotion/react';
 import { App } from 'components/App';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import { GlobalStyles, theme } from 'styles';
 
