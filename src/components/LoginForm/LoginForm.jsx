@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { ErrorMessage, Form, Formik } from 'formik';
-// import VisibilityIcon from '@mui/icons-material/Visibility';
-// import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Form, Formik } from 'formik';
+import { loginSchema } from 'utils/shemas/AuthSchema';
+
 import {
   MainLogForm,
   Titel,
+  FormField,
   InputForm,
+  ErrorMess,
   Button,
   ToRegister,
   LinkStyled,
@@ -13,40 +15,59 @@ import {
   OffIcon,
 } from './LoginForm.styled';
 
+const initialValues = {
+  email: '',
+  password: '',
+};
+
 export default function LoginForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
+
+  const handleLoginSubmit = values => {
+    console.log(' values:', values);
+    // const data = {
+    //   name: values.name,
+    //   email: values.email,
+    //   password: values.password,
+    //   confirmPassword: values.password,
+    // };
+    // return dispatch(register(data));
+  };
+
   return (
     <MainLogForm>
       <Formik
-      // validationSchema={user.loginValidationSchema}
-      // initialValues={initialValues}
-      // onSubmit={handleSubmit}
+        validationSchema={loginSchema}
+        initialValues={initialValues}
+        onSubmit={handleLoginSubmit}
       >
         {() => (
           <Form>
             <Titel>Login</Titel>
+            <FormField>
+              <InputForm
+                //   autoFocus="autofocus"
+                name="email"
+                type="email"
+                placeholder="Email"
+                autoComplete="on"
+              />
+              <ErrorMess name="email" component="p" />
+            </FormField>
 
-            <InputForm
-            //   autoFocus="autofocus"
-              name="email"
-              type="email"
-              placeholder="Email"
-              autoComplete="on"
-            />
-            <ErrorMessage name="email" component="p" />
-
-            <InputForm
-              name="password"
-              type={passwordShow ? 'text' : 'password'}
-              placeholder="Password"
-              autoComplete="on"
-            />
-            <span id="visibilityBtn" onClick={togglePassword}>
-              {passwordShow ? <OnIcon /> : <OffIcon />}
-            </span>
-            <ErrorMessage name="password" component="p" />
-
+            <FormField>
+              <InputForm
+                name="password"
+                type={passwordShow ? 'text' : 'password'}
+                placeholder="Password"
+                autoComplete="on"
+              />
+              <span id="visibilityBtn" onClick={togglePassword}>
+                {passwordShow ? <OnIcon /> : <OffIcon />}
+              </span>
+              <ErrorMess name="password" component="p" />
+            </FormField>
             <div>
               <Button type="submit">Login</Button>
             </div>
