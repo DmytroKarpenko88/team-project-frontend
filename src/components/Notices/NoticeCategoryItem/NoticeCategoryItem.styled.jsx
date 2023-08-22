@@ -18,7 +18,7 @@ export const List = styled.li`
   border-bottom-left-radius: 40px;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 336px;
   }
 

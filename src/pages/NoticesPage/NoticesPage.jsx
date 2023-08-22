@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Wrapper, Filter, Boxing } from './NoticesPage.styled';
+import {
+  // Wrapper,
+  Filter,
+  Boxing,
+} from './NoticesPage.styled';
 import { Title } from 'components/Notices/Title/Title';
 import { NoticeSearch } from 'components/Notices/NoticeSearch/NoticeSearch';
 import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
