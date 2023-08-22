@@ -6,6 +6,7 @@ export const theme = Object.freeze({
     black: '#111111',
     blue: '#54ADFF',
     blueLight: '#CCE4FB',
+    blueLight2: '#c5dff6',
     grBlue: [
       'linear-gradient(to, rgba(155,208,255,1) 3%, rgba(65,158,241,1) 37%)',
     ],

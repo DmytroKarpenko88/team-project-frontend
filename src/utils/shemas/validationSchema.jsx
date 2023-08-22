@@ -1,4 +1,4 @@
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 
 const phoneRegExp = /^(\+380\d{9})$/;
 const dateRegExp =
@@ -26,4 +26,5 @@ const validationSchema = Yup.object().shape({
   city: Yup.string().matches(cityRegExp, 'Enter valid format for city'),
 });
 
-export default validationSchema;
+
+// export default validationSchema;

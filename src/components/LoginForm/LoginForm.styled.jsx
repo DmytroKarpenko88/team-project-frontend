@@ -1,5 +1,6 @@
 import {styled} from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { ErrorMessage, Field} from 'formik';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { theme } from 'styles';
@@ -40,8 +41,11 @@ margin-bottom: 20px;
   }
 `;
 
+export const FormField = styled.div`
+position: relative;
+`;
 
-export const InputForm = styled.input`
+export const InputForm = styled(Field)`
 padding: 12px 16px;
 width: 100%;
 height: 48px;
@@ -58,14 +62,22 @@ border-radius: 40px;
   };
 `;
 
+export const ErrorMess = styled(ErrorMessage)`
+position: absolute;
+font-size: 10px;
+color: ${theme.colors.red};
+left: 0px;
+top: 47px;
+`;
+
 export const OnIcon = styled(VisibilityIcon)`
 position: absolute;
 color: ${theme.colors.blue};
-top: 165px;
-left:230px;
+top: 12px;
+left:218px;
 @media screen and (min-width: 768px) {
-    top: 235px;
-    left:492px;
+  top: 12px;
+    left:420px;
   };
 @media screen and (min-width: 1281px) {
   };
@@ -74,11 +86,11 @@ left:230px;
 export const OffIcon = styled(VisibilityOffIcon)`
 position: absolute;
 color: ${theme.colors.blue};
-top: 165px;
-left:230px;
+top: 12px;
+left:218px;
 @media screen and (min-width: 768px) {
-    top: 235px;
-    left:492px;
+  top: 12px;
+    left:420px;
   };
 @media screen and (min-width: 1281px) {
   };

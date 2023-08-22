@@ -8,33 +8,38 @@ import getTitle from './getTitle';
 // import StepTitles from './stepTitles';
 
 const AddPetForm = () => {
+  // const location = useLocation();
   const [step, setStep] = useState(1);
   const [data, setData] = useState({ option: 'pet' });
-
-  // console.log('data', data);
-  // console.log('setData', setData);
 
   const title = getTitle(data);
 
   const onClick = e => {
     const btn = e.target.innerHTML;
 
-    console.log(e);
-    console.log(btn);
-
     if (btn.includes('Next')) {
-      return setStep(2);
+      if (step === 1) return setStep(2);
+      if (step === 2) return setStep(3);
+    } else if (btn.includes('Done')) {
+      e.preventDefault();
+      // server request
+      return;
+    } else if (btn.includes('Back')) {
+      return setStep(prev => prev - 1);
+    } else {
+      return;
     }
   };
+
+  // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
+  const backPage = step === 1 ? '/user' : '';
 
   return (
     <form onClick={onClick}>
       {/* --------------------- title of form ---------------------- */}
-
       <div>
         <h2 className="title">
-          {/* рендеримо відповідний заголовок форми */}
-          {/* Add pet */}
+          {/* рендеримо відповідний заголовок форми Add pet */}
           {title}
         </h2>
         {/* передаємо крок і рендеримо кольори опцій у відповідності 
@@ -49,16 +54,19 @@ const AddPetForm = () => {
       <ul>
         <li>
           <button type="button">
-            Next or Done
-            <Paw />
+            {step === 3 ? 'Done' : 'Next'}
+            <Paw width="24" height="24" />
           </button>
         </li>
 
         <li>
           {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-          <Link to="/user">
-            <ArrowLeft /> Cancel or Back
-          </Link>
+          <button type="button">
+            <Link to={backPage}>
+              <ArrowLeft width="24" height="24" />
+              {step === 1 ? 'Cancel' : 'Back'}
+            </Link>
+          </button>
         </li>
       </ul>
     </form>

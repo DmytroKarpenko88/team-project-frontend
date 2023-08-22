@@ -2,10 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 import SharedLayout from './SharedLayout/SharedLayout';
 import Main from './Main/Main';
-import Notices from './Notices/Notices';
+import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from './AddPet/AddPet';
 import PageNotFound from 'pages/PageNotFound';
-
+import ModalApproveAction from './ModalApproveAction';
 // import Loader from './Loader/Loader';
 
 const Register = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -22,10 +22,11 @@ export const App = () => {
           <Route index element={<Main />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route path="notices/:categoryName" element={<Notices />} />
+          <Route path="notices/:categoryName" element={<NoticesPage />} />
           <Route path="user" element={<User />} />
           <Route path="add-pet" element={<AddPet />} />
           <Route path="icons" element={<IconPage />} />
+          <Route path="modal-approve-action" element={<ModalApproveAction />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />
