@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import {
+  Error,
   FieldsContainer,
   Input,
   Label,
@@ -15,6 +16,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     showConfirm,
     // setShowConfirm
   ] = useState(false);
+  const [errorsVisible, setErrorsVisible] = useState(true);
 
   const initialValues = {
     avatar: '',
@@ -27,7 +29,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
 
   const formikProps = useFormik({
     initialValues,
-    validationSchema,
+    validationSchema: validationSchema,
     onSubmit: values => {
       if (Object.keys(formikProps.errors).length === 0) {
         const formData = new FormData();
@@ -38,6 +40,15 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
       }
     },
   });
+
+  useEffect(() => {
+    if (!disabled) {
+      setErrorsVisible(true);
+    } else {
+      setErrorsVisible(false);
+    }
+  }, [disabled, formikProps]);
+
   return (
     <>
       <form onSubmit={formikProps.handleSubmit}>
@@ -47,37 +58,84 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
             <Input
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="Your name"
               disabled={disabled}
+              onChange={formikProps.handleChange}
+              value={formikProps.values.name}
+              error={formikProps.touched.name && formikProps.errors.name}
             />
+            {errorsVisible &&
+              formikProps.touched.name &&
+              formikProps.errors.name && (
+                <Error>{formikProps.errors.name}</Error>
+              )}
+
             <Label htmlFor="email">Email:</Label>
             <Input
               type="text"
               name="email"
-              placeholder="Name@mail.com"
+              placeholder="user@mail.com"
               disabled={disabled}
+              onChange={formikProps.handleChange}
+              value={formikProps.values.email}
+              error={formikProps.touched.email && formikProps.errors.email}
             />
+            {errorsVisible &&
+              formikProps.touched.email &&
+              formikProps.errors.email && (
+                <Error>{formikProps.errors.email}</Error>
+              )}
+
             <Label htmlFor="birthday">Birthday:</Label>
             <Input
               type="text"
               name="birthday"
               placeholder="dd.mm.yyyy"
               disabled={disabled}
+              onChange={formikProps.handleChange}
+              value={formikProps.values.birthday}
+              error={
+                formikProps.touched.birthday && formikProps.errors.birthday
+              }
             />
+            {errorsVisible &&
+              formikProps.touched.birthday &&
+              formikProps.errors.birthday && (
+                <Error>{formikProps.errors.birthday}</Error>
+              )}
+
             <Label htmlFor="phone">Phone:</Label>
             <Input
               type="text"
               name="phone"
               placeholder="+380..."
               disabled={disabled}
+              onChange={formikProps.handleChange}
+              value={formikProps.values.phone}
+              error={formikProps.touched.phone && formikProps.errors.phone}
             />
+            {errorsVisible &&
+              formikProps.touched.phone &&
+              formikProps.errors.phone && (
+                <Error>{formikProps.errors.phone}</Error>
+              )}
+
             <Label htmlFor="city">City:</Label>
             <Input
               type="text"
               name="city"
               placeholder="City"
               disabled={disabled}
+              onChange={formikProps.handleChange}
+              value={formikProps.values.city}
+              error={formikProps.touched.city && formikProps.errors.city}
             />
+            {errorsVisible &&
+              formikProps.touched.city &&
+              formikProps.errors.city && (
+                <Error>{formikProps.errors.city}</Error>
+              )}
+
             {!disabled && (
               <SubmitBtn type="submit" disabled={showConfirm}>
                 Save
