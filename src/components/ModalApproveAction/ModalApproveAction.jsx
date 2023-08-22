@@ -1,5 +1,6 @@
 //import { useState } from 'react';
 //import styles from "./ModalApproveAction.styled";
+import { Cross, Paw } from 'components/icons';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
@@ -16,7 +17,10 @@ const ModalApproveAction = props => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton />
+        <button onClick={props.onHide}>
+          <Cross />
+        </button>
+        {/* <Modal.Header closeButton /> */}
         <Modal.Body>
           <h4>Centered Modal</h4>
           <p>
@@ -26,7 +30,12 @@ const ModalApproveAction = props => {
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={props.onHide}>
+            <span>Go to profile</span>
+            <span>
+              <Paw />
+            </span>
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
