@@ -27,11 +27,15 @@ import {
   Trash,
   User,
 } from 'components/icons';
+import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, SpanStyled } from './IconPage.styled';
+import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 const IconPage = () => {
+  const [modalShow, setModalShow] = useState(false);
   return (
     <Box>
       <h1>IconPage</h1>
@@ -70,6 +74,12 @@ const IconPage = () => {
 
       <EyeOpen />
       <EyeClose />
+
+      <Button variant="primary" onClick={() => setModalShow(true)}>
+        Open modal
+      </Button>
+
+      <ModalApproveAction show={modalShow} onHide={() => setModalShow(false)} />
     </Box>
   );
 };
