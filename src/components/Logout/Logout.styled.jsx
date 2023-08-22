@@ -15,7 +15,7 @@ export const LogoutBtnStyled = styled.button`
   color: ${theme.colors.grey};
   background-color: transparent;
   cursor: pointer;
-  transition: color var(--duration) var(--cubic);
+  transition: color ${theme.transition.duration} ${theme.transition.main};
 
   &:hover,
   &:focus {

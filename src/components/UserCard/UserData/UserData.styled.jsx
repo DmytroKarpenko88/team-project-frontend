@@ -96,7 +96,8 @@ const AddPetBtn = styled(Link)`
   border: none;
   border-radius: 40px;
   box-shadow: ${theme.boxShadows.main};
-  transition: background-color var(--duration) var(--cubic);
+  transition: background-color ${theme.transition.duration},
+    ${theme.transition.main};
   svg {
     stroke: ${theme.colors.white};
   }
