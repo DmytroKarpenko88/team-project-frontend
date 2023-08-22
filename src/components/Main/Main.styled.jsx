@@ -27,7 +27,9 @@ export const Container = styled.div`
     background-image: url('${BegM2}');
   }
 
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+
     background-image: url('${BegT1}');
     padding-top: 80px;
 
@@ -38,7 +40,9 @@ export const Container = styled.div`
     }
   }
 
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+
     background-image: url('${BegD1}');
     padding-top: 188px;
     @media (min-device-pixel-ratio: 2),
@@ -58,7 +62,10 @@ export const Images = styled.img`
     content: url('${ImgMx2}');
   }
 
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+
+
     content: url('${ImgTx1}');
 
     @media (min-device-pixel-ratio: 2),
@@ -67,7 +74,9 @@ export const Images = styled.img`
       content: url('${ImgTx2}');
     }
   }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+
     content: url('${ImgDx1}');
     position: absolute;
     right: 0;
@@ -84,14 +93,18 @@ export const Title = styled.h1`
   font-size: 32px;
   font-weight: 700;
   color: #000000;
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+
     padding-left: 20px;
     width: 588px;
     font-size: 68px;
     font-weight: 600;
   }
 
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+
     font-size: 68px;
     font-weight: 800;
   }
