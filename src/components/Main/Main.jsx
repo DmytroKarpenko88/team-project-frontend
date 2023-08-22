@@ -1,19 +1,11 @@
 import React from 'react';
-import { Background, Page, Container, Title, Wrapper } from './Main.styled.jsx';
+import { Container, Title, Images } from './Main.styled';
 
-export const Main = () => {
+export default function Main() {
   return (
-    <>
-      <Background>
-        <Container>
-          <Title>Take good care of your small pets</Title>
-        </Container>
-        <Wrapper>
-          <Page />
-        </Wrapper>
-      </Background>
-    </>
+    <Container>
+      <Title>Take good care of your small pets</Title>
+      <Images alt="Pets" />
+    </Container>
   );
-};
-
-export default Main;
+}
