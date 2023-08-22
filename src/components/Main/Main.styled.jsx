@@ -15,119 +15,84 @@ import ImgMx2 from '../../images/MainPage/mp-mobile2x.webp';
 import ImgTx1 from '../../images/MainPage/mp-tablet1x.webp';
 import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
 
-export const Background = styled.div`
-  height: 100%;
-  width: 320px;
-  margin-left: auto;
-  margin-right: auto;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: 100%;
-  background-image: url(${BegM1});
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${BegM2});
-  }
-  ${theme.breakpoints.tablet} {
-    display: inherit;
-    background-image: url(${BegT1});
-    width: 768px;
-  }
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${BegT2});
-  }
-
-  ${theme.breakpoints.desktop} {
-    background-image: url(${BegD1});
-    display: inherit;
-    width: 1280px;
-
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: url(${BegD2});
-    }
-  }
-`;
-
-export const Page = styled.div`
-  height: 100vh;
-  width: 320px;
-
-  background-image: url(${ImgMx1});
-  background-repeat: no-repeat;
-  background-size: 205px auto;
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${ImgMx2});
-  }
-
-  ${theme.breakpoints.tablet} {
-    height: 100vh;
-    width: 768px;
-    background-image: url(${ImgTx1});
-    background-size: 426px auto;
-  }
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url(${ImgTx2});
-  }
-
-  ${theme.breakpoints.desktop} {
-    background-image: url(${ImgDx1});
-    background-size: 426px auto;
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: url(${ImgDx2});
-    }
-  }
-`;
-
 export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 280px;
-  ${theme.breakpoints.tablet} {
-    display: inherit;
-  }
-`;
-export const Title = styled.h1`
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 700;
-  line-height: 44px;
-  font-size: 32px;
-  color: #000000;
+  position: relative;
   padding-top: 60px;
-  padding-bottom: 20px;
+  background-image: url('${BegM1}');
+  background-size: cover;
 
-  ${theme.breakpoints.tablet} {
-    font-size: 68px;
-    line-height: 100px;
-    padding-top: 80px;
-    width: 588px;
-    margin-left: 32px;
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url('${BegM2}');
   }
-  ${theme.breakpoints.desktop} {
-    position: absolute;
-    width: 501px;
-    height: 264px;
-    font-weight: 800;
-    margin-left: 32px;
+
+  @media screen and ${theme.breakpoints.tablet} {
+    background-image: url('${BegT1}');
+    padding-top: 80px;
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('${BegT2}');
+    }
+  }
+
+  @media screen and ${theme.breakpoints.desktop} {
+    background-image: url('${BegD1}');
     padding-top: 188px;
-    line-height: 88.4px;
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('${BegD2}');
+    }
+  }
+`;
+export const Images = styled.img`
+  margin-top: 20px;
+  content: url('${ImgMx1}');
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    content: url('${ImgMx2}');
+  }
+
+  @media screen and ${theme.breakpoints.tablet} {
+    content: url('${ImgTx1}');
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      content: url('${ImgTx2}');
+    }
+  }
+  @media screen and ${theme.breakpoints.desktop} {
+    content: url('${ImgDx1}');
+    position: absolute;
+    right: 0;
+    top: 36px;
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      content: url('${ImgDx2}');
+    }
   }
 `;
 
-export const Wrapper = styled.div`
-  display: flex;
+export const Title = styled.h1`
+  font-size: 32px;
+  font-weight: 700;
+  color: #000000;
+  @media screen and ${theme.breakpoints.tablet} {
+    padding-left: 20px;
+    width: 588px;
+    font-size: 68px;
+    font-weight: 600;
+  }
+
+  @media screen and ${theme.breakpoints.desktop} {
+    font-size: 68px;
+    font-weight: 800;
+  }
 `;
