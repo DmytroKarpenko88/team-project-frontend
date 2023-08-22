@@ -1,22 +1,82 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { Female, Male } from 'components/icons';
 
-const ThirdStepForm = props => {
+const ThirdStepForm = ({ data, setData }) => {
+  const handleChange = e => {
+    const input = e.target.name;
+    const value = e.target.value;
+    setData(prev => ({ ...prev, [input]: value }));
+  };
+  const focusHandle = e => {};
+
   return (
     <form className="thirdStep">
+      {/* sex for sell lostFond ingood hands*/}
+      {data.option !== 'pet' && (
+        <div>
+          <h3>The sex</h3>
+          <label id="sex">
+            <Female />
+            <input name="sex" type="radio" value="female" />
+            Female
+          </label>
+          <label id="sex">
+            <Male />
+            <input name="sex" type="radio" value="male" />
+            Male
+          </label>
+        </div>
+      )}
+      {/* --- */}
       <label id="photo">
+        {/* Add photo prewiew on 3 stage */}
         Load the pet's image:
-        {/* Add photo */}
-        <input type="file" name="photo" alt="pet`s photo" required />
-        <img alt="pet preview"></img>
+        <input
+          type="file"
+          alt="pet`s photo"
+          value="photo"
+          name="photo"
+          onChange={handleChange}
+          onFocus={focusHandle}
+          required
+        />
+        <img src="" alt="pet preview"></img>
       </label>
+      {/* location price for sell lostFond ingood hands*/}
+      {data.option !== 'pet' && (
+        <div>
+          <label>
+            Location
+            <input
+              type="text"
+              required
+              name="location"
+              placeholder="Type place of your living"
+            />
+          </label>
 
+          <label id="price">
+            Price
+            <input
+              type="text"
+              required
+              name="price"
+              placeholder="How much does your pet cost?"
+            />
+          </label>
+        </div>
+      )}
+      {/* ----- -------- */}
       <label id="comments">
         Comments
         <textarea
           type="text"
+          placeholder="Type of pet"
+          value="comments"
           name="comments"
-          placeholder="Field is required"
+          onChange={handleChange}
+          onFocus={focusHandle}
           required
         />
       </label>
@@ -24,6 +84,9 @@ const ThirdStepForm = props => {
   );
 };
 
-ThirdStepForm.propTypes = {};
+ThirdStepForm.propTypes = {
+  data: PropTypes.object.isRequired,
+  setData: PropTypes.func.isRequired,
+};
 
 export default ThirdStepForm;
