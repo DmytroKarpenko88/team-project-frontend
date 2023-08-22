@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles';
 
 export const FilterBtn = styled.button`
   display: flex;
@@ -10,19 +11,19 @@ export const FilterBtn = styled.button`
   width: 40px;
   height: 40px;
   padding: 9px 8px 7px;
-  color: var(--btn-bg-color);
+  color: ${theme.colors.blue};
   font-weight: 700;
 
-  background: var(--labels-bg-color);
+  background: ${theme.colors.blueLight};
   border: none;
   border-radius: 50%;
 
-  transition: color var(--duration) var(--cubic),
-    background var(--duration) var(--cubic);
+  transition: color 250ms ${theme.transition.main},
+    background 250ms ${theme.transition.main};
 
   &:hover,
   &:focus {
-    color: var(--label-active-color);
+    color: ${theme.colors.bgColor};
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
 
@@ -32,7 +33,7 @@ export const FilterBtn = styled.button`
 
     background: transparent;
     border-width: 2px;
-    border-color: var(--btn-bg-color);
+    border-color: ${theme.colors.blueLight};
     border-style: solid;
     border-radius: 40px;
 

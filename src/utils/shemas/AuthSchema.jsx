@@ -21,7 +21,6 @@ export const loginSchema = Yup.object({
 });
 
 export const registerSchema = Yup.object({
-
   name: Yup.string()
     .required('Name field is required!')
     .min(2, 'Name is too short')

@@ -167,6 +167,13 @@ export const SexItem = styled.div`
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
 
+  &:focus,
+  &:hover {
+    svg: {
+      stroke: ${theme.colors.blue};
+    }
+  }
+
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     left: 232px;
   }
@@ -202,15 +209,15 @@ export const LoadMoreBtn = styled.button`
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.64px;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms ${theme.transition.main},
+    background-color 250ms ${theme.transition.main};
 
   &:focus,
   &:hover {
     color: ${theme.colors.white};
     background: ${theme.colors.blue};
     svg: {
-      fill: ${theme.colors.blue};
+      stroke: ${theme.colors.blue};
     }
   }
 `;
