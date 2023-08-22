@@ -2,10 +2,11 @@ import {styled} from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { ErrorMessage, Field  } from 'formik';
 import { theme } from 'styles';
 
 export const FormContainer = styled.div`
-position: relative;
+/* position: relative; */
 margin: 0 auto;
 padding:  40px 12px;
 text-align: center;
@@ -38,7 +39,11 @@ margin-bottom: 20px;
 }
 `;
 
-export const InputForm = styled.input`
+export const FormField = styled.div`
+position: relative;
+`;
+
+export const InputForm = styled(Field)`
 padding: 12px 16px;
 width: 100%;
 height: 48px;
@@ -52,48 +57,56 @@ border-radius: 40px;
     margin-bottom: 32px;
 }
 `;
+  
+export const ErrorMess = styled(ErrorMessage)`
+position: absolute;
+font-size: 10px;
+color: ${theme.colors.red};
+left: 0px;
+top: 47px;
+`;
 
 export const OnIconPass = styled(VisibilityIcon)`
 position: absolute;
 color: ${theme.colors.blue};
-top: 225px;
-left:230px;
+top: 12px;
+left:218px;
 @media (min-width: 768px) {
-    top: 315px;
-    left:492px; 
+    top: 12px;
+    left:420px; 
 }
 `;
 
 export const OffIconPass = styled(VisibilityOffIcon)`
 position: absolute;
 color: ${theme.colors.blue};
-top: 225px;
-left:230px;
+top: 12px;
+left:218px;
 @media (min-width: 768px) {
-    top: 315px;
-    left:492px; 
+    top: 12px;
+    left:420px; 
 }
 `;
 
 export const OnIconConPass = styled(VisibilityIcon)`
 position: absolute;
 color: ${theme.colors.blue};
-top: 287px;
-left:230px;
+top: 12px;
+left:218px;
 @media (min-width: 768px) {
-    top: 395px;
-    left:492px;
+    top: 12px;
+    left:420px;
 }
 `;
 
 export const OffIconConPass = styled(VisibilityOffIcon)`
 position: absolute;
 color: ${theme.colors.blue};
-top: 287px;
-left:230px;
+top: 12px;
+left:218px;
 @media (min-width: 768px) {
-    top: 395px;
-    left:492px;
+    top: 12px;
+    left:420px;
 }
 `;
 
