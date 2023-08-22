@@ -8,6 +8,16 @@ export const SpanStyled = styled.span`
 `;
 
 export const Box = styled.div`
+  /* heart style */
+  .heart.favorite svg {
+    fill: ${theme.colors.blue};
+  }
+  .heart svg:hover,
+  svg:focus {
+    fill: ${theme.colors.blue};
+    stroke: ${theme.colors.blue};
+  }
+
   .user-icon svg {
     stroke: ${theme.colors.yellow};
   }
