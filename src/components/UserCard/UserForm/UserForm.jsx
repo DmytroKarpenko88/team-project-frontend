@@ -21,10 +21,7 @@ import { Camera, Check, CrossSmall } from 'components/icons';
 import { SpanStyled } from 'pages/IconPage.styled';
 
 const UserForm = ({ disabled, setIsFormDisabled }) => {
-  const [
-    showConfirm,
-    // setShowConfirm
-  ] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [errorsVisible, setErrorsVisible] = useState(true);
 
   const initialValues = {
@@ -55,8 +52,15 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
       setErrorsVisible(true);
     } else {
       setErrorsVisible(false);
+      setShowConfirm(false);
     }
   }, [disabled, formikProps]);
+
+  const handleFileInputChange = event => {
+    const file = event.target.files[0];
+    formikProps.setFieldValue('avatar', file);
+    setShowConfirm(true);
+  };
 
   return (
     <>
@@ -65,20 +69,29 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
           <div>
             <UserPhoto src={defaultAvatar} />
 
-            <div style={{ marginTop: '15px' }}>
-              <FileInputLabel htmlFor="file">
-                <Camera /> Edit photo
-              </FileInputLabel>
-              <FileInput type="file" name="avatar" id="file" accept="image/*" />
-            </div>
-
-            <ConfirmWrapper>
-              <Check id="confirm" className="confirm-icon" />
-              <Text>Confirm</Text>
-              <SpanStyled>
-                <CrossSmall id="cancel" className="cancel-icon" />
-              </SpanStyled>
-            </ConfirmWrapper>
+            {!disabled && !showConfirm && (
+              <div style={{ marginTop: '15px' }}>
+                <FileInputLabel htmlFor="file">
+                  <Camera /> Edit photo
+                </FileInputLabel>
+                <FileInput
+                  type="file"
+                  name="avatar"
+                  id="file"
+                  accept="image/*"
+                  onChange={handleFileInputChange}
+                />
+              </div>
+            )}
+            {showConfirm && !disabled && (
+              <ConfirmWrapper>
+                <Check id="confirm" />
+                <Text>Confirm</Text>
+                <SpanStyled>
+                  <CrossSmall id="cancel" />
+                </SpanStyled>
+              </ConfirmWrapper>
+            )}
           </div>
           <FieldsContainer>
             <InputContainer>
