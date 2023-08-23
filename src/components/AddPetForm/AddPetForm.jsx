@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom';
 import StepTitles from './StepTitles';
 import getFormBasedOnStep from './getFormBasedOnStep';
 import getTitle from './getTitle';
-import { AddPetFormTitle } from './AddPetForm.styled';
+import {
+  AddPetFormTitle,
+  AddPetContainerForm,
+  AddPetBtnList,
+  AddPetBtnItem,
+  AddPetBtnNext,
+  AddPetBtnCancel,
+} from './AddPetForm.styled';
 
 // import StepTitles from './stepTitles';
 
@@ -36,41 +43,36 @@ const AddPetForm = () => {
   const backPage = step === 1 ? '/user' : '';
 
   return (
-    <AddPetForm onClick={onClick}>
+    <AddPetContainerForm onClick={onClick}>
       {/* --------------------- title of form ---------------------- */}
-      <div>
-        <AddPetFormTitle>
-          {/* рендеримо відповідний заголовок форми Add pet */}
-          {title}
-        </AddPetFormTitle>
-        {/* передаємо крок і рендеримо кольори опцій у відповідності 
+      <AddPetFormTitle>{title}</AddPetFormTitle>
+      {/* передаємо крок і рендеримо кольори опцій у відповідності 
         Choose option Personal details Personal details*/}
-        <StepTitles step={step} />
-      </div>
+      <StepTitles step={step} />
 
       {/* ----------- content for form based on step -------------- */}
       {getFormBasedOnStep(step, data, setData)}
 
       {/* ------------------------ buttons ------------------------ */}
-      <ul>
-        <li>
-          <button type="button">
+      <AddPetBtnList>
+        <AddPetBtnItem>
+          <AddPetBtnNext type="button">
             {step === 3 ? 'Done' : 'Next'}
-            <Paw width="24" height="24" />
-          </button>
-        </li>
+            <Paw width="24" height="24" fill="#FEF9F9" />
+          </AddPetBtnNext>
+        </AddPetBtnItem>
 
-        <li>
+        <AddPetBtnItem>
           {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-          <button type="button">
+          <AddPetBtnCancel type="button">
             <Link to={backPage}>
               <ArrowLeft width="24" height="24" />
               {step === 1 ? 'Cancel' : 'Back'}
             </Link>
-          </button>
-        </li>
-      </ul>
-    </AddPetForm>
+          </AddPetBtnCancel>
+        </AddPetBtnItem>
+      </AddPetBtnList>
+    </AddPetContainerForm>
   );
 };
 

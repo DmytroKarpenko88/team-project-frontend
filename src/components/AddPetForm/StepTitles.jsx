@@ -9,17 +9,21 @@ const StepTitles = ({ step }) => {
     <StepTitlesContainer>
       <StepTitlesItems>
         Choose option
-        {step === 1 ? <StepTitlesLine /> : <StepTitlesLine />}
+        {step === 1 ? (
+          <StepTitlesLine></StepTitlesLine>
+        ) : (
+          <StepTitlesLine></StepTitlesLine>
+        )}
       </StepTitlesItems>
 
       <StepTitlesItems>
         Personal details
-        <StepTitlesLine />
+        <StepTitlesLine></StepTitlesLine>
       </StepTitlesItems>
 
       <StepTitlesItems>
         More info
-        <StepTitlesLine />
+        <StepTitlesLine></StepTitlesLine>
       </StepTitlesItems>
     </StepTitlesContainer>
   );
