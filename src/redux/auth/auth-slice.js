@@ -1,66 +1,75 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logOut, fetchCurrentUser, updateUser } from './auth-operations';
+import {
+  register,
+  login,
+  logOut,
+  fetchCurrentUser,
+  updateUser,
+} from './auth-operations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
-    user: { name: null,
-        email: null,
-        phone: null,
-        city: null,
-        birthday: null,
-        avatarURL: null,
-        favorites: [],
-        _id: null, },
-    token: null,
-    isLoading: false,
-    error: null,
-    isLoggedIn: true,
-    isRegistered: false,
-    isRefreshing: false,
-  };
+  user: {
+    name: null,
+    email: null,
+    phone: null,
+    city: null,
+    birthday: null,
+    avatarURL: null,
+    favorites: [],
+    _id: null,
+  },
+  token: null,
+  isLoading: false,
+  error: null,
+  isLoggedIn: false,
+  isRegistered: false,
+  isRefreshing: false,
+};
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: builder => {
-    builder.addCase(register.fulfilled, (state, action) => {
-      console.log("action:", action)
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isRegistered = true;
-    })
+    builder
+      .addCase(register.fulfilled, (state, action) => {
+        console.log('action:', action);
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isRegistered = true;
+      })
 
-    .addCase(login.fulfilled,(state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
 
-      .addCase(logOut.fulfilled,(state, action) => {
+      .addCase(logOut.fulfilled, (state, action) => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
       })
 
-      .addCase(fetchCurrentUser.pending,(state) => {
+      .addCase(fetchCurrentUser.pending, state => {
         state.isRefreshing = true;
       })
 
-      .addCase(fetchCurrentUser.fulfilled,(state, action) => {
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
 
-      .addCase(fetchCurrentUser.rejected,(state) => {
+      .addCase(fetchCurrentUser.rejected, state => {
         state.isRefreshing = false;
       })
 
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
-      })
+      });
   },
 });
 
