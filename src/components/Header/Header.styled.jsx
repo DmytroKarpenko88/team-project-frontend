@@ -67,6 +67,17 @@ export const AuthContainer = styled.div`
 }
 `
 
+export const UserNavContainer = styled.div`
+@media screen and (min-width: 768px){
+    display: visible;
+}
+
+@media screen and (max-width: 767px){
+    margin-bottom: 40px;
+    display: none;
+}
+`
+
 export const IconOpenMenu = styled.div`
 display: none;
 

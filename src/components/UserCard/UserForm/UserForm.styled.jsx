@@ -77,34 +77,9 @@ const ConfirmWrapper = styled.div`
   align-items: center;
   cursor: pointer;
 
-  /* .confirm-icon svg {
-    stroke: ${theme.colors.blue};
-  }*/
-
   .cancel-icon svg {
     stroke: ${theme.colors.red};
   }
-
-  /* &:hover,
-  &:focus {
-    .cancel-icon svg {
-      stroke: ${theme.colors.red};
-    }
-    .confirm-icon svg {
-      stroke: ${theme.colors.blue};
-    }
-  } */
-
-  /* &:hover,
-  &:focus {
-    svg {
-      stroke: ${theme.colors.blue};
-    }
-  } */
-  /* .confirm-icon svg:hover,
-  .cancel-icon svg:hover {
-    stroke: ${theme.colors.red};
-  } */
 `;
 
 const Text = styled.p`
