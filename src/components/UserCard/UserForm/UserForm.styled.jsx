@@ -8,7 +8,7 @@ const StyledForm = styled.div`
   align-items: center;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    flex-direction: raw-reverse;
+    flex-direction: row-reverse;
     align-items: flex-start;
     gap: ${theme.spacing.step * 17.75}px;
     width: calc(100% - 34px);
@@ -28,9 +28,91 @@ const FieldsContainer = styled.div`
   gap: 16px;
   margin-top: 22px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     margin-top: 0;
   }
+`;
+
+const UserPhoto = styled.img`
+  display: block;
+  margin: auto;
+  width: 182px;
+  height: 182px;
+  border-radius: 40px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+`;
+
+const FileInputLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: ${theme.fonts.main.regular};
+  font-size: ${theme.fontSizes.s};
+  line-height: 22px;
+  letter-spacing: 0.48px;
+  color: ${theme.colors.black};
+  gap: 8px;
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  cursor: pointer;
+  svg {
+    transition: fill ${theme.transition.duration} ${theme.transition.main};
+  }
+  &:hover,
+  &:focus {
+    color: ${theme.colors.yellow};
+    svg {
+      stroke: ${theme.colors.yellow};
+    }
+  }
+`;
+
+const FileInput = styled.input`
+  display: none;
+`;
+
+const ConfirmWrapper = styled.div`
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  /* .confirm-icon svg {
+    stroke: ${theme.colors.blue};
+  }
+
+  .cancel-icon svg {
+    stroke: ${theme.colors.red};
+  } */
+
+  /* &:hover,
+  &:focus {
+    .cancel-icon svg {
+      stroke: ${theme.colors.red};
+    }
+    .confirm-icon svg {
+      stroke: ${theme.colors.blue};
+    }
+  } */
+
+  /* &:hover,
+  &:focus {
+    svg {
+      stroke: ${theme.colors.blue};
+    }
+  } */
+  .confirm-icon svg:hover,
+  .cancel-icon svg:hover {
+    stroke: initial !important;
+  }
+`;
+
+const Text = styled.p`
+  font-family: ${theme.fonts.main.regular};
+  color: ${theme.colors.black};
+  font-size: ${theme.fontSizes.xs};
+  line-height: 22px;
+  letter-spacing: 0.48px;
 `;
 
 const InputContainer = styled.div`
@@ -133,4 +215,9 @@ export {
   SubmitBtn,
   Error,
   InputContainer,
+  UserPhoto,
+  FileInputLabel,
+  FileInput,
+  ConfirmWrapper,
+  Text,
 };
