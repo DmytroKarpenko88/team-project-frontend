@@ -1,11 +1,9 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const FirstStepForm = ({ data, setData }) => {
   const handleChange = e => {
     const value = e.target.value;
-    console.log(e.target.value);
-
     setData(prev => ({ ...prev, option: value }));
   };
   const { option } = data;
@@ -16,9 +14,9 @@ const FirstStepForm = ({ data, setData }) => {
       <label>
         <input
           type="radio"
-          name="option"
           value="pet"
           checked={option === 'pet'}
+          name="pet"
           onChange={handleChange}
         />
         your pet
@@ -26,9 +24,9 @@ const FirstStepForm = ({ data, setData }) => {
       <label>
         <input
           type="radio"
-          name="option"
           value="sell"
           checked={option === 'sell'}
+          name="sell"
           onChange={handleChange}
         />
         sell
@@ -36,9 +34,9 @@ const FirstStepForm = ({ data, setData }) => {
       <label>
         <input
           type="radio"
-          name="option"
           value="lostFound"
           checked={option === 'lostFound'}
+          name="lostFound"
           onChange={handleChange}
         />
         lost/found
@@ -46,9 +44,9 @@ const FirstStepForm = ({ data, setData }) => {
       <label>
         <input
           type="radio"
-          name="option"
           value="hands"
           checked={option === 'hands'}
+          name="hands"
           onChange={handleChange}
         />
         in good hands
@@ -57,6 +55,9 @@ const FirstStepForm = ({ data, setData }) => {
   );
 };
 
-FirstStepForm.propTypes = {};
+FirstStepForm.propTypes = {
+  data: PropTypes.object.isRequired,
+  setData: PropTypes.func.isRequired,
+};
 
 export default FirstStepForm;

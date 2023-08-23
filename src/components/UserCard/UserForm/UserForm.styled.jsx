@@ -22,27 +22,22 @@ const StyledForm = styled.div`
 `;
 
 const FieldsContainer = styled.div`
-  position: relative;
-  margin-top: 59px;
-  display: grid;
-  grid-template-columns: 62px 1fr;
-  grid-template-rows: repeat(6, 24px);
-  grid-template-areas:
-    '.'
-    '.'
-    '.'
-    '.'
-    '.'
-    '. submit';
-  gap: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+  @media screen and (min-width: 768px) {
     margin-top: 0;
-    width: 255px;
-    grid-template-columns: 62px 1fr;
-    grid-template-rows: repeat(5, 30px);
-    gap: 20px 0px;
   }
+`;
+
+const InputContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Label = styled.label`
@@ -55,6 +50,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
+  width: calc(100vw - 40vw);
   display: flex;
   padding: 4px 12px;
   align-items: center;
@@ -64,12 +60,15 @@ const Input = styled.input`
   font-size: ${theme.fontSizes.xs};
   line-height: normal;
   letter-spacing: 0.48px;
-  transition: border-color var(--duration) ${theme.transition.main};
+  transition: border-color ${theme.transition.duration} ${theme.transition.main};
 
   &:hover,
   &:focus {
     border-color: ${theme.colors.yellow};
     outline: transparent;
+  }
+  @media screen and (min-width: 480px) {
+    width: 255px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -79,13 +78,14 @@ const Input = styled.input`
 `;
 
 const SubmitBtn = styled.button`
-  grid-column: 1 / span 2;
   display: flex;
   width: 248px;
+  margin-top: 21px;
+  margin-right: auto;
+  margin-left: auto;
   padding: 6px 107px;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   border-radius: 40px;
   background: ${theme.colors.blue};
   font-family: ${theme.fonts.main.bold};
@@ -93,8 +93,8 @@ const SubmitBtn = styled.button`
   line-height: normal;
   letter-spacing: 0.56px;
   cursor: pointer;
-  margin: auto;
-  transition: all var(--duration) ${theme.transition.main};
+
+  transition: all ${theme.transition.duration} ${theme.transition.main};
 
   &:hover,
   &:focus {
@@ -106,8 +106,31 @@ const SubmitBtn = styled.button`
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    grid-area: submit;
+    width: 255px;
+    margin-top: 10px;
+    margin-left: 120px;
   }
 `;
 
-export { StyledForm, FieldsContainer, Label, Input, SubmitBtn };
+const Error = styled.p`
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  color: ${theme.colors.red};
+  font-size: ${theme.fontSizes.xs};
+  white-space: nowrap;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    left: 32%;
+  }
+`;
+
+export {
+  StyledForm,
+  FieldsContainer,
+  Label,
+  Input,
+  SubmitBtn,
+  Error,
+  InputContainer,
+};

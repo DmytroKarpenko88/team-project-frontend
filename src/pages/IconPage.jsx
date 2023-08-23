@@ -35,7 +35,9 @@ import { Box, SpanStyled } from './IconPage.styled';
 import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 const IconPage = () => {
+  const [favorite, setFavorite] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+
   return (
     <Box>
       <h1>IconPage</h1>
@@ -45,7 +47,13 @@ const IconPage = () => {
       <Cross />
       <Trash />
       <Search />
-      <Heart />
+      <button
+        className={favorite ? 'heart favorite' : 'heart'}
+        onClick={() => setFavorite(!favorite)}
+      >
+        <Heart />
+      </button>
+
       <span className="user-icon">
         <User />
       </span>

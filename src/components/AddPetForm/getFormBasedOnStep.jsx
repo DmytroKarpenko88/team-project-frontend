@@ -6,10 +6,10 @@ const getFormBasedOnStep = (step, data, setData) => {
   let formBasedOnStep;
   switch (step) {
     case 2:
-      formBasedOnStep = <SecondStepForm />;
+      formBasedOnStep = <SecondStepForm data={data} setData={setData} />;
       break;
     case 3:
-      formBasedOnStep = <ThirdStepForm />;
+      formBasedOnStep = <ThirdStepForm data={data} setData={setData} />;
       break;
 
     default:
