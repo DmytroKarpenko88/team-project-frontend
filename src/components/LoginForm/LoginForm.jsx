@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'utils/shemas/AuthSchema';
@@ -27,21 +27,25 @@ const initialValues = {
 export default function LoginForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const isLoggedIn = useSelector(selectIsLoggedIn)
-  console.log("isLoggedIn:", isLoggedIn)
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handleSubmit = values => {
+
+  const handleSubmit = (values, { resetForm }) => {
     const data = {
       email: values.email,
       password: values.password,
     };
-    return dispatch(login(data));
+    dispatch(login(data));
+    resetForm();
   };
 
-if(isLoggedIn) {
-  navigate('/user');
-};
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/user');
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <MainLogForm>
       <Formik
@@ -54,7 +58,6 @@ if(isLoggedIn) {
             <Titel>Login</Titel>
             <FormField>
               <InputForm
-                //   autoFocus="autofocus"
                 name="email"
                 type="email"
                 placeholder="Email"

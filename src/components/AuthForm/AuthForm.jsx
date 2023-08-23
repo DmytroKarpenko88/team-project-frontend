@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerSchema } from 'utils/shemas/AuthSchema';
 import { register } from '../../redux/auth/auth-operations';
-import { selectIsRegistered } from 'redux/auth/auth-selectors';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import {
   FormContainer,
   Titel,
@@ -32,23 +32,28 @@ export default function AuthForm() {
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isRegistred = useSelector(selectIsRegistered);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const toggleConfirmPassword = () => setConfirmPasswordShow(prevState => !prevState);
+  const toggleConfirmPassword = () =>
+    setConfirmPasswordShow(prevState => !prevState);
 
-  const handleSubmit = values => {
+  const handleSubmit =  (values, { resetForm }) => {
     console.log(' values:', values);
     const data = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
-    return dispatch(register(data));
+    dispatch(register(data));
+    resetForm()
   };
 
-  if(isRegistred) {
-    navigate('/user');
-  };
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/user');
+    }
+  }, [isLoggedIn, navigate]);
+
 
   return (
     <FormContainer>
