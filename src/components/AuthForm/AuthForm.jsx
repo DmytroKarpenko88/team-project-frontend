@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import {  Form, Formik } from 'formik';
-// import { useLocation } from 'react-router-dom';
-import { registerSchema } from 'utils/shemas/AuthSchema';
+// import { useNavigate } from 'react-router-dom';
+import {  Form, Formik,  } from 'formik';
 
+import { useDispatch } from 'react-redux';
+import { registerSchema } from 'utils/shemas/AuthSchema';
+import { register } from '../../redux/auth/auth-operations';
 import {
   FormContainer,
   Titel,
@@ -22,45 +24,45 @@ const initialValues = {
     name: '',
     email: '',
     password: '',
-    passwordConfirm: '',
+    confirmPassword: '',
   };
+
 
 export default function AuthForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
-//   const location = useLocation();
-//   const isRegister = location.pathname === '/register';
-
+//   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+//   const navigate = useNavigate();
   const togglePassword = () => setPasswordShow(prevState => !prevState);
   const toggleConfirmPassword = () => setConfirmPasswordShow(prevState => !prevState);
 
-  const handleRegisterSubmit = values => {
+  const handleSubmit =  (values) => {
     console.log(" values:",  values)
-    // const data = {
-    //   name: values.name,
-    //   email: values.email,
-    //   password: values.password,
-    //   confirmPassword: values.password,
-    // };  
-    // return dispatch(register(data));
+// const {name, email, password} = values
+    const data = {
+  name: values.name,
+  email: values.email,
+  password: values.password,
+};  
+    return dispatch(register(data));
     };
   return (
     <FormContainer>
       <Formik
       validationSchema={registerSchema}
       initialValues={initialValues}
-      onSubmit={handleRegisterSubmit}
+      onSubmit={handleSubmit}
       >
         {() => (
-          <Form>
+          <Form  >
             <Titel>Registration</Titel>
             <FormField>
               <InputForm
-                // autoFocus="autofocus"
                 name="name"
                 type="name"
                 placeholder="Name"
-                autoComplete="off"
+                autoComplete="on"
               />
               <ErrorMess name="name" component="p" />
             </FormField>
@@ -69,7 +71,7 @@ export default function AuthForm() {
                 name="email"
                 type="email"
                 placeholder="Email"
-                autoComplete="off"
+                autoComplete="on"
               />
               <ErrorMess name="email" component="p" />
             </FormField>
@@ -78,7 +80,7 @@ export default function AuthForm() {
                 name="password"
                 type={passwordShow ? 'text' : 'password'}
                 placeholder="Password"
-                autoComplete="off"
+                autoComplete="on"
               />
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIconPass /> : <OffIconPass />}
@@ -91,7 +93,7 @@ export default function AuthForm() {
                 name="confirmPassword"
                 type={confirmPasswordShow ? 'text' : 'password'}
                 placeholder="Confirm password"
-                autoComplete="off"
+                autoComplete="on"
               />
               <span id="visibilityBtn" onClick={toggleConfirmPassword}>
                 {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}

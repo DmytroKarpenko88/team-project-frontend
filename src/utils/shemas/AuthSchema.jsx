@@ -30,7 +30,7 @@ export const registerSchema = Yup.object({
   email: Yup.string()
     .required('Email field is required!')
     .min(10)
-    .max(63)
+    .max(20)
     .matches(emailReq, 'Invalid email format'),
 
   password: Yup.string()
