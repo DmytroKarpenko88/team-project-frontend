@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Form, Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'utils/shemas/AuthSchema';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from 'redux/auth/auth-operations';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 
 import {
   MainLogForm,
@@ -25,10 +27,11 @@ const initialValues = {
 export default function LoginForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  console.log("isLoggedIn:", isLoggedIn)
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const handleSubmit = values => {
-    console.log(' values:', values);
     const data = {
       email: values.email,
       password: values.password,
@@ -36,6 +39,9 @@ export default function LoginForm() {
     return dispatch(login(data));
   };
 
+if(isLoggedIn) {
+  navigate('/user');
+};
   return (
     <MainLogForm>
       <Formik

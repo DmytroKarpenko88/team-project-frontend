@@ -79,11 +79,11 @@ const ConfirmWrapper = styled.div`
 
   /* .confirm-icon svg {
     stroke: ${theme.colors.blue};
-  }
+  }*/
 
   .cancel-icon svg {
     stroke: ${theme.colors.red};
-  } */
+  }
 
   /* &:hover,
   &:focus {
@@ -101,10 +101,10 @@ const ConfirmWrapper = styled.div`
       stroke: ${theme.colors.blue};
     }
   } */
-  .confirm-icon svg:hover,
+  /* .confirm-icon svg:hover,
   .cancel-icon svg:hover {
-    stroke: initial !important;
-  }
+    stroke: ${theme.colors.red};
+  } */
 `;
 
 const Text = styled.p`
