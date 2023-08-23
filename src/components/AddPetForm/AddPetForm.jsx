@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import StepTitles from './StepTitles';
 import getFormBasedOnStep from './getFormBasedOnStep';
 import getTitle from './getTitle';
+import { AddPetFormTitle } from './AddPetForm.styled';
 
 // import StepTitles from './stepTitles';
 
@@ -35,13 +36,13 @@ const AddPetForm = () => {
   const backPage = step === 1 ? '/user' : '';
 
   return (
-    <form onClick={onClick}>
+    <AddPetForm onClick={onClick}>
       {/* --------------------- title of form ---------------------- */}
       <div>
-        <h2 className="title">
+        <AddPetFormTitle>
           {/* рендеримо відповідний заголовок форми Add pet */}
           {title}
-        </h2>
+        </AddPetFormTitle>
         {/* передаємо крок і рендеримо кольори опцій у відповідності 
         Choose option Personal details Personal details*/}
         <StepTitles step={step} />
@@ -69,7 +70,7 @@ const AddPetForm = () => {
           </button>
         </li>
       </ul>
-    </form>
+    </AddPetForm>
   );
 };
 
