@@ -23,11 +23,10 @@ const validationSchema = Yup.object().shape({
     .matches(dateRegExp, 'Correct format: dd.mm.yyyy')
     .max(new Date(), 'Future date is not allowed')
     .required('Birthday is required'),
-  phone: Yup.string().matches(phoneRegExp, 'Enter the phone number +380...'),
+  phone: Yup.string()
+    .matches(phoneRegExp, 'Enter the phone number +380...')
+    .required('Enter your phone number'),
   city: Yup.string().matches(cityRegExp, 'Enter valid format for city'),
 });
-
-
-
 
 export default validationSchema;
