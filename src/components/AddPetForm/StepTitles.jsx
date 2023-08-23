@@ -1,20 +1,27 @@
+import {
+  StepTitlesContainer,
+  StepTitlesItems,
+  StepTitlesLine,
+} from './AddPetForm.styled';
+
 const StepTitles = ({ step }) => {
   return (
-    <ul>
-      <li>
+    <StepTitlesContainer>
+      <StepTitlesItems>
         Choose option
-        <div className="line"></div>
-      </li>
+        {step === 1 ? <StepTitlesLine /> : <StepTitlesLine />}
+      </StepTitlesItems>
 
-      <li>
+      <StepTitlesItems>
         Personal details
-        <div className="line"></div>
-      </li>
-      <li>
+        <StepTitlesLine />
+      </StepTitlesItems>
+
+      <StepTitlesItems>
         More info
-        <div className="line"></div>
-      </li>
-    </ul>
+        <StepTitlesLine />
+      </StepTitlesItems>
+    </StepTitlesContainer>
   );
 };
 export default StepTitles;
