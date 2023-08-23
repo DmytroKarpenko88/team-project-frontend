@@ -1,14 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logOut, fetchCurrentUser } from './auth-operations';
+import { register, login, logOut, fetchCurrentUser, updateUser } from './auth-operations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
-    user: { name: null, email: null, id: '' },
+    user: { name: null,
+        email: null,
+        phone: null,
+        city: null,
+        birthday: null,
+        avatarURL: null,
+        favorites: [],
+        _id: null, },
     token: null,
     isLoading: false,
     error: null,
     isLoggedIn: true,
+    isRegistered: false,
     isRefreshing: false,
   };
 
@@ -20,19 +28,19 @@ const authSlice = createSlice({
       console.log("action:", action)
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isLoggedIn = true;
+      state.isRegistered = true;
     })
 
     .addCase(login.fulfilled,(state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLogedIn = true;
+        state.isLoggedIn = true;
       })
 
       .addCase(logOut.fulfilled,(state, action) => {
         state.user = { name: null, email: null };
         state.token = null;
-        state.isLogedIn = false;
+        state.isLoggedIn = false;
       })
 
       .addCase(fetchCurrentUser.pending,(state) => {
@@ -41,12 +49,17 @@ const authSlice = createSlice({
 
       .addCase(fetchCurrentUser.fulfilled,(state, action) => {
         state.user = action.payload;
-        state.isLogedIn = true;
+        state.isLoggedIn = true;
         state.isRefreshing = false;
       })
 
       .addCase(fetchCurrentUser.rejected,(state) => {
         state.isRefreshing = false;
+      })
+
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLoggedIn = true;
       })
   },
 });

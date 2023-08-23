@@ -105,8 +105,6 @@ export default function AuthForm() {
               <Button type="submit">Registration</Button>
             </div>
 
-            {/* {isError && <p >{isError.message}</p>}
-            {isError && (<p >{isError.additionalInfo}</p>)} */}
             <ToLogin>
               Already have an account?
               <LinkStyled to="/login">Login</LinkStyled>
