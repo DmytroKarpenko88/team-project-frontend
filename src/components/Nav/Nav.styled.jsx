@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 import { Link } from 'react-router-dom';
+// import LogoutBtn from 'components/Logout/LogoutBtn';
 
 
 
@@ -66,6 +67,8 @@ align-items: center;
 @media screen and (max-width: 767px){
     text-align: center;
 
+    
+
     &:not(:first-child){
         margin-bottom: 20px;
     }
@@ -102,4 +105,20 @@ export const AuthContainerMobile = styled.div`
     margin-bottom: 40px;
     display: visible;
 }
+
+`
+
+export const UserNavContainerMobile = styled.div`
+@media screen and (min-width: 768px){
+    display: none;
+}
+
+@media screen and (max-width: 767px){
+    margin-bottom: 40px;
+    display: visible;
+}`
+
+
+export const LogoutButton = styled.div`
+margin-top:159px;
 `
