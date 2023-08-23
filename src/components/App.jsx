@@ -1,6 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy } from 'react';
+import { lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCurrentUser } from 'redux/auth/auth-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
+import { selectIsRefreshing } from 'redux/auth/auth-selectors';
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from './AddPet/AddPet';
@@ -16,10 +19,17 @@ const User = lazy(() => import('pages/User/User'));
 const IconPage = lazy(() => import('pages/IconPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isRefresh = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
-      {/* <Loader /> */}
-      <Routes>
+      { !isRefresh  ?
+      (<Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Main />} />
           <Route
@@ -80,7 +90,7 @@ export const App = () => {
             }
           />
         </Route>
-      </Routes>
+      </Routes>) : null}
     </>
   );
 };
