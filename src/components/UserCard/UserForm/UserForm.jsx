@@ -20,10 +20,7 @@ import defaultAvatar from 'images/Profile/Photo_default_2x.jpg';
 import { Camera, Check, Cross } from 'components/icons';
 
 const UserForm = ({ disabled, setIsFormDisabled }) => {
-  const [
-    showConfirm,
-    // setShowConfirm
-  ] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
   const [errorsVisible, setErrorsVisible] = useState(true);
 
   const initialValues = {
@@ -54,8 +51,15 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
       setErrorsVisible(true);
     } else {
       setErrorsVisible(false);
+      setShowConfirm(false);
     }
   }, [disabled, formikProps]);
+
+  const handleFileInputChange = event => {
+    const file = event.target.files[0];
+    formikProps.setFieldValue('avatar', file);
+    setShowConfirm(true);
+  };
 
   return (
     <>
@@ -64,22 +68,31 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
           <div>
             <UserPhoto src={defaultAvatar} />
 
-            <div style={{ marginTop: '15px' }}>
-              <FileInputLabel htmlFor="file">
-                <Camera /> Edit photo
-              </FileInputLabel>
-              <FileInput type="file" name="avatar" id="file" accept="image/*" />
-            </div>
-
-            <ConfirmWrapper>
-              <button className="confirm-icon">
-                <Check id="confirm" />
-              </button>
-              <Text>Confirm</Text>
-              <button className="cancel-icon">
-                <Cross id="cancel" />
-              </button>
-            </ConfirmWrapper>
+            {!disabled && !showConfirm && (
+              <div style={{ marginTop: '15px' }}>
+                <FileInputLabel htmlFor="file">
+                  <Camera /> Edit photo
+                </FileInputLabel>
+                <FileInput
+                  type="file"
+                  name="avatar"
+                  id="file"
+                  accept="image/*"
+                  onChange={handleFileInputChange}
+                />
+              </div>
+            )}
+            {showConfirm && !disabled && (
+              <ConfirmWrapper>
+                <button>
+                  <Check id="confirm" />
+                </button>
+                <Text>Confirm</Text>
+                <button className="cancel-icon">
+                  <Cross id="cancel" />
+                </button>
+              </ConfirmWrapper>
+            )}
           </div>
           <FieldsContainer>
             <InputContainer>
