@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Form, Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'utils/shemas/AuthSchema';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from 'redux/auth/auth-operations';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 
 import {
   MainLogForm,
@@ -23,24 +27,27 @@ const initialValues = {
 export default function LoginForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-
-  const handleLoginSubmit = values => {
-    console.log(' values:', values);
-    // const data = {
-    //   name: values.name,
-    //   email: values.email,
-    //   password: values.password,
-    //   confirmPassword: values.password,
-    // };
-    // return dispatch(register(data));
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  console.log("isLoggedIn:", isLoggedIn)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSubmit = values => {
+    const data = {
+      email: values.email,
+      password: values.password,
+    };
+    return dispatch(login(data));
   };
 
+if(isLoggedIn) {
+  navigate('/user');
+};
   return (
     <MainLogForm>
       <Formik
         validationSchema={loginSchema}
         initialValues={initialValues}
-        onSubmit={handleLoginSubmit}
+        onSubmit={handleSubmit}
       >
         {() => (
           <Form>
@@ -72,10 +79,6 @@ export default function LoginForm() {
               <Button type="submit">Login</Button>
             </div>
 
-            {/* {isError && <p className={css.error__login}>{isError.message}</p>}
-            {isError && (
-              <p className={css.error__login}>{isError.additionalInfo}</p>
-            )} */}
             <ToRegister>
               Don't have an account?
               <LinkStyled to="/register">Register</LinkStyled>

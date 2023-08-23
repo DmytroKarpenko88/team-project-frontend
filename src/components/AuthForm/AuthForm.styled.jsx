@@ -62,8 +62,11 @@ export const ErrorMess = styled(ErrorMessage)`
 position: absolute;
 font-size: 10px;
 color: ${theme.colors.red};
-left: 0px;
+left: 10px;
 top: 47px;
+@media (min-width: 768px) {
+    font-size: 12px;
+};
 `;
 
 export const OnIconPass = styled(VisibilityIcon)`

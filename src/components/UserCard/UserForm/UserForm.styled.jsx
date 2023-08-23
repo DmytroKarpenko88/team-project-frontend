@@ -76,6 +76,10 @@ const ConfirmWrapper = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  .cancel-icon svg {
+    stroke: ${theme.colors.red};
+  }
 `;
 
 const Text = styled.p`
