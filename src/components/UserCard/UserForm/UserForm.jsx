@@ -17,8 +17,7 @@ import {
 // import Loader from 'components/Loader/Loader';
 import validationSchema from 'utils/shemas/validationSchema';
 import defaultAvatar from 'images/Profile/Photo_default_2x.jpg';
-import { Camera, Check, CrossSmall } from 'components/icons';
-import { SpanStyled } from 'pages/IconPage.styled';
+import { Camera, Check, Cross } from 'components/icons';
 
 const UserForm = ({ disabled, setIsFormDisabled }) => {
   const [
@@ -73,11 +72,13 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
             </div>
 
             <ConfirmWrapper>
-              <Check id="confirm" className="confirm-icon" />
+              <button className="confirm-icon">
+                <Check id="confirm" />
+              </button>
               <Text>Confirm</Text>
-              <SpanStyled>
-                <CrossSmall id="cancel" className="cancel-icon" />
-              </SpanStyled>
+              <button className="cancel-icon">
+                <Cross id="cancel" />
+              </button>
             </ConfirmWrapper>
           </div>
           <FieldsContainer>
