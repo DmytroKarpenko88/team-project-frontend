@@ -26,7 +26,9 @@ const validationSchema = Yup.object().shape({
   phone: Yup.string()
     .matches(phoneRegExp, 'Enter the phone number +380...')
     .required('Enter your phone number'),
-  city: Yup.string().matches(cityRegExp, 'Enter valid format for city'),
+  city: Yup.string()
+    .matches(cityRegExp, 'Enter valid format for city')
+    .required('Please, enter your city'),
 });
 
 export default validationSchema;
