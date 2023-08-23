@@ -1,10 +1,10 @@
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
-import {  Form, Formik,  } from 'formik';
-
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerSchema } from 'utils/shemas/AuthSchema';
 import { register } from '../../redux/auth/auth-operations';
+import { selectIsRegistered } from 'redux/auth/auth-selectors';
 import {
   FormContainer,
   Titel,
@@ -21,41 +21,44 @@ import {
 } from './AuthForm.styled';
 
 const initialValues = {
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
-
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 export default function AuthForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
-//   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
+  const isRegistred = useSelector(selectIsRegistered);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
   const toggleConfirmPassword = () => setConfirmPasswordShow(prevState => !prevState);
 
-  const handleSubmit =  (values) => {
-    console.log(" values:",  values)
-// const {name, email, password} = values
+  const handleSubmit = values => {
+    console.log(' values:', values);
     const data = {
-  name: values.name,
-  email: values.email,
-  password: values.password,
-};  
-    return dispatch(register(data));
+      name: values.name,
+      email: values.email,
+      password: values.password,
     };
+    return dispatch(register(data));
+  };
+
+  if(isRegistred) {
+    navigate('/user');
+  };
+
   return (
     <FormContainer>
       <Formik
-      validationSchema={registerSchema}
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
+        validationSchema={registerSchema}
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
       >
         {() => (
-          <Form  >
+          <Form>
             <Titel>Registration</Titel>
             <FormField>
               <InputForm
