@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import {
+  ConfirmWrapper,
   Error,
   FieldsContainer,
+  FileInput,
+  FileInputLabel,
   Input,
   InputContainer,
   Label,
   StyledForm,
   SubmitBtn,
+  Text,
+  UserPhoto,
 } from './UserForm.styled';
 // import Loader from 'components/Loader/Loader';
 import validationSchema from 'utils/shemas/validationSchema';
+import defaultAvatar from 'images/Profile/Photo_default_2x.jpg';
+import { Camera, Check, CrossSmall } from 'components/icons';
+import { SpanStyled } from 'pages/IconPage.styled';
 
 const UserForm = ({ disabled, setIsFormDisabled }) => {
   const [
@@ -54,6 +62,24 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     <>
       <form onSubmit={formikProps.handleSubmit}>
         <StyledForm>
+          <div>
+            <UserPhoto src={defaultAvatar} />
+
+            <div style={{ marginTop: '15px' }}>
+              <FileInputLabel htmlFor="file">
+                <Camera /> Edit photo
+              </FileInputLabel>
+              <FileInput type="file" name="avatar" id="file" accept="image/*" />
+            </div>
+
+            <ConfirmWrapper>
+              <Check id="confirm" className="confirm-icon" />
+              <Text>Confirm</Text>
+              <SpanStyled>
+                <CrossSmall id="cancel" className="cancel-icon" />
+              </SpanStyled>
+            </ConfirmWrapper>
+          </div>
           <FieldsContainer>
             <InputContainer>
               <Label htmlFor="name">Name:</Label>

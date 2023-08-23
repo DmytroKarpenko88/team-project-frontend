@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EditBtn, UserCardContainer } from './UserData.styled';
 import LogoutBtn from 'components/Logout/LogoutBtn';
 import { Cross, Edit } from 'components/icons';
@@ -9,9 +9,9 @@ const UserData = () => {
 
   // const { user } = useAuth;
 
-  // useEffect(() => {
-  //   setIsFormDisabled(true)
-  // }, [user])
+  useEffect(() => {
+    setIsFormDisabled(true);
+  }, []);
 
   return (
     <>
