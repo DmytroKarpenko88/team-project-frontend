@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  FirstStepFormItemInput,
+  FirstStepFormItemLabel,
+  FirstStepFormList,
+} from './AddPetForm.styled';
 
 const FirstStepForm = ({ data, setData }) => {
   const handleChange = e => {
@@ -9,10 +14,10 @@ const FirstStepForm = ({ data, setData }) => {
   const { option } = data;
 
   return (
-    <div className="firstStep">
+    <FirstStepFormList>
       {/* ----------- first step content radio btn ------------- */}
-      <label>
-        <input
+      <FirstStepFormItemLabel>
+        <FirstStepFormItemInput
           type="radio"
           value="pet"
           checked={option === 'pet'}
@@ -20,9 +25,9 @@ const FirstStepForm = ({ data, setData }) => {
           onChange={handleChange}
         />
         your pet
-      </label>
-      <label>
-        <input
+      </FirstStepFormItemLabel>
+      <FirstStepFormItemLabel>
+        <FirstStepFormItemInput
           type="radio"
           value="sell"
           checked={option === 'sell'}
@@ -30,9 +35,9 @@ const FirstStepForm = ({ data, setData }) => {
           onChange={handleChange}
         />
         sell
-      </label>
-      <label>
-        <input
+      </FirstStepFormItemLabel>
+      <FirstStepFormItemLabel>
+        <FirstStepFormItemInput
           type="radio"
           value="lostFound"
           checked={option === 'lostFound'}
@@ -40,9 +45,9 @@ const FirstStepForm = ({ data, setData }) => {
           onChange={handleChange}
         />
         lost/found
-      </label>
-      <label>
-        <input
+      </FirstStepFormItemLabel>
+      <FirstStepFormItemLabel>
+        <FirstStepFormItemInput
           type="radio"
           value="hands"
           checked={option === 'hands'}
@@ -50,8 +55,8 @@ const FirstStepForm = ({ data, setData }) => {
           onChange={handleChange}
         />
         in good hands
-      </label>
-    </div>
+      </FirstStepFormItemLabel>
+    </FirstStepFormList>
   );
 };
 
