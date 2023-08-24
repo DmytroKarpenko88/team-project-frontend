@@ -22,7 +22,7 @@ import { useWindowSize } from './useWindowSize';
 
 export const Header = () => {
   // const user = useSelector(selectUser);
-  const { isLoggedIn } = useSelector(selectIsLoggedIn);
+  const  isLoggedIn  = useSelector(selectIsLoggedIn);
   const [click, setClick] = useState(false);
   const [screenWidth] = useWindowSize();
 
