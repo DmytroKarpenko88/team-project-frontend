@@ -58,14 +58,7 @@ export const App = () => {
                 </PrivateRoute>
               }
             />
-            <Route
-              path="add-pet"
-              element={
-                <PublicRoute>
-                  <AddPet />
-                </PublicRoute>
-              }
-            />
+            <Route path="add-pet" element={<AddPet />} />
             <Route path="icons" element={<IconPage />} />
             <Route
               path="modal-approve-action"
