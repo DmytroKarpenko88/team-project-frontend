@@ -8,42 +8,41 @@ import {
   HeaderWrapper,
   IconOpenMenu,
   MenuButton,
-  UserNavContainer,
+  // UserNavContainer,
   // UserNavContainer,
 } from './Header.styled';
 import Logo from 'components/Logo/Logo';
 import { Cross, MenuHamburger } from 'components/icons';
 import { Nav } from 'components/Nav/Nav';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
+import { selectIsLoggedIn} from 'redux/auth/auth-selectors';
 import { UserNav } from 'components/UserNav/UserNav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { useWindowSize } from './useWindowSize';
 
 export const Header = () => {
-  const user = useSelector(selectUser);
-  const {isLoggedIn} = useSelector(selectIsLoggedIn)
+  // const user = useSelector(selectUser);
+  const { isLoggedIn } = useSelector(selectIsLoggedIn);
   const [click, setClick] = useState(false);
   const [screenWidth] = useWindowSize();
 
-  // let  userName = user.name;
 
   const changeClick = () => {
     setClick(!click);
   };
+
+ 
 
   return (
     <HeaderContainer>
       <HeaderWrapper >
         <Logo onClick={() => changeClick()} />
 
-        <HeaderMenu>
+        <HeaderMenu>         
 
-        {isLoggedIn && (
-              <UserNav  />
-          )}
+          {screenWidth >= 768 && isLoggedIn && (<UserNav />) } 
 
-          {screenWidth >= 768 && !isLoggedIn && <AuthNav />}
+          {screenWidth >= 768 && !isLoggedIn && (<AuthNav />)} 
           
           {screenWidth <= 1279 && (
                <IconOpenMenu onClick={() => changeClick()}>
@@ -59,10 +58,11 @@ export const Header = () => {
              </IconOpenMenu>
           )}
 
-          <Nav click={click} onClick={() => changeClick()}  screenWidth={screenWidth} user={user}/>
+
+
+          <Nav click={click} onClick={() => changeClick()}  screenWidth={screenWidth} />
           
-          {screenWidth <= 767 && isLoggedIn && (
-            <UserNav userName={user.name} showName />)}
+          
               
           
           
