@@ -33,6 +33,7 @@ import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import { Box, SpanStyled } from './IconPage.styled';
 import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
+// import ModalApproveAction from 'components/ModalApproveAction/ModalApproveAction';
 
 const IconPage = () => {
   const [favorite, setFavorite] = useState(false);
@@ -88,6 +89,7 @@ const IconPage = () => {
       </Button>
 
       <ModalCongrats show={modalShow} onHide={() => setModalShow(false)} />
+      {/* <ModalApproveAction show={modalShow} onHide={() => setModalShow(false)} /> */}
     </Box>
   );
 };
