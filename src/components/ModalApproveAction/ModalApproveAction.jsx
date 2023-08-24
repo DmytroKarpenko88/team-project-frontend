@@ -3,8 +3,10 @@
 import { Cross, Paw } from 'components/icons';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { ModalBox, Title } from './ModalApproveAction.styled';
+import { Modalbox, Title } from './ModalApproveAction.styled';
 
+
+//const modalRoot = document.querySelector('#modal-root');
 const ModalApproveAction = props => {
   //const [show, setShow] = useState(false);
 
@@ -12,13 +14,13 @@ const ModalApproveAction = props => {
 
   return (
     <>
-      <Modal
+      <Modalbox
         {...props}
-        size="lg"
+        size="xl'"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <ModalBox>
+        <modal-content>
           <button onClick={props.onHide}>
             <Cross />
           </button>
@@ -29,7 +31,7 @@ const ModalApproveAction = props => {
               <Paw />
             </span>
           </Button>
-        </ModalBox>
+        </modal-content>
         {/* <Modal.Header closeButton /> */}
         <Modal.Body>
           <h4>Centered Modal</h4>
@@ -40,8 +42,9 @@ const ModalApproveAction = props => {
           </p>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
-      </Modal>
+      </Modalbox>
     </>
+    //modalRoot
   );
 };
 export default ModalApproveAction;
