@@ -12,7 +12,9 @@ const LogoutBtn = () => {
 
   return (
     <div style={{ marginTop: '25px' }}>
+      
       <LogoutBtnStyled type="button" onClick={closeModal}>
+       
         <Logout />
         Log Out
       </LogoutBtnStyled>

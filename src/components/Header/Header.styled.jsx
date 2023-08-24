@@ -12,15 +12,17 @@ position: sticky;
 top: 0;
 z-index: 50;
 padding: 2px 0;
-background-color: ${theme.colors.bgColor};
+// background-color: ${theme.colors.bgColor};
 
 @media screen and (max-width: 1199px) {
-    // width: 100%;
+    width: 100%;
+    // max-width: 608px;
     height: 44px;
 }
 
 @media screen and (max-width: 767px) {
-    // width: 100%;
+    width: 100%;
+    max-width: 480px;
     height: 28px;
 }
 `
@@ -44,7 +46,7 @@ flex-direction: row-reverse;
 width: 959px;
 height: 28px;
 justify-content: space-between;
-align-items: center;
+align-items: baseline;
 }
 `
 
@@ -83,6 +85,7 @@ display: none;
 
 @media screen and (max-width: 1279px){
     display: flex;
+    padding-top: 5px;
     transition: 0.4s all ease-in;
 }
 `
