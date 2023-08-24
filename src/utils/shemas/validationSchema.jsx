@@ -7,10 +7,10 @@ const dateRegExp =
 const cityRegExp = /^[A-Z][A-Za-z\s]*$/;
 
 const validationSchema = Yup.object().shape({
-  avatar: Yup.mixed()
+  avatarURL: Yup.mixed()
     .test('file-size', 'File size is too large', value => {
       if (value) {
-        return value.size < 3 * 1024 * 1024;
+        return value.size <= 1024 * 1024;
       }
       return true;
     })
