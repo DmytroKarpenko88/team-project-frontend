@@ -4,6 +4,7 @@ import {
   login,
   logOut,
   fetchCurrentUser,
+  getUserProfile,
   updateUser,
 } from './auth-operations';
 
@@ -15,7 +16,6 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
-    _id: null,
   },
   token: null,
   isLoading: false,
@@ -30,17 +30,30 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
+    .addCase(register.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+
       .addCase(register.fulfilled, (state, action) => {
         console.log('action:', action);
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.error = null;
+        state.isLoading = false;
         state.isRegistered = true;
+      })
+
+      .addCase(register.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       })
 
       .addCase(login.fulfilled, (state, action) => {
         console.log("action:", action)
-        state.user = action.payload.user;
+        // state.user = action.payload.user;
         state.token = action.payload.token;
+        state.error = null;
         state.isLoggedIn = true;
       })
 
@@ -63,6 +76,18 @@ const authSlice = createSlice({
       .addCase(fetchCurrentUser.rejected, state => {
         state.isRefreshing = false;
       })
+      .addCase(getUserProfile.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getUserProfile.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getUserProfile.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
 
       .addCase(updateUser.pending, state => {
         state.isLoading = true;
@@ -74,8 +99,9 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoading = false;
       })
-      .addCase(updateUser.rejected, state => {
+      .addCase(updateUser.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });

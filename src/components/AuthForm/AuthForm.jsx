@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registerSchema } from 'utils/shemas/AuthSchema';
 import { register } from '../../redux/auth/auth-operations';
-import { selectIsRegistered } from 'redux/auth/auth-selectors';
+import { useAuth } from 'hooks/useAuth';
 import {
   FormContainer,
   Titel,
@@ -32,10 +32,10 @@ export default function AuthForm() {
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(selectIsRegistered);
+  const {isRegistered} = useAuth();
+
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const toggleConfirmPassword = () =>
-    setConfirmPasswordShow(prevState => !prevState);
+  const toggleConfirmPassword = () => setConfirmPasswordShow(prevState => !prevState);
 
   const handleSubmit =  (values, { resetForm }) => {
     const data = {
@@ -48,10 +48,10 @@ export default function AuthForm() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isRegistered) {
       navigate('/user');
     }
-  }, [isLoggedIn, navigate]);
+  }, [isRegistered, navigate]);
 
 
   return (
