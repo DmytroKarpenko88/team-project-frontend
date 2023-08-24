@@ -102,8 +102,7 @@ export const getUserProfile = createAsyncThunk('auth/user', async (_, thunkAPI) 
 
 export const updateUser = createAsyncThunk(
   'auth/update',
-  async ({ formData }, thunkAPI) => {
-    console.log(formData);
+  async (formData, thunkAPI) => {
     try {
       const { data } = await axios.patch('/api/users/ubdateProfile', formData);
       token.set(data.token);

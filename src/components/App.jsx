@@ -6,8 +6,8 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth'; 
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
-import AddPet from './AddPet/AddPet';
-// import PageNotFound from 'pages/PageNotFound';
+import AddPet from '../pages/AddPet/AddPet';
+
 import ModalApproveAction from './ModalApproveAction';
 import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';

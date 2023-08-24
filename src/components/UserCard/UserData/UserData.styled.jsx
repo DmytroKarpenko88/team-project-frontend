@@ -4,15 +4,14 @@ import { theme } from 'styles';
 
 const MainContainer = styled.section`
   max-width: 100vw;
-  margin-top: 44px;
+  margin-top: 72px;
   display: flex;
   flex-direction: column;
-  gap: ${theme.spacing.step * 11.5}px;
+  gap: 46px;
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    flex-direction: raw;
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    flex-direction: row;
     gap: 32px;
-    gap: ${theme.spacing.step * 8}px;
   }
 `;
 
