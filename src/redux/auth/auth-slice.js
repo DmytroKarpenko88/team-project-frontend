@@ -6,8 +6,6 @@ import {
   fetchCurrentUser,
   updateUser,
 } from './auth-operations';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 const initialState = {
   user: {
@@ -17,7 +15,6 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
-    favorites: [],
     _id: null,
   },
   token: null,
@@ -37,10 +34,11 @@ const authSlice = createSlice({
         console.log('action:', action);
         state.user = action.payload.user;
         state.token = action.payload.token;
-        state.isLoggedIn = true;
+        state.isRegistered = true;
       })
 
       .addCase(login.fulfilled, (state, action) => {
+        console.log("action:", action)
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
@@ -73,13 +71,14 @@ const authSlice = createSlice({
   },
 });
 
-const authPersistConfig = {
-  key: 'auth',
-  storage,
-  whitelist: ['token'],
-};
+// const authPersistConfig = {
+//   key: 'auth',
+//   storage,
+//   whitelist: ['token'],
+// };
 
-export const persistedReducer = persistReducer(
-  authPersistConfig,
-  authSlice.reducer
-);
+// export const persistedReducer = persistReducer(
+//   authPersistConfig,
+//   authSlice.reducer
+// );
+export const authReducer = authSlice.reducer
