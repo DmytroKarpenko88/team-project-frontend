@@ -3,15 +3,16 @@ import { EditBtn, UserCardContainer } from './UserData.styled';
 import LogoutBtn from 'components/Logout/LogoutBtn';
 import { Cross, Edit } from 'components/icons';
 import UserForm from '../UserForm/UserForm';
+import { useAuth } from 'hooks/useAuth';
 
 const UserData = () => {
   const [isFormDisabled, setIsFormDisabled] = useState(true);
 
-  // const { user } = useAuth;
+  const { user } = useAuth();
 
   useEffect(() => {
     setIsFormDisabled(true);
-  }, []);
+  }, [user]);
 
   return (
     <>

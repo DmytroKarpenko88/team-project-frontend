@@ -13,57 +13,65 @@ const token = {
   },
 };
 
-export const register = createAsyncThunk('auth/register', async (credential, thunkAPI) => {
-  console.log('credential:', credential);
-  try {
-    const { data } = await axios.post('/api/auth/register', credential);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    const message = [409, 401, 400].includes(error?.response?.status)
-      ? error?.response?.data?.message
-      : `Request was failed with code ${error?.response?.status}`;
+export const register = createAsyncThunk(
+  'auth/register',
+  async (credential, thunkAPI) => {
+    console.log('credential:', credential);
+    try {
+      const { data } = await axios.post('/api/auth/register', credential);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      const message = [409, 401, 400].includes(error?.response?.status)
+        ? error?.response?.data?.message
+        : `Request was failed with code ${error?.response?.status}`;
 
-    Notify.failure(`Registration is not completed. ${message}`, {
-      timeout: 5000,
-    });
-    return thunkAPI.rejectWithValue({
-      message: error?.response?.data?.message,
-      status: error?.response?.status,
-    });
+      Notify.failure(`Registration is not completed. ${message}`, {
+        timeout: 5000,
+      });
+      return thunkAPI.rejectWithValue({
+        message: error?.response?.data?.message,
+        status: error?.response?.status,
+      });
+    }
   }
-});
+);
 
-export const login = createAsyncThunk('auth/login', async (credential, thunkAPI) => {
-  try {
-    const { data } = await axios.post('/api/auth/login', credential);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    const message = [409, 401, 400].includes(error?.response?.status)
-      ? error?.response?.data?.message
-      : `Request was failed with code ${error?.response?.status}`;
+export const login = createAsyncThunk(
+  'auth/login',
+  async (credential, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/api/auth/login', credential);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      const message = [409, 401, 400].includes(error?.response?.status)
+        ? error?.response?.data?.message
+        : `Request was failed with code ${error?.response?.status}`;
 
-    Notify.failure(`Registration is not completed. ${message}`, {
-      timeout: 5000,
-    });
-    return thunkAPI.rejectWithValue({
-      message: error?.response?.data?.message,
-      status: error?.response?.status,
-    });
+      Notify.failure(`Registration is not completed. ${message}`, {
+        timeout: 5000,
+      });
+      return thunkAPI.rejectWithValue({
+        message: error?.response?.data?.message,
+        status: error?.response?.status,
+      });
+    }
   }
+);
 
-});
-
-export const logOut = createAsyncThunk('auth/logOut', async (credential, thunkAPI) => {
-  try {
-    const { data } = await axios.post('/api/auth/logout', credential);
-    token.unset();
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const logOut = createAsyncThunk(
+  'auth/logOut',
+  async (credential, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/api/auth/logout', credential);
+      token.unset();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
@@ -83,13 +91,21 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-export const updateUser = createAsyncThunk('auth/update', async (credentials, thunkAPI) => {
+export const updateUser = createAsyncThunk(
+  'auth/update',
+  async ({ formData }, thunkAPI) => {
+    console.log(formData);
     try {
-      const {data} = await axios.patch('api/auth/updateProfile', credentials);
+      const { data } = await axios.patch('/api/users/ubdateProfile', formData);
+      token.set(data.token);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        Notify.failure('An error occurred while trying to update the data.')
+        Notify.failure(
+          'An error occurred while trying to update the data.',
+          error.message
+        )
       );
     }
-  });
+  }
+);

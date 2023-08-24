@@ -29,69 +29,45 @@ export const App = () => {
 
   return (
     <>
-      { !isRefresh  ?
-      (<Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Main />} />
-          <Route
-            path="register"
-            element={
-              <PublicRoute>
-                <Register />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRoute>
-                <Login />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="notices/:categoryName"
-            element={
-              <PublicRoute>
-                <NoticesPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="user"
-            element={
-              <PrivateRoute>
-                <User />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="add-pet"
-            element={
-              <PublicRoute>
-                <AddPet />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="icons"
-            element={
-              <PublicRoute>
-                <IconPage />
-              </PublicRoute>
-            }
-          />
-          <Route path="modal-approve-action" element={<ModalApproveAction />} />
-          <Route
-            path="*"
-            element={
-              <PublicRoute>
-                <PageNotFound />
-              </PublicRoute>
-            }
-          />
-        </Route>
-      </Routes>) : null}
+      {!isRefresh ? (
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Main />} />
+            <Route
+              path="register"
+              element={
+                <PublicRoute>
+                  <Register />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route path="notices/:categoryName" element={<NoticesPage />} />
+            <Route
+              path="user"
+              element={
+                <PrivateRoute>
+                  <User />
+                </PrivateRoute>
+              }
+            />
+            <Route path="add-pet" element={<AddPet />} />
+            <Route path="icons" element={<IconPage />} />
+            <Route
+              path="modal-approve-action"
+              element={<ModalApproveAction />}
+            />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
+        </Routes>
+      ) : null}
     </>
   );
 };
