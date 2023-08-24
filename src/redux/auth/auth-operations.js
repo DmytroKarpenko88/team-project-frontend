@@ -96,7 +96,7 @@ export const updateUser = createAsyncThunk(
   async ({ formData }, thunkAPI) => {
     console.log(formData);
     try {
-      const { data } = await axios.patch('/api/auth/ubdateProfile', formData);
+      const { data } = await axios.patch('/api/users/ubdateProfile', formData);
       token.set(data.token);
       return data;
     } catch (error) {

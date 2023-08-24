@@ -32,7 +32,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
   const [preview, setPreview] = useState(user?.avatarURL || '');
 
   const initialValues = {
-    avatar: user?.avatarURL || '',
+    avatarURL: user?.avatarURL || '',
     name: user?.name || '',
     email: user?.email || '',
     birthday: user?.birthday || '',
@@ -97,7 +97,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
 
   const handleFileInputChange = event => {
     const file = event.currentTarget.files[0];
-    formikProps.setFieldValue('avatar', file);
+    formikProps.setFieldValue('avatarURL', file);
     setPreview(URL.createObjectURL(file));
     setShowConfirm(true);
   };
@@ -121,7 +121,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
                   </FileInputLabel>
                   <FileInput
                     type="file"
-                    name="avatar"
+                    name="avatarURL"
                     id="file"
                     accept="image/*"
                     onChange={handleFileInputChange}
