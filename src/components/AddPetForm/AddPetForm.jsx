@@ -1,7 +1,7 @@
 import { ArrowLeft, Paw } from 'components/icons';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import StepTitles from './StepTitles';
+import StepTitles from './StepTitles/StepTitles';
 import getFormBasedOnStep from './getFormBasedOnStep';
 import getTitle from './getTitle';
 import {
@@ -11,6 +11,7 @@ import {
   AddPetBtnItem,
   AddPetBtnNext,
   AddPetBtnCancel,
+  AddPetBtnCancelDiv,
 } from './AddPetForm.styled';
 
 // import StepTitles from './stepTitles';
@@ -66,8 +67,10 @@ const AddPetForm = () => {
           {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
           <AddPetBtnCancel type="button">
             <Link to={backPage}>
-              <ArrowLeft width="24" height="24" />
-              {step === 1 ? 'Cancel' : 'Back'}
+              <AddPetBtnCancelDiv>
+                <ArrowLeft width="24" height="24" />
+                {step === 1 ? 'Cancel' : 'Back'}
+              </AddPetBtnCancelDiv>
             </Link>
           </AddPetBtnCancel>
         </AddPetBtnItem>
