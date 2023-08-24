@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCurrentUser } from 'redux/auth/auth-operations';
+import { useDispatch } from 'react-redux';
+import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
-import { selectIsRefreshing } from 'redux/auth/auth-selectors';
+import { useAuth } from 'hooks/useAuth'; 
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from '../pages/AddPet/AddPet';
@@ -21,15 +21,18 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isRefresh = useSelector(selectIsRefreshing);
+  const {isRefreshing,  isLoggedIn} = useAuth()
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch]);
+    if(isLoggedIn) {
+      dispatch(getUserProfile)
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <>
-      {!isRefresh ? (
+      {!isRefreshing ? (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Main />} />

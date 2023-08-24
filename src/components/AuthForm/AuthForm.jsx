@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registerSchema } from 'utils/shemas/AuthSchema';
 import { register } from '../../redux/auth/auth-operations';
-import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { useAuth } from 'hooks/useAuth';
 import {
   FormContainer,
   Titel,
@@ -32,13 +32,12 @@ export default function AuthForm() {
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const {isRegistered} = useAuth();
+
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const toggleConfirmPassword = () =>
-    setConfirmPasswordShow(prevState => !prevState);
+  const toggleConfirmPassword = () => setConfirmPasswordShow(prevState => !prevState);
 
   const handleSubmit =  (values, { resetForm }) => {
-    console.log(' values:', values);
     const data = {
       name: values.name,
       email: values.email,
@@ -49,10 +48,10 @@ export default function AuthForm() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isRegistered) {
       navigate('/user');
     }
-  }, [isLoggedIn, navigate]);
+  }, [isRegistered, navigate]);
 
 
   return (
@@ -88,7 +87,7 @@ export default function AuthForm() {
                 name="password"
                 type={passwordShow ? 'text' : 'password'}
                 placeholder="Password"
-                autoComplete="on"
+                autoComplete="off"
               />
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIconPass /> : <OffIconPass />}
@@ -101,7 +100,7 @@ export default function AuthForm() {
                 name="confirmPassword"
                 type={confirmPasswordShow ? 'text' : 'password'}
                 placeholder="Confirm password"
-                autoComplete="on"
+                autoComplete="off"
               />
               <span id="visibilityBtn" onClick={toggleConfirmPassword}>
                 {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}
