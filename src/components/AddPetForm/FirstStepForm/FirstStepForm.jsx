@@ -4,7 +4,7 @@ import {
   FirstStepFormItemInput,
   FirstStepFormItemLabel,
   FirstStepFormList,
-} from './AddPetForm.styled';
+} from './FirstStepForm.styled';
 
 const FirstStepForm = ({ data, setData }) => {
   const handleChange = e => {
@@ -18,6 +18,7 @@ const FirstStepForm = ({ data, setData }) => {
       {/* ----------- first step content radio btn ------------- */}
       <FirstStepFormItemLabel>
         <FirstStepFormItemInput
+          autoFocus="on"
           type="radio"
           value="pet"
           checked={option === 'pet'}

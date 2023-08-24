@@ -6,7 +6,7 @@ import SharedLayout from './SharedLayout/SharedLayout';
 import { selectIsRefreshing } from 'redux/auth/auth-selectors';
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
-import AddPet from './AddPet/AddPet';
+import AddPet from '../pages/AddPet/AddPet';
 
 import ModalApproveAction from './ModalApproveAction';
 import PublicRoute from './Routes/PublicRoute';

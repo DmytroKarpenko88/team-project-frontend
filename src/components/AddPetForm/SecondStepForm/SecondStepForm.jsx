@@ -1,5 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  SecondStepFormDiv,
+  SecondStepFormInput,
+  SecondStepFormTitle,
+} from './SecondStepForm.styled';
 // import { TextField } from '@mui/material';
 
 const SecondStepForm = ({ data, setData }) => {
@@ -10,13 +15,13 @@ const SecondStepForm = ({ data, setData }) => {
   };
 
   return (
-    <div className="secondStep">
+    <SecondStepFormDiv>
       {/* ----------- second step content */}
       {/* тут умова для Title of add поле в разі певних опшинів радіокнопок*/}
       {data.option !== 'pet' && (
-        <label>
+        <SecondStepFormTitle>
           Title of add
-          <input
+          <SecondStepFormInput
             // id={nameRandomId}
             autoFocus
             className="inputField"
@@ -28,11 +33,11 @@ const SecondStepForm = ({ data, setData }) => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </label>
+        </SecondStepFormTitle>
       )}
-      <label className="input">
+      <SecondStepFormTitle>
         Pet's name
-        <input
+        <SecondStepFormInput
           // id={nameRandomId}
           autoFocus
           className="inputField"
@@ -44,10 +49,10 @@ const SecondStepForm = ({ data, setData }) => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-      </label>
-      <label className="input">
+      </SecondStepFormTitle>
+      <SecondStepFormTitle>
         Date of birth
-        <input
+        <SecondStepFormInput
           // id={nameRandomId}
           autoFocus
           className="inputField"
@@ -59,10 +64,10 @@ const SecondStepForm = ({ data, setData }) => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-      </label>
-      <label className="input">
+      </SecondStepFormTitle>
+      <SecondStepFormTitle>
         Type
-        <input
+        <SecondStepFormInput
           // id={nameRandomId}
           autoFocus
           className="inputField"
@@ -74,8 +79,8 @@ const SecondStepForm = ({ data, setData }) => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-      </label>
-    </div>
+      </SecondStepFormTitle>
+    </SecondStepFormDiv>
   );
 };
 
