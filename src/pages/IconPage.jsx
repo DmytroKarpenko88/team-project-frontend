@@ -28,13 +28,10 @@ import {
   User,
 } from 'components/icons';
 import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
 
 import React, { useState } from 'react';
 import { Box, SpanStyled } from './IconPage.styled';
-import { ModalCongrats } from 'components/Modals/ModalCongrats/ModalCongrats';
-import { ModalAttention } from 'components/Modals/ModalAttention/ModalAttention';
-import { ModalDelete } from 'components/Modals/ModalDelete/ModalDelete';
+import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
 
 const IconPage = () => {
   const [favorite, setFavorite] = useState(false);
@@ -95,8 +92,6 @@ const IconPage = () => {
       </Button>
 
       <ModalCongrats show={modalShow} onHide={() => setModalShow(false)} />
-      <ModalAttention show={modalShow} onHide={() => setModalShow(false)} />
-      <ModalDelete show={modalShow} onHide={() => setModalShow(false)} />
     </Box>
   );
 };

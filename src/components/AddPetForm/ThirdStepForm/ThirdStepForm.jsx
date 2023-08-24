@@ -1,6 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Female, Male } from 'components/icons';
+import { Female, Male, Plus } from 'components/icons';
+import {
+  ThirdStepFormComments,
+  ThirdStepFormDiv,
+  ThirdStepFormImgInput,
+  ThirdStepFormImgPreview,
+  ThirdStepFormInput,
+  ThirdStepFormPhotoTitle,
+  ThirdStepFormTitle,
+  ThirdStepSexDiv,
+  ThirdStepSexFemaleLabel,
+  ThirdStepSexInput,
+  ThirdStepSexMaleLabel,
+  ThirdStepSexTitle,
+} from './ThirdStepForm.styled';
 
 const ThirdStepForm = ({ data, setData }) => {
   const handleChange = e => {
@@ -11,29 +25,33 @@ const ThirdStepForm = ({ data, setData }) => {
 
   const focusHandle = e => {};
 
+  const getphotoURL = () => {};
+
   return (
-    <div>
+    <ThirdStepFormDiv>
       {/* sex for sell lostFond ingood hands*/}
       {data.option !== 'pet' && (
         <div>
-          <h3>The sex</h3>
-          <label id="sex">
-            <Female />
-            <input name="sex" type="radio" value="female" />
-            Female
-          </label>
-          <label id="sex">
-            <Male />
-            <input name="sex" type="radio" value="male" />
-            Male
-          </label>
+          <ThirdStepSexTitle>The sex</ThirdStepSexTitle>
+          <ThirdStepSexDiv>
+            <ThirdStepSexFemaleLabel id="sex">
+              <Female />
+              <ThirdStepSexInput name="sex" type="radio" value="female" />
+              Female
+            </ThirdStepSexFemaleLabel>
+            <ThirdStepSexMaleLabel id="sex">
+              <Male />
+              <ThirdStepSexInput name="sex" type="radio" value="male" />
+              Male
+            </ThirdStepSexMaleLabel>
+          </ThirdStepSexDiv>
         </div>
       )}
       {/* --- */}
-      <label id="photo">
+      <ThirdStepFormPhotoTitle>
         {/* Add photo prewiew on 3 stage */}
         Load the pet's image:
-        <input
+        <ThirdStepFormImgInput
           type="file"
           alt="pet`s photo"
           value={data.photo ?? ''}
@@ -43,46 +61,50 @@ const ThirdStepForm = ({ data, setData }) => {
           accept="image/jpeg, image/png, image/webp, image/gif"
           required
         />
-        <img src="" alt="pet preview"></img>
-      </label>
+        <ThirdStepFormImgPreview
+          src={getphotoURL()}
+          alt="pet preview"
+        ></ThirdStepFormImgPreview>
+        <Plus />
+      </ThirdStepFormPhotoTitle>
       {/* location price for sell lostFond ingood hands*/}
       {data.option !== 'pet' && (
         <div>
-          <label id="location">
+          <ThirdStepFormTitle>
             Location
-            <input
+            <ThirdStepFormInput
               type="text"
               required
               name="location"
               placeholder="Type place of your living"
             />
-          </label>
+          </ThirdStepFormTitle>
 
-          <label id="price">
+          <ThirdStepFormTitle>
             Price
-            <input
+            <ThirdStepFormInput
               type="text"
               required
               name="price"
               placeholder="How much does your pet cost?"
             />
-          </label>
+          </ThirdStepFormTitle>
         </div>
       )}
       {/* ----- -------- */}
-      <label id="comments">
+      <ThirdStepFormTitle>
         Comments
-        <textarea
+        <ThirdStepFormComments
           type="text"
-          placeholder="Type of pet"
-          value="comments"
+          // value="comments"
           name="comments"
+          placeholder="Type of pet"
           onChange={handleChange}
           onFocus={focusHandle}
           required
         />
-      </label>
-    </div>
+      </ThirdStepFormTitle>
+    </ThirdStepFormDiv>
   );
 };
 

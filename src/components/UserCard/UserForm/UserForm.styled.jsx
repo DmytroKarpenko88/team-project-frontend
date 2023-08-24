@@ -79,6 +79,12 @@ const ConfirmWrapper = styled.div`
 
   .cancel-icon svg {
     stroke: ${theme.colors.red};
+    transition: stroke ${theme.transition.duration} ${theme.transition.main};
+  }
+
+  .cancel-icon:hover svg,
+  .cancel-icon:focus svg {
+    stroke: ${theme.colors.yellow};
   }
 `;
 
