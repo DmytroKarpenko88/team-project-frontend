@@ -13,12 +13,12 @@ const initialState = {
   user: {
     name: null,
     email: null,
-    phone: null,
-    city: null,
-    birthday: null,
-    avatarURL: null,
-    favorites: [],
-    _id: null,
+    // phone: null,
+    // city: null,
+    // birthday: null,
+    // avatarURL: null,
+    // favorites: [],
+    // _id: null,
   },
   token: null,
   isLoading: false,
@@ -66,9 +66,17 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
 
+      .addCase(updateUser.pending, state => {
+        state.isLoading = true;
+      })
+
       .addCase(updateUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
+        state.token = action.payload.token;
+      })
+      .addCase(updateUser.rejected, state => {
+        state.isLoading = false;
       });
   },
 });
