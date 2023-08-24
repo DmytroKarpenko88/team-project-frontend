@@ -13,12 +13,12 @@ const initialState = {
   user: {
     name: null,
     email: null,
-    // phone: null,
-    // city: null,
-    // birthday: null,
-    // avatarURL: null,
-    // favorites: [],
-    // _id: null,
+    phone: null,
+    city: null,
+    birthday: null,
+    avatarURL: null,
+    favorites: [],
+    _id: null,
   },
   token: null,
   isLoading: false,
@@ -38,6 +38,7 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.isRegistered = true;
       })
 
       .addCase(login.fulfilled, (state, action) => {
