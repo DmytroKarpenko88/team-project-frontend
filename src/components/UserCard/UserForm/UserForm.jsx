@@ -17,7 +17,7 @@ import {
 } from './UserForm.styled';
 import Loader from 'components/Loader/Loader';
 import validationSchema from 'utils/shemas/validationSchema';
-// import defaultAvatar from 'images/Profile/Photo_default_2x.jpg';
+import defaultAvatar from 'images/Profile/Photo_default_2x.jpg';
 import { Camera, Check, Cross } from 'components/icons';
 import { updateUser } from 'redux/auth/auth-operations';
 import { selectIsLoading, selectUser } from 'redux/auth/auth-selectors';
@@ -29,10 +29,11 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [errorsVisible, setErrorsVisible] = useState(true);
-  const [preview, setPreview] = useState(user?.avatarURL || '');
+  const [preview, setPreview] = useState(user?.avatarURL || defaultAvatar);
+  const [avatarSelected, setAvatarSelected] = useState(false);
 
   const initialValues = {
-    avatarURL: user?.avatarURL || '',
+    avatarURL: user?.avatarURL || defaultAvatar,
     name: user?.name || '',
     email: user?.email || '',
     birthday: user?.birthday || '',
@@ -44,30 +45,14 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     initialValues,
     validationSchema,
 
-    // onSubmit: values => {
-    //   if (Object.keys(formikProps.errors).length === 0) {
-    //     const formData = new FormData();
-    //     for (let key in values) {
-    //       formData.append(`${key}`, values[key]);
-    //       console.log(key, values);
-    //     }
-    //     dispatch(updateUser(formData));
-    //     console.log(formData);
-    //     setIsFormDisabled(prevState => !prevState);
-    //   }
-    // },
-
     onSubmit: values => {
       if (Object.keys(formikProps.errors).length === 0) {
-        console.log('No errors. Submitting form data:', values);
         const formData = new FormData();
         for (let key in values) {
           formData.append(`${key}`, values[key]);
         }
-        dispatch(updateUser({ formData }));
-        console.log(formData);
-      } else {
-        console.log('Errors found:', formikProps.errors);
+        dispatch(updateUser(formData));
+        setIsFormDisabled(prevState => !prevState);
       }
     },
   });
@@ -99,6 +84,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     const file = event.currentTarget.files[0];
     formikProps.setFieldValue('avatarURL', file);
     setPreview(URL.createObjectURL(file));
+    setAvatarSelected(true);
     setShowConfirm(true);
   };
 
@@ -108,10 +94,10 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
         <form onSubmit={formikProps.handleSubmit}>
           <StyledForm>
             <div>
-              {!disabled ? (
-                <UserPhoto src={preview} />
+              {avatarSelected ? (
+                <UserPhoto src={preview} alt="selected avatar" />
               ) : (
-                <UserPhoto src={user.avatarURL} />
+                <UserPhoto src={defaultAvatar} alt="default avatar" />
               )}
 
               {!disabled && !showConfirm && (
