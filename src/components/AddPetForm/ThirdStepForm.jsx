@@ -8,10 +8,11 @@ const ThirdStepForm = ({ data, setData }) => {
     const value = e.target.value;
     setData(prev => ({ ...prev, [input]: value }));
   };
+
   const focusHandle = e => {};
 
   return (
-    <form className="thirdStep">
+    <div>
       {/* sex for sell lostFond ingood hands*/}
       {data.option !== 'pet' && (
         <div>
@@ -35,10 +36,11 @@ const ThirdStepForm = ({ data, setData }) => {
         <input
           type="file"
           alt="pet`s photo"
-          value="photo"
+          value={data.photo ?? ''}
           name="photo"
           onChange={handleChange}
           onFocus={focusHandle}
+          accept="image/jpeg, image/png, image/webp, image/gif"
           required
         />
         <img src="" alt="pet preview"></img>
@@ -46,7 +48,7 @@ const ThirdStepForm = ({ data, setData }) => {
       {/* location price for sell lostFond ingood hands*/}
       {data.option !== 'pet' && (
         <div>
-          <label>
+          <label id="location">
             Location
             <input
               type="text"
@@ -80,7 +82,7 @@ const ThirdStepForm = ({ data, setData }) => {
           required
         />
       </label>
-    </form>
+    </div>
   );
 };
 

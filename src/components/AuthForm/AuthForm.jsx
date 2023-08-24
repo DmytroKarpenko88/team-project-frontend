@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import {  Form, Formik } from 'formik';
-// import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerSchema } from 'utils/shemas/AuthSchema';
-
+import { register } from '../../redux/auth/auth-operations';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import {
   FormContainer,
   Titel,
@@ -19,48 +21,56 @@ import {
 } from './AuthForm.styled';
 
 const initialValues = {
-    name: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-  };
+  name: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 export default function AuthForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
-//   const location = useLocation();
-//   const isRegister = location.pathname === '/register';
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const toggleConfirmPassword = () => setConfirmPasswordShow(prevState => !prevState);
+  const toggleConfirmPassword = () =>
+    setConfirmPasswordShow(prevState => !prevState);
 
-  const handleRegisterSubmit = values => {
-    console.log(" values:",  values)
-    // const data = {
-    //   name: values.name,
-    //   email: values.email,
-    //   password: values.password,
-    //   confirmPassword: values.password,
-    // };  
-    // return dispatch(register(data));
+  const handleSubmit =  (values, { resetForm }) => {
+    console.log(' values:', values);
+    const data = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
     };
+    dispatch(register(data));
+    resetForm()
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/user');
+    }
+  }, [isLoggedIn, navigate]);
+
+
   return (
     <FormContainer>
       <Formik
-      validationSchema={registerSchema}
-      initialValues={initialValues}
-      onSubmit={handleRegisterSubmit}
+        validationSchema={registerSchema}
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
       >
         {() => (
           <Form>
             <Titel>Registration</Titel>
             <FormField>
               <InputForm
-                // autoFocus="autofocus"
                 name="name"
                 type="name"
                 placeholder="Name"
-                autoComplete="off"
+                autoComplete="on"
               />
               <ErrorMess name="name" component="p" />
             </FormField>
@@ -69,7 +79,7 @@ export default function AuthForm() {
                 name="email"
                 type="email"
                 placeholder="Email"
-                autoComplete="off"
+                autoComplete="on"
               />
               <ErrorMess name="email" component="p" />
             </FormField>
@@ -78,7 +88,7 @@ export default function AuthForm() {
                 name="password"
                 type={passwordShow ? 'text' : 'password'}
                 placeholder="Password"
-                autoComplete="off"
+                autoComplete="on"
               />
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIconPass /> : <OffIconPass />}
@@ -91,7 +101,7 @@ export default function AuthForm() {
                 name="confirmPassword"
                 type={confirmPasswordShow ? 'text' : 'password'}
                 placeholder="Confirm password"
-                autoComplete="off"
+                autoComplete="on"
               />
               <span id="visibilityBtn" onClick={toggleConfirmPassword}>
                 {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}
@@ -103,8 +113,6 @@ export default function AuthForm() {
               <Button type="submit">Registration</Button>
             </div>
 
-            {/* {isError && <p >{isError.message}</p>}
-            {isError && (<p >{isError.additionalInfo}</p>)} */}
             <ToLogin>
               Already have an account?
               <LinkStyled to="/login">Login</LinkStyled>

@@ -8,7 +8,7 @@ const StyledForm = styled.div`
   align-items: center;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    flex-direction: raw-reverse;
+    flex-direction: row-reverse;
     align-items: flex-start;
     gap: ${theme.spacing.step * 17.75}px;
     width: calc(100% - 34px);
@@ -22,26 +22,79 @@ const StyledForm = styled.div`
 `;
 
 const FieldsContainer = styled.div`
-  position: relative;
-  margin-top: 59px;
-  display: grid;
-  grid-template-columns: 62px 1fr;
-  grid-template-rows: repeat(6, 24px);
-  grid-template-areas:
-    '. .'
-    '. .'
-    '. .'
-    '. .'
-    '. submit';
-  gap: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 22px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     margin-top: 0;
-    width: 255px;
-    grid-template-columns: 68px 1fr;
-    grid-template-rows: repeat(5, 30px);
-    gap: 20px 0px;
   }
+`;
+
+const UserPhoto = styled.img`
+  display: block;
+  margin: auto;
+  width: 182px;
+  height: 182px;
+  border-radius: 40px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+`;
+
+const FileInputLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: ${theme.fonts.main.regular};
+  font-size: ${theme.fontSizes.s};
+  line-height: 22px;
+  letter-spacing: 0.48px;
+  color: ${theme.colors.black};
+  gap: 8px;
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  cursor: pointer;
+  svg {
+    transition: fill ${theme.transition.duration} ${theme.transition.main};
+  }
+  &:hover,
+  &:focus {
+    color: ${theme.colors.yellow};
+    svg {
+      stroke: ${theme.colors.yellow};
+    }
+  }
+`;
+
+const FileInput = styled.input`
+  display: none;
+`;
+
+const ConfirmWrapper = styled.div`
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  .cancel-icon svg {
+    stroke: ${theme.colors.red};
+  }
+`;
+
+const Text = styled.p`
+  font-family: ${theme.fonts.main.regular};
+  color: ${theme.colors.black};
+  font-size: ${theme.fontSizes.xs};
+  line-height: 22px;
+  letter-spacing: 0.48px;
+`;
+
+const InputContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const Label = styled.label`
@@ -82,13 +135,14 @@ const Input = styled.input`
 `;
 
 const SubmitBtn = styled.button`
-  grid-column: 1 / span 2;
   display: flex;
   width: 248px;
+  margin-top: 21px;
+  margin-right: auto;
+  margin-left: auto;
   padding: 6px 107px;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   border-radius: 40px;
   background: ${theme.colors.blue};
   font-family: ${theme.fonts.main.bold};
@@ -96,8 +150,8 @@ const SubmitBtn = styled.button`
   line-height: normal;
   letter-spacing: 0.56px;
   cursor: pointer;
-  margin: auto;
-  transition: all var(--duration) ${theme.transition.main};
+
+  transition: all ${theme.transition.duration} ${theme.transition.main};
 
   &:hover,
   &:focus {
@@ -109,14 +163,16 @@ const SubmitBtn = styled.button`
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    grid-area: submit;
+    width: 255px;
+    margin-top: 10px;
+    margin-left: 120px;
   }
 `;
 
 const Error = styled.p`
-  position: absolu + te;
-  top: -25px;
-  left: 30%;
+  position: absolute;
+  bottom: -17px;
+  left: 0;
   color: ${theme.colors.red};
   font-size: ${theme.fontSizes.xs};
   white-space: nowrap;
@@ -126,4 +182,17 @@ const Error = styled.p`
   }
 `;
 
-export { StyledForm, FieldsContainer, Label, Input, SubmitBtn, Error };
+export {
+  StyledForm,
+  FieldsContainer,
+  Label,
+  Input,
+  SubmitBtn,
+  Error,
+  InputContainer,
+  UserPhoto,
+  FileInputLabel,
+  FileInput,
+  ConfirmWrapper,
+  Text,
+};

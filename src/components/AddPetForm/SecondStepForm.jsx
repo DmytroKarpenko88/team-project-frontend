@@ -10,7 +10,7 @@ const SecondStepForm = ({ data, setData }) => {
   };
 
   return (
-    <form className="secondStep">
+    <div className="secondStep">
       {/* ----------- second step content */}
       {/* тут умова для Title of add поле в разі певних опшинів радіокнопок*/}
       {data.option !== 'pet' && (
@@ -75,7 +75,7 @@ const SecondStepForm = ({ data, setData }) => {
           required
         />
       </label>
-    </form>
+    </div>
   );
 };
 

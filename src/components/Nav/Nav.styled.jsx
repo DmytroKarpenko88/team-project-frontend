@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 import { Link } from 'react-router-dom';
+// import LogoutBtn from 'components/Logout/LogoutBtn';
 
 
 
@@ -19,7 +20,7 @@ z-index: 0;
 
 @media screen and (max-width: 767px){
     padding: 40px 70px 219px 70px;
-    top: 25px;
+    top: 35px;
 }
 
 @media screen and (min-width:768px ) and (max-width:1279px){
@@ -53,7 +54,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 
-@media screen and (max-width: 1199px){
+@media screen and (max-width: 1279px){
     text-align: center;
 
     &:not(:first-child){
@@ -65,6 +66,8 @@ align-items: center;
 
 @media screen and (max-width: 767px){
     text-align: center;
+
+    
 
     &:not(:first-child){
         margin-bottom: 20px;
@@ -81,7 +84,7 @@ font-size: ${theme.fontSizes.l};
 text-decoration: none;
 margin-right: 40px;
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 1279px) {
     margin:0;
     font-size: 32px;
 
@@ -102,4 +105,20 @@ export const AuthContainerMobile = styled.div`
     margin-bottom: 40px;
     display: visible;
 }
+
+`
+
+export const UserNavContainerMobile = styled.div`
+@media screen and (min-width: 768px){
+    display: none;
+}
+
+@media screen and (max-width: 767px){
+    margin-bottom: 40px;
+    display: visible;
+}`
+
+
+export const LogoutButton = styled.div`
+margin-top:159px;
 `

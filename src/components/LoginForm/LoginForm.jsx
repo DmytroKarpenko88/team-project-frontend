@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Formik } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'utils/shemas/AuthSchema';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from 'redux/auth/auth-operations';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 
 import {
   MainLogForm,
@@ -23,31 +27,37 @@ const initialValues = {
 export default function LoginForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleLoginSubmit = values => {
-    console.log(' values:', values);
-    // const data = {
-    //   name: values.name,
-    //   email: values.email,
-    //   password: values.password,
-    //   confirmPassword: values.password,
-    // };
-    // return dispatch(register(data));
+  const handleSubmit = (values, { resetForm }) => {
+    const data = {
+      email: values.email,
+      password: values.password,
+    };
+    dispatch(login(data));
+    resetForm();
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/user');
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <MainLogForm>
       <Formik
         validationSchema={loginSchema}
         initialValues={initialValues}
-        onSubmit={handleLoginSubmit}
+        onSubmit={handleSubmit}
       >
         {() => (
           <Form>
             <Titel>Login</Titel>
             <FormField>
               <InputForm
-                //   autoFocus="autofocus"
                 name="email"
                 type="email"
                 placeholder="Email"
@@ -72,10 +82,6 @@ export default function LoginForm() {
               <Button type="submit">Login</Button>
             </div>
 
-            {/* {isError && <p className={css.error__login}>{isError.message}</p>}
-            {isError && (
-              <p className={css.error__login}>{isError.additionalInfo}</p>
-            )} */}
             <ToRegister>
               Don't have an account?
               <LinkStyled to="/register">Register</LinkStyled>
