@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Female, Male } from 'components/icons';
+import {
+  ThirdStepFormComments,
+  ThirdStepFormDiv,
+  ThirdStepFormInput,
+  ThirdStepFormTitle,
+} from './ThirdStepForm.styled';
 
 const ThirdStepForm = ({ data, setData }) => {
   const handleChange = e => {
@@ -12,7 +18,7 @@ const ThirdStepForm = ({ data, setData }) => {
   const focusHandle = e => {};
 
   return (
-    <div>
+    <ThirdStepFormDiv>
       {/* sex for sell lostFond ingood hands*/}
       {data.option !== 'pet' && (
         <div>
@@ -30,10 +36,10 @@ const ThirdStepForm = ({ data, setData }) => {
         </div>
       )}
       {/* --- */}
-      <label id="photo">
+      <ThirdStepFormTitle>
         {/* Add photo prewiew on 3 stage */}
         Load the pet's image:
-        <input
+        <ThirdStepFormInput
           type="file"
           alt="pet`s photo"
           value={data.photo ?? ''}
@@ -44,35 +50,35 @@ const ThirdStepForm = ({ data, setData }) => {
           required
         />
         <img src="" alt="pet preview"></img>
-      </label>
+      </ThirdStepFormTitle>
       {/* location price for sell lostFond ingood hands*/}
       {data.option !== 'pet' && (
         <div>
-          <label id="location">
+          <ThirdStepFormTitle>
             Location
-            <input
+            <ThirdStepFormInput
               type="text"
               required
               name="location"
               placeholder="Type place of your living"
             />
-          </label>
+          </ThirdStepFormTitle>
 
-          <label id="price">
+          <ThirdStepFormTitle>
             Price
-            <input
+            <ThirdStepFormInput
               type="text"
               required
               name="price"
               placeholder="How much does your pet cost?"
             />
-          </label>
+          </ThirdStepFormTitle>
         </div>
       )}
       {/* ----- -------- */}
-      <label id="comments">
+      <ThirdStepFormTitle>
         Comments
-        <textarea
+        <ThirdStepFormComments
           type="text"
           placeholder="Type of pet"
           value="comments"
@@ -81,8 +87,8 @@ const ThirdStepForm = ({ data, setData }) => {
           onFocus={focusHandle}
           required
         />
-      </label>
-    </div>
+      </ThirdStepFormTitle>
+    </ThirdStepFormDiv>
   );
 };
 

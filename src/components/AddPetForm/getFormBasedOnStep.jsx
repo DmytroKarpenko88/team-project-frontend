@@ -1,6 +1,6 @@
-import FirstStepForm from './FirstStepForm';
-import SecondStepForm from './SecondStepForm';
-import ThirdStepForm from './ThirdStepForm';
+import FirstStepForm from './FirstStepForm/FirstStepForm';
+import SecondStepForm from './SecondStepForm/SecondStepForm';
+import ThirdStepForm from './ThirdStepForm/ThirdStepForm';
 
 const getFormBasedOnStep = (step, data, setData) => {
   let formBasedOnStep;
