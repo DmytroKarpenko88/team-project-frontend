@@ -49,14 +49,7 @@ export const App = () => {
                 </PublicRoute>
               }
             />
-            <Route
-              path="notices/:categoryName"
-              element={
-                <PublicRoute>
-                  <NoticesPage />
-                </PublicRoute>
-              }
-            />
+            <Route path="notices/:categoryName" element={<NoticesPage />} />
             <Route
               path="user"
               element={
@@ -73,26 +66,12 @@ export const App = () => {
                 </PublicRoute>
               }
             />
-            <Route
-              path="icons"
-              element={
-                <PublicRoute>
-                  <IconPage />
-                </PublicRoute>
-              }
-            />
+            <Route path="icons" element={<IconPage />} />
             <Route
               path="modal-approve-action"
               element={<ModalApproveAction />}
             />
-            <Route
-              path="*"
-              element={
-                <PublicRoute>
-                  <PageNotFound />
-                </PublicRoute>
-              }
-            />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       ) : null}
