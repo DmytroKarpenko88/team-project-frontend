@@ -6,6 +6,9 @@ export const ModalContainer = styled(Modal)`
   .modal-content {
     border: none;
     border-radius: 20px;
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      border-radius: 40px;
+    }
   }
 
   .modal-dialog {
@@ -87,6 +90,8 @@ export const ButtonGoToProfile = styled.button`
 
   line-height: normal;
   letter-spacing: 0.64px;
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: fill ${theme.transition.duration} ${theme.transition.main};
 
   svg {
     fill: ${theme.colors.white};

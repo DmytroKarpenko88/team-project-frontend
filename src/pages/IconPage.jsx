@@ -32,7 +32,9 @@ import Button from 'react-bootstrap/Button';
 
 import React, { useState } from 'react';
 import { Box, SpanStyled } from './IconPage.styled';
-import { ModalCongrats } from 'components/ModalCongrats/ModalCongrats';
+import { ModalCongrats } from 'components/Modals/ModalCongrats/ModalCongrats';
+import { ModalAttention } from 'components/Modals/ModalAttention/ModalAttention';
+import { ModalDelete } from 'components/Modals/ModalDelete/ModalDelete';
 
 const IconPage = () => {
   const [favorite, setFavorite] = useState(false);
@@ -41,6 +43,7 @@ const IconPage = () => {
   return (
     <Box>
       <h1>IconPage</h1>
+
       <Paw />
       <Plus />
       <PlusSmall />
@@ -82,12 +85,18 @@ const IconPage = () => {
 
       <EyeOpen />
       <EyeClose />
-
-      <Button variant="primary" onClick={() => setModalShow(true)}>
+      <Button
+        variant="primary"
+        onClick={() => {
+          setModalShow(true);
+        }}
+      >
         Open modal
       </Button>
 
       <ModalCongrats show={modalShow} onHide={() => setModalShow(false)} />
+      <ModalAttention show={modalShow} onHide={() => setModalShow(false)} />
+      <ModalDelete show={modalShow} onHide={() => setModalShow(false)} />
     </Box>
   );
 };
