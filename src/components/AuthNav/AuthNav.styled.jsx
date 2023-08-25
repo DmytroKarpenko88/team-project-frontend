@@ -24,11 +24,15 @@ export const LinkRegister = styled(NavLink)`
   border-radius: 40px;
   background-color: ${theme.colors.white};
   cursor: pointer;
+  transition: ${theme.transition};
   &:hover {
+    /* transform: scale(1.05); */
+    transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
   }
   &.active {
+    transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
   }
@@ -49,12 +53,15 @@ export const LinkLogin = styled(NavLink)`
   border-radius: 40px;
   background-color: ${theme.colors.white};
   cursor: pointer;
+  transition: ${theme.transition};
   svg {
     fill: ${theme.colors.yellow};
     margin-left: 8px;
     margin-bottom: 2px;
   }
   &:hover {
+    /* transform: scale(1.05); */
+    transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
     svg {
@@ -62,6 +69,7 @@ export const LinkLogin = styled(NavLink)`
     }
   }
   &.active {
+    transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
     svg {

@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import { Logout } from '../icons/index';
 import { LogoutBtnStyled } from './Logout.styled';
-import { useDispatch } from 'react-redux';
-import { logOut } from 'redux/auth/auth-operations';
+import { ModalApproveAction } from 'components/Modals';
 
 const LogoutBtn = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
+  const [modalApproveActionShow, setModalApproveActionShow] = useState(false);
 
-  console.log(isModalOpen);
   const closeModal = () => {
-    setIsModalOpen(prevState => !prevState);
-    dispatch(logOut());
+    setModalApproveActionShow(prevState => !prevState);
   };
 
   return (
@@ -20,6 +16,12 @@ const LogoutBtn = () => {
         <Logout />
         Log Out
       </LogoutBtnStyled>
+      {modalApproveActionShow && (
+        <ModalApproveAction
+          show={modalApproveActionShow}
+          onHide={() => setModalApproveActionShow(false)}
+        />
+      )}
     </div>
   );
 };
