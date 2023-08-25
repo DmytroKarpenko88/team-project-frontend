@@ -1,13 +1,18 @@
 import React from 'react';
-import { Container, Title, Images } from './Main.styled';
+import {  Title, Images, Container } from './Main.styled';
+
 
 
 export default function MainPage() {
 
   return (
-    <Container>
+    <>
+     
+       <Container>
       <Title>Take good care of your small pets</Title>
       <Images alt="Pets" />
     </Container>
+    </>
+    
   );
 }

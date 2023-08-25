@@ -1,31 +1,32 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 import { Link } from 'react-router-dom';
-// import LogoutBtn from 'components/Logout/LogoutBtn';
+
 
 
 
 export const NavMenu = styled.ul.withConfig({
     shouldForwardProp: prop => prop !== 'click',
   })`
-// height: 100%;
+position relative;
 display:flex;
-justify-content: center;
+justify-content: flex-end;
 align-items: center;
 z-index: 0;
 
-@media screen and (min-width: ${theme.breakpoints.desktop}){
-    // margin-right: auto;
-}
+
 
 @media screen and (max-width: 767px){
     padding: 40px 70px 219px 70px;
     top: 35px;
+height: 100vh;
+
 }
 
 @media screen and (min-width:768px ) and (max-width:1279px){
-    top: 44px;
+    top: 49px;
     padding: 94px 0 700px 0;
+height: 100vh;
     
 
 }
@@ -58,6 +59,7 @@ align-items: center;
     text-align: center;
 
     &:not(:first-child){
+        height: 66px;
         margin-bottom: 60px;
     }
     
@@ -65,11 +67,10 @@ align-items: center;
 
 
 @media screen and (max-width: 767px){
-    text-align: center;
-
-    
+    text-align: center;    
 
     &:not(:first-child){
+        height: 44px;
         margin-bottom: 20px;
     }
     
@@ -87,6 +88,8 @@ margin-right: 40px;
 @media screen and (max-width: 1279px) {
     margin:0;
     font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
 
 }
 
@@ -108,17 +111,32 @@ export const AuthContainerMobile = styled.div`
 
 `
 
+
+
+
 export const UserNavContainerMobile = styled.div`
 @media screen and (min-width: 768px){
     display: none;
 }
 
 @media screen and (max-width: 767px){
-    margin-bottom: 40px;
+
+    margin-bottom: 159px;
     display: visible;
 }`
 
 
-export const LogoutButton = styled.div`
-margin-top:159px;
+
+export const LogoutButtnMobile = styled.div`
+position: absolute;
+@media screen and (min-width: 768px){
+    display: none;
+}
+@media screen and (max-width: 767px){
+    display: visible;
+    top: 50%;
+    left: 10%;
+
+}
+
 `
