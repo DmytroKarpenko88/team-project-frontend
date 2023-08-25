@@ -48,7 +48,7 @@ const IconPage = () => {
   const [modalApproveActionShow, setModalApproveActionShow] = useState(false);
 
   return (
-    <Box>
+    <Box className="IconPage">
       {/* icons */}
       <div>
         <h1>IconPage</h1>
