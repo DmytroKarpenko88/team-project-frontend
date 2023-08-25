@@ -77,6 +77,7 @@ export const ButtonGoToProfile = styled.button`
   margin-bottom: 60px;
 
   width: 248px;
+  height: 40px;
   padding: 8px 28px;
   justify-content: center;
   align-items: center;

@@ -30,7 +30,7 @@ export const ModalDelete = props => {
             <span>Cancel</span>
           </BtnCancel>
 
-          <BtnYes>
+          <BtnYes onClick={props.onHide}>
             <span>Yes</span>
             <span>
               <Trash />

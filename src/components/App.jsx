@@ -3,12 +3,11 @@ import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
-import { useAuth } from 'hooks/useAuth'; 
+import { useAuth } from 'hooks/useAuth';
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from '../pages/AddPet/AddPet';
 
-import ModalApproveAction from './Modals/ModalApproveAction';
 import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';
 // import Loader from './Loader/Loader';
@@ -21,12 +20,12 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const {isRefreshing,  isLoggedIn} = useAuth()
+  const { isRefreshing, isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    if(isLoggedIn) {
-      dispatch(getUserProfile)
+    if (isLoggedIn) {
+      dispatch(getUserProfile);
     }
   }, [dispatch, isLoggedIn]);
 
@@ -63,10 +62,6 @@ export const App = () => {
             />
             <Route path="add-pet" element={<AddPet />} />
             <Route path="icons" element={<IconPage />} />
-            <Route
-              path="modal-approve-action"
-              element={<ModalApproveAction />}
-            />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
