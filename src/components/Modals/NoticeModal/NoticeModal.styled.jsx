@@ -18,7 +18,7 @@ export const ModalContainer = styled(Modal)`
     max-width: calc(100% - 40px);
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
-      max-width: 608px;
+      max-width: 681px;
     }
   }
 
@@ -43,6 +43,34 @@ export const CrossBtn = styled.button`
   }
 `;
 
+export const FlexWrapper = styled.div`
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  margin-top: 44px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    flex-direction: row;
+    margin-top: 32px;
+    margin-left: 20px;
+    gap: 24px;
+  }
+`;
+
+export const ImgBox = styled.div`
+  width: calc(100% - 16px);
+  margin: 0 auto;
+  height: 240px;
+  border-radius: 0 0 40px 40px;
+  overflow: hidden;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    width: 262px;
+    height: 298px;
+    margin: 0;
+  }
+`;
+
 export const CategoryName = styled.span`
   position: absolute;
   margin-top: 16px;
@@ -59,17 +87,6 @@ export const CategoryName = styled.span`
   line-height: normal;
 `;
 
-export const ImgBox = styled.div`
-  margin: 44px auto 0;
-  outline: 1px solid black;
-
-  width: calc(100% - 40px);
-  height: 240px;
-  border-radius: 0 0 40px 40px;
-
-  overflow: hidden;
-`;
-
 export const Img = styled.img`
   width: 100%;
   height: 100%;
@@ -77,7 +94,6 @@ export const Img = styled.img`
 `;
 
 export const Title = styled.h2`
-  margin-top: 12px;
   width: 198px;
 
   font-size: 24px;
@@ -86,31 +102,49 @@ export const Title = styled.h2`
   letter-spacing: -0.24px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-size: 36px;
-    letter-spacing: 1.44px;
+    width: 250px;
+    font-size: 28px;
+
+    line-height: normal;
+    letter-spacing: -0.28px;
   }
 `;
 
 export const Container = styled.div`
   display: flex;
-  margin-top: 20px;
+  padding-top: 8px;
   flex-direction: column;
   gap: 8px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-top: 20px;
+  }
 `;
+
 export const Info = styled.p`
   display: flex;
   align-items: flex-end;
 `;
+
 export const InfoName = styled.span`
   width: 81px;
   font-family: ${theme.fonts.main.semiBold};
   font-size: 14px;
   line-height: normal;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 16px;
+  }
 `;
+
 export const InfoValues = styled.span`
   font-family: ${theme.fonts.main.medium};
   font-size: 12px;
   line-height: normal;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 16px;
+  }
 `;
 
 export const Contact = styled.a`
@@ -122,6 +156,10 @@ export const Contact = styled.a`
   line-height: normal;
   text-decoration-line: underline;
 
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 16px;
+  }
+
   &:hover,
   &:focus {
     color: ${theme.colors.yellow};
@@ -129,7 +167,6 @@ export const Contact = styled.a`
 `;
 
 export const InfoMessage = styled.p`
-  margin-top: 12px;
   font-family: ${theme.fonts.main.semiBold};
   font-size: 14px;
 
@@ -137,15 +174,14 @@ export const InfoMessage = styled.p`
   letter-spacing: 0.56px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding: 0 40px;
+    margin-top: 28px;
+    padding: 0 20px;
 
-    font-family: ${theme.fonts.main.medium};
-
-    margin-top: 40px;
-    font-size: 20px;
+    font-family: ${theme.fonts.main.semiBold};
+    font-size: 16px;
     line-height: 28px;
-
-    letter-spacing: 0.8px;
+    line-height: 24px; /* 150% */
+    letter-spacing: 0.64px;
   }
 `;
 
@@ -187,44 +223,47 @@ export const BtnContact = styled.button`
     width: 165px;
   }
 
-  svg {
-    fill: ${theme.colors.yellow};
-  }
-
   &:hover,
   &:focus {
-    background: ${theme.colors.yellow};
+    background: ${theme.colors.grBlue2};
     color: ${theme.colors.white};
-    svg {
-      fill: ${theme.colors.white};
-    }
+    border: none;
   }
 `;
 
 export const BtnAddTo = styled.button`
   display: flex;
 
-  width: 240px;
+  width: 256px;
   height: 40px;
   padding: 8px 0;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  border: 2px solid ${theme.colors.yellow};
   border-radius: 40px;
-  background: ${theme.colors.white};
+  background: ${theme.colors.blue};
 
-  color: ${theme.colors.yellow};
-  font-family: ${theme.fonts.main.semiBold};
+  color: ${theme.colors.white};
+  font-family: ${theme.fonts.main.bold};
   font-size: 16px;
 
   line-height: normal;
   letter-spacing: 0.64px;
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: fill ${theme.transition.duration} ${theme.transition.main};
+
+  svg {
+    stroke: ${theme.colors.white};
+  }
 
   &:hover,
   &:focus {
-    background: ${theme.colors.yellow};
+    background: ${theme.colors.grBlue2};
     color: ${theme.colors.white};
+
+    svg {
+      stroke: ${theme.colors.white};
+    }
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {

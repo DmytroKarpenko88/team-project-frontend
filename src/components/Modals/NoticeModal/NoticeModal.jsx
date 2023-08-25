@@ -7,6 +7,7 @@ import {
   Contact,
   Container,
   CrossBtn,
+  FlexWrapper,
   Img,
   ImgBox,
   Info,
@@ -26,42 +27,46 @@ export const NoticeModal = props => {
         <CrossBtn onClick={props.onHide}>
           <Cross />
         </CrossBtn>
-        <ImgBox>
-          <CategoryName>In good hands</CategoryName>
-          <Img src={img} alt="" />
-        </ImgBox>
-        <Title>Сute dog looking for a home</Title>
+        <FlexWrapper>
+          <ImgBox>
+            <CategoryName>In good hands</CategoryName>
+            <Img src={img} alt="" />
+          </ImgBox>
+          <div>
+            <Title>Сute dog looking for a home</Title>
 
-        <Container>
-          <Info>
-            <InfoName>Name:</InfoName>
-            <InfoValues>Rich</InfoValues>
-          </Info>
-          <Info>
-            <InfoName>Birthday: </InfoName>
-            <InfoValues>21.09.2020</InfoValues>
-          </Info>
-          <Info>
-            <InfoName>Type:</InfoName>
-            <InfoValues>Pomeranian</InfoValues>
-          </Info>
-          <Info>
-            <InfoName>Place:</InfoName>
-            <InfoValues>Lviv</InfoValues>
-          </Info>
-          <Info>
-            <InfoName>The sex:</InfoName>
-            <InfoValues>male</InfoValues>
-          </Info>
-          <Info>
-            <InfoName>Email:</InfoName>
-            <Contact href="mailto:user@mail.com">user@mail.com</Contact>
-          </Info>
-          <Info>
-            <InfoName>Phone:</InfoName>
-            <Contact href="tel:+380971234567">+380971234567</Contact>
-          </Info>
-        </Container>
+            <Container>
+              <Info>
+                <InfoName>Name:</InfoName>
+                <InfoValues>Rich</InfoValues>
+              </Info>
+              <Info>
+                <InfoName>Birthday: </InfoName>
+                <InfoValues>21.09.2020</InfoValues>
+              </Info>
+              <Info>
+                <InfoName>Type:</InfoName>
+                <InfoValues>Pomeranian</InfoValues>
+              </Info>
+              <Info>
+                <InfoName>Place:</InfoName>
+                <InfoValues>Lviv</InfoValues>
+              </Info>
+              <Info>
+                <InfoName>The sex:</InfoName>
+                <InfoValues>male</InfoValues>
+              </Info>
+              <Info>
+                <InfoName>Email:</InfoName>
+                <Contact href="mailto:user@mail.com">user@mail.com</Contact>
+              </Info>
+              <Info>
+                <InfoName>Phone:</InfoName>
+                <Contact href="tel:+380971234567">+380971234567</Contact>
+              </Info>
+            </Container>
+          </div>
+        </FlexWrapper>
 
         <InfoMessage>
           Comments: Rich would be the perfect addition to an active family that
