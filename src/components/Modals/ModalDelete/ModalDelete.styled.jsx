@@ -103,7 +103,7 @@ export const BtnCancel = styled.button`
   background: ${theme.colors.white};
   border-radius: 40px;
   width: 256px;
-  padding: 8px 20px;
+  height: 40px;
 
   justify-content: center;
   align-items: center;
@@ -121,8 +121,9 @@ export const BtnCancel = styled.button`
 
   &:hover,
   &:focus {
-    background: ${theme.colors.blue};
+    background: ${theme.colors.grBlue2};
     color: ${theme.colors.white};
+    border: none;
     svg {
       fill: ${theme.colors.white};
     }
@@ -132,16 +133,16 @@ export const BtnCancel = styled.button`
 export const BtnYes = styled.button`
   display: flex;
   gap: 8px;
-  border: 2px solid ${theme.colors.blue};
-  background: ${theme.colors.white};
+
+  background: ${theme.colors.blue};
   border-radius: 40px;
   width: 256px;
-  padding: 8px 20px;
+  height: 40px;
 
   justify-content: center;
   align-items: center;
 
-  color: ${theme.colors.blue};
+  color: ${theme.colors.white};
   font-family: ${theme.fonts.main.semiBold};
   font-size: 16px;
 
@@ -149,12 +150,12 @@ export const BtnYes = styled.button`
   letter-spacing: 0.64px;
 
   svg {
-    stroke: ${theme.colors.blue};
+    stroke: ${theme.colors.white};
   }
 
   &:hover,
   &:focus {
-    background: ${theme.colors.blue};
+    background: ${theme.colors.grBlue2};
     color: ${theme.colors.white};
     svg {
       stroke: ${theme.colors.white};

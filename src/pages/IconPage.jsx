@@ -12,7 +12,7 @@ import {
   EyeClose,
   EyeOpen,
   Female,
-  Filer,
+  Filter,
   Filter2,
   Heart,
   Location,
@@ -31,71 +31,147 @@ import Button from 'react-bootstrap/Button';
 
 import React, { useState } from 'react';
 import { Box, SpanStyled } from './IconPage.styled';
-import { ModalCongrats } from 'components/Modals/ModalCongrats/ModalCongrats';
-import { ModalAttention } from 'components/Modals/ModalAttention/ModalAttention';
-import { ModalDelete } from 'components/Modals/ModalDelete/ModalDelete';
+import {
+  ModalAttention,
+  ModalCongrats,
+  ModalDelete,
+  ModalApproveAction,
+  NoticeModal,
+} from 'components/Modals';
 
 const IconPage = () => {
   const [favorite, setFavorite] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
+  const [modalCongratsShow, setModalCongratsShow] = useState(false);
+  const [noticeModalShow, setNoticeModalShow] = useState(false);
+  const [modalAttentionShow, setModalAttentionShow] = useState(false);
+  const [modalDeleteShow, setModalDeleteShow] = useState(false);
+  const [modalApproveActionShow, setModalApproveActionShow] = useState(false);
 
   return (
     <Box>
-      <h1>IconPage</h1>
+      {/* icons */}
+      <div>
+        <h1>IconPage</h1>
+        <Paw /> <span>Paw</span>
+        <Plus />
+        <span>Plus</span>
+        <PlusSmall />
+        <span>PlusSmall</span>
+        <Cross />
+        <span>Cross</span>
+        <Trash />
+        <span>Trash</span>
+        <Search />
+        <span>Search</span>
+        <button
+          className={favorite ? 'heart favorite' : 'heart'}
+          onClick={() => setFavorite(!favorite)}
+        >
+          <Heart /> <span>Heart</span>
+        </button>
+        <span className="user-icon">
+          <User />
+          <span>User</span>
+        </span>
+        <Edit />
+        <span>Edit</span>
+        <Check />
+        <span>Check</span>
+        <Camera />
+        <span>Camera</span>
+        <Logout />
+        <span>Logout</span>
+        <ArrowLeft />
+        <span>ArrowLeft</span>
+        <Filter />
+        <span>Filter</span>
+        <Male />
+        <span>Male</span>
+        <Female />
+        <span>Female</span>
+        <Location />
+        <span>Location</span>
+        <Clock />
+        <span>Clock</span>
+        <MenuHamburger />
+        <span>MenuHamburger</span>
+        <Filter2 />
+        <span>Filter2</span>
+        <ChevronDown />
+        <span>ChevronDown</span>
+        <ChevronUp />
+        <span>ChevronUp</span>
+        <CheckRound />
+        <span>CheckRound</span>
+        <Round />
+        <span>Round</span>
+        <SpanStyled>
+          <CrossSmall /> <span>CrossSmall</span>
+        </SpanStyled>
+        <EyeOpen />
+        <span>EyeOpen</span>
+        <EyeClose />
+        <span>EyeClose</span>
+      </div>
 
-      <Paw />
-      <Plus />
-      <PlusSmall />
-      <Cross />
-      <Trash />
-      <Search />
-      <button
-        className={favorite ? 'heart favorite' : 'heart'}
-        onClick={() => setFavorite(!favorite)}
-      >
-        <Heart />
-      </button>
-
-      <span className="user-icon">
-        <User />
-      </span>
-
-      <Edit />
-      <Check />
-      <Camera />
-      <Logout />
-      <ArrowLeft />
-
-      <Filer />
-      <Male />
-      <Female />
-      <Location />
-      <Clock />
-      <MenuHamburger />
-      <Filter2 />
-      <ChevronDown />
-      <ChevronUp />
-      <CheckRound />
-      <Round />
-
-      <SpanStyled>
-        <CrossSmall />
-      </SpanStyled>
-
-      <EyeOpen />
-      <EyeClose />
+      {/* modal buttons */}
       <Button
         variant="primary"
         onClick={() => {
-          setModalShow(true);
+          setModalCongratsShow(true);
         }}
       >
-        Open modal
+        Congrats!
       </Button>
-
-      <ModalCongrats show={modalShow} onHide={() => setModalShow(false)} />
-      <ModalAttention show={modalShow} onHide={() => setModalShow(false)} />
-      <ModalDelete show={modalShow} onHide={() => setModalShow(false)} />
+      <Button
+        variant="secondary"
+        onClick={() => {
+          setNoticeModalShow(true);
+        }}
+      >
+        NoticeModal
+      </Button>
+      <Button
+        onClick={() => {
+          setModalAttentionShow(true);
+        }}
+      >
+        Attantion!
+      </Button>
+      <Button
+        onClick={() => {
+          setModalDeleteShow(true);
+        }}
+      >
+        Delete
+      </Button>
+      <Button
+        onClick={() => {
+          setModalApproveActionShow(true);
+        }}
+      >
+        Appruve Action
+      </Button>
+      <ModalCongrats
+        show={modalCongratsShow}
+        onHide={() => setModalCongratsShow(false)}
+      />
+      <ModalAttention
+        show={modalAttentionShow}
+        onHide={() => setModalAttentionShow(false)}
+      />
+      <ModalDelete
+        show={modalDeleteShow}
+        onHide={() => setModalDeleteShow(false)}
+      />
+      <ModalApproveAction
+        show={modalApproveActionShow}
+        onHide={() => setModalApproveActionShow(false)}
+      />
+      <NoticeModal
+        show={noticeModalShow}
+        onHide={() => setNoticeModalShow(false)}
+      />
     </Box>
   );
 };

@@ -1,50 +1,36 @@
-//import { useState } from 'react';
-//import styles from "./ModalApproveAction.styled";
-import { Cross, Paw } from 'components/icons';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Modalbox, Title } from './ModalApproveAction.styled';
+import {
+  BtnCancel,
+  BtnWrapper,
+  BtnYes,
+  CrossBtn,
+  ModalContainer,
+  Title,
+} from './ModalApproveAction.styled';
+import { Cross, Logout } from 'components/icons';
 
-
-//const modalRoot = document.querySelector('#modal-root');
-const ModalApproveAction = props => {
-  //const [show, setShow] = useState(false);
-
-  //const handleClose = () => setShow(false);
-
+export const ModalApproveAction = props => {
   return (
-    <>
-      <Modalbox
-        {...props}
-        size="xl'"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <modal-content>
-          <button onClick={props.onHide}>
-            <Cross />
-          </button>
+    <ModalContainer {...props} size="lg" centered={true}>
+      <Modal.Body>
+        <CrossBtn onClick={props.onHide}>
+          <Cross />
+        </CrossBtn>
+        <Title>Already leaving?</Title>
 
-          <Button onClick={props.onHide}>
-            <Title className="111111111">Go to profile</Title>
-            <span className="Icon">
-              <Paw />
+        <BtnWrapper>
+          <BtnCancel onClick={props.onHide}>
+            <span>Cancel</span>
+          </BtnCancel>
+
+          <BtnYes onClick={props.onHide}>
+            <span>Yes</span>
+            <span>
+              <Logout />
             </span>
-          </Button>
-        </modal-content>
-        {/* <Modal.Header closeButton /> */}
-        <Modal.Body>
-          <h4>Centered Modal</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </p>
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modalbox>
-    </>
-    //modalRoot
+          </BtnYes>
+        </BtnWrapper>
+      </Modal.Body>
+    </ModalContainer>
   );
 };
-export default ModalApproveAction;
