@@ -43,15 +43,6 @@ export const CrossBtn = styled.button`
   }
 `;
 
-export const ImgBox = styled.div`
-  margin: 44px auto 0;
-
-  width: 100% -40px;
-  min-height: 240px;
-  border-radius: 0 0 40px 40px;
-
-  overflow: hidden;
-`;
 export const CategoryName = styled.span`
   position: absolute;
   margin-top: 16px;
@@ -66,6 +57,17 @@ export const CategoryName = styled.span`
   font-size: 14px;
   font-family: ${theme.fonts.main.medium};
   line-height: normal;
+`;
+
+export const ImgBox = styled.div`
+  margin: 44px auto 0;
+  outline: 1px solid black;
+
+  width: calc(100% - 40px);
+  height: 240px;
+  border-radius: 0 0 40px 40px;
+
+  overflow: hidden;
 `;
 
 export const Img = styled.img`
