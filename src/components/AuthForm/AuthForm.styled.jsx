@@ -122,6 +122,9 @@ font-size: ${theme.fontSizes.l};
 color: ${theme.colors.white};
 border-radius: 40px;
 background-color: ${theme.colors.blue};
+&:hover {
+    background-color: ${theme.colors.grBlue};
+};
 @media (min-width: 768px) {
     margin-top: 30px;
     margin-bottom: 16px;

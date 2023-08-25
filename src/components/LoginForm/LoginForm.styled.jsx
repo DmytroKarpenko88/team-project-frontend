@@ -108,6 +108,11 @@ font-size: ${theme.fontSizes.l};
 color: ${theme.colors.white};
 border-radius: 40px;
 background-color: ${theme.colors.blue};
+transition: ${theme.transition};
+&:focus,
+&:hover {
+    background-color: linear-gradient(to, rgba(155,208,255,1) 3%, rgba(65,158,241,1) 37%);
+};
 @media screen and (min-width: 768px) {
     margin-top: 28px;
     margin-bottom: 20px;
