@@ -25,9 +25,10 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    if(isLoggedIn) {
-      dispatch(getUserProfile)
-    }
+    // if(isLoggedIn) {
+      dispatch(fetchCurrentUser());
+      dispatch(getUserProfile())
+    // }
   }, [dispatch, isLoggedIn]);
 
   return (

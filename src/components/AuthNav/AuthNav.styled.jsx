@@ -26,12 +26,13 @@ export const LinkRegister = styled(NavLink)`
   cursor: pointer;
   transition: ${theme.transition};
   &:hover {
-    transition: ${theme.transition};
+    /* transform: scale(1.05); */
+    transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
   }
   &.active {
-    transition: ${theme.transition};
+    transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
   }
@@ -59,7 +60,8 @@ export const LinkLogin = styled(NavLink)`
     margin-bottom: 2px;
   }
   &:hover {
-    transition: ${theme.transition};
+    /* transform: scale(1.05); */
+    transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
     svg {
@@ -67,7 +69,7 @@ export const LinkLogin = styled(NavLink)`
     }
   }
   &.active {
-    transition: ${theme.transition};
+    transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
     svg {

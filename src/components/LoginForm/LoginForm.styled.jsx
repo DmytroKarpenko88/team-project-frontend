@@ -73,6 +73,17 @@ top: 47px;
 }
 `;
 
+export const SuccessMessage = styled.p`
+position: absolute;
+font-size: 10px;
+color: ${theme.colors.green};
+left: 10px;
+top: 47px;
+@media (min-width: 768px) {
+    font-size: 12px;
+};
+`;
+
 export const OnIcon = styled(VisibilityIcon)`
 position: absolute;
 color: ${theme.colors.blue};
@@ -111,7 +122,7 @@ background-color: ${theme.colors.blue};
 transition: ${theme.transition};
 &:focus,
 &:hover {
-    background-color: linear-gradient(to, rgba(155,208,255,1) 3%, rgba(65,158,241,1) 37%);
+    /* background-color: ${theme.colors.green}; */
 };
 @media screen and (min-width: 768px) {
     margin-top: 28px;
