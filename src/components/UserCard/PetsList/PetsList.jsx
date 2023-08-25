@@ -1,8 +1,12 @@
 import React from 'react';
-import { PetsListStyled } from './PetsList.styled';
+import { PetsListStyled, Title } from './PetsList.styled';
 
 const PetsList = () => {
-  return <PetsListStyled></PetsListStyled>;
+  return (
+    <PetsListStyled>
+      <Title>You didn't add pets yet.</Title>
+    </PetsListStyled>
+  );
 };
 
 export default PetsList;
