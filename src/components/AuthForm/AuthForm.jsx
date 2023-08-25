@@ -11,6 +11,7 @@ import {
   FormField,
   InputForm,
   ErrorMess,
+  SuccessMessage,
   Button,
   LinkStyled,
   ToLogin,
@@ -61,17 +62,18 @@ export default function AuthForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {() => (
+        {({errors, touched}) => (
           <Form>
             <Titel>Registration</Titel>
-            <FormField>
+            <FormField >
               <InputForm
                 name="name"
                 type="name"
                 placeholder="Name"
                 autoComplete="on"
               />
-              <ErrorMess name="name" component="p" />
+              { !errors.name && touched.name ? (<SuccessMessage>Success name is valid!</SuccessMessage>) : null }
+            <ErrorMess name="name" component="p" />
             </FormField>
             <FormField>
               <InputForm
@@ -80,6 +82,7 @@ export default function AuthForm() {
                 placeholder="Email"
                 autoComplete="on"
               />
+              { !errors.email && touched.email ? (<SuccessMessage>Success email is valid!</SuccessMessage>) : null }
               <ErrorMess name="email" component="p" />
             </FormField>
             <FormField>
@@ -92,6 +95,7 @@ export default function AuthForm() {
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIconPass /> : <OffIconPass />}
               </span>
+              { !errors.password && touched.password? (<SuccessMessage>Success password is valid!</SuccessMessage>) : null }
               <ErrorMess name="password" component="p" />
             </FormField>
 
@@ -105,6 +109,7 @@ export default function AuthForm() {
               <span id="visibilityBtn" onClick={toggleConfirmPassword}>
                 {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}
               </span>
+              { !errors.confirmPassword && touched.confirmPassword ? (<SuccessMessage>Success confirm password is valid!</SuccessMessage>) : null }
               <ErrorMess name="confirmPassword" component="p" />
             </FormField>
 
