@@ -15,7 +15,7 @@ export const GlobalStyles = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
-
+    background-color: ${theme.colors.bgColor};
     font-style: normal;
   }
 
