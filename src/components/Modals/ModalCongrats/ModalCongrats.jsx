@@ -17,7 +17,7 @@ export const ModalCongrats = props => {
         </CrossBtn>
         <Title>Congrats!</Title>
 
-        <InfoMessage>Youre registration is successful</InfoMessage>
+        <InfoMessage>Your registration is successful</InfoMessage>
 
         <ButtonGoToProfile onClick={props.onHide}>
           <span>Go to profile</span>
@@ -29,3 +29,5 @@ export const ModalCongrats = props => {
     </ModalContainer>
   );
 };
+
+export default ModalCongrats;
