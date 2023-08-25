@@ -7,6 +7,11 @@ export const SecondStepFormDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    // font-size: 28px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const SecondStepFormTitle = styled.label`
