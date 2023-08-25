@@ -23,6 +23,11 @@ export const LinkRegister = styled(NavLink)`
   border: solid 2px ${theme.colors.yellow};
   border-radius: 40px;
   background-color: ${theme.colors.white};
+  cursor: pointer;
+  &:hover {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.yellow};
+  }
   &.active {
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
@@ -43,12 +48,19 @@ export const LinkLogin = styled(NavLink)`
   border: solid 2px ${theme.colors.yellow};
   border-radius: 40px;
   background-color: ${theme.colors.white};
+  cursor: pointer;
   svg {
     fill: ${theme.colors.yellow};
     margin-left: 8px;
     margin-bottom: 2px;
   }
-
+  &:hover {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.yellow};
+    svg {
+      fill: ${theme.colors.white};
+    }
+  }
   &.active {
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};

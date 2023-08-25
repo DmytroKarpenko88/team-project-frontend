@@ -39,7 +39,7 @@ const SecondStepForm = ({ data, setData }) => {
         Pet's name
         <SecondStepFormInput
           // id={nameRandomId}
-          autoFocus
+          autoFocus={data.option !== 'pet' ? false : true}
           className="inputField"
           type="text"
           placeholder="Type name pet"
@@ -54,7 +54,7 @@ const SecondStepForm = ({ data, setData }) => {
         Date of birth
         <SecondStepFormInput
           // id={nameRandomId}
-          autoFocus
+          // autoFocus
           className="inputField"
           type="text"
           placeholder="Type date of birth"
@@ -69,7 +69,7 @@ const SecondStepForm = ({ data, setData }) => {
         Type
         <SecondStepFormInput
           // id={nameRandomId}
-          autoFocus
+          // autoFocus
           className="inputField"
           type="text"
           placeholder="Type of pet"

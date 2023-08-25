@@ -1,7 +1,7 @@
 import React from 'react';
 import { SVGStyledStroke } from './SVG.styled';
 
-export const Filer = () => {
+export const Filter = () => {
   return (
     <SVGStyledStroke
       xmlns="http://www.w3.org/2000/svg"
