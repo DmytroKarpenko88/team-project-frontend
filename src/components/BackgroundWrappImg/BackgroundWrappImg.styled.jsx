@@ -9,24 +9,22 @@ import BegT1 from '../../images/background/bg-tablet@1x.png';
 import BegT2 from '../../images/background/bg-tablet@2x.png';
 
 export const BackgroundWrapperImage = styled.div`
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-repeat: no-repeat;
-background-size: cover;
-background-attachment: scroll;
-background-image: url('${BegM1}');
-
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll;
+  background-image: url('${BegM1}');
 
   @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-  background-image: url('${BegM2}');
-}
-
-
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url('${BegM2}');
+  }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 100vw;
@@ -34,10 +32,10 @@ background-image: url('${BegM1}');
     background-image: url('${BegT1}');
 
     @media (min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: url('${BegT2}');
-  }
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url('${BegT2}');
+    }
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
@@ -51,5 +49,3 @@ background-image: url('${BegM1}');
     }
   }
 `;
-
-
