@@ -91,6 +91,15 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
+export const getUserProfile = createAsyncThunk('auth/user', async (_, thunkAPI) => {
+  try {
+    const {data} = await axios.get('/api/users/profile');
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
 export const updateUser = createAsyncThunk(
   'auth/update',
   async (formData, thunkAPI) => {

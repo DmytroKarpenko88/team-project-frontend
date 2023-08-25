@@ -11,7 +11,7 @@ export * from './Check';
 export * from './Camera';
 export * from './Logout';
 export * from './ArrowLeft';
-export * from './Filer';
+export * from './Filter';
 export * from './Male';
 export * from './Female';
 export * from './Location';

@@ -73,6 +73,17 @@ top: 47px;
 }
 `;
 
+export const SuccessMessage = styled.p`
+position: absolute;
+font-size: 10px;
+color: ${theme.colors.green};
+left: 10px;
+top: 47px;
+@media (min-width: 768px) {
+    font-size: 12px;
+};
+`;
+
 export const OnIcon = styled(VisibilityIcon)`
 position: absolute;
 color: ${theme.colors.blue};
@@ -108,6 +119,11 @@ font-size: ${theme.fontSizes.l};
 color: ${theme.colors.white};
 border-radius: 40px;
 background-color: ${theme.colors.blue};
+transition: ${theme.transition};
+&:focus,
+&:hover {
+    /* background-color: ${theme.colors.green}; */
+};
 @media screen and (min-width: 768px) {
     margin-top: 28px;
     margin-bottom: 20px;
