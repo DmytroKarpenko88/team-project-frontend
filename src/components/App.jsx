@@ -8,7 +8,7 @@ import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from '../pages/AddPet/AddPet';
 
-import ModalApproveAction from './ModalApproveAction';
+import ModalApproveAction from './Modals/ModalApproveAction';
 import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';
 // import Loader from './Loader/Loader';
