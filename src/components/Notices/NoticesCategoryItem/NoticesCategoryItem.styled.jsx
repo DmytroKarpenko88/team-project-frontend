@@ -1,22 +1,21 @@
 import styled from 'styled-components';
 import { theme } from 'styles';
 
-export const List = styled.li`
+export const Item = styled.li`
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   margin-bottom: 24px;
   margin-right: auto;
   margin-left: auto;
 
-  width: 280px;
-  height: 456px;
-  background-color: #fff;
+  width: 100%;
+  // height: 456px;
+  background-color: ${theme.colors.white};
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
-  box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+  box-shadow: ${theme.boxShadows.main};
 
   @media screen and (min-width: 768px) {
     width: 336px;
@@ -26,17 +25,17 @@ export const List = styled.li`
     width: 288px;
   }
 
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms ${theme.transition.main};
 
-  :hover,
-  :focus {
+  &:hover {
     transform: scale(1.01);
+    transition: transform 250ms ${theme.transition.main};
   }
 `;
 
 export const ImgContainer = styled.div`
   position: relative;
-  width: 280px;
+  width: 100%;
   height: 288px;
 
   @media screen and (min-width: 768px) {
@@ -49,33 +48,48 @@ export const ImgContainer = styled.div`
 `;
 
 export const Img = styled.img`
-  width: 280px;
-  height: 288px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 
-  @media screen and (min-width: 768px) {
-    width: 336px;
-  }
+  // @media screen and (min-width: 768px) {
+  //   width: 336px;
+  // }
 
-  @media screen and (min-width: 1280px) {
-    width: 288px;
-  }
+  // @media screen and (min-width: 1280px) {
+  //   width: 288px;
+  // }
 `;
 
-export const HeartItem = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const HeartBtn = styled.button.withConfig({
+  shouldForwardProp: prop => prop !== 'search',
+})`
   position: absolute;
   top: 12px;
   right: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: ${theme.colors.blueLight2};
 
-  font-size: ${theme.fontSizes.xs}
+  font-size: ${theme.fontSizes.xs};
+  line-height: 19px;
 
   border: none;
+
+  .heart.favorite svg {
+    fill: ${theme.colors.blue};
+  }
+  .heart svg:hover,
+  svg:focus {
+    fill: ${theme.colors.blue};
+    stroke: ${theme.colors.blue};
+  }
 `;
 
 export const FilterStatus = styled.div`
@@ -98,29 +112,43 @@ export const FilterStatus = styled.div`
   font-size: ${theme.fontSizes.xs};
 `;
 
+export const ListPetInfo = styled.div`
+  position: absolute;
+  bottom: 12px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 12px;
+
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: 12px;
+  }
+`;
+
 export const LocationItem = styled.div`
   display: flex;
+  gap: 4px;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 8px;
-  bottom: 12px;
-  gap: 4px;
 
-  width: 85px;
+  width: 80px;
   height: 28px;
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
-  white-space: nowrap;
-  overflow: hidden;
+  cursor: pointer;
 
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
   text-overflow: ellipsis;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    left: 24px;
+  svg:hover {
+    stroke: ${theme.colors.blue};
   }
 `;
 
@@ -128,25 +156,21 @@ export const AgeItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 97px;
-  bottom: 12px;
   gap: 4px;
 
-  width: 85px;
+  width: 80px;
   height: 28px;
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
-  white-space: nowrap;
-  overflow: hidden;
+  cursor: pointer;
 
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
   text-overflow: ellipsis;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    left: 128px;
+  svg:hover {
+    stroke: ${theme.colors.blue};
   }
 `;
 
@@ -154,47 +178,43 @@ export const SexItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 187px;
-  bottom: 12px;
   gap: 4px;
 
-  width: 85px;
+  width: 80px;
   height: 28px;
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
+  cursor: pointer;
+
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
 
-  &:focus,
-  &:hover {
-    svg: {
-      stroke: ${theme.colors.blue};
-    }
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    left: 232px;
+  svg:focus,
+  svg:hover {
+    stroke: ${theme.colors.blue};
   }
 `;
-export const TitleItem = styled.h2`
+
+export const TextItem = styled.h2`
   font-size: 24px;
   width: 231px;
   font-weight: ${theme.fonts.main.bold};
 
-  margin-top: 20px;
-  margin-bottom: 20px;
+  padding: 20px;
+  word-break: break-word;
 `;
 
-export const LoadMoreBtn = styled.button`
+export const LoadMoreBtn = styled.button``;
+
+export const BtnBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 12px;
   align-items: center;
   background-color: ${theme.colors.white};
   width: 248px;
-  height: 38px;
+  height: 40px;
   outline: none;
   border-width: 1px;
   border-color: ${theme.colors.blue};
@@ -202,7 +222,7 @@ export const LoadMoreBtn = styled.button`
   border-radius: 40px;
   color: ${theme.colors.blue};
   cursor: pointer;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 
   font-size: 16px;
   font-style: normal;
@@ -216,8 +236,8 @@ export const LoadMoreBtn = styled.button`
   &:hover {
     color: ${theme.colors.white};
     background: ${theme.colors.blue};
-    svg: {
-      stroke: ${theme.colors.blue};
-    }
+  }
+  &:hover svg {
+    fill: ${theme.colors.white};
   }
 `;

@@ -29,6 +29,7 @@ export const NoticeSearch = ({ onSubmitNoticeForm }) => {
       <Input
         name="search"
         type="text"
+        id="searchQuery"
         value={search}
         placeholder="Search"
         onChange={handleChange}
