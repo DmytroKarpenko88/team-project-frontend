@@ -19,6 +19,7 @@ import {
 } from './NoticeModal.styled';
 import { Cross, Heart } from 'components/icons';
 import img from 'images/cat.jpg';
+import { theme } from 'styles';
 
 export const NoticeModal = props => {
   return (
@@ -69,9 +70,11 @@ export const NoticeModal = props => {
         </FlexWrapper>
 
         <InfoMessage>
-          Comments: Rich would be the perfect addition to an active family that
-          loves to play and go on walks. I bet he would love having a doggy
-          playmate too!
+          <span style={{ fontFamily: `${theme.fonts.main.semiBold}` }}>
+            Comments:
+          </span>
+          Rich would be the perfect addition to an active family that loves to
+          play and go on walks. I bet he would love having a doggy playmate too!
         </InfoMessage>
 
         <BtnWrapper>

@@ -9,6 +9,8 @@ export const ModalContainer = styled(Modal)`
     padding: 0 12px;
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
       border-radius: 40px;
+      padding: 0;
+      height: 540px;
     }
   }
 
@@ -18,7 +20,7 @@ export const ModalContainer = styled(Modal)`
     max-width: calc(100% - 40px);
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
-      max-width: 681px;
+      width: 681px;
     }
   }
 
@@ -27,6 +29,10 @@ export const ModalContainer = styled(Modal)`
     padding: 0;
     display: flex;
     flex-direction: column;
+
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      padding: 32px 32px 24px;
+    }
 
     /* align-items: center; */
   }
@@ -51,8 +57,7 @@ export const FlexWrapper = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: row;
-    margin-top: 32px;
-    margin-left: 20px;
+    margin-top: 0;
     gap: 24px;
   }
 `;
@@ -167,7 +172,8 @@ export const Contact = styled.a`
 `;
 
 export const InfoMessage = styled.p`
-  font-family: ${theme.fonts.main.semiBold};
+  margin-top: 12px;
+  font-family: ${theme.fonts.main.medium};
   font-size: 14px;
 
   line-height: normal;
@@ -175,9 +181,8 @@ export const InfoMessage = styled.p`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     margin-top: 28px;
-    padding: 0 20px;
 
-    font-family: ${theme.fonts.main.semiBold};
+    font-family: ${theme.fonts.main.medium};
     font-size: 16px;
     line-height: 28px;
     line-height: 24px; /* 150% */
@@ -192,8 +197,11 @@ export const BtnWrapper = styled.div`
   margin: 12px auto 16px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    flex-direction: row;
-    gap: 20px;
+    flex-direction: row-reverse;
+    gap: 17px;
+    position: absolute;
+    bottom: 0;
+    right: 32px;
   }
 `;
 
@@ -220,7 +228,7 @@ export const BtnContact = styled.button`
   transition: fill ${theme.transition.duration} ${theme.transition.main};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 165px;
+    width: 129px;
   }
 
   &:hover,
@@ -267,6 +275,6 @@ export const BtnAddTo = styled.button`
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 165px;
+    width: 129px;
   }
 `;

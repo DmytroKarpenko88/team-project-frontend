@@ -152,6 +152,7 @@ const IconPage = () => {
       >
         Appruve Action
       </Button>
+
       <ModalCongrats
         show={modalCongratsShow}
         onHide={() => setModalCongratsShow(false)}
