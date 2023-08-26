@@ -18,7 +18,7 @@ const PageNotFound = () => {
         <PicContainer>
           <Image alt="not found" />
         </PicContainer>
-        <Button to={'/'}>
+        <Button to="/">
           <span>To main page</span>
           <span>
             <Paw />

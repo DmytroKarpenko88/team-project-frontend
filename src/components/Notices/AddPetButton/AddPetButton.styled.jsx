@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { theme } from 'styles';
 
-export const Btn = styled(NavLink)`
+export const Btn = styled(Link)`
   text-decoration: none;
   box-sizing: border-box;
 
