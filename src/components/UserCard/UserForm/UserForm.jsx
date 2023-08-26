@@ -22,6 +22,8 @@ import { Camera, Check, Cross } from 'components/icons';
 import { updateUser } from 'redux/auth/auth-operations';
 import { selectIsLoading, selectUser } from 'redux/auth/auth-selectors';
 
+import InputMask from 'react-input-mask';
+
 const UserForm = ({ disabled, setIsFormDisabled }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -29,43 +31,79 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [errorsVisible, setErrorsVisible] = useState(true);
-  const [preview, setPreview] = useState(user?.avatarURL || defaultAvatar);
+  const [preview, setPreview] = useState(user.avatarURL);
+  console.log('preview:', preview);
   const [avatarSelected, setAvatarSelected] = useState(false);
 
-  const initialValues = {
-    avatarURL: user?.avatarURL || defaultAvatar,
+  const formatBirthday = value => {
+    if (!value) return value;
+
+    const trimmedValue = value.replace(/[^\d]/g, '');
+    if (trimmedValue.length <= 2) {
+      return trimmedValue;
+    } else if (trimmedValue.length <= 4) {
+      return `${trimmedValue.slice(0, 2)}.${trimmedValue.slice(2)}`;
+    } else {
+      return `${trimmedValue.slice(0, 2)}.${trimmedValue.slice(
+        2,
+        4
+      )}.${trimmedValue.slice(4, 8)}`;
+    }
+  };
+
+  const initialFormValues = {
+    avatarURL: user?.avatarURL || '',
     name: user?.name || '',
     email: user?.email || '',
-    birthday: user?.birthday || '',
-    phone: user?.phone || '',
+    birthday: formatBirthday(user?.birthday) || '',
+    phone: user?.phone || '+38(0__)___-__-__',
     city: user?.city || '',
   };
 
   const formikProps = useFormik({
-    initialValues,
+    initialValues: initialFormValues,
     validationSchema,
 
     onSubmit: values => {
+      console.log('values:', values);
+      console.log('onSubmit values:', values);
       if (Object.keys(formikProps.errors).length === 0) {
         const formData = new FormData();
         for (let key in values) {
-          formData.append(`${key}`, values[key]);
+          if (key === 'avatarURL') {
+            console.log('Adding to FormData:', key, values[key]);
+            formData.append(key, values[key], values[key].name);
+          } else {
+            formData.append(key, values[key]);
+          }
         }
+        console.log('formData:', formData);
         dispatch(updateUser(formData));
         setIsFormDisabled(prevState => !prevState);
       }
     },
   });
 
+  // useEffect(
+  //   () => {
+  //     if (user.avatarURL) {
+  //       console.log('user.avatarURL:', user.avatarURL);
+  //       formikProps.setFieldValue('avatarURL', user.avatarURL);
+  //     }
+  //   },
+  //   // [user.avatarURL, formikProps]
+  //   []
+  // );
+
   useEffect(() => {
     if (loading === false) {
-      setPreview(user.avatarURL);
+      setPreview(defaultAvatar);
     }
-  }, [loading, user.avatarURL]);
+  }, [loading]);
 
   const handleClose = e => {
     if (e.currentTarget.id === 'cancel') {
-      setPreview(user.avatarURL);
+      setPreview(defaultAvatar);
     }
     setShowConfirm(false);
   };
@@ -88,16 +126,30 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     setShowConfirm(true);
   };
 
+  const handleDateInputChange = event => {
+    const inputDate = event.target.value;
+    const formattedDate = formatBirthday(inputDate);
+    formikProps.setFieldValue('birthday', formattedDate);
+  };
+
   return (
     <>
       {user && (
         <form onSubmit={formikProps.handleSubmit}>
           <StyledForm>
             <div>
-              {avatarSelected ? (
-                <UserPhoto src={preview} alt="selected avatar" />
+              {avatarSelected && preview ? (
+                <UserPhoto
+                  className="preview"
+                  src={preview}
+                  alt="selected avatar"
+                />
               ) : (
-                <UserPhoto src={defaultAvatar} alt="default avatar" />
+                <UserPhoto
+                  className="defaultAvatar"
+                  src={defaultAvatar}
+                  alt="default avatar"
+                />
               )}
 
               {!disabled && !showConfirm && (
@@ -180,7 +232,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
                   name="birthday"
                   placeholder="dd.mm.yyyy"
                   disabled={disabled}
-                  onChange={formikProps.handleChange}
+                  onChange={handleDateInputChange}
                   value={formikProps.values.birthday}
                   error={
                     formikProps.touched.birthday && formikProps.errors.birthday
@@ -194,17 +246,28 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
               </InputContainer>
 
               <InputContainer>
-                {' '}
                 <Label htmlFor="phone">Phone:</Label>
-                <Input
-                  type="text"
-                  name="phone"
-                  placeholder="+380..."
-                  disabled={disabled}
-                  onChange={formikProps.handleChange}
+                <InputMask
+                  mask="+38(099)999-99-99"
+                  maskChar=""
                   value={formikProps.values.phone}
-                  error={formikProps.touched.phone && formikProps.errors.phone}
-                />
+                  onChange={formikProps.handleChange}
+                  disabled={disabled}
+                >
+                  {() => (
+                    <Input
+                      type="text"
+                      name="phone"
+                      placeholder="+38(099)9999999"
+                      error={
+                        formikProps.touched.phone && formikProps.errors.phone
+                      }
+                      value={formikProps.values.phone}
+                      onChange={formikProps.handleChange}
+                      disabled={disabled}
+                    />
+                  )}
+                </InputMask>
                 {errorsVisible &&
                   formikProps.touched.phone &&
                   formikProps.errors.phone && (

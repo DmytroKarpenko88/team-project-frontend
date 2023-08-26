@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { useWindowSize } from 'hooks/useWindowSize';
 import { PlusSmall, Plus } from 'components/icons';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
-import { useLocation } from 'react-router-dom';
 import { Btn } from './AddPetButton.styled';
 import { useSelector } from 'react-redux';
+import { ModalAttention } from 'components/Modals/ModalAttention/ModalAttention';
 
 export const AddPetButton = ({ path, toggleModalUautorised }) => {
   const screenWidth = useWindowSize();
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const location = useLocation();
 
   const onAddPetBtn = e => {
     e.preventDefault();
@@ -21,11 +20,14 @@ export const AddPetButton = ({ path, toggleModalUautorised }) => {
   };
 
   return (
-    <Btn to="/add-pet" onClick={onAddPetBtn} state={{ from: location }}>
-      {screenWidth < 768 && <Plus />}
-      Add Pet
-      {screenWidth >= 768 && <PlusSmall />}
-    </Btn>
+    <>
+      <Btn to="add-pet" onClick={onAddPetBtn}>
+        {screenWidth < 768 && <Plus />}
+        Add Pet
+        {screenWidth >= 768 && <PlusSmall />}
+      </Btn>
+      <ModalAttention />
+    </>
   );
 };
 

@@ -77,6 +77,11 @@ function Notices() {
   //   // код для отримання нових даних, використання фільтрів тощо
   // };
 
+  // const handleOwnClick = () => {
+  //   // get(`/notices/user/favorite${params}`)
+  //   dispatchEvent(getNoticesByCategory({ query: '', page: ownCurrentPage }));
+  // };
+
   return (
     <Container>
       <Title>Find your favorite pet</Title>

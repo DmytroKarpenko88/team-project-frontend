@@ -1,22 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Female, Male, Plus } from 'components/icons';
+import { Plus } from 'components/icons';
 import {
   ThirdStepFormComments,
   ThirdStepFormDiv,
   ThirdStepFormImgInput,
   ThirdStepFormImgPreview,
-  ThirdStepFormInput,
+  // ThirdStepFormInput,
   ThirdStepFormPhotoDiv,
   ThirdStepFormPhotoTitle,
   ThirdStepFormPlus,
   ThirdStepFormTitle,
-  ThirdStepSexDiv,
-  ThirdStepSexFemaleLabel,
-  ThirdStepSexInput,
-  ThirdStepSexMaleLabel,
+  // ThirdStepSexDiv,
+  // ThirdStepSexFemaleLabel,
+  // ThirdStepSexInput,
+  // ThirdStepSexMaleLabel,
   ThirdStepSexPhotoDiv,
-  ThirdStepSexTitle,
+  // ThirdStepSexTitle,
 } from './ThirdStepForm.styled';
 
 const ThirdStepForm = ({ data, setData }) => {
@@ -34,7 +34,7 @@ const ThirdStepForm = ({ data, setData }) => {
     <ThirdStepFormDiv>
       {/* sex for sell lostFond ingood hands*/}
       <ThirdStepSexPhotoDiv>
-        {data.option !== 'pet' && (
+        {/* {data.option !== 'pet' && (
           <div>
             <ThirdStepSexTitle>The sex</ThirdStepSexTitle>
             <ThirdStepSexDiv>
@@ -50,7 +50,7 @@ const ThirdStepForm = ({ data, setData }) => {
               </ThirdStepSexMaleLabel>
             </ThirdStepSexDiv>
           </div>
-        )}
+        )} */}
         {/* --- */}
         {/* label */}
         <ThirdStepFormPhotoTitle>
@@ -82,7 +82,7 @@ const ThirdStepForm = ({ data, setData }) => {
 
       {/* location price for sell lostFond ingood hands*/}
       <div>
-        {data.option !== 'pet' && (
+        {/* {data.option !== 'pet' && (
           <div>
             <ThirdStepFormTitle>
               Location
@@ -104,7 +104,7 @@ const ThirdStepForm = ({ data, setData }) => {
               />
             </ThirdStepFormTitle>
           </div>
-        )}
+        )} */}
         {/* ----- -------- */}
         <ThirdStepFormTitle>
           Comments

@@ -1,6 +1,9 @@
 import { styled } from 'styled-components';
 import catmobile from 'images/NotFound/catmobile.png';
+import cattablet from 'images/NotFound/cattablet.png';
 import {theme} from 'styles';
+
+
 export const ContainerPg = styled.div`
   width: 100%;
   height: 772px;
@@ -24,17 +27,22 @@ justify-content: center;
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
-  line-height: 130%;
   text-align: center;
-  letter-spacing: -0.02em;
+  line-height: 32.78px;
+
   color: #000000;
   padding-bottom: 80px;
 
-  @media (min-width: 768px){
+  @media (min-width: 320px){
   font-weight: 600;
   font-size: 32px;
   line-height: 42px;
-  text-align: inherit;
+
+  @media (min-width: 1280px){
+    font-weight: 600;
+    font-size: 32px;
+
+  }
   }
 `;
 
@@ -49,14 +57,18 @@ export const PicContainer = styled.div`
     justify-content: center;
     line-height: 130%;
     padding-bottom: 60px;
-
-
-  `;
+`;
 export const Image= styled.img`
 display: flex;
-  
-    height: 115px;
-    content: url('${catmobile}'); 
+height: 115px;
+content: url('${catmobile}'); 
+
+@media (min-width: 768px){
+  height: 360px;
+  content: url('${cattablet}');
+}
+
+
 
 `;
 export const Button = styled.button`
