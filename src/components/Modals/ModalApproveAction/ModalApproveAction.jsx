@@ -17,6 +17,7 @@ export const ModalApproveAction = props => {
   const handleLogout = () => {
     dispatch(logOut());
   };
+
   return (
     <ModalContainer {...props} size="lg" centered={true}>
       <Modal.Body>
