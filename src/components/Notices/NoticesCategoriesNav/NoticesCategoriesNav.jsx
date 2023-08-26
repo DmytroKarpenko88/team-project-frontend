@@ -1,33 +1,26 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { categories } from './categories';
 import { List, Link, Item } from './NoticesCategoriesNav.stytled';
 
 export const NoticesCategoriesNav = () => {
-  const isLoggedIn = true;
-  return (
-    <List>
-      <Item>
-        <Link to="/notices/sell">sell</Link>
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  const items = categories.map(({ category, path }, el) => {
+    if (!isLoggedIn && category === 'favorite ads') {
+      return null;
+    }
+
+    if (!isLoggedIn && category === 'my ads') {
+      return null;
+    }
+
+    return (
+      <Item key={el}>
+        <Link to={`/notices/${path}`}>{category}</Link>
       </Item>
-
-      <Item>
-        <Link to="/notices/lost-found">lost/found</Link>
-      </Item>
-
-      <Item>
-        <Link to="/notices/for-free">in good hands</Link>
-      </Item>
-
-      {isLoggedIn && (
-        <>
-          <Item>
-            <Link to="/notices/favorite">favorite ads</Link>
-          </Item>
-
-          <Item>
-            <Link to="/notices/own">my ads</Link>
-          </Item>
-        </>
-      )}
-    </List>
-  );
+    );
+  });
+  return <List>{items}</List>;
 };

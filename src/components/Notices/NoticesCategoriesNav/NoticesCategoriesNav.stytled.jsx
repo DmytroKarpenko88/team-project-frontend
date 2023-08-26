@@ -8,7 +8,7 @@ export const List = styled('ul')`
   gap: 12px;
 `;
 
-export const Item = styled('li')``;
+export const Item = styled.li``;
 
 export const Link = styled(NavLink)`
   display: block;

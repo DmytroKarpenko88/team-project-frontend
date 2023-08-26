@@ -5,6 +5,12 @@ import { theme } from 'styles';
 
 export const AddPetContainerForm = styled.form`
   padding: 20px 8px;
+  min-height: 496px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding: 20px 32px;
+    min-height: 542px;
+  }
 `;
 
 export const AddPetFormTitle = styled.h2`
@@ -17,6 +23,8 @@ export const AddPetFormTitle = styled.h2`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
   }
 `;
 
@@ -29,6 +37,7 @@ export const AddPetBtnList = styled.ul`
 
   @media (min-width: 768px) {
     flex-direction: row-reverse;
+    align-items: flex-end;
   }
 `;
 
@@ -59,12 +68,7 @@ export const AddPetBtnNext = styled.button`
   }
 
   @media (min-width: 768px) {
-    // margin-top: 30px;
-    // margin-bottom: 16px;
     // font-family: ${theme.fonts.main.semiBold};
-  }
-  @media screen and (min-width: 1281px) {
-    // margin-top: 8px;
   }
 `;
 

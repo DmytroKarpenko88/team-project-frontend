@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   margin: 0 auto;
   // padding: 0 20px;
-  background-color: #fdf7f2;
+  // background-color: #fdf7f2;
 
   @media screen and (min-width: 480px) {
     width: 480px;
