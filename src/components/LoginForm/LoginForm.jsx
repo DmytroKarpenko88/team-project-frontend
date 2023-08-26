@@ -64,7 +64,7 @@ export default function LoginForm() {
                 placeholder="Email"
                 autoComplete="on"
               />
-              { !errors.email && touched.email ? (<SuccessMessage>Success email is valid!</SuccessMessage>) : null }
+              { !errors.email && touched.email ? (<SuccessMessage>Success, email is valid!</SuccessMessage>) : null }
               <ErrorMess name="email" component="p" />
             </FormField>
 
@@ -78,7 +78,7 @@ export default function LoginForm() {
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIcon /> : <OffIcon />}
               </span>
-              { !errors.password && touched.password? (<SuccessMessage>Success password is valid!</SuccessMessage>) : null }
+              { !errors.password && touched.password? (<SuccessMessage>Success, password is valid!</SuccessMessage>) : null }
               <ErrorMess name="password" component="p" />
             </FormField>
             <div>
