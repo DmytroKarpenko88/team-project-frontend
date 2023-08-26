@@ -24,10 +24,10 @@ import { Container } from 'components/Notices/Container/Container.styled';
 
 function Notices() {
   const [search, setSearch] = useState('');
-  const [isShowModalUnautorised, setIsShowModalUnautorised] = useState(false);
+
+  // const [isShowModalUnautorised, setIsShowModalUnautorised] = useState(false);
   // const [currentPage, setCurrentPage] = useState(1);
 
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
   // const totalPages = useSelector(selectTotalNotice);
 
   // const dispatch = useDispatch();
@@ -61,9 +61,6 @@ function Notices() {
   //   }
   // }, [categoryName, dispatch, isLoggedIn, currentPage]);
 
-  const toggleModalUautorised = () => {
-    setIsShowModalUnautorised(!isShowModalUnautorised);
-  };
   // const handleCategoriesChange = option => {
   //   // при зміні фільтраціїБ змінює сторінку пагінації на 1
   //   setCurrentPage(1);
@@ -93,17 +90,18 @@ function Notices() {
 
         <Boxing>
           <NoticesFilter />
-          <AddPetButton
-            path="/add-pet"
-            toggleModalUautorised={toggleModalUautorised}
-          />
+          <AddPetButton />
           {/* {isLoggedIn ? (
-            <AddPetButton path="/add-pet" />
+            <AddPetButton path={'/add-pet'} />
           ) : (
-            <AddPetButton onClick={setIsShowModalUnautorised(true)} />
-          )}
-          ;
-          {isShowModalUnautorised && (
+            <AddPetButton
+              path={'/add-pet'}
+              isLoggedIn={isLoggedIn}
+              modalAttentionShow={modalAttentionShow}
+            />
+          )} */}
+
+          {/* {isShowModalUnautorised && (
             <ModalUnautorised onClose={toggleModalUautorised} />
           )} */}
         </Boxing>
