@@ -10,7 +10,11 @@ import {
   MainLogForm,
   Titel,
   FormField,
+  InputEmailWraper,
+  InputPasswordWraper,
   InputForm,
+  IconCheck,
+  IconCross,
   ErrorMess,
   SuccessMessage,
   Button,
@@ -19,6 +23,8 @@ import {
   OnIcon,
   OffIcon,
 } from './LoginForm.styled';
+import { theme } from 'styles';
+import { Check, Cross } from 'components/icons';
 
 const initialValues = {
   email: '',
@@ -56,31 +62,48 @@ export default function LoginForm() {
       >
         {({errors, touched}) => (
           <Form>
+
             <Titel>Login</Titel>
+
             <FormField>
+              <InputEmailWraper style={{borderColor:  !touched.email ? `${theme.colors.blue}` : errors.email  ? `${theme.colors.red}` : `${theme.colors.green}`}}>
               <InputForm
                 name="email"
                 type="email"
                 placeholder="Email"
                 autoComplete="on"
               />
+              </InputEmailWraper>
               { !errors.email && touched.email ? (<SuccessMessage>Success, email is valid!</SuccessMessage>) : null }
+
+              { !touched.email ? null : !errors.email ? 
+              <IconCheck ><Check/></IconCheck> :
+               <IconCross ><Cross/></IconCross>}
+
               <ErrorMess name="email" component="p" />
             </FormField>
 
             <FormField>
+              <InputPasswordWraper style={{borderColor: !touched.password ? `${theme.colors.blue}` : errors.password  ? `${theme.colors.red}` : `${theme.colors.green}`}}>
               <InputForm
                 name="password"
                 type={passwordShow ? 'text' : 'password'}
                 placeholder="Password"
                 autoComplete="on"
               />
+              </InputPasswordWraper>
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIcon /> : <OffIcon />}
               </span>
               { !errors.password && touched.password? (<SuccessMessage>Success, password is valid!</SuccessMessage>) : null }
+
+              { !touched.password ? null : !errors.password ? 
+              <IconCheck ><Check/></IconCheck> :
+               <IconCross ><Cross/></IconCross>}
+
               <ErrorMess name="password" component="p" />
             </FormField>
+
             <div>
               <Button type="submit">Login</Button>
             </div>
