@@ -1,7 +1,9 @@
 import { styled } from 'styled-components';
-import catmobile from 'images/NotFound/catmobile.png';
 import cattablet from 'images/NotFound/cattablet.png';
 import {theme} from 'styles';
+import cattablet2x from 'images/NotFound/cattablet2x.png';
+import catmobile from 'images/NotFound/catmobile.png';
+import catmobile2x from 'images/NotFound/catmobile2x.png';
 
 
 export const ContainerPg = styled.div`
@@ -61,15 +63,23 @@ export const PicContainer = styled.div`
 export const Image= styled.img`
 display: flex;
 height: 115px;
-content: url('${catmobile}'); 
+content: url('${catmobile}');
 
-@media (min-width: 768px){
+@media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx)
   height: 360px;
-  content: url('${cattablet}');
+ {  content: url('${catmobile2x}');
 }
+@media screen and (max-width:320px){
+  content: url('${cattablet}');
 
-
-
+  @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx)
+  {content: url('${cattablet2x}');
+}
+}
 `;
 export const Button = styled.button`
   position:relative;
