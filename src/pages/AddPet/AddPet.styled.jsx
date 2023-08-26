@@ -17,6 +17,12 @@ const AddPetDiv = styled.div`
   @media screen and (min-width: 498px) {
     width: 458px;
   }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    ${({ data }, step) =>
+      (data.option === 'sell') & (step === 3)
+        ? 'width: 704px;'
+        : 'width: 458px;'};
+  }
   // and (max-width: ${theme.breakpoints.desktop})
 `;
 

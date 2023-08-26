@@ -13,6 +13,7 @@ import {
   AddPetBtnCancel,
   AddPetBtnCancelDiv,
 } from './AddPetForm.styled';
+import { AddPetDiv } from 'pages/AddPet/AddPet.styled';
 
 // import StepTitles from './stepTitles';
 
@@ -39,43 +40,46 @@ const AddPetForm = () => {
       return;
     }
   };
-
+  console.log(data);
+  // console.log(step);
   // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
   const backPage = step === 1 ? '/user' : '';
 
   return (
-    <AddPetContainerForm onClick={onClick}>
-      {/* --------------------- title of form ---------------------- */}
-      <AddPetFormTitle>{title}</AddPetFormTitle>
-      {/* передаємо крок і рендеримо кольори опцій у відповідності 
+    <AddPetDiv data={data} step={step}>
+      <AddPetContainerForm onClick={onClick}>
+        {/* --------------------- title of form ---------------------- */}
+        <AddPetFormTitle>{title}</AddPetFormTitle>
+        {/* передаємо крок і рендеримо кольори опцій у відповідності 
         Choose option Personal details Personal details*/}
-      <StepTitles step={step} />
+        <StepTitles step={step} />
 
-      {/* ----------- content for form based on step -------------- */}
-      {getFormBasedOnStep(step, data, setData)}
+        {/* ----------- content for form based on step -------------- */}
+        {getFormBasedOnStep(step, data, setData)}
 
-      {/* ------------------------ buttons ------------------------ */}
-      <AddPetBtnList>
-        <AddPetBtnItem>
-          <AddPetBtnNext type="button">
-            {step === 3 ? 'Done' : 'Next'}
-            <Paw width="24" height="24" fill="#FEF9F9" />
-          </AddPetBtnNext>
-        </AddPetBtnItem>
+        {/* ------------------------ buttons ------------------------ */}
+        <AddPetBtnList>
+          <AddPetBtnItem>
+            <AddPetBtnNext type="button">
+              {step === 3 ? 'Done' : 'Next'}
+              <Paw width="24" height="24" fill="#FEF9F9" />
+            </AddPetBtnNext>
+          </AddPetBtnItem>
 
-        <AddPetBtnItem>
-          {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-          <AddPetBtnCancel type="button">
-            <Link to={backPage}>
-              <AddPetBtnCancelDiv>
-                <ArrowLeft width="24" height="24" />
-                {step === 1 ? 'Cancel' : 'Back'}
-              </AddPetBtnCancelDiv>
-            </Link>
-          </AddPetBtnCancel>
-        </AddPetBtnItem>
-      </AddPetBtnList>
-    </AddPetContainerForm>
+          <AddPetBtnItem>
+            {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
+            <AddPetBtnCancel type="button">
+              <Link to={backPage}>
+                <AddPetBtnCancelDiv>
+                  <ArrowLeft width="24" height="24" />
+                  {step === 1 ? 'Cancel' : 'Back'}
+                </AddPetBtnCancelDiv>
+              </Link>
+            </AddPetBtnCancel>
+          </AddPetBtnItem>
+        </AddPetBtnList>
+      </AddPetContainerForm>
+    </AddPetDiv>
   );
 };
 
