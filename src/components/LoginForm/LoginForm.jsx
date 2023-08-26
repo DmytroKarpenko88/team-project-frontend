@@ -39,12 +39,13 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   const handleSubmit = (values, { resetForm }) => {
+    console.log("values:", values)
     const data = {
       email: values.email,
       password: values.password,
     };
     dispatch(login(data));
-    resetForm();
+    // resetForm();
   };
 
   useEffect(() => {

@@ -31,12 +31,12 @@ import catdesktop2x from '../../images/MainPage/desktop/catdesktop2x.webp';
 // import BegT1 from '../../images/background/bg-tablet@1x.png';
 // import BegT2 from '../../images/background/bg-tablet@2x.png';
 
-import ImgDx1 from '../../images/MainPage/mp-desktop1x.webp';
-import ImgDx2 from '../../images/MainPage/mp-desktop2x.webp';
-import ImgMx1 from '../../images/MainPage/mp-mobile1x.webp';
-import ImgMx2 from '../../images/MainPage/mp-mobile2x.webp';
-import ImgTx1 from '../../images/MainPage/mp-tablet1x.webp';
-import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
+// import ImgDx1 from '../../images/MainPage/mp-desktop1x.webp';
+// import ImgDx2 from '../../images/MainPage/mp-desktop2x.webp';
+// import ImgMx1 from '../../images/MainPage/mp-mobile1x.webp';
+// import ImgMx2 from '../../images/MainPage/mp-mobile2x.webp';
+// import ImgTx1 from '../../images/MainPage/mp-tablet1x.webp';
+// import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
 
 
 // export const Container = styled.div`
@@ -91,8 +91,7 @@ export const Container = styled.div`
   @media screen and (max-width: 767px) {
     flex-direction: column;
   }
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: 1279px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) and (max-width: 1279px) {
     padding-top: 80px;
     flex-direction: column;
     // width: 768;

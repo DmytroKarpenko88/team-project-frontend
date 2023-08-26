@@ -49,12 +49,12 @@ const authSlice = createSlice({
       })
 
       .addCase(login.fulfilled, (state, action) => {
-
-
-        state.user = action.payload.user;
+        console.log("action:", action)
+        state.user = action.payload;
         state.token = action.payload.token;
         state.error = null;
         state.isLoggedIn = true;
+        state.isRegistered = false;
       })
 
       .addCase(logOut.fulfilled, (state, action) => {
@@ -68,8 +68,10 @@ const authSlice = createSlice({
       })
 
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        console.log(" action:",  action)
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
+        state.isLoggedIn = true;
         state.isRefreshing = false;
       })
 
