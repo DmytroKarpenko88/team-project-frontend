@@ -45,21 +45,51 @@ export const FormField = styled.div`
 position: relative;
 `;
 
+export const InputEmailWraper = styled.div`
+margin-bottom: 14px;
+border-radius: 40px;
+border: 1px solid ${theme.colors.blue};
+@media (min-width: 768px) {
+    margin-bottom: 32px;
+}
+`;
+
+export const InputPasswordWraper = styled.div`
+margin-bottom: 14px;
+border-radius: 40px;
+border: 1px solid ${theme.colors.blue};
+@media (min-width: 768px) {
+    margin-bottom: 32px;
+}
+`;
+
 export const InputForm = styled(Field)`
 padding: 12px 16px;
 width: 100%;
 height: 48px;
 font-size: ${theme.fontSizes.m};
 font-family: ${theme.fonts.main.regular};
-margin-bottom: 14px;
-border: solid 1px ${theme.colors.blue};
+border: none;
 border-radius: 40px;
 @media (min-width: 768px) {
     font-size: ${theme.fontSizes.m};
-    margin-bottom: 32px;
 };
 @media screen and (min-width: 1281px) {
   };
+`;
+
+export const IconCheck = styled.span`
+position: absolute;
+top: 12px;
+left: 420px;
+svg {stroke: ${theme.colors.green};}
+`;
+
+export const IconCross = styled.span`
+position: absolute;
+top: 12px;
+left: 420px;
+svg {stroke: ${theme.colors.red};}
 `;
 
 export const ErrorMess = styled(ErrorMessage)`

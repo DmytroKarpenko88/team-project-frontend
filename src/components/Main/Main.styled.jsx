@@ -86,8 +86,7 @@ export const Container = styled.div`
   @media screen and (max-width: 767px) {
     flex-direction: column;
   }
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: 1279px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) and (max-width: 1279px) {
     padding-top: 80px;
     flex-direction: column;
     // width: 768;

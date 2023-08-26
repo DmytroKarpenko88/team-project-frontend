@@ -21,14 +21,15 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing, isLoggedIn } = useAuth();
+  console.log("isLoggedIn :", isLoggedIn )
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-    dispatch(getUserProfile())
-    // if(isLoggedIn) {
-    //   dispatch(fetchCurrentUser());
-    //   dispatch(getUserProfile())
-    // }
+    // dispatch(fetchCurrentUser());
+    // dispatch(getUserProfile())
+    if(isLoggedIn) {
+      dispatch(fetchCurrentUser());
+      dispatch(getUserProfile())
+    }
   }, [dispatch, isLoggedIn ]);
 
   return (
