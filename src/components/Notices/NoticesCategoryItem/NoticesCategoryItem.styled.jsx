@@ -11,7 +11,7 @@ export const Item = styled.li`
   margin-left: auto;
 
   width: 100%;
-  // height: 456px;
+  height: 456px;
   background-color: ${theme.colors.white};
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
@@ -90,6 +90,21 @@ export const HeartBtn = styled.button.withConfig({
     fill: ${theme.colors.blue};
     stroke: ${theme.colors.blue};
   }
+`;
+
+export const DeleteNoticeBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 68px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: ${theme.colors.blueLight};
+
+  border: none;
 `;
 
 export const FilterStatus = styled.div`
@@ -205,9 +220,7 @@ export const TextItem = styled.h2`
   word-break: break-word;
 `;
 
-export const LoadMoreBtn = styled.button``;
-
-export const BtnBox = styled.div`
+export const LoadMoreBtn = styled.button`
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -240,4 +253,9 @@ export const BtnBox = styled.div`
   &:hover svg {
     fill: ${theme.colors.white};
   }
+  svg {
+    fill: ${theme.colors.white};
+  }
 `;
+
+export const Box = styled.div``;

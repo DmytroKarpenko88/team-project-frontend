@@ -10,19 +10,26 @@ import {
   FilterStatus,
   ListPetInfo,
   LocationItem,
+  DeleteNoticeBtn,
   AgeItem,
   SexItem,
   TextItem,
-  BtnBox,
   LoadMoreBtn,
 } from './NoticesCategoryItem.styled';
-import { Heart, Location, Clock, Female, Paw } from 'components/icons';
+import { Heart, Location, Clock, Female, Paw, Trash } from 'components/icons';
+// import { useParams } from 'react-router-dom';
+// import { selectUser } from 'redux/auth/auth-selectors';
 
-export const NoticesCategoryItem = () => {
+export const NoticesCategoryItem = ({ notice }) => {
   const [favorite, setFavorite] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
-  // const [showModalDelete, setShowModalDelete] = useState(false);
+  const [showIcon, setShowIcon] = useState(false);
   // const [showAttentionModal, setShowAttentionModal] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  // const [showDetailModal, setShowDetailModal] = useState(false);
+
+  // const { categoryName } = useParams();
+  // const currentUser = useSelector(selectUser);
+  // const dispatch = useDispatch();
 
   // const handleAddInFavorite = async () => {
   //   try {
@@ -39,6 +46,13 @@ export const NoticesCategoryItem = () => {
   const toggleModal = () => {
     // setShowModal(!showModal);
     console.log('modalpet');
+  };
+  const toggleIcon = () => {
+    setShowIcon(!showIcon);
+  };
+
+  const toggleDeleteModal = () => {
+    setShowModalDelete(!showModalDelete);
   };
 
   return (
@@ -59,6 +73,10 @@ export const NoticesCategoryItem = () => {
           <Heart />
         </HeartBtn>
 
+        <DeleteNoticeBtn type="button" onClick={toggleDeleteModal}>
+          <Trash />
+        </DeleteNoticeBtn>
+
         <ListPetInfo>
           <LocationItem>
             <Location />
@@ -77,12 +95,10 @@ export const NoticesCategoryItem = () => {
       </ImgContainer>
       <TextItem>Text</TextItem>
 
-      <BtnBox>
-        <LoadMoreBtn type="button">
-          Learn more
-          <Paw />
-        </LoadMoreBtn>
-      </BtnBox>
+      <LoadMoreBtn type="button" onClick={toggleIcon}>
+        Learn more
+        {showIcon && <Paw />}
+      </LoadMoreBtn>
     </Item>
   );
 };
