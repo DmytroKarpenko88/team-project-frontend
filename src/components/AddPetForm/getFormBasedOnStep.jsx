@@ -14,6 +14,7 @@ const getFormBasedOnStep = (step, data, setData) => {
         formBasedOnStep = (
           <ThirdStepFormExpanded
             data={data}
+            step={step}
             setData={setData}
             // fileRef={fileRef}
             // fileInputRef={fileInputRef}

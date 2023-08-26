@@ -19,7 +19,7 @@ import {
   ThirdStepSexTitle,
 } from './ThirdStepFormExpanded.styled';
 
-const ThirdStepForm = ({ data, setData }) => {
+const ThirdStepFormExpanded = ({ data, setData, step }) => {
   const handleChange = e => {
     const input = e.target.name;
     const value = e.target.value;
@@ -93,7 +93,10 @@ const ThirdStepForm = ({ data, setData }) => {
                 placeholder="Type place of your living"
               />
             </ThirdStepFormTitle>
-
+          </div>
+        )}
+        {data.option === 'sell' && (
+          <div>
             <ThirdStepFormTitle>
               Price
               <ThirdStepFormInput
@@ -109,6 +112,8 @@ const ThirdStepForm = ({ data, setData }) => {
         <ThirdStepFormTitle>
           Comments
           <ThirdStepFormComments
+            data={data}
+            step={step}
             type="text"
             // value="comments"
             name="comments"
@@ -123,9 +128,10 @@ const ThirdStepForm = ({ data, setData }) => {
   );
 };
 
-ThirdStepForm.propTypes = {
+ThirdStepFormExpanded.propTypes = {
   data: PropTypes.object.isRequired,
+  step: PropTypes.object.isRequired,
   setData: PropTypes.func.isRequired,
 };
 
-export default ThirdStepForm;
+export default ThirdStepFormExpanded;

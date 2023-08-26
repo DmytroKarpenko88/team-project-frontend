@@ -23,11 +23,11 @@ export const ThirdStepSexPhotoDiv = styled.div`
   // line-height: 1.5; /* 24px */
   // letter-spacing: 0.64px;
 
-  // @media screen and (min-width: ${theme.breakpoints.tablet}) {
-  //   flex-direction: column;
-  //   // height: 182px;
-  //   // margin-bottom: 16px;
-  // }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    flex-direction: column;
+    // height: 182px;
+    // margin-bottom: 16px;
+  }
 `;
 
 export const ThirdStepSexTitle = styled.h3`
@@ -37,6 +37,10 @@ export const ThirdStepSexTitle = styled.h3`
   font-size: ${theme.fontSizes.s}; //14px;
   font-style: normal;
   line-height: normal;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes.l}; //20px;
+  }
 `;
 export const ThirdStepSexInput = styled.input`
   display: none;
@@ -107,6 +111,8 @@ export const ThirdStepFormDiv = styled.div`
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     // font-size: 28px;
     // min-width: 704px;
+    flex-direction: row;
+    gap: 45px;
   }
 `;
 export const ThirdStepFormTitle = styled.label`
@@ -125,9 +131,12 @@ export const ThirdStepFormTitle = styled.label`
 
   // color: ${theme.colors.black};
 
-  // @media screen and (min-width: ${theme.breakpoints.tablet}) {
-  //   font-size: 28px;
-  // }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 20px;
+    line-height: 1.325; //26.5px; /* 132.5% */
+    gap: 8px;
+    margin-bottom: 24px;
+  }
 `;
 export const ThirdStepFormInput = styled.input`
   display: flex;
@@ -146,9 +155,10 @@ export const ThirdStepFormInput = styled.input`
     outline: 1px solid ${theme.colors.blue};
   }
 
-  // @media (min-width: 768px) {
-  //   flex-direction: row-reverse;
-  // }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    // flex-direction: row-reverse;
+    min-width: 395px;
+  }
 `;
 
 // ------- photo
@@ -164,7 +174,10 @@ export const ThirdStepFormPhotoTitle = styled.label`
   margin-bottom: 16px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    height: 182px;
+    // height: 182px;
+    margin-top: 40px;
+    flex-direction: column;
+
     // margin-bottom: 16px;
   }
 `;
@@ -180,9 +193,10 @@ export const ThirdStepFormPhotoDiv = styled.div`
   // margin-top: 34px; // 50px
   // margin-bottom: 64px;
 
-  // @media screen and (min-width: ${theme.breakpoints.tablet}) {
-  //   font-size: 28px;
-  // }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 20px;
+    width: 100%;
+  }
 `;
 export const ThirdStepFormImgInput = styled.input`
   opacity: 0; // chose file
@@ -199,11 +213,11 @@ export const ThirdStepFormPlus = styled.div`
     left: 145px;
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
-      top: 67px;
-      left: 172px;
+      top: 80px;
+      left: 68px;
 
-      width: 41px;
-      height: 41px;
+      width: 48px;
+      height: 48px;
     }
   }
 
@@ -220,8 +234,8 @@ export const ThirdStepFormPlus = styled.div`
     background-color: ${theme.colors.blueLight}; //#cce4fb;
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
-      top: 0px; // -45px
-      left: 103px;
+      top: 38px; // -45px
+      left: 0px;
       width: 182px;
       height: 182px;
     }
@@ -245,7 +259,11 @@ export const ThirdStepFormComments = styled.textarea`
     outline: 1px solid ${theme.colors.blue};
   }
 
-  // @media (min-width: 768px) {
-  //   flex-direction: row-reverse;
-  // }
+  @media (min-width: 768px) {
+    flex-direction: row-reverse;
+    ${({ data, step }) =>
+      data.option !== 'pet' && (data.option !== 'sell') & (step === 3)
+        ? 'min-height: 182px;'
+        : 'min-height: 92px;'};
+  }
 `;

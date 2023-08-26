@@ -5,6 +5,7 @@ import StepTitles from './StepTitles/StepTitles';
 import getFormBasedOnStep from './getFormBasedOnStep';
 import getTitle from './getTitle';
 import {
+  AddPetDiv,
   AddPetFormTitle,
   AddPetContainerForm,
   AddPetBtnList,
@@ -13,9 +14,6 @@ import {
   AddPetBtnCancel,
   AddPetBtnCancelDiv,
 } from './AddPetForm.styled';
-import { AddPetDiv } from 'pages/AddPet/AddPet.styled';
-
-// import StepTitles from './stepTitles';
 
 const AddPetForm = () => {
   // const location = useLocation();
@@ -40,24 +38,18 @@ const AddPetForm = () => {
       return;
     }
   };
-  console.log(data);
-  // console.log(step);
+
   // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
   const backPage = step === 1 ? '/user' : '';
 
   return (
     <AddPetDiv data={data} step={step}>
       <AddPetContainerForm onClick={onClick}>
-        {/* --------------------- title of form ---------------------- */}
         <AddPetFormTitle>{title}</AddPetFormTitle>
-        {/* передаємо крок і рендеримо кольори опцій у відповідності 
-        Choose option Personal details Personal details*/}
         <StepTitles step={step} />
 
-        {/* ----------- content for form based on step -------------- */}
         {getFormBasedOnStep(step, data, setData)}
 
-        {/* ------------------------ buttons ------------------------ */}
         <AddPetBtnList>
           <AddPetBtnItem>
             <AddPetBtnNext type="button">
