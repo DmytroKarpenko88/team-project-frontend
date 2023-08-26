@@ -130,7 +130,7 @@ const ThirdStepFormExpanded = ({ data, setData, step }) => {
 
 ThirdStepFormExpanded.propTypes = {
   data: PropTypes.object.isRequired,
-  step: PropTypes.object.isRequired,
+  step: PropTypes.number.isRequired,
   setData: PropTypes.func.isRequired,
 };
 
