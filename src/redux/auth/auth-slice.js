@@ -36,7 +36,6 @@ const authSlice = createSlice({
       })
 
       .addCase(register.fulfilled, (state, action) => {
-        console.log('action:', action);
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.error = null;
@@ -50,8 +49,9 @@ const authSlice = createSlice({
       })
 
       .addCase(login.fulfilled, (state, action) => {
-        console.log('action:', action);
-        // state.user = action.payload.user;
+
+
+        state.user = action.payload.user;
         state.token = action.payload.token;
         state.error = null;
         state.isLoggedIn = true;
@@ -68,8 +68,8 @@ const authSlice = createSlice({
       })
 
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
+        state.user.name = action.payload.name;
+        state.user.email = action.payload.email;
         state.isRefreshing = false;
       })
 
@@ -82,6 +82,7 @@ const authSlice = createSlice({
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(getUserProfile.rejected, (state, action) => {
@@ -108,14 +109,6 @@ const authSlice = createSlice({
   },
 });
 
-// const authPersistConfig = {
-//   key: 'auth',
-//   storage,
-//   whitelist: ['token'],
-// };
 
-// export const persistedReducer = persistReducer(
-//   authPersistConfig,
-//   authSlice.reducer
-// );
-export const authReducer = authSlice.reducer;
+export const authReducer = authSlice.reducer
+

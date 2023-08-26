@@ -52,6 +52,7 @@ font-family: ${theme.fonts.main.regular};
 margin-bottom: 14px;
 border: solid 1px ${theme.colors.blue};
 border-radius: 40px;
+/* border-color: ${({errors,touched}) =>{return errors && touched ? `${theme.colors.red}` : `${theme.colors.blue}`} }; */
 @media (min-width: 768px) {
     font-size: ${theme.fontSizes.m};
     margin-bottom: 32px;
