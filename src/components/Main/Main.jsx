@@ -1,18 +1,27 @@
 import React from 'react';
-import {  Title, Images, Container } from './Main.styled';
 
-
+import {
+  Title,
+  Container,
+  ImagesContainer,
+  ImgBuldog,
+  ImgDog,
+  ImgCat,
+} from './Main.styled';
 
 export default function MainPage() {
-
   return (
     <>
-     
-       <Container>
-      <Title>Take good care of your small pets</Title>
-      <Images alt="Pets" />
-    </Container>
+
+      <Container>
+        <Title>Take good care of your small pets</Title>
+        <ImagesContainer>
+          <ImgBuldog alt="Buldog" />
+          <ImgDog alt="Dog" />
+          <ImgCat alt="Cat" />
+        </ImagesContainer>
+      </Container>
     </>
-    
+
   );
 }
