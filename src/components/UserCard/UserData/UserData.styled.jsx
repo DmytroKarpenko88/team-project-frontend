@@ -12,6 +12,8 @@ const MainContainer = styled.section`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row;
     gap: 32px;
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
@@ -95,8 +97,7 @@ const AddPetBtn = styled(Link)`
   border: none;
   border-radius: 40px;
   box-shadow: ${theme.boxShadows.main};
-  transition: background-color ${theme.transition.duration},
-    ${theme.transition.main};
+  transition: background ${theme.transition.duration}, ${theme.transition.main};
   svg {
     stroke: ${theme.colors.white};
   }
