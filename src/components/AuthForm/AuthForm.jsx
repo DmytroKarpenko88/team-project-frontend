@@ -148,9 +148,7 @@ export default function AuthForm() {
                 />
               </InputPasswordWraper>
               <span id="visibilityBtn" onClick={togglePassword}>
-                {passwordShow 
-                ? <OnIconConPass /> 
-                : <OffIconConPass />}
+                {passwordShow ? <OnIconPass /> : <OffIconPass />}
               </span>
               {!errors.password && touched.password ? (
                 <SuccessMessage>Success, password is valid!</SuccessMessage>
@@ -181,9 +179,7 @@ export default function AuthForm() {
                 />
               </InputPasswordWraper>
               <span id="visibilityBtn" onClick={toggleConfirmPassword}>
-                {confirmPasswordShow 
-                ? <OnIconPass /> 
-                : <OffIconPass />}
+                {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}
               </span>
               {!errors.confirmPassword && touched.confirmPassword ? (
                 <SuccessMessage>

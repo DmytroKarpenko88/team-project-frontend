@@ -39,13 +39,12 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log("values:", values)
     const data = {
       email: values.email,
       password: values.password,
     };
     dispatch(login(data));
-    // resetForm();
+    resetForm();
   };
 
   useEffect(() => {
@@ -63,11 +62,9 @@ export default function LoginForm() {
       >
         {({errors, touched}) => (
           <Form>
-
             <Titel>Login</Titel>
-
             <FormField>
-              <InputEmailWraper style={{borderColor:  !touched.email ? `${theme.colors.blue}` : errors.email  ? `${theme.colors.red}` : `${theme.colors.green}`}}>
+            <InputEmailWraper style={{borderColor:  !touched.email ? `${theme.colors.blue}` : errors.email  ? `${theme.colors.red}` : `${theme.colors.green}`}}>
               <InputForm
                 name="email"
                 type="email"
@@ -85,7 +82,7 @@ export default function LoginForm() {
             </FormField>
 
             <FormField>
-              <InputPasswordWraper style={{borderColor: !touched.password ? `${theme.colors.blue}` : errors.password  ? `${theme.colors.red}` : `${theme.colors.green}`}}>
+            <InputPasswordWraper style={{borderColor: !touched.password ? `${theme.colors.blue}` : errors.password  ? `${theme.colors.red}` : `${theme.colors.green}`}}>
               <InputForm
                 name="password"
                 type={passwordShow ? 'text' : 'password'}
@@ -102,9 +99,9 @@ export default function LoginForm() {
               <IconCheck ><Check/></IconCheck> :
                <IconCross ><Cross/></IconCross>}
 
+
               <ErrorMess name="password" component="p" />
             </FormField>
-
             <div>
               <Button type="submit">Login</Button>
             </div>

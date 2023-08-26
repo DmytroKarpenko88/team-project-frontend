@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import {
   selectIsLoggedIn,
   selectIsRefreshing,
+  selectIsRegistered,
 } from 'redux/auth/auth-selectors';
 import { UserNav } from 'components/UserNav/UserNav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
@@ -22,10 +23,12 @@ import { useWindowSize } from './useWindowSize';
 import { LogoutLink } from 'components/Nav/LogoutLink/LogoutLink';
 
 export const Header = () => {
+  const isRegistered = useSelector(selectIsRegistered)
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
   const [click, setClick] = useState(false);
   const [screenWidth] = useWindowSize();
+  const auth = isRegistered || isLoggedIn
 
   const changeClick = () => {
     setClick(!click);
@@ -37,16 +40,16 @@ export const Header = () => {
         <Logo onClick={() => changeClick()} />
 
         <HeaderMenu>
-          {screenWidth >= 768 && screenWidth <= 1279 && isLoggedIn && (
+          {screenWidth >= 768 && screenWidth <= 1279 && auth && (
             <UserNavBox>{click ? <LogoutLink /> : <UserNav />}</UserNavBox>
           )}
-          {screenWidth >= 1280 && isLoggedIn && (
+          {screenWidth >= 1280 && auth && (
             <UserNavBox>
               <LogoutLink />
               <UserNav />
             </UserNavBox>
           )}
-          {screenWidth >= 768 && !isLoggedIn && !isRefreshing && <AuthNav />}
+          {screenWidth >= 768 && !auth && !isRefreshing && <AuthNav />}
 
           {screenWidth <= 1279 && (
             <IconOpenMenu onClick={() => changeClick()}>

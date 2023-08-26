@@ -15,10 +15,13 @@ const token = {
 
 export const register = createAsyncThunk(
   'auth/register',
+
   async (credential, thunkAPI) => {
     console.log('credential:', credential);
     try {
       const { data } = await axios.post('/api/auth/register', credential);
+      console.log("data:", data)
+    
       token.set(data.token);
       return data;
     } catch (error) {
@@ -79,6 +82,7 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
+    console.log("persistedToken:", persistedToken)
     if (!persistedToken) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
@@ -97,7 +101,7 @@ export const getUserProfile = createAsyncThunk('auth/user', async (_, thunkAPI) 
     const {data} = await axios.get('/api/users/profile');
     console.log("data:", data)
     
-    return data.data;
+    return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -120,3 +124,14 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const getUserCurrentNotices = createAsyncThunk('auth/userCurrentNotices', async (_, thunkAPI) => {
+  try {
+    const {data} = await axios.get('/api/users/current/notices');
+    console.log("dataCurrentNotices:", data)
+    
+    return data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
