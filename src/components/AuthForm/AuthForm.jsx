@@ -71,6 +71,8 @@ export default function AuthForm() {
                 type="name"
                 placeholder="Name"
                 autoComplete="on"
+                // errors
+                // touched
               />
               { !errors.name && touched.name ? (<SuccessMessage>Success, name is valid!</SuccessMessage>) : null }
             <ErrorMess name="name" component="p" />
@@ -81,6 +83,8 @@ export default function AuthForm() {
                 type="email"
                 placeholder="Email"
                 autoComplete="on"
+                // errors
+                // touched
               />
               { !errors.email && touched.email ? (<SuccessMessage>Success, email is valid!</SuccessMessage>) : null }
               <ErrorMess name="email" component="p" />
@@ -91,6 +95,8 @@ export default function AuthForm() {
                 type={passwordShow ? 'text' : 'password'}
                 placeholder="Password"
                 autoComplete="off"
+                // errors
+                // touched
               />
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIconPass /> : <OffIconPass />}
@@ -105,6 +111,9 @@ export default function AuthForm() {
                 type={confirmPasswordShow ? 'text' : 'password'}
                 placeholder="Confirm password"
                 autoComplete="off"
+                // errors
+                // touched
+                
               />
               <span id="visibilityBtn" onClick={toggleConfirmPassword}>
                 {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}

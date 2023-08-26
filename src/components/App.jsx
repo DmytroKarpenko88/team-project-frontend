@@ -10,7 +10,7 @@ import AddPet from '../pages/AddPet/AddPet';
 
 import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';
-// import Loader from './Loader/Loader';
+import Loader from './Loader/Loader';
 
 const Register = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -24,11 +24,12 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
+    dispatch(getUserProfile())
     // if(isLoggedIn) {
-      dispatch(fetchCurrentUser());
-      dispatch(getUserProfile())
+    //   dispatch(fetchCurrentUser());
+    //   dispatch(getUserProfile())
     // }
-  }, [dispatch, isLoggedIn]);
+  }, [dispatch, isLoggedIn ]);
 
   return (
     <>
@@ -66,7 +67,7 @@ export const App = () => {
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
-      ) : null}
+      ) : <Loader/>}
     </>
   );
 };
