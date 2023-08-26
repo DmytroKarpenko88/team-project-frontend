@@ -32,7 +32,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [errorsVisible, setErrorsVisible] = useState(true);
   const [preview, setPreview] = useState(user.avatarURL);
-  console.log('preview:', preview);
+  // console.log('preview:', preview);
   const [avatarSelected, setAvatarSelected] = useState(false);
 
   const formatBirthday = value => {
@@ -65,19 +65,19 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     validationSchema,
 
     onSubmit: values => {
-      console.log('values:', values);
-      console.log('onSubmit values:', values);
+      // console.log('values:', values);
+      // console.log('onSubmit values:', values);
       if (Object.keys(formikProps.errors).length === 0) {
         const formData = new FormData();
         for (let key in values) {
           if (key === 'avatarURL') {
-            console.log('Adding to FormData:', key, values[key]);
+            // console.log('Adding to FormData:', key, values[key]);
             formData.append(key, values[key], values[key].name);
           } else {
             formData.append(key, values[key]);
           }
         }
-        console.log('formData:', formData);
+        // console.log('formData:', formData);
         dispatch(updateUser(formData));
         setIsFormDisabled(prevState => !prevState);
       }

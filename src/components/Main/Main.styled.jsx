@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'styles';
 
-
 //mobile version
 import buldogmobile1x from '../../images/MainPage/mobile/buldogmobile1x.webp';
 import buldogmobile2x from '../../images/MainPage/mobile/buldogmobile2x.webp';
@@ -31,13 +30,12 @@ import catdesktop2x from '../../images/MainPage/desktop/catdesktop2x.webp';
 // import BegT1 from '../../images/background/bg-tablet@1x.png';
 // import BegT2 from '../../images/background/bg-tablet@2x.png';
 
-import ImgDx1 from '../../images/MainPage/mp-desktop1x.webp';
-import ImgDx2 from '../../images/MainPage/mp-desktop2x.webp';
-import ImgMx1 from '../../images/MainPage/mp-mobile1x.webp';
-import ImgMx2 from '../../images/MainPage/mp-mobile2x.webp';
-import ImgTx1 from '../../images/MainPage/mp-tablet1x.webp';
-import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
-
+// import ImgDx1 from '../../images/MainPage/mp-desktop1x.webp';
+// import ImgDx2 from '../../images/MainPage/mp-desktop2x.webp';
+// import ImgMx1 from '../../images/MainPage/mp-mobile1x.webp';
+// import ImgMx2 from '../../images/MainPage/mp-mobile2x.webp';
+// import ImgTx1 from '../../images/MainPage/mp-tablet1x.webp';
+// import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
 
 // export const Container = styled.div`
 //   position: relative;
@@ -51,7 +49,6 @@ import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
 //     background-image: url('${BegM2}');
 //   }
 
-
 //   @media screen and (min-width: ${theme.breakpoints.tablet}) {
 
 //     background-image: url('${BegT1}');
@@ -64,7 +61,6 @@ import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
 //     }
 //   }
 
-
 //   @media screen and (min-width: ${theme.breakpoints.desktop}) {
 
 //     background-image: url('${BegD1}');
@@ -76,7 +72,6 @@ import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
 //     }
 //   }
 // `;
-
 
 export const Container = styled.div`
   // position: relative;
@@ -130,10 +125,8 @@ export const ImgBuldog = styled.img`
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     content: url('${buldogmobile2x}');
-
   }
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-
     width: 380px;
     bottom: 112px;
     right: 410px;
@@ -145,10 +138,8 @@ export const ImgBuldog = styled.img`
     }
 
     padding-top: 80px;
-
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-
     width: 380px;
     bottom: 230px;
     right: 540px;
@@ -160,8 +151,6 @@ export const ImgBuldog = styled.img`
     }
 
     padding-top: 188px;
-    
-
   }
 `;
 export const ImgDog = styled.img`
