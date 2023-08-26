@@ -15,8 +15,8 @@ export const LogoutLink = () => {
   return (
     <>
       <LogOut onClick={goOut}>
-        <Logout />
         <Text>Logout</Text>
+        <Logout />
       </LogOut>
       {modalApproveActionShow && (
         <ModalApproveAction
