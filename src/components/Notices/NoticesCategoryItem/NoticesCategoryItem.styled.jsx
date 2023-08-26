@@ -52,6 +52,7 @@ export const Img = styled.img`
   height: 100%;
   object-fit: cover;
 
+  cursor: pointer;
   // @media screen and (min-width: 768px) {
   //   width: 336px;
   // }
@@ -82,10 +83,11 @@ export const HeartBtn = styled.button.withConfig({
 
   border: none;
 
-  .heart.favorite svg {
+  &.heart.favorite svg {
     fill: ${theme.colors.blue};
   }
-  .heart svg:hover,
+
+  &.heart svg:hover,
   svg:focus {
     fill: ${theme.colors.blue};
     stroke: ${theme.colors.blue};
@@ -136,6 +138,11 @@ export const ListPetInfo = styled.div`
   justify-content: space-evenly;
   gap: 12px;
 
+  /* svg:focus,
+  svg:hover {
+    stroke: ${theme.colors.blue};
+  } */
+
   @media screen and (min-width: 768px) {
     gap: 24px;
   }
@@ -156,14 +163,23 @@ export const LocationItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: background ${theme.transition.duration} ${theme.transition.main};
+
   cursor: pointer;
 
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
   text-overflow: ellipsis;
 
-  svg:hover {
-    stroke: ${theme.colors.blue};
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+
+    svg {
+      stroke: ${theme.colors.white};
+    }
   }
 `;
 
@@ -178,14 +194,22 @@ export const AgeItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: background ${theme.transition.duration} ${theme.transition.main};
+
   cursor: pointer;
 
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
   text-overflow: ellipsis;
 
-  svg:hover {
-    stroke: ${theme.colors.blue};
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+    svg {
+      stroke: ${theme.colors.white};
+    }
   }
 `;
 
@@ -200,14 +224,22 @@ export const SexItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: background ${theme.transition.duration} ${theme.transition.main};
+
   cursor: pointer;
 
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
 
-  svg:focus,
-  svg:hover {
-    stroke: ${theme.colors.blue};
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+
+    svg {
+      stroke: ${theme.colors.white};
+    }
   }
 `;
 
@@ -244,13 +276,16 @@ export const LoadMoreBtn = styled.button`
   letter-spacing: 0.64px;
   transition: color 250ms ${theme.transition.main},
     background-color 250ms ${theme.transition.main};
-
+  svg {
+    display: none;
+  }
   &:focus,
   &:hover {
     color: ${theme.colors.white};
     background: ${theme.colors.blue};
   }
   &:hover svg {
+    display: inline-block;
     fill: ${theme.colors.white};
   }
   svg {

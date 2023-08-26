@@ -27,14 +27,14 @@ export const ModalAttention = props => {
         </InfoMessage>
 
         <BtnWrapper>
-          <BtnLogin onClick={props.onHide}>
+          <BtnLogin to="/login" onClick={props.onHide}>
             <span>Log In</span>
             <span>
               <Paw />
             </span>
           </BtnLogin>
 
-          <BtnLogout onClick={props.onHide}>
+          <BtnLogout to="/register" onClick={props.onHide}>
             <span>Registration</span>
           </BtnLogout>
         </BtnWrapper>
