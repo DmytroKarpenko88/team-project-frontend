@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
     .max(new Date(), 'Future date is not allowed')
     .required('Birthday is required'),
   phone: Yup.string()
-    .matches(phoneRegExp, 'Enter the phone number +38(0xх)xxx-xx-xx)')
+    .matches(phoneRegExp, 'Enter the phone number +38(0xх)xxx-xx-xx')
     .required('Enter your phone number'),
   city: Yup.string()
     .matches(cityRegExp, 'Enter valid format for city')
