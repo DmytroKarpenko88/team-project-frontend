@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Plus } from 'components/icons';
+import { Female, Male, Plus } from 'components/icons';
 import {
   ThirdStepFormComments,
   ThirdStepFormDiv,
   ThirdStepFormImgInput,
   ThirdStepFormImgPreview,
-  // ThirdStepFormInput,
+  ThirdStepFormInput,
   ThirdStepFormPhotoDiv,
   ThirdStepFormPhotoTitle,
   ThirdStepFormPlus,
   ThirdStepFormTitle,
-  // ThirdStepSexDiv,
-  // ThirdStepSexFemaleLabel,
-  // ThirdStepSexInput,
-  // ThirdStepSexMaleLabel,
+  ThirdStepSexDiv,
+  ThirdStepSexFemaleLabel,
+  ThirdStepSexInput,
+  ThirdStepSexMaleLabel,
   ThirdStepSexPhotoDiv,
-  // ThirdStepSexTitle,
-} from './ThirdStepForm.styled';
+  ThirdStepSexTitle,
+} from './ThirdStepFormExpanded.styled';
 
-const ThirdStepForm = ({ data, setData }) => {
+const ThirdStepFormExpanded = ({ data, setData, step }) => {
   const handleChange = e => {
     const input = e.target.name;
     const value = e.target.value;
@@ -34,7 +34,7 @@ const ThirdStepForm = ({ data, setData }) => {
     <ThirdStepFormDiv>
       {/* sex for sell lostFond ingood hands*/}
       <ThirdStepSexPhotoDiv>
-        {/* {data.option !== 'pet' && (
+        {data.option !== 'pet' && (
           <div>
             <ThirdStepSexTitle>The sex</ThirdStepSexTitle>
             <ThirdStepSexDiv>
@@ -50,7 +50,7 @@ const ThirdStepForm = ({ data, setData }) => {
               </ThirdStepSexMaleLabel>
             </ThirdStepSexDiv>
           </div>
-        )} */}
+        )}
         {/* --- */}
         {/* label */}
         <ThirdStepFormPhotoTitle>
@@ -82,7 +82,7 @@ const ThirdStepForm = ({ data, setData }) => {
 
       {/* location price for sell lostFond ingood hands*/}
       <div>
-        {/* {data.option !== 'pet' && (
+        {data.option !== 'pet' && (
           <div>
             <ThirdStepFormTitle>
               Location
@@ -93,7 +93,10 @@ const ThirdStepForm = ({ data, setData }) => {
                 placeholder="Type place of your living"
               />
             </ThirdStepFormTitle>
-
+          </div>
+        )}
+        {data.option === 'sell' && (
+          <div>
             <ThirdStepFormTitle>
               Price
               <ThirdStepFormInput
@@ -104,11 +107,13 @@ const ThirdStepForm = ({ data, setData }) => {
               />
             </ThirdStepFormTitle>
           </div>
-        )} */}
+        )}
         {/* ----- -------- */}
         <ThirdStepFormTitle>
           Comments
           <ThirdStepFormComments
+            data={data}
+            step={step}
             type="text"
             // value="comments"
             name="comments"
@@ -123,9 +128,10 @@ const ThirdStepForm = ({ data, setData }) => {
   );
 };
 
-ThirdStepForm.propTypes = {
+ThirdStepFormExpanded.propTypes = {
   data: PropTypes.object.isRequired,
+  step: PropTypes.number.isRequired,
   setData: PropTypes.func.isRequired,
 };
 
-export default ThirdStepForm;
+export default ThirdStepFormExpanded;

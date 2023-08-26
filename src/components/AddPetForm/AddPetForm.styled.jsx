@@ -2,6 +2,30 @@ import styled from 'styled-components';
 import { theme } from 'styles';
 
 //  --------- AddPetForm
+export const AddPetDiv = styled.div`
+  // width: fit-content;
+  // padding: 20px 8px 17px;
+  // margin: 68px auto;
+  margin: 20px auto;
+  border-radius: 40px;
+  box-shadow: ${theme.boxShadows.main};
+  background-color: ${theme.colors.white};
+
+  font-family: ${theme.fonts.main.medium}; //500
+  font-size: ${theme.fontSizes.s}; //14px
+  line-height: 1.5; //21px
+
+  @media screen and (min-width: 498px) {
+    width: 458px;
+  }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    ${({ data, step }) =>
+      (data.option !== 'pet') & (step === 3)
+        ? 'width: 704px;'
+        : 'width: 458px;'};
+  }
+  // and (max-width: ${theme.breakpoints.desktop})
+`;
 
 export const AddPetContainerForm = styled.form`
   padding: 20px 8px;
@@ -25,6 +49,10 @@ export const AddPetFormTitle = styled.h2`
     font-size: 28px;
     font-style: normal;
     font-weight: 500;
+
+    padding-left: 0px;
+
+    text-align: center;
   }
 `;
 
