@@ -26,6 +26,9 @@ export const FilterBtn = styled.button`
     color: ${theme.colors.bgColor};
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
+  &:hover svg {
+    stroke: ${theme.colors.white};
+  }
 
   @media screen and (min-width: 768px) {
     gap: 8px;
