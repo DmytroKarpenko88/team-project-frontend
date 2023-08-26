@@ -7,6 +7,11 @@ export const SecondStepFormDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    // font-size: 28px;
+    margin-bottom: 40px;
+  }
 `;
 
 export const SecondStepFormTitle = styled.label`
@@ -23,8 +28,6 @@ export const SecondStepFormTitle = styled.label`
 
   margin-bottom: 20px;
 
-  // color: ${theme.colors.black};
-
   // @media screen and (min-width: ${theme.breakpoints.tablet}) {
   //   font-size: 28px;
   // }
@@ -40,6 +43,12 @@ export const SecondStepFormInput = styled.input`
   border-radius: 40px;
   border: 1px solid ${theme.colors.blue};
 
+  &:hover,
+  &focus,
+  &:active {
+    border: 1px solid ${theme.colors.blue};
+    outline: 1px solid ${theme.colors.blue};
+  }
   // @media (min-width: 768px) {
   //   flex-direction: row-reverse;
   // }

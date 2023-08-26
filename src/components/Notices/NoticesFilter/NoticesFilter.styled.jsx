@@ -26,17 +26,22 @@ export const FilterBtn = styled.button`
     color: ${theme.colors.bgColor};
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
   }
+  &:hover svg {
+    stroke: ${theme.colors.white};
+  }
 
   @media screen and (min-width: 768px) {
     gap: 8px;
     min-width: 152px;
 
     background: transparent;
-    border-width: 2px;
-    border-color: ${theme.colors.blueLight};
+    border-width: 1px;
+    border-color: ${theme.colors.blue};
     border-style: solid;
     border-radius: 40px;
 
     font-size: 16px;
   }
 `;
+
+export const Span = styled.p``;

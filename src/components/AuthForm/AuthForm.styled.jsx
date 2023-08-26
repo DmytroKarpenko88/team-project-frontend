@@ -52,6 +52,7 @@ font-family: ${theme.fonts.main.regular};
 margin-bottom: 14px;
 border: solid 1px ${theme.colors.blue};
 border-radius: 40px;
+/* border-color: ${({errors,touched}) =>{return errors && touched ? `${theme.colors.red}` : `${theme.colors.blue}`} }; */
 @media (min-width: 768px) {
     font-size: ${theme.fontSizes.m};
     margin-bottom: 32px;
@@ -62,6 +63,17 @@ export const ErrorMess = styled(ErrorMessage)`
 position: absolute;
 font-size: 10px;
 color: ${theme.colors.red};
+left: 10px;
+top: 47px;
+@media (min-width: 768px) {
+    font-size: 12px;
+};
+`;
+
+export const SuccessMessage = styled.p`
+position: absolute;
+font-size: 10px;
+color: ${theme.colors.green};
 left: 10px;
 top: 47px;
 @media (min-width: 768px) {
@@ -122,6 +134,9 @@ font-size: ${theme.fontSizes.l};
 color: ${theme.colors.white};
 border-radius: 40px;
 background-color: ${theme.colors.blue};
+&:hover {
+    background-color: ${theme.colors.grBlue};
+};
 @media (min-width: 768px) {
     margin-top: 30px;
     margin-bottom: 16px;

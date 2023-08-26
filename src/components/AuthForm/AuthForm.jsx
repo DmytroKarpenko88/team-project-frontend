@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { registerSchema } from 'utils/shemas/AuthSchema';
 import { register } from '../../redux/auth/auth-operations';
-import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { useAuth } from 'hooks/useAuth';
 import {
   FormContainer,
   Titel,
   FormField,
   InputForm,
   ErrorMess,
+  SuccessMessage,
   Button,
   LinkStyled,
   ToLogin,
@@ -32,13 +33,12 @@ export default function AuthForm() {
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const {isRegistered} = useAuth();
+
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const toggleConfirmPassword = () =>
-    setConfirmPasswordShow(prevState => !prevState);
+  const toggleConfirmPassword = () => setConfirmPasswordShow(prevState => !prevState);
 
   const handleSubmit =  (values, { resetForm }) => {
-    console.log(' values:', values);
     const data = {
       name: values.name,
       email: values.email,
@@ -49,10 +49,10 @@ export default function AuthForm() {
   };
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isRegistered) {
       navigate('/user');
     }
-  }, [isLoggedIn, navigate]);
+  }, [isRegistered, navigate]);
 
 
   return (
@@ -62,17 +62,20 @@ export default function AuthForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {() => (
+        {({errors, touched}) => (
           <Form>
             <Titel>Registration</Titel>
-            <FormField>
+            <FormField >
               <InputForm
                 name="name"
                 type="name"
                 placeholder="Name"
                 autoComplete="on"
+                // errors
+                // touched
               />
-              <ErrorMess name="name" component="p" />
+              { !errors.name && touched.name ? (<SuccessMessage>Success, name is valid!</SuccessMessage>) : null }
+            <ErrorMess name="name" component="p" />
             </FormField>
             <FormField>
               <InputForm
@@ -80,7 +83,10 @@ export default function AuthForm() {
                 type="email"
                 placeholder="Email"
                 autoComplete="on"
+                // errors
+                // touched
               />
+              { !errors.email && touched.email ? (<SuccessMessage>Success, email is valid!</SuccessMessage>) : null }
               <ErrorMess name="email" component="p" />
             </FormField>
             <FormField>
@@ -88,11 +94,14 @@ export default function AuthForm() {
                 name="password"
                 type={passwordShow ? 'text' : 'password'}
                 placeholder="Password"
-                autoComplete="on"
+                autoComplete="off"
+                // errors
+                // touched
               />
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIconPass /> : <OffIconPass />}
               </span>
+              { !errors.password && touched.password? (<SuccessMessage>Success, password is valid!</SuccessMessage>) : null }
               <ErrorMess name="password" component="p" />
             </FormField>
 
@@ -101,11 +110,15 @@ export default function AuthForm() {
                 name="confirmPassword"
                 type={confirmPasswordShow ? 'text' : 'password'}
                 placeholder="Confirm password"
-                autoComplete="on"
+                autoComplete="off"
+                // errors
+                // touched
+                
               />
               <span id="visibilityBtn" onClick={toggleConfirmPassword}>
                 {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}
               </span>
+              { !errors.confirmPassword && touched.confirmPassword ? (<SuccessMessage>Success, confirm password is valid!</SuccessMessage>) : null }
               <ErrorMess name="confirmPassword" component="p" />
             </FormField>
 

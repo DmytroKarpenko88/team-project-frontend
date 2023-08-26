@@ -1,11 +1,24 @@
 import React from 'react';
-import { Filter2 } from 'components/icons';
-import { FilterBtn } from './NoticesFilter.styled';
+import { useWindowSize } from 'hooks/useWindowSize';
+import { Filter } from 'components/icons';
+import { FilterBtn, Span } from './NoticesFilter.styled';
 
 export const NoticesFilter = () => {
+  const screenWidth = useWindowSize();
   return (
     <FilterBtn>
-      <Filter2 />
+      {screenWidth < 768 && <Filter />}
+
+      {screenWidth >= 768 && <IconContainer />}
     </FilterBtn>
+  );
+};
+
+const IconContainer = () => {
+  return (
+    <>
+      <Span>Filter</Span>
+      <Filter />
+    </>
   );
 };

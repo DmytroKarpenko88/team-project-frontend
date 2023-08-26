@@ -1,72 +1,72 @@
 import React, { useState } from 'react';
 import {
-  // Auth,
-  // AuthContainer,
   CrossButton,
   HeaderContainer,
   HeaderMenu,
   HeaderWrapper,
   IconOpenMenu,
   MenuButton,
-  // UserNavContainer,
-  // UserNavContainer,
+  UserNavBox,
 } from './Header.styled';
 import Logo from 'components/Logo/Logo';
 import { Cross, MenuHamburger } from 'components/icons';
 import { Nav } from 'components/Nav/Nav';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn} from 'redux/auth/auth-selectors';
+import {
+  selectIsLoggedIn,
+  selectIsRefreshing,
+} from 'redux/auth/auth-selectors';
 import { UserNav } from 'components/UserNav/UserNav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { useWindowSize } from './useWindowSize';
+import { LogoutLink } from 'components/Nav/LogoutLink/LogoutLink';
 
 export const Header = () => {
-  // const user = useSelector(selectUser);
-  const  isLoggedIn  = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
   const [click, setClick] = useState(false);
   const [screenWidth] = useWindowSize();
-
 
   const changeClick = () => {
     setClick(!click);
   };
 
- 
-
   return (
     <HeaderContainer>
-      <HeaderWrapper >
+      <HeaderWrapper>
         <Logo onClick={() => changeClick()} />
 
-        <HeaderMenu>         
+        <HeaderMenu>
+          {screenWidth >= 768 && screenWidth <= 1279 && isLoggedIn && (
+            <UserNavBox>{click ? <LogoutLink /> : <UserNav />}</UserNavBox>
+          )}
+          {screenWidth >= 1280 && isLoggedIn && (
+            <UserNavBox>
+              <LogoutLink />
+              <UserNav />
+            </UserNavBox>
+          )}
+          {screenWidth >= 768 && !isLoggedIn && !isRefreshing && <AuthNav />}
 
-          {screenWidth >= 768 && isLoggedIn && (<UserNav />) } 
-
-          {screenWidth >= 768 && !isLoggedIn && (<AuthNav />)} 
-          
           {screenWidth <= 1279 && (
-               <IconOpenMenu onClick={() => changeClick()}>
-               {click ? (
-                 <CrossButton>
-                   <Cross />
-                 </CrossButton>
-               ) : (
-                 <MenuButton>
-                   <MenuHamburger />
-                 </MenuButton>
-               )}
-             </IconOpenMenu>
+            <IconOpenMenu onClick={() => changeClick()}>
+              {click ? (
+                <CrossButton>
+                  <Cross />
+                </CrossButton>
+              ) : (
+                <MenuButton>
+                  <MenuHamburger />
+                </MenuButton>
+              )}
+            </IconOpenMenu>
           )}
 
-
-
-          <Nav click={click} onClick={() => changeClick()}  screenWidth={screenWidth} />
-          
-          
-              
-          
-          
-            
+          <Nav
+            click={click}
+            onClick={() => changeClick()}
+            screenWidth={screenWidth}
+          />
         </HeaderMenu>
       </HeaderWrapper>
     </HeaderContainer>

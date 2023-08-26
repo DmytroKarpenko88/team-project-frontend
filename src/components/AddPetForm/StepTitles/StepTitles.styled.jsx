@@ -5,6 +5,10 @@ import { theme } from 'styles';
 
 export const StepTitlesContainer = styled.ul`
   // margin-bottom: 24px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    text-align: center;
+  }
 `;
 
 export const StepTitlesItems = styled.li`
@@ -38,8 +42,12 @@ export const StepTitlesItems = styled.li`
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-size: 16px;
     min-width: 120px;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.65625; // 26.5px; /* 165.625% */
   }
 `;
 

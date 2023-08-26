@@ -6,6 +6,9 @@ export const ModalContainer = styled(Modal)`
   .modal-content {
     border: none;
     border-radius: 20px;
+    @media screen and (min-width: ${theme.breakpoints.tablet}) {
+      border-radius: 40px;
+    }
   }
 
   .modal-dialog {
@@ -40,46 +43,81 @@ export const CrossBtn = styled.button`
 `;
 
 export const Title = styled.h2`
-  margin-top: 68px;
-
+  margin: 60px 40px 0;
+  max-width: 200px;
   text-align: center;
   font-size: 24px;
   line-height: normal;
   letter-spacing: 0.96px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    margin-top: 60px;
-    font-size: 36px;
-    letter-spacing: 1.44px;
+    max-width: 288px;
+    font-size: 28px;
+    line-height: normal;
+    letter-spacing: -0.28px;
   }
 `;
 
-export const InfoMessage = styled.p`
-  margin-top: 24px;
+export const BtnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 44px;
+  margin-bottom: 60px;
+
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: fill ${theme.transition.duration} ${theme.transition.main};
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    flex-direction: row;
+    gap: 20px;
+  }
+`;
+
+export const BtnCancel = styled.button`
+  display: flex;
+  gap: 8px;
+  border: 2px solid ${theme.colors.blue};
+  background: ${theme.colors.white};
+  border-radius: 40px;
+  width: 256px;
+  height: 40px;
+
+  justify-content: center;
+  align-items: center;
+
+  color: ${theme.colors.blue};
+  font-family: ${theme.fonts.main.semiBold};
   font-size: 16px;
 
   line-height: normal;
   letter-spacing: 0.64px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    margin-top: 52px;
-    font-size: 24px;
-    letter-spacing: 0.96px;
+    width: 165px;
+  }
+
+  &:hover,
+  &:focus {
+    background: ${theme.colors.grBlue2};
+    color: ${theme.colors.white};
+    border: none;
+    svg {
+      fill: ${theme.colors.white};
+    }
   }
 `;
 
-export const ButtonGoToProfile = styled.button`
+export const BtnYes = styled.button`
   display: flex;
-  margin-top: 40px;
-  margin-bottom: 60px;
+  gap: 8px;
+  background: ${theme.colors.blue};
+  border-radius: 40px;
+  width: 256px;
+  height: 40px;
 
-  width: 248px;
-  padding: 8px 28px;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  border-radius: 40px;
-  background: ${theme.colors.blue};
 
   color: ${theme.colors.white};
   font-family: ${theme.fonts.main.semiBold};
@@ -89,18 +127,19 @@ export const ButtonGoToProfile = styled.button`
   letter-spacing: 0.64px;
 
   svg {
-    fill: ${theme.colors.white};
+    stroke: ${theme.colors.white};
   }
 
   &:hover,
   &:focus {
     background: ${theme.colors.grBlue2};
+    color: ${theme.colors.white};
     svg {
-      fill: ${theme.colors.white};
+      stroke: ${theme.colors.white};
     }
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    margin-top: 60px;
+    width: 165px;
   }
 `;

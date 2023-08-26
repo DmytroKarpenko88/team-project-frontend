@@ -9,9 +9,13 @@ export const FirstStepFormList = styled.div`
   justify-content: center;
   align-items: flex-start;
   gap: 12px;
+  margin-bottom: 91px;
 
   margin-top: 24px;
-  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 137px; //20px;;
+  }
 `;
 export const FirstStepFormItemLabel = styled.label`
   padding: 8px 16px;

@@ -1,17 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCurrentUser } from 'redux/auth/auth-operations';
+import { useDispatch } from 'react-redux';
+import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
-import { selectIsRefreshing } from 'redux/auth/auth-selectors';
+import { useAuth } from 'hooks/useAuth';
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from '../pages/AddPet/AddPet';
 
-import ModalApproveAction from './ModalApproveAction';
 import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';
-// import Loader from './Loader/Loader';
+import Loader from './Loader/Loader';
 
 const Register = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const Login = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -21,15 +20,20 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const isRefresh = useSelector(selectIsRefreshing);
+  const { isRefreshing, isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-  }, [dispatch]);
+    dispatch(getUserProfile())
+    // if(isLoggedIn) {
+    //   dispatch(fetchCurrentUser());
+    //   dispatch(getUserProfile())
+    // }
+  }, [dispatch, isLoggedIn ]);
 
   return (
     <>
-      {!isRefresh ? (
+      {!isRefreshing ? (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Main />} />
@@ -60,14 +64,10 @@ export const App = () => {
             />
             <Route path="add-pet" element={<AddPet />} />
             <Route path="icons" element={<IconPage />} />
-            <Route
-              path="modal-approve-action"
-              element={<ModalApproveAction />}
-            />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
-      ) : null}
+      ) : <Loader/>}
     </>
   );
 };

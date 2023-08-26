@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { loginSchema } from 'utils/shemas/AuthSchema';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/auth-operations';
-import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { useAuth } from 'hooks/useAuth';
 
 import {
   MainLogForm,
@@ -12,6 +12,7 @@ import {
   FormField,
   InputForm,
   ErrorMess,
+  SuccessMessage,
   Button,
   ToRegister,
   LinkStyled,
@@ -27,7 +28,7 @@ const initialValues = {
 export default function LoginForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const {isLoggedIn} = useAuth()
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -53,7 +54,7 @@ export default function LoginForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {() => (
+        {({errors, touched}) => (
           <Form>
             <Titel>Login</Titel>
             <FormField>
@@ -63,6 +64,7 @@ export default function LoginForm() {
                 placeholder="Email"
                 autoComplete="on"
               />
+              { !errors.email && touched.email ? (<SuccessMessage>Success, email is valid!</SuccessMessage>) : null }
               <ErrorMess name="email" component="p" />
             </FormField>
 
@@ -76,6 +78,7 @@ export default function LoginForm() {
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIcon /> : <OffIcon />}
               </span>
+              { !errors.password && touched.password? (<SuccessMessage>Success, password is valid!</SuccessMessage>) : null }
               <ErrorMess name="password" component="p" />
             </FormField>
             <div>

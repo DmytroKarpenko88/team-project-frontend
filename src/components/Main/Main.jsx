@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Title,
   Container,
@@ -7,9 +8,11 @@ import {
   ImgDog,
   ImgCat,
 } from './Main.styled';
+
 export default function MainPage() {
   return (
     <>
+
       <Container>
         <Title>Take good care of your small pets</Title>
         <ImagesContainer>
@@ -19,5 +22,6 @@ export default function MainPage() {
         </ImagesContainer>
       </Container>
     </>
+
   );
 }
