@@ -120,15 +120,23 @@ export const SuccessMessage = styled.p`
 export const IconCheck = styled.span`
 position: absolute;
 top: 12px;
-left: 420px;
+left: 220px;
 svg {stroke: ${theme.colors.green};}
+@media (min-width: 768px) {
+    top: 12px;
+    left: 420px;
+  }
 `;
 
 export const IconCross = styled.span`
 position: absolute;
 top: 12px;
-left: 420px;
+left: 220px;
 svg {stroke: ${theme.colors.red};}
+@media (min-width: 768px) {
+    top: 12px;
+    left: 420px;
+  }
 `;
 
 

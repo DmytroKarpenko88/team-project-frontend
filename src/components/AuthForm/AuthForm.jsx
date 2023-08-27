@@ -147,9 +147,11 @@ export default function AuthForm() {
                   autoComplete="off"
                 />
               </InputPasswordWraper>
+
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIconPass /> : <OffIconPass />}
               </span>
+              
               {!errors.password && touched.password ? (
                 <SuccessMessage>Success, password is valid!</SuccessMessage>
               ) : null}
