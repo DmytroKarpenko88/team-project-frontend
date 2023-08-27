@@ -1,90 +1,82 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs';
+import {
+  PaginationContainer,
+  PaginationButton,
+  PaginationNumbers,
+  Wrapper,
+} from './Pagination.styled';
 
-class Pagination extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      displayedPages: [],
-    };
-  }
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const [displayedPages, setDisplayedPages] = useState([]);
 
-  componentDidMount() {
-    this.updatePages(this.props.currentPage);
-  }
+  const updatePages = useCallback(
+    page => {
+      const totalDisplayedPages = 5;
+      const halfTotalDisplayedPages = Math.floor(totalDisplayedPages / 2);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.currentPage !== this.props.currentPage) {
-      this.updatePages(this.props.currentPage);
-    }
-  }
+      let startPage = Math.max(page - halfTotalDisplayedPages, 1);
+      let endPage = Math.min(startPage + totalDisplayedPages - 1, totalPages);
 
-  updatePages(page) {
-    const totalDisplayedPages = 5;
-    const halfTotalDisplayedPages = Math.floor(totalDisplayedPages / 2);
+      if (endPage - startPage < totalDisplayedPages - 1) {
+        startPage = Math.max(endPage - totalDisplayedPages + 1, 1);
+      }
 
-    let startPage = Math.max(page - halfTotalDisplayedPages, 1);
-    let endPage = Math.min(
-      startPage + totalDisplayedPages - 1,
-      this.props.totalPages
-    );
+      const newPages = Array.from(
+        { length: endPage - startPage + 1 },
+        (_, index) => startPage + index
+      );
+      setDisplayedPages(newPages);
+    },
+    [totalPages]
+  );
 
-    if (endPage - startPage < totalDisplayedPages - 1) {
-      startPage = Math.max(endPage - totalDisplayedPages + 1, 1);
-    }
+  useEffect(() => {
+    updatePages(currentPage);
+  }, [currentPage, updatePages]);
 
-    const newPages = Array.from(
-      { length: endPage - startPage + 1 },
-      (_, index) => startPage + index
-    );
-    this.setState({ displayedPages: newPages });
-  }
-
-  handlePageClick = page => {
-    this.props.onPageChange(page);
-    this.updatePages(page);
+  const handlePageClick = page => {
+    onPageChange(page);
+    updatePages(page);
   };
 
-  handlePrevClick = () => {
-    if (this.props.currentPage > 1) {
-      this.props.onPageChange(this.props.currentPage - 1);
-      this.updatePages(this.props.currentPage - 1);
+  const handlePrevClick = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+      updatePages(currentPage - 1);
     }
   };
 
-  handleNextClick = () => {
-    if (this.props.currentPage < this.props.totalPages) {
-      this.props.onPageChange(this.props.currentPage + 1);
-      this.updatePages(this.props.currentPage + 1);
+  const handleNextClick = () => {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+      updatePages(currentPage + 1);
     }
   };
 
-  render() {
-    const { displayedPages } = this.state;
-    const { currentPage } = this.props;
-
-    return (
-      <div>
-        <div>
-          <button onClick={this.handlePrevClick}>
-            <BsArrowLeft />
-          </button>
+  return (
+    <Wrapper>
+      <PaginationContainer>
+        <PaginationButton onClick={handlePrevClick}>
+          <BsArrowLeft />
+        </PaginationButton>
+        <PaginationNumbers>
           {displayedPages.map(page => (
-            <button
+            <PaginationButton
               key={page}
-              onClick={() => this.handlePageClick(page)}
-              className={currentPage === page ? 'active' : ''}
+              onClick={() => handlePageClick(page)}
+              active={currentPage === page}
             >
               {page}
-            </button>
+            </PaginationButton>
           ))}
-          <button onClick={this.handleNextClick}>
-            <BsArrowRight />
-          </button>
-        </div>
-      </div>
-    );
-  }
-}
+        </PaginationNumbers>
+        <PaginationButton onClick={handleNextClick}>
+          <BsArrowRight />
+        </PaginationButton>
+      </PaginationContainer>
+    </Wrapper>
+  );
+};
 
 export default Pagination;
