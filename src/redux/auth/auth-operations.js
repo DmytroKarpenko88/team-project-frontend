@@ -20,8 +20,6 @@ export const register = createAsyncThunk(
     console.log('credential:', credential);
     try {
       const { data } = await axios.post('/api/auth/register', credential);
-      console.log('data:', data);
-
       token.set(data.token);
       return data;
     } catch (error) {
@@ -43,9 +41,10 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk(
   'auth/login',
   async (credential, thunkAPI) => {
-    console.log('credential:', credential);
     try {
       const { data } = await axios.post('/api/auth/login', credential);
+      console.log("login:", data)
+      
       token.set(data.token);
       return data;
     } catch (error) {
@@ -89,6 +88,7 @@ export const fetchCurrentUser = createAsyncThunk(
     try {
       token.set(persistedToken);
       const { data } = await axios.get('/api/users/current');
+      console.log("fetchCurrentUser:", data)
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -96,17 +96,14 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-export const getUserProfile = createAsyncThunk(
-  'auth/user',
-  async (_, thunkAPI) => {
-    try {
-      const { data } = await axios.get('/api/users/profile');
-      console.log('data:', data);
-
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
+export const getUserProfile = createAsyncThunk('auth/user', async (_, thunkAPI) => {
+  try {
+    const {data} = await axios.get('/api/users/profile');
+    console.log("getUserProfile:", data.data.userInfo)
+    
+    return data.data.userInfo;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
 );
 

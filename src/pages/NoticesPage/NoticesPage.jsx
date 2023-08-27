@@ -12,8 +12,10 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { AddPetButton } from 'components/Notices/AddPetButton/AddPetButton';
 import { NoticesFilter } from 'components/Notices/NoticesFilter/NoticesFilter';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-// import { fetchNotices } from 'redux/notices/notices-operations';
-// import { ModalUnautorised } from 'components/ModalUnautorised/ModalUnautorised';
+// import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+// import { selectIsLoading } from 'redux/notices/notices-selectors';
+// import { ModalAttention } from 'components/Modals/ModalAttention/ModalAttention';
+// import Loader from 'components/Loader/Loader';
 // import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
 import {
   // Wrapper,
@@ -36,8 +38,7 @@ function Notices() {
   // useEffect(() => {
   //   if (isLoggedIn) {
   //     // 'get('/notices/user/favorite')'
-  //     // dispatch(fetchAllFavNotices());
-  //     dispatch(fetchNotices);
+  // dispatch(fetchAllFavNotices());
   //   }
   //   if (
   //     categoryName === 'sell' ||
@@ -46,17 +47,17 @@ function Notices() {
   //   ) {
   //     dispatch();
   //     // get(`notices/users/search${category}`)
-  //     // getNoticesByCategory(`?category=${categoryName}&page=${currentPage}`)
+  // getNoticesByCategory(`?category=${categoryName}&page=${currentPage}`)
   //     return;
   //   }
   //   if (categoryName === 'favorite' && isLoggedIn) {
   //     // get(`/notices/user/favorite${params}`)
-  //     // dispatch(getFavNoticesbyCategory(`?page=${currentPage}`));
+  // dispatch(getFavNoticesbyCategory(`?page=${currentPage}`));
   //     return;
   //   }
   //   if (categoryName === 'own' && isLoggedIn) {
   //     // get(`/notices/user/added${data}`)
-  //     // dispatch(getAllOwnNotices(`?page=${currentPage}`));
+  // dispatch(getAllOwnNotices(`?page=${currentPage}`));
   //     return;
   //   }
   // }, [categoryName, dispatch, isLoggedIn, currentPage]);
@@ -80,18 +81,20 @@ function Notices() {
   // };
 
   return (
-    <Container>
-      <Title>Find your favorite pet</Title>
+    <>
+      {/* {isLoading && <Loader />} */}
+      <Container>
+        <Title>Find your favorite pet</Title>
 
-      <NoticeSearch onSubmitNoticeForm={setSearch} />
+        <NoticeSearch onSubmitNoticeForm={setSearch} />
 
-      <Filter>
-        <NoticesCategoriesNav />
+        <Filter>
+          <NoticesCategoriesNav />
 
-        <Boxing>
-          <NoticesFilter />
-          <AddPetButton />
-          {/* {isLoggedIn ? (
+          <Boxing>
+            <NoticesFilter />
+            <AddPetButton />
+            {/* {isLoggedIn ? (
             <AddPetButton path={'/add-pet'} />
           ) : (
             <AddPetButton
@@ -101,17 +104,17 @@ function Notices() {
             />
           )} */}
 
-          {/* {isShowModalUnautorised && (
+            {/* {isShowModalUnautorised && (
             <ModalUnautorised onClose={toggleModalUautorised} />
           )} */}
-        </Boxing>
-      </Filter>
+          </Boxing>
+        </Filter>
 
-      {/* <ScrollToTopButton /> */}
-      <NoticesCategoriesList search={search} />
-      {/* <NoticesCardDetail /> */}
+        {/* <ScrollToTopButton /> */}
+        <NoticesCategoriesList search={search} />
+        {/* <NoticesCardDetail /> */}
 
-      {/* {totalPages > 8 && (
+        {/* {totalPages > 8 && (
         <Pagination
           count={Math.ceil(totalPages / 8)}
           size="large"
@@ -129,8 +132,28 @@ function Notices() {
             marginBottom: '100px',
           }}
         />
-      )} */}
-    </Container>
+
+        <Filter>
+          <NoticesCategoriesNav />
+
+          <Boxing>
+            <NoticesFilter />
+            {isLoggedIn ? (
+              <AddPetButton path="/add-pet" />
+            ) : (
+              <AddPetButton onClick={setIsShowModalAttention} />
+            )}
+            ;
+            {isShowModalAttention && (
+              <ModalAttention onClose={toggleModalUautorised} />
+            )}
+          </Boxing>
+        </Filter>
+
+        {/* <ScrollToTopButton /> */}
+        <NoticesCategoriesList />
+      </Container>
+    </>
   );
 }
 

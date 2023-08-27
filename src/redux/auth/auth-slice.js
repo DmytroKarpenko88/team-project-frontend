@@ -17,8 +17,9 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
-    pets: [],
+    
   },
+  pets: [],
   token: null,
   isLoading: false,
   error: null,
@@ -44,6 +45,7 @@ const authSlice = createSlice({
         state.error = null;
         state.isLoading = false;
         state.isRegistered = true;
+        state.isLoggedIn = true;
       })
 
       .addCase(register.rejected, (state, action) => {
@@ -66,13 +68,14 @@ const authSlice = createSlice({
       })
 
       .addCase(fetchCurrentUser.pending, state => {
+        state.isLoading = true;
         state.isRefreshing = true;
       })
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
+        state.isLoading = false;
         state.isLoggedIn = true;
-        // state.isRegistered = true;
         state.isRefreshing = false;
       })
       .addCase(fetchCurrentUser.rejected, state => {
@@ -84,8 +87,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        // console.log(" action:",  action)
-        state.user = action.payload.data;
+        state.user = action.payload;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
@@ -115,7 +117,7 @@ const authSlice = createSlice({
       })
       .addCase(getUserCurrentNotices.fulfilled, (state, action) => {
         // console.log(" action:",  action)
-        state.user.pets = action.payload;
+        state.pets.push(action.payload);
         state.isLoggedIn = true;
         state.isLoading = false;
       })

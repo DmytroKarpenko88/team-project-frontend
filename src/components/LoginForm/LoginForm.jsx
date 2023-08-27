@@ -13,6 +13,7 @@ import {
   InputEmailWraper,
   InputPasswordWraper,
   InputForm,
+  IconWraper,
   IconCheck,
   IconCross,
   ErrorMess,
@@ -60,7 +61,7 @@ export default function LoginForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({errors, touched}) => (
+        {({values ,errors, touched, resetForm, isSubmitting}) => (
           <Form>
             <Titel>Login</Titel>
             <FormField>
@@ -74,9 +75,11 @@ export default function LoginForm() {
               </InputEmailWraper>
               { !errors.email && touched.email ? (<SuccessMessage>Success, email is valid!</SuccessMessage>) : null }
 
+              <IconWraper>
               { !touched.email ? null : !errors.email ? 
-              <IconCheck ><Check/></IconCheck> :
-               <IconCross ><Cross/></IconCross>}
+              <IconCheck style={{marginLeft: "36px"}}><Check/></IconCheck> :
+               <IconCross style={{marginLeft: "36px"}} id="resetBtn" onClick={()=>{resetForm({ values: { ...values.email, email: '' } })}}><Cross/></IconCross>}
+             </IconWraper>
 
               <ErrorMess name="email" component="p" />
             </FormField>
@@ -90,20 +93,24 @@ export default function LoginForm() {
                 autoComplete="on"
               />
               </InputPasswordWraper>
+              
+              { !errors.password && touched.password? (<SuccessMessage>Success, password is valid!</SuccessMessage>) : null }
+
+              <IconWraper>
+              { !touched.password ? null : !errors.password ? 
+              <IconCheck ><Check/></IconCheck> :
+               <IconCross id="resetBtn" onClick={()=>{resetForm({ values: { ...values.password, password: '' } })}}><Cross/></IconCross>}
+
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIcon /> : <OffIcon />}
               </span>
-              { !errors.password && touched.password? (<SuccessMessage>Success, password is valid!</SuccessMessage>) : null }
-
-              { !touched.password ? null : !errors.password ? 
-              <IconCheck ><Check/></IconCheck> :
-               <IconCross ><Cross/></IconCross>}
+              </IconWraper>
 
 
               <ErrorMess name="password" component="p" />
             </FormField>
             <div>
-              <Button type="submit">Login</Button>
+              <Button type="submit" disabled={isSubmitting}>Login</Button>
             </div>
 
             <ToRegister>
