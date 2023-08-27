@@ -23,6 +23,10 @@ const noticesSlice = createSlice({
         state.items.push(action.payload);
         state.isLoading = false;
         state.error = null;
+      })
+      .addCase(getNoticeById.fulfilled, (state, action) => {
+        console.log(state);
+        console.log(action);
       }),
 });
 
