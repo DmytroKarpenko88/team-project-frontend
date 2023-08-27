@@ -54,7 +54,8 @@ export const PicContainer = styled.div`
   line-height: 130%;
   padding-bottom: 60px;
 `;
-export const Image= styled.img`
+
+export const Image = styled.img`
 display: flex;
 height: 115px;
 content: url('${catmobile}');
@@ -62,7 +63,7 @@ content: url('${catmobile}');
 @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx)
-  height: 360px;
+  /* height: 360px; */
  {  content: url('${catmobile2x}');
 }
 @media screen and (max-width:320px){
@@ -73,18 +74,21 @@ content: url('${catmobile}');
       (min-resolution: 2dppx)
   {content: url('${cattablet2x}');
 }
-}
-export const Image = styled.img`
-  display: flex;
-  height:  120%;
-  content: url('${catmobile}');
+}`;
 
-  @media (min-width: 768px) {
-    height: 360px;
-    content: url('${cattablet}'); }
+
+// export const Image = styled.img`
+//   display: flex;
+//   height:  120%;
+//   content: url('${catmobile}');
+
+//   @media (min-width: 768px) {
+//     height: 360px;
+//     content: url('${cattablet}'); }
   
-`;
-export const Button = styled(Link)`
+// `;
+
+export const Button = styled('')`
   position: relative;
   display: flex;
   justify-content: center;
@@ -101,7 +105,7 @@ export const Button = styled(Link)`
   text-decoration: none;
   svg {
     fill: ${theme.colors.white};
-  }
+  };
 
   &:hover,
   &:focus {

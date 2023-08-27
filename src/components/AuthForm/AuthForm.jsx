@@ -57,8 +57,10 @@ export default function AuthForm() {
     };
    const responsed = await dispatch(register(data));
    console.log(" responsed :",  responsed )
-   
-    // resetForm();
+   if(responsed) {
+    resetForm();
+   }
+    
   };
 
   useEffect(() => {

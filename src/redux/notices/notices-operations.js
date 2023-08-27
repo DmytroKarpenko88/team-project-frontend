@@ -4,9 +4,19 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://team-project-backend-881k.onrender.com';
 
-export const fetchNotices = createAsyncThunk('notices/fetchAll', async (_, thunkAPI) => {
+export const fetchNotices = createAsyncThunk('notices/fetchAll', async ({ category = '' }, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/notices/`);
+      const response = await axios.get(`/api/notices/${category}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  });
+
+  export const fetchNoticeById = createAsyncThunk('notices/fetchOne', async (noticeId, thunkAPI) => {
+    try {
+      // const params = query ? `?${queryString.stringify({ query })}` : '';
+      const response = await axios.get(`/api/notices/${noticeId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
