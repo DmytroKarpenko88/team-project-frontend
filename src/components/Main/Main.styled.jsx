@@ -23,15 +23,11 @@ import dogdesktop2x from '../../images/MainPage/desktop/dogdesktop2x.webp';
 import catdesktop1x from '../../images/MainPage/desktop/catdesktop1x.webp';
 import catdesktop2x from '../../images/MainPage/desktop/catdesktop2x.webp';
 
-
 export const Container = styled.div`
-  position: relative;
   padding-top: 60px;
-
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  width: 320px;
   max-width: 480px;
   min-height: 100vh;
   @media screen and (max-width: 767px) {
@@ -41,7 +37,7 @@ export const Container = styled.div`
       .tablet}) and (max-width: 1279px) {
     padding-top: 80px;
     flex-direction: column;
-    width: 768;
+
     max-width: 780px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
