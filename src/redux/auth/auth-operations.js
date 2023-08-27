@@ -17,7 +17,7 @@ export const register = createAsyncThunk(
   'auth/register',
 
   async (credential, thunkAPI) => {
-    console.log('credential:', credential);
+    // console.log('credential:', credential);
     try {
       const { data } = await axios.post('/api/auth/register', credential);
       token.set(data.token);
@@ -43,8 +43,8 @@ export const login = createAsyncThunk(
   async (credential, thunkAPI) => {
     try {
       const { data } = await axios.post('/api/auth/login', credential);
-      console.log("login:", data)
-      
+      console.log('login:', data);
+
       token.set(data.token);
       return data;
     } catch (error) {
@@ -81,14 +81,14 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log('persistedToken:', persistedToken);
+    // console.log('persistedToken:', persistedToken);
     if (!persistedToken) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
       token.set(persistedToken);
       const { data } = await axios.get('/api/users/current');
-      console.log("fetchCurrentUser:", data)
+      // console.log('fetchCurrentUser:', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -96,14 +96,17 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-export const getUserProfile = createAsyncThunk('auth/user', async (_, thunkAPI) => {
-  try {
-    const {data} = await axios.get('/api/users/profile');
-    console.log("getUserProfile:", data.data.userInfo)
-    
-    return data.data.userInfo;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const getUserProfile = createAsyncThunk(
+  'auth/user',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/api/users/profile');
+      // console.log('getUserProfile:', data.data.userInfo);
+
+      return data.data.userInfo;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 
@@ -130,7 +133,7 @@ export const getUserCurrentNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/api/users/current/notices');
-      console.log('dataCurrentNotices:', data);
+      // console.log('dataCurrentNotices:', data);
 
       return data;
     } catch (error) {
