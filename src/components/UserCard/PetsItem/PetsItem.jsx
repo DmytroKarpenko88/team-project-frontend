@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Trash } from 'components/icons';
 import {
   DeleteBtn,
@@ -6,14 +7,20 @@ import {
   PetInfo,
   PetsCard,
 } from './PetsItem.styled';
+import { ModalDelete } from 'components/Modals';
 
 const PetsItem = () => {
+  const [modalDeleteShow, setModalDeleteShow] = useState(false);
+
+  const closeModal = () => {
+    setModalDeleteShow(prevState => !prevState);
+  };
   return (
     <>
       <PetsCard>
         <PetImage />
         <InfoContainer>
-          <DeleteBtn>
+          <DeleteBtn type="button" onClick={closeModal}>
             <Trash />
           </DeleteBtn>
           <div>
@@ -32,6 +39,12 @@ const PetsItem = () => {
           </div>
         </InfoContainer>
       </PetsCard>
+      {modalDeleteShow && (
+        <ModalDelete
+          show={modalDeleteShow}
+          onHide={() => setModalDeleteShow(false)}
+        />
+      )}
     </>
   );
 };

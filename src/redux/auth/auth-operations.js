@@ -20,8 +20,6 @@ export const register = createAsyncThunk(
     console.log('credential:', credential);
     try {
       const { data } = await axios.post('/api/auth/register', credential);
-      console.log("data:", data)
-    
       token.set(data.token);
       return data;
     } catch (error) {
@@ -43,9 +41,10 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk(
   'auth/login',
   async (credential, thunkAPI) => {
-    console.log("credential:", credential)
     try {
       const { data } = await axios.post('/api/auth/login', credential);
+      console.log("login:", data)
+      
       token.set(data.token);
       return data;
     } catch (error) {
@@ -82,13 +81,14 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log("persistedToken:", persistedToken)
+    console.log('persistedToken:', persistedToken);
     if (!persistedToken) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
       token.set(persistedToken);
       const { data } = await axios.get('/api/users/current');
+      console.log("fetchCurrentUser:", data)
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -99,19 +99,19 @@ export const fetchCurrentUser = createAsyncThunk(
 export const getUserProfile = createAsyncThunk('auth/user', async (_, thunkAPI) => {
   try {
     const {data} = await axios.get('/api/users/profile');
-    console.log("data:", data)
+    console.log("getUserProfile:", data.data.userInfo)
     
-    return data;
+    return data.data.userInfo;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
-});
+);
 
 export const updateUser = createAsyncThunk(
   'auth/update',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/api/users/ubdateProfile', formData);
+      const { data } = await axios.patch('/api/users/updateProfile', formData);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -125,13 +125,16 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-export const getUserCurrentNotices = createAsyncThunk('auth/userCurrentNotices', async (_, thunkAPI) => {
-  try {
-    const {data} = await axios.get('/api/users/current/notices');
-    console.log("dataCurrentNotices:", data)
-    
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const getUserCurrentNotices = createAsyncThunk(
+  'auth/userCurrentNotices',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/api/users/current/notices');
+      console.log('dataCurrentNotices:', data);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);

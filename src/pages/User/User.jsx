@@ -16,10 +16,6 @@ const User = () => {
   const [modalCongratsShow, setModalCongratsShow] = useState(true);
   const isRegistered = useSelector(selectIsRegistered);
 
-  const click = () => {
-    console.log('click');
-  };
-
   return (
     <>
       {isRegistered && modalCongratsShow && (
@@ -38,7 +34,7 @@ const User = () => {
         <div style={{ width: '100%' }}>
           <PetsContainer>
             <Title>My pets:</Title>
-            <AddPetBtn to="/add-pet" onClick={click}>
+            <AddPetBtn to="/add-pet">
               Add Pet <PlusSmall />
             </AddPetBtn>
           </PetsContainer>

@@ -17,8 +17,9 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
-    pets: [],
+    
   },
+  pets: [],
   token: null,
   isLoading: false,
   error: null,
@@ -38,12 +39,13 @@ const authSlice = createSlice({
       })
 
       .addCase(register.fulfilled, (state, action) => {
-        console.log("actionRegister:", action)
+        console.log('actionRegister:', action);
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.error = null;
         state.isLoading = false;
         state.isRegistered = true;
+        state.isLoggedIn = true;
       })
 
       .addCase(register.rejected, (state, action) => {
@@ -66,13 +68,14 @@ const authSlice = createSlice({
       })
 
       .addCase(fetchCurrentUser.pending, state => {
+        state.isLoading = true;
         state.isRefreshing = true;
       })
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
+        state.isLoading = false;
         state.isLoggedIn = true;
-        // state.isRegistered = true;
         state.isRefreshing = false;
       })
       .addCase(fetchCurrentUser.rejected, state => {
@@ -84,8 +87,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        // console.log(" action:",  action)
-        state.user = action.payload.data;
+        state.user = action.payload;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
@@ -98,16 +100,15 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        if (action.payload.token) {
-          state.token = action.payload.token;
-          state.isLoggedIn = true;
-        }
-        state.user = action.payload;
         state.isLoading = false;
+        state.user = {
+          ...state.user,
+          avatarURL: action.payload.data.avatarURL,
+        };
+        state.token = action.payload.token;
       })
-      .addCase(updateUser.rejected, (state, action) => {
+      .addCase(updateUser.rejected, state => {
         state.isLoading = false;
-        state.error = action.payload;
       })
 
       .addCase(getUserCurrentNotices.pending, state => {
@@ -116,17 +117,15 @@ const authSlice = createSlice({
       })
       .addCase(getUserCurrentNotices.fulfilled, (state, action) => {
         // console.log(" action:",  action)
-        state.user.pets = action.payload;
+        state.pets.push(action.payload);
         state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(getUserCurrentNotices.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      })
+      });
   },
 });
 
-
-export const authReducer = authSlice.reducer
-
+export const authReducer = authSlice.reducer;
