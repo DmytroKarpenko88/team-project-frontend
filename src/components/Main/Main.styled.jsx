@@ -28,6 +28,7 @@ export const Container = styled.div`
   display: flex;
   margin-left: auto;
   margin-right: auto;
+
   max-width: 480px;
   min-height: 100vh;
   @media screen and (max-width: 767px) {
@@ -37,7 +38,6 @@ export const Container = styled.div`
       .tablet}) and (max-width: 1279px) {
     padding-top: 80px;
     flex-direction: column;
-
     max-width: 780px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
