@@ -6,8 +6,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
+
   async (credentials, thunkAPI) => {
     const { category = 'sell', ...params } = credentials;
+
     try {
       const response = await axios.get(`/api/notices/${category}?${params}`);
 
@@ -41,6 +43,45 @@ export const addNotice = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeNotice = createAsyncThunk(
+  'notices/removeNotice',
+  async (_id, { rejectWithValue }) => {
+    try {
+      await axios.delete(`/api/notices/notice/${_id}`);
+
+      return { _id };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addFavoriteNotice = createAsyncThunk(
+  'notices/addFavoriteNotice',
+  async (pet, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(`/api/notices/favorite/${pet._id}`);
+
+      return data.result.updatedNotice;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeFavoriteNotice = createAsyncThunk(
+  'notices/removeFavoriteNotice',
+  async (pet, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.delete(`/api/notices/favorite/${pet._id}`);
+
+      return data.result.updatedNotice;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );
