@@ -20,8 +20,6 @@ export const register = createAsyncThunk(
     console.log('credential:', credential);
     try {
       const { data } = await axios.post('/api/auth/register', credential);
-      console.log(" register:", data)
-    
       token.set(data.token);
       return data;
     } catch (error) {
@@ -83,7 +81,7 @@ export const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log("persistedToken:", persistedToken)
+    console.log('persistedToken:', persistedToken);
     if (!persistedToken) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
@@ -107,13 +105,13 @@ export const getUserProfile = createAsyncThunk('auth/user', async (_, thunkAPI) 
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
-});
+);
 
 export const updateUser = createAsyncThunk(
   'auth/update',
   async (formData, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/api/users/ubdateProfile', formData);
+      const { data } = await axios.patch('/api/users/updateProfile', formData);
       token.set(data.token);
       return data;
     } catch (error) {
@@ -127,13 +125,16 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-export const getUserCurrentNotices = createAsyncThunk('auth/userCurrentNotices', async (_, thunkAPI) => {
-  try {
-    const {data} = await axios.get('/api/users/current/notices');
-    console.log("dataCurrentNotices:", data)
-    
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+export const getUserCurrentNotices = createAsyncThunk(
+  'auth/userCurrentNotices',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/api/users/current/notices');
+      console.log('dataCurrentNotices:', data);
+
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
