@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import UserData from 'components/UserCard/UserData/UserData';
 import {
   AddPetBtn,
@@ -11,14 +11,16 @@ import PetsData from 'components/UserCard/PetsData/PetsData';
 import { PlusSmall } from 'components/icons';
 import { selectIsRegistered } from 'redux/auth/auth-selectors';
 import { ModalCongrats } from 'components/Modals';
+import { fetchPets } from 'redux/pets/pets-operations';
 
 const User = () => {
   const [modalCongratsShow, setModalCongratsShow] = useState(true);
   const isRegistered = useSelector(selectIsRegistered);
+  const dispatch = useDispatch();
 
-  const click = () => {
-    console.log('click');
-  };
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
 
   return (
     <>
@@ -38,7 +40,7 @@ const User = () => {
         <div style={{ width: '100%' }}>
           <PetsContainer>
             <Title>My pets:</Title>
-            <AddPetBtn to="/add-pet" onClick={click}>
+            <AddPetBtn to="/add-pet">
               Add Pet <PlusSmall />
             </AddPetBtn>
           </PetsContainer>

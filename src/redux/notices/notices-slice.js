@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchNotices, addNotice, fetchNoticeById } from './notices-operations';
+import { fetchNotices, addNotice, getNoticeById } from './notices-operations';
 
 const noticesInitialState = {
   items: [],
@@ -26,14 +26,16 @@ const noticesSlice = createSlice({
         );
       },
     },
+  
+  
   extraReducers: builder =>
     builder
-    .addCase(fetchNotices.fulfilled, (state, action) => {
+      .addCase(fetchNotices.fulfilled, (state, action) => {
         state.items = action.payload;
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(fetchNoticeById.fulfilled, (state, action) => {
+      .addCase(getNoticeById.fulfilled, (state, action) => {
         state.oneNotice = action.payload;
         state.isLoading = false;
         state.error = null;
@@ -44,7 +46,11 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
-})
+      .addCase(getNoticeById.fulfilled, (state, action) => {
+        console.log(state);
+        console.log(action);
+      }),
+});
 
 export const { filterItems } = noticesSlice.actions;
 

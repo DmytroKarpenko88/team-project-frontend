@@ -23,73 +23,24 @@ import dogdesktop2x from '../../images/MainPage/desktop/dogdesktop2x.webp';
 import catdesktop1x from '../../images/MainPage/desktop/catdesktop1x.webp';
 import catdesktop2x from '../../images/MainPage/desktop/catdesktop2x.webp';
 
-// import BegD1 from '../../images/background/bg-desktop@1x.png';
-// import BegD2 from '../../images/background/bg-desktop@2x.png';
-// import BegM1 from '../../images/background/bg-mobile@1x.png';
-// import BegM2 from '../../images/background/bg-mobile@2x.png';
-// import BegT1 from '../../images/background/bg-tablet@1x.png';
-// import BegT2 from '../../images/background/bg-tablet@2x.png';
-
-// import ImgDx1 from '../../images/MainPage/mp-desktop1x.webp';
-// import ImgDx2 from '../../images/MainPage/mp-desktop2x.webp';
-// import ImgMx1 from '../../images/MainPage/mp-mobile1x.webp';
-// import ImgMx2 from '../../images/MainPage/mp-mobile2x.webp';
-// import ImgTx1 from '../../images/MainPage/mp-tablet1x.webp';
-// import ImgTx2 from '../../images/MainPage/mp-tablet2x.webp';
-
-// export const Container = styled.div`
-//   position: relative;
-//   padding-top: 60px;
-//   background-image: url('${BegM1}');
-//   background-size: cover;
-
-//   @media (min-device-pixel-ratio: 2),
-//     (min-resolution: 192dpi),
-//     (min-resolution: 2dppx) {
-//     background-image: url('${BegM2}');
-//   }
-
-//   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-
-//     background-image: url('${BegT1}');
-//     padding-top: 80px;
-
-//     @media (min-device-pixel-ratio: 2),
-//       (min-resolution: 192dpi),
-//       (min-resolution: 2dppx) {
-//       background-image: url('${BegT2}');
-//     }
-//   }
-
-//   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-
-//     background-image: url('${BegD1}');
-//     padding-top: 188px;
-//     @media (min-device-pixel-ratio: 2),
-//       (min-resolution: 192dpi),
-//       (min-resolution: 2dppx) {
-//       background-image: url('${BegD2}');
-//     }
-//   }
-// `;
-
 export const Container = styled.div`
-  // position: relative;
+  position: relative;
   padding-top: 60px;
 
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  // width: 320px;
+  ${'' /* width: 320px; */}
   max-width: 480px;
   min-height: 100vh;
   @media screen and (max-width: 767px) {
     flex-direction: column;
   }
-  @media screen and (min-width: ${theme.breakpoints.tablet}) and (max-width: 1279px) {
+  @media screen and (min-width: ${theme.breakpoints
+      .tablet}) and (max-width: 1279px) {
     padding-top: 80px;
     flex-direction: column;
-    // width: 768;
+    ${'' /* width: 768; */}
     max-width: 780px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {

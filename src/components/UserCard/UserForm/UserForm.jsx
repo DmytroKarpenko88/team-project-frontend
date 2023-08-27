@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import InputMask from 'react-input-mask';
 import {
   ConfirmWrapper,
   Error,
@@ -22,8 +23,6 @@ import { Camera, Check, Cross } from 'components/icons';
 import { updateUser } from 'redux/auth/auth-operations';
 import { selectIsLoading, selectUser } from 'redux/auth/auth-selectors';
 
-import InputMask from 'react-input-mask';
-
 const UserForm = ({ disabled, setIsFormDisabled }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -31,8 +30,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
 
   const [showConfirm, setShowConfirm] = useState(false);
   const [errorsVisible, setErrorsVisible] = useState(true);
-  const [preview, setPreview] = useState(user.avatarURL);
-  // console.log('preview:', preview);
+  const [preview, setPreview] = useState(user.avatarURL || defaultAvatar);
   const [avatarSelected, setAvatarSelected] = useState(false);
 
   const formatBirthday = value => {
@@ -52,7 +50,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
   };
 
   const initialFormValues = {
-    avatarURL: user?.avatarURL || '',
+    avatarURL: user.avatarURL,
     name: user?.name || '',
     email: user?.email || '',
     birthday: formatBirthday(user?.birthday) || '',
@@ -63,37 +61,17 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
   const formikProps = useFormik({
     initialValues: initialFormValues,
     validationSchema,
-
     onSubmit: values => {
-      // console.log('values:', values);
-      // console.log('onSubmit values:', values);
       if (Object.keys(formikProps.errors).length === 0) {
         const formData = new FormData();
         for (let key in values) {
-          if (key === 'avatarURL') {
-            // console.log('Adding to FormData:', key, values[key]);
-            formData.append(key, values[key], values[key].name);
-          } else {
-            formData.append(key, values[key]);
-          }
+          formData.append(key, values[key]);
         }
-        // console.log('formData:', formData);
         dispatch(updateUser(formData));
         setIsFormDisabled(prevState => !prevState);
       }
     },
   });
-
-  // useEffect(
-  //   () => {
-  //     if (user.avatarURL) {
-  //       console.log('user.avatarURL:', user.avatarURL);
-  //       formikProps.setFieldValue('avatarURL', user.avatarURL);
-  //     }
-  //   },
-  //   // [user.avatarURL, formikProps]
-  //   []
-  // );
 
   useEffect(() => {
     if (loading === false) {

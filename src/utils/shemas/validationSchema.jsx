@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 
-// const phoneRegExp = /^(\+380\d{9})$/;
 const phoneRegExp = /^\+38\(0\d{2}\)\d{3}-\d{2}-\d{2}$/;
 
 const dateRegExp =
