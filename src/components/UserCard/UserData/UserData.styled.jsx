@@ -5,6 +5,8 @@ import { theme } from 'styles';
 const MainContainer = styled.section`
   max-width: 100vw;
   margin-top: 72px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   gap: 46px;
