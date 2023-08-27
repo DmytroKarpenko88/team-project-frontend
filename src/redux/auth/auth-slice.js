@@ -17,8 +17,9 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
-    pets: [],
+    
   },
+  pets: [],
   token: null,
   isLoading: false,
   error: null,
@@ -44,6 +45,7 @@ const authSlice = createSlice({
         state.error = null;
         state.isLoading = false;
         state.isRegistered = true;
+        state.isLoggedIn = true;
       })
 
       .addCase(register.rejected, (state, action) => {
@@ -116,7 +118,7 @@ const authSlice = createSlice({
       })
       .addCase(getUserCurrentNotices.fulfilled, (state, action) => {
         // console.log(" action:",  action)
-        state.user.pets = action.payload;
+        state.pets.push(action.payload);
         state.isLoggedIn = true;
         state.isLoading = false;
       })
