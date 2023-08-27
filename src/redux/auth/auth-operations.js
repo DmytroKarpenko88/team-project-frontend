@@ -88,7 +88,6 @@ export const fetchCurrentUser = createAsyncThunk(
     try {
       token.set(persistedToken);
       const { data } = await axios.get('/api/users/current');
-      // console.log('fetchCurrentUser:', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -101,8 +100,6 @@ export const getUserProfile = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/api/users/profile');
-      // console.log('getUserProfile:', data.data.userInfo);
-
       return data.data.userInfo;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
