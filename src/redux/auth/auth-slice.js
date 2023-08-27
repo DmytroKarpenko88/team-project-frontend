@@ -38,7 +38,7 @@ const authSlice = createSlice({
       })
 
       .addCase(register.fulfilled, (state, action) => {
-        console.log("actionRegister:", action)
+        console.log('actionRegister:', action);
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.error = null;
@@ -98,16 +98,15 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        if (action.payload.token) {
-          state.token = action.payload.token;
-          state.isLoggedIn = true;
-        }
-        state.user = action.payload;
         state.isLoading = false;
+        state.user = {
+          ...state.user,
+          avatarURL: action.payload.data.avatarURL,
+        };
+        state.token = action.payload.token;
       })
-      .addCase(updateUser.rejected, (state, action) => {
+      .addCase(updateUser.rejected, state => {
         state.isLoading = false;
-        state.error = action.payload;
       })
 
       .addCase(getUserCurrentNotices.pending, state => {
@@ -123,10 +122,8 @@ const authSlice = createSlice({
       .addCase(getUserCurrentNotices.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      })
+      });
   },
 });
 
-
-export const authReducer = authSlice.reducer
-
+export const authReducer = authSlice.reducer;
