@@ -5,13 +5,22 @@ import PetsItem from '../PetsItem/PetsItem';
 import { selectPets } from 'redux/pets/pets-selectors';
 
 const PetsList = () => {
-  const pets = useSelector(selectPets);
+  const { data } = useSelector(selectPets);
+  // console.log('pets:', data.pets);
+
   return (
-    <PetsListStyled>
-      {pets.length === 0 && <Title>You didn't add pets yet.</Title>}
-      {pets.length !== 0 &&
-        pets.map(item => <PetsItem key={item._id} pet={item} />)}
-    </PetsListStyled>
+    <>
+      {data && (
+        <PetsListStyled>
+          {data.pets.length === 0 && <Title>You didn't add pets yet.</Title>}
+          {data.pets.length !== 0 &&
+            data.pets.map(item => {
+              // console.log(item);
+              return <PetsItem key={item._id} pet={item} />;
+            })}
+        </PetsListStyled>
+      )}
+    </>
   );
 };
 
