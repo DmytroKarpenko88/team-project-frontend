@@ -1,31 +1,29 @@
-import React from 'react';
-import {Logout} from '../../icons/index';
-import { LogOut,  Text } from './LogoutLink.styled';
-import { useDispatch } from 'react-redux';
-import { logOut } from 'redux/auth/auth-operations';
+import React, { useState } from 'react';
+import { Logout } from '../../icons/index';
+import { LogOut, Text } from './LogoutLink.styled';
+import { ModalApproveAction } from 'components/Modals';
 
+export const LogoutLink = () => {
+  const [modalApproveActionShow, setModalApproveActionShow] = useState(false);
 
-export  const LogoutLink = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const goOut = () => {    
-    dispatch(logOut());
+  const goOut = () => {
+    setModalApproveActionShow(prevState => !prevState);
   };
 
-
   return (
-  <LogOut onClick={goOut}>
-    <Logout />
-    <Text>
-      Logout
-    </Text>
-   </LogOut>
-    
-    
-   
-     
-      
-          
-       
+    <>
+      <LogOut onClick={goOut}>
+        <Text>Logout</Text>
+        <Logout />
+      </LogOut>
+      {modalApproveActionShow && (
+        <ModalApproveAction
+          show={modalApproveActionShow}
+          onHide={() => setModalApproveActionShow(false)}
+        />
       )}
-    
+    </>
+  );
+};

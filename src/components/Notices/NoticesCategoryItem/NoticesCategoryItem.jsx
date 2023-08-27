@@ -10,19 +10,29 @@ import {
   FilterStatus,
   ListPetInfo,
   LocationItem,
+  DeleteNoticeBtn,
   AgeItem,
   SexItem,
   TextItem,
-  BtnBox,
   LoadMoreBtn,
 } from './NoticesCategoryItem.styled';
-import { Heart, Location, Clock, Female, Paw } from 'components/icons';
+import { Heart, Location, Clock, Female, Paw, Trash } from 'components/icons';
+import { ModalDelete, NoticeModal } from 'components/Modals';
+// import { useParams } from 'react-router-dom';
+// import { selectUser } from 'redux/auth/auth-selectors';
 
-export const NoticesCategoryItem = () => {
+export const NoticesCategoryItem = ({ notice }) => {
   const [favorite, setFavorite] = useState(false);
-  // const [showModal, setShowModal] = useState(false);
-  // const [showModalDelete, setShowModalDelete] = useState(false);
+  // const [showIcon, setShowIcon] = useState(false);2
   // const [showAttentionModal, setShowAttentionModal] = useState(false);
+  // const [showModalDelete, setShowModalDelete] = useState(false);
+  // const [showDetailModal, setShowDetailModal] = useState(false);
+  const [noticeModalShow, setNoticeModalShow] = useState(false);
+  const [modalDeleteShow, setModalDeleteShow] = useState(false);
+
+  // const { categoryName } = useParams();
+  // const currentUser = useSelector(selectUser);
+  // const dispatch = useDispatch();
 
   // const handleAddInFavorite = async () => {
   //   try {
@@ -36,15 +46,18 @@ export const NoticesCategoryItem = () => {
   //   } catch (error) {}
   //   console.log('modalattention');
   // };
-  const toggleModal = () => {
-    // setShowModal(!showModal);
-    console.log('modalpet');
+  const toggleNoticeModal = () => {
+    setNoticeModalShow(!noticeModalShow);
+  };
+  const toggleModalDelete = () => {
+    console.log('Delete');
+    setModalDeleteShow(!modalDeleteShow);
   };
 
   return (
     <Item>
       <ImgContainer>
-        <Img onClick={toggleModal} src={cat} alt="pet" />
+        <Img onClick={toggleNoticeModal} src={cat} alt="pet" />
 
         <FilterStatus>
           {/* {categoryFilter(notice.category)} */}
@@ -58,6 +71,10 @@ export const NoticesCategoryItem = () => {
         >
           <Heart />
         </HeartBtn>
+
+        <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
+          <Trash />
+        </DeleteNoticeBtn>
 
         <ListPetInfo>
           <LocationItem>
@@ -77,12 +94,14 @@ export const NoticesCategoryItem = () => {
       </ImgContainer>
       <TextItem>Text</TextItem>
 
-      <BtnBox>
-        <LoadMoreBtn type="button">
-          Learn more
+      <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
+        <span>Learn more</span>
+        <span>
           <Paw />
-        </LoadMoreBtn>
-      </BtnBox>
+        </span>
+      </LoadMoreBtn>
+      <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
+      <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
     </Item>
   );
 };

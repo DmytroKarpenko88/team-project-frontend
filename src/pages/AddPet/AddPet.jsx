@@ -1,12 +1,12 @@
 import React from 'react';
 import AddPetForm from 'components/AddPetForm/AddPetForm';
-import { AddPetDiv } from './AddPet.styled';
+// import { AddPetDiv } from './AddPet.styled';
 
-function AddPet() {
+function AddPet(data) {
   return (
-    <AddPetDiv>
-      <AddPetForm />
-    </AddPetDiv>
+    // <AddPetDiv data={data}>
+    <AddPetForm />
+    // </AddPetDiv>
   );
 }
 

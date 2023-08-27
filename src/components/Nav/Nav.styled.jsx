@@ -35,6 +35,11 @@ export const NavMenu = styled.ul.withConfig({
     transition: 0.1s all ease-in;
     background-color: ${theme.colors.bgColor};
   }
+
+  @media screen and (min-width: 1280px) {
+  margin-right: 140px;
+  flex-direction: row-reverse;
+  }
 `;
 
 export const NavMenuItem = styled.li`
@@ -60,6 +65,8 @@ export const NavMenuItem = styled.li`
       margin-bottom: 20px;
     }
   }
+
+  
 `;
 
 export const NavMenuItemLink = styled(Link)`

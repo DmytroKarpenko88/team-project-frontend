@@ -5,7 +5,6 @@ import cattablet2x from 'images/NotFound/cattablet2x.png';
 import catmobile from 'images/NotFound/catmobile.png';
 import catmobile2x from 'images/NotFound/catmobile2x.png';
 
-
 export const ContainerPg = styled.div`
   width: 100%;
   height: 772px;
@@ -14,17 +13,14 @@ export const ContainerPg = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  
   background-repeat: no-repeat;
   background-position: top -200px left 100px;
-
-  
 `;
 
 export const H1Text = styled.p`
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
@@ -35,30 +31,28 @@ justify-content: center;
   color: #000000;
   padding-bottom: 80px;
 
-  @media (min-width: 320px){
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 42px;
-
-  @media (min-width: 1280px){
+  @media (min-width: 320px) {
     font-weight: 600;
     font-size: 32px;
+    line-height: 42px;
 
-  }
+    @media (min-width: 1280px) {
+      font-weight: 600;
+      font-size: 32px;
+    }
   }
 `;
 
 export const PicContainer = styled.div`
-  
   position: relative;
   //width:280px;
   height: 123px;
-  
+
   align-items: center;
-    display: flex;
-    justify-content: center;
-    line-height: 130%;
-    padding-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  line-height: 130%;
+  padding-bottom: 60px;
 `;
 export const Image= styled.img`
 display: flex;
@@ -80,9 +74,18 @@ content: url('${catmobile}');
   {content: url('${cattablet2x}');
 }
 }
+export const Image = styled.img`
+  display: flex;
+  height:  120%;
+  content: url('${catmobile}');
+
+  @media (min-width: 768px) {
+    height: 360px;
+    content: url('${cattablet}'); }
+  
 `;
-export const Button = styled.button`
-  position:relative;
+export const Button = styled(Link)`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,9 +93,9 @@ export const Button = styled.button`
   width: 248px;
   height: 38px;
   padding: 6px 28px;
-  margin: 50px  auto;
+  margin: 50px auto;
   border-radius: 46px;
-  background-color:#54ADFF;
+  background-color: #54adff;
   color: white;
   font-size: 16px;
   text-decoration: none;

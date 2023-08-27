@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import Modal from 'react-bootstrap/Modal';
 import { theme } from 'styles';
+import { Link } from 'react-router-dom';
 
 export const ModalContainer = styled(Modal)`
   .modal-content {
@@ -91,7 +92,7 @@ export const BtnWrapper = styled.div`
   }
 `;
 
-export const BtnLogin = styled.button`
+export const BtnLogin = styled(Link)`
   display: flex;
 
   width: 240px;
@@ -131,7 +132,7 @@ export const BtnLogin = styled.button`
   }
 `;
 
-export const BtnLogout = styled.button`
+export const BtnLogout = styled(Link)`
   display: flex;
 
   width: 240px;

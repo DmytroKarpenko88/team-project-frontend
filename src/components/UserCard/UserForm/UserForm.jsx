@@ -32,6 +32,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [errorsVisible, setErrorsVisible] = useState(true);
   const [preview, setPreview] = useState(user.avatarURL);
+  // console.log('preview:', preview);
   const [avatarSelected, setAvatarSelected] = useState(false);
 
   const formatBirthday = value => {
@@ -51,7 +52,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
   };
 
   const initialFormValues = {
-    avatarURL: '',
+    avatarURL: user?.avatarURL || '',
     name: user?.name || '',
     email: user?.email || '',
     birthday: formatBirthday(user?.birthday) || '',
@@ -64,30 +65,35 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     validationSchema,
 
     onSubmit: values => {
-      console.log('formikProps.handleSubmit called');
-      console.log('onSubmit values:', values);
+      // console.log('values:', values);
+      // console.log('onSubmit values:', values);
       if (Object.keys(formikProps.errors).length === 0) {
         const formData = new FormData();
         for (let key in values) {
           if (key === 'avatarURL') {
-            console.log('Adding to FormData:', key, values[key]);
+            // console.log('Adding to FormData:', key, values[key]);
             formData.append(key, values[key], values[key].name);
           } else {
             formData.append(key, values[key]);
           }
         }
-        console.log('formData:', formData);
+        // console.log('formData:', formData);
         dispatch(updateUser(formData));
         setIsFormDisabled(prevState => !prevState);
       }
     },
   });
 
-  useEffect(() => {
-    if (user.avatarURL) {
-      formikProps.setFieldValue('avatarURL', user.avatarURL);
-    }
-  }, [user.avatarURL, formikProps]);
+  // useEffect(
+  //   () => {
+  //     if (user.avatarURL) {
+  //       console.log('user.avatarURL:', user.avatarURL);
+  //       formikProps.setFieldValue('avatarURL', user.avatarURL);
+  //     }
+  //   },
+  //   // [user.avatarURL, formikProps]
+  //   []
+  // );
 
   useEffect(() => {
     if (loading === false) {
@@ -113,7 +119,6 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
   }, [disabled, formikProps, user.avatarURL]);
 
   const handleFileInputChange = event => {
-    console.log('handleFileInputChange called');
     const file = event.currentTarget.files[0];
     formikProps.setFieldValue('avatarURL', file);
     setPreview(URL.createObjectURL(file));
@@ -133,10 +138,18 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
         <form onSubmit={formikProps.handleSubmit}>
           <StyledForm>
             <div>
-              {avatarSelected ? (
-                <UserPhoto src={preview} alt="selected avatar" />
+              {avatarSelected && preview ? (
+                <UserPhoto
+                  className="preview"
+                  src={preview}
+                  alt="selected avatar"
+                />
               ) : (
-                <UserPhoto src={defaultAvatar} alt="default avatar" />
+                <UserPhoto
+                  className="defaultAvatar"
+                  src={defaultAvatar}
+                  alt="default avatar"
+                />
               )}
 
               {!disabled && !showConfirm && (

@@ -9,7 +9,14 @@ import {
   FormContainer,
   Titel,
   FormField,
+  InputNameWraper,
+  InputEmailWraper,
+  InputPasswordWraper,
+  // InputConfirmPasswordWraper,
   InputForm,
+  // IconInput,
+  IconCheck,
+  IconCross,
   ErrorMess,
   SuccessMessage,
   Button,
@@ -20,6 +27,8 @@ import {
   OnIconConPass,
   OffIconConPass,
 } from './AuthForm.styled';
+import { theme } from 'styles';
+import { Check, Cross } from 'components/icons';
 
 const initialValues = {
   name: '',
@@ -33,19 +42,20 @@ export default function AuthForm() {
   const [confirmPasswordShow, setConfirmPasswordShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {isRegistered} = useAuth();
+  const { isRegistered } = useAuth();
 
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const toggleConfirmPassword = () => setConfirmPasswordShow(prevState => !prevState);
+  const toggleConfirmPassword = () =>
+    setConfirmPasswordShow(prevState => !prevState);
 
-  const handleSubmit =  (values, { resetForm }) => {
+  const handleSubmit = (values, { resetForm }) => {
     const data = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
     dispatch(register(data));
-    resetForm()
+    resetForm();
   };
 
   useEffect(() => {
@@ -54,7 +64,6 @@ export default function AuthForm() {
     }
   }, [isRegistered, navigate]);
 
-
   return (
     <FormContainer>
       <Formik
@@ -62,63 +71,126 @@ export default function AuthForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({errors, touched}) => (
+        {({ errors, touched, resetForm }) => (
           <Form>
             <Titel>Registration</Titel>
-            <FormField >
-              <InputForm
-                name="name"
-                type="name"
-                placeholder="Name"
-                autoComplete="on"
-                // errors
-                // touched
-              />
-              { !errors.name && touched.name ? (<SuccessMessage>Success, name is valid!</SuccessMessage>) : null }
-            <ErrorMess name="name" component="p" />
-            </FormField>
             <FormField>
-              <InputForm
-                name="email"
-                type="email"
-                placeholder="Email"
-                autoComplete="on"
-                // errors
-                // touched
-              />
-              { !errors.email && touched.email ? (<SuccessMessage>Success, email is valid!</SuccessMessage>) : null }
-              <ErrorMess name="email" component="p" />
+              <InputNameWraper
+                style={{
+                  borderColor: !touched.name
+                    ? `${theme.colors.blue}`
+                    : errors.name
+                    ? `${theme.colors.red}`
+                    : `${theme.colors.green}`,
+                }}
+              >
+                <InputForm
+                  name="name"
+                  type="name"
+                  placeholder="Name"
+                  autoComplete="on"
+                />
+              </InputNameWraper>
+              {!errors.name && touched.name ? (
+                <SuccessMessage>Success, name is valid!</SuccessMessage>
+              ) : null}
+
+              { !touched.name ? null : !errors.name ? 
+              <IconCheck ><Check/></IconCheck> :
+               <IconCross ><Cross/></IconCross>}
+
+              <ErrorMess name="name" component="p" />
             </FormField>
+
             <FormField>
-              <InputForm
-                name="password"
-                type={passwordShow ? 'text' : 'password'}
-                placeholder="Password"
-                autoComplete="off"
-                // errors
-                // touched
-              />
+              <InputEmailWraper
+                style={{
+                  borderColor: !touched.email
+                    ? `${theme.colors.blue}`
+                    : errors.email
+                    ? `${theme.colors.red}`
+                    : `${theme.colors.green}`,
+                }}
+              >
+                <InputForm
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  autoComplete="on"
+                />
+              </InputEmailWraper>
+              {!errors.email && touched.email ? (
+                <SuccessMessage>Success, email is valid!</SuccessMessage>
+              ) : null}
+
+              { !touched.email ? null : !errors.email ? 
+              <IconCheck ><Check/></IconCheck> :
+               <IconCross ><Cross/></IconCross>}
+
+              <ErrorMess name="email" component="p" ></ErrorMess>
+            </FormField>
+
+            <FormField>
+              <InputPasswordWraper
+                style={{
+                  borderColor: !touched.password
+                    ? `${theme.colors.blue}`
+                    : errors.password
+                    ? `${theme.colors.red}`
+                    : `${theme.colors.green}`,
+                }}
+              >
+                <InputForm
+                  name="password"
+                  type={passwordShow ? 'text' : 'password'}
+                  placeholder="Password"
+                  autoComplete="off"
+                />
+              </InputPasswordWraper>
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIconPass /> : <OffIconPass />}
               </span>
-              { !errors.password && touched.password? (<SuccessMessage>Success, password is valid!</SuccessMessage>) : null }
+              {!errors.password && touched.password ? (
+                <SuccessMessage>Success, password is valid!</SuccessMessage>
+              ) : null}
+
+               { !touched.password ? null : !errors.password ? 
+              <IconCheck ><Check/></IconCheck> :
+               <IconCross ><Cross/></IconCross>}
+
               <ErrorMess name="password" component="p" />
             </FormField>
 
             <FormField>
-              <InputForm
-                name="confirmPassword"
-                type={confirmPasswordShow ? 'text' : 'password'}
-                placeholder="Confirm password"
-                autoComplete="off"
-                // errors
-                // touched
-                
-              />
+              <InputPasswordWraper
+                style={{
+                  borderColor: !touched.confirmPassword
+                    ? `${theme.colors.blue}`
+                    : errors.confirmPassword
+                    ? `${theme.colors.red}`
+                    : `${theme.colors.green}`,
+                }}
+              >
+                <InputForm
+                  name="confirmPassword"
+                  type={confirmPasswordShow ? 'text' : 'password'}
+                  placeholder="Confirm password"
+                  autoComplete="off"
+                />
+              </InputPasswordWraper>
               <span id="visibilityBtn" onClick={toggleConfirmPassword}>
                 {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}
               </span>
-              { !errors.confirmPassword && touched.confirmPassword ? (<SuccessMessage>Success, confirm password is valid!</SuccessMessage>) : null }
+              {!errors.confirmPassword && touched.confirmPassword ? (
+                <SuccessMessage>
+                  Success, confirm password is valid!
+                </SuccessMessage>
+              ) : null}
+
+              { !touched.confirmPassword ? null : !errors.confirmPassword ? 
+              <IconCheck ><Check/></IconCheck> :
+               <IconCross ><Cross/></IconCross>}
+
               <ErrorMess name="confirmPassword" component="p" />
             </FormField>
 

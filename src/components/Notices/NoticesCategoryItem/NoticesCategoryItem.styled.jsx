@@ -11,7 +11,7 @@ export const Item = styled.li`
   margin-left: auto;
 
   width: 100%;
-  // height: 456px;
+  height: 456px;
   background-color: ${theme.colors.white};
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
@@ -52,6 +52,7 @@ export const Img = styled.img`
   height: 100%;
   object-fit: cover;
 
+  cursor: pointer;
   // @media screen and (min-width: 768px) {
   //   width: 336px;
   // }
@@ -61,9 +62,7 @@ export const Img = styled.img`
   // }
 `;
 
-export const HeartBtn = styled.button.withConfig({
-  shouldForwardProp: prop => prop !== 'search',
-})`
+export const HeartBtn = styled.button`
   position: absolute;
   top: 12px;
   right: 12px;
@@ -82,14 +81,39 @@ export const HeartBtn = styled.button.withConfig({
 
   border: none;
 
-  .heart.favorite svg {
+  &.heart.favorite svg {
     fill: ${theme.colors.blue};
   }
-  .heart svg:hover,
+
+  &.heart svg:hover,
   svg:focus {
     fill: ${theme.colors.blue};
     stroke: ${theme.colors.blue};
   }
+`;
+
+export const DeleteNoticeBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 68px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: ${theme.colors.blueLight};
+
+  border: none;
+
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+
+    svg {
+      stroke: ${theme.colors.white};
+    }
 `;
 
 export const FilterStatus = styled.div`
@@ -121,6 +145,11 @@ export const ListPetInfo = styled.div`
   justify-content: space-evenly;
   gap: 12px;
 
+  /* svg:focus,
+  svg:hover {
+    stroke: ${theme.colors.blue};
+  } */
+
   @media screen and (min-width: 768px) {
     gap: 24px;
   }
@@ -141,14 +170,23 @@ export const LocationItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: background ${theme.transition.duration} ${theme.transition.main};
+
   cursor: pointer;
 
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
   text-overflow: ellipsis;
 
-  svg:hover {
-    stroke: ${theme.colors.blue};
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+
+    svg {
+      stroke: ${theme.colors.white};
+    }
   }
 `;
 
@@ -163,14 +201,22 @@ export const AgeItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: background ${theme.transition.duration} ${theme.transition.main};
+
   cursor: pointer;
 
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
   text-overflow: ellipsis;
 
-  svg:hover {
-    stroke: ${theme.colors.blue};
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+    svg {
+      stroke: ${theme.colors.white};
+    }
   }
 `;
 
@@ -185,14 +231,22 @@ export const SexItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
+  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: background ${theme.transition.duration} ${theme.transition.main};
+
   cursor: pointer;
 
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
 
-  svg:focus,
-  svg:hover {
-    stroke: ${theme.colors.blue};
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+
+    svg {
+      stroke: ${theme.colors.white};
+    }
   }
 `;
 
@@ -205,9 +259,7 @@ export const TextItem = styled.h2`
   word-break: break-word;
 `;
 
-export const LoadMoreBtn = styled.button``;
-
-export const BtnBox = styled.div`
+export const LoadMoreBtn = styled.button`
   display: flex;
   justify-content: center;
   gap: 12px;
@@ -231,13 +283,21 @@ export const BtnBox = styled.div`
   letter-spacing: 0.64px;
   transition: color 250ms ${theme.transition.main},
     background-color 250ms ${theme.transition.main};
-
+  svg {
+    display: none;
+  }
   &:focus,
   &:hover {
     color: ${theme.colors.white};
     background: ${theme.colors.blue};
   }
   &:hover svg {
+    display: inline-block;
+    fill: ${theme.colors.white};
+  }
+  svg {
     fill: ${theme.colors.white};
   }
 `;
+
+export const Box = styled.div``;

@@ -12,8 +12,10 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { AddPetButton } from 'components/Notices/AddPetButton/AddPetButton';
 import { NoticesFilter } from 'components/Notices/NoticesFilter/NoticesFilter';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-// import { fetchNotices } from 'redux/notices/notices-operations';
-// import { ModalUnautorised } from 'components/ModalUnautorised/ModalUnautorised';
+// import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+// import { selectIsLoading } from 'redux/notices/notices-selectors';
+// import { ModalAttention } from 'components/Modals/ModalAttention/ModalAttention';
+// import Loader from 'components/Loader/Loader';
 // import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
 import {
   // Wrapper,
@@ -24,10 +26,10 @@ import { Container } from 'components/Notices/Container/Container.styled';
 
 function Notices() {
   const [search, setSearch] = useState('');
-  const [isShowModalUnautorised, setIsShowModalUnautorised] = useState(false);
+
+  // const [isShowModalUnautorised, setIsShowModalUnautorised] = useState(false);
   // const [currentPage, setCurrentPage] = useState(1);
 
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
   // const totalPages = useSelector(selectTotalNotice);
 
   // const dispatch = useDispatch();
@@ -36,8 +38,7 @@ function Notices() {
   // useEffect(() => {
   //   if (isLoggedIn) {
   //     // 'get('/notices/user/favorite')'
-  //     // dispatch(fetchAllFavNotices());
-  //     dispatch(fetchNotices);
+  // dispatch(fetchAllFavNotices());
   //   }
   //   if (
   //     categoryName === 'sell' ||
@@ -46,24 +47,21 @@ function Notices() {
   //   ) {
   //     dispatch();
   //     // get(`notices/users/search${category}`)
-  //     // getNoticesByCategory(`?category=${categoryName}&page=${currentPage}`)
+  // getNoticesByCategory(`?category=${categoryName}&page=${currentPage}`)
   //     return;
   //   }
   //   if (categoryName === 'favorite' && isLoggedIn) {
   //     // get(`/notices/user/favorite${params}`)
-  //     // dispatch(getFavNoticesbyCategory(`?page=${currentPage}`));
+  // dispatch(getFavNoticesbyCategory(`?page=${currentPage}`));
   //     return;
   //   }
   //   if (categoryName === 'own' && isLoggedIn) {
   //     // get(`/notices/user/added${data}`)
-  //     // dispatch(getAllOwnNotices(`?page=${currentPage}`));
+  // dispatch(getAllOwnNotices(`?page=${currentPage}`));
   //     return;
   //   }
   // }, [categoryName, dispatch, isLoggedIn, currentPage]);
 
-  const toggleModalUautorised = () => {
-    setIsShowModalUnautorised(!isShowModalUnautorised);
-  };
   // const handleCategoriesChange = option => {
   //   // при зміні фільтраціїБ змінює сторінку пагінації на 1
   //   setCurrentPage(1);
@@ -77,38 +75,46 @@ function Notices() {
   //   // код для отримання нових даних, використання фільтрів тощо
   // };
 
+  // const handleOwnClick = () => {
+  //   // get(`/notices/user/favorite${params}`)
+  //   dispatchEvent(getNoticesByCategory({ query: '', page: ownCurrentPage }));
+  // };
+
   return (
-    <Container>
-      <Title>Find your favorite pet</Title>
+    <>
+      {/* {isLoading && <Loader />} */}
+      <Container>
+        <Title>Find your favorite pet</Title>
 
-      <NoticeSearch onSubmitNoticeForm={setSearch} />
+        <NoticeSearch onSubmitNoticeForm={setSearch} />
 
-      <Filter>
-        <NoticesCategoriesNav />
+        <Filter>
+          <NoticesCategoriesNav />
 
-        <Boxing>
-          <NoticesFilter />
-          <AddPetButton
-            path="/add-pet"
-            toggleModalUautorised={toggleModalUautorised}
-          />
-          {/* {isLoggedIn ? (
-            <AddPetButton path="/add-pet" />
+          <Boxing>
+            <NoticesFilter />
+            <AddPetButton />
+            {/* {isLoggedIn ? (
+            <AddPetButton path={'/add-pet'} />
           ) : (
-            <AddPetButton onClick={setIsShowModalUnautorised(true)} />
-          )}
-          ;
-          {isShowModalUnautorised && (
+            <AddPetButton
+              path={'/add-pet'}
+              isLoggedIn={isLoggedIn}
+              modalAttentionShow={modalAttentionShow}
+            />
+          )} */}
+
+            {/* {isShowModalUnautorised && (
             <ModalUnautorised onClose={toggleModalUautorised} />
           )} */}
-        </Boxing>
-      </Filter>
+          </Boxing>
+        </Filter>
 
-      {/* <ScrollToTopButton /> */}
-      <NoticesCategoriesList search={search} />
-      {/* <NoticesCardDetail /> */}
+        {/* <ScrollToTopButton /> */}
+        <NoticesCategoriesList search={search} />
+        {/* <NoticesCardDetail /> */}
 
-      {/* {totalPages > 8 && (
+        {/* {totalPages > 8 && (
         <Pagination
           count={Math.ceil(totalPages / 8)}
           size="large"
@@ -126,8 +132,28 @@ function Notices() {
             marginBottom: '100px',
           }}
         />
-      )} */}
-    </Container>
+
+        <Filter>
+          <NoticesCategoriesNav />
+
+          <Boxing>
+            <NoticesFilter />
+            {isLoggedIn ? (
+              <AddPetButton path="/add-pet" />
+            ) : (
+              <AddPetButton onClick={setIsShowModalAttention} />
+            )}
+            ;
+            {isShowModalAttention && (
+              <ModalAttention onClose={toggleModalUautorised} />
+            )}
+          </Boxing>
+        </Filter>
+
+        {/* <ScrollToTopButton /> */}
+        <NoticesCategoriesList />
+      </Container>
+    </>
   );
 }
 
