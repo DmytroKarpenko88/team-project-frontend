@@ -169,9 +169,10 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             type="button"
             // text="Next"
             // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
-            clickHandler={nextStep}
+            // clickHandler={nextStep}
+            onClick={nextStep && (() => nextStep(false))}
             filled={false}
-            isDisabled={isDisabled}
+            disabled={isDisabled}
           >
             Next
             {/* {step === 3 ? 'Done' : 'Next'} */}
@@ -183,7 +184,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
           {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
           <AddPetBtnCancel
             type="button"
-            clickHandler={backStep}
+            onClick={backStep}
             // text="Back"
             isLink={false}
           >

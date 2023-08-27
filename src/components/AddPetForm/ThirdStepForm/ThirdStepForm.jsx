@@ -217,8 +217,8 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
             // text="Done"
             // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
             filled={true}
-            clickHandler={submit}
-            isDisabled={isDisabled}
+            onClick={submit && (() => submit(false))}
+            disabled={isDisabled}
           >
             Done
             {/* {step === 3 ? 'Done' : 'Next'} */}
@@ -230,7 +230,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
           {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
           <AddPetBtnCancel
             type="button"
-            clickHandler={backStep}
+            onClick={backStep}
             // text="Back"
             isLink={false}
           >

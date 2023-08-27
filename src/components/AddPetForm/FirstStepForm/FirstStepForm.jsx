@@ -108,11 +108,11 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
         <AddPetBtnItem>
           <AddPetBtnNext
             type="button"
-            isDisabled={isDisabled}
             // text="Next"
             // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
-            clickHandler={nextStep}
+            onClick={nextStep && (() => nextStep(false))}
             filled={false}
+            disabled={isDisabled}
           >
             Next
             {/* {step === 3 ? 'Done' : 'Next'} */}
