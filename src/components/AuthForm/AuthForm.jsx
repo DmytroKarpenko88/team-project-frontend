@@ -49,14 +49,16 @@ export default function AuthForm() {
   const toggleConfirmPassword = () =>
     setConfirmPasswordShow(prevState => !prevState);
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit =async (values, { resetForm, setSubmitting }) => {
     const data = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
-    dispatch(register(data));
-    resetForm();
+   const responsed = await dispatch(register(data));
+   console.log(" responsed :",  responsed )
+   
+    // resetForm();
   };
 
   useEffect(() => {
@@ -72,7 +74,7 @@ export default function AuthForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({values ,errors, touched, resetForm }) => (
+        {({values ,errors, touched, resetForm, isSubmitting }) => (
           <Form>
             <Titel>Registration</Titel>
             <FormField>
@@ -208,7 +210,7 @@ export default function AuthForm() {
             </FormField>
 
             <div>
-              <Button type="submit">Registration</Button>
+              <Button type="submit" disabled={isSubmitting}>Registration</Button>
             </div>
 
             <ToLogin>

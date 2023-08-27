@@ -61,7 +61,7 @@ export default function LoginForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({values ,errors, touched, resetForm}) => (
+        {({values ,errors, touched, resetForm, isSubmitting}) => (
           <Form>
             <Titel>Login</Titel>
             <FormField>
@@ -110,7 +110,7 @@ export default function LoginForm() {
               <ErrorMess name="password" component="p" />
             </FormField>
             <div>
-              <Button type="submit">Login</Button>
+              <Button type="submit" disabled={isSubmitting}>Login</Button>
             </div>
 
             <ToRegister>
