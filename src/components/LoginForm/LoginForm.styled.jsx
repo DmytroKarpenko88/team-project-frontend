@@ -78,19 +78,7 @@ border-radius: 40px;
   };
 `;
 
-export const IconCheck = styled.span`
-position: absolute;
-top: 12px;
-left: 420px;
-svg {stroke: ${theme.colors.green};}
-`;
 
-export const IconCross = styled.span`
-position: absolute;
-top: 12px;
-left: 420px;
-svg {stroke: ${theme.colors.red};}
-`;
 
 export const ErrorMess = styled(ErrorMessage)`
 position: absolute;
@@ -114,30 +102,65 @@ top: 47px;
 };
 `;
 
-export const OnIcon = styled(VisibilityIcon)`
+export const IconWraper = styled.div`
+display: flex;
 position: absolute;
-color: ${theme.colors.blue};
+justify-content: end;
+width: 54px;
 top: 12px;
-left:218px;
-@media screen and (min-width: 768px) {
-  top: 12px;
-    left:420px;
-  };
-@media screen and (min-width: 1281px) {
-  };
+left: 187px;
+@media (min-width: 768px) {
+  width: 60px;
+    top: 12px;
+    left: 383px;
+  }
+`;
+
+export const IconCheck = styled.span`
+margin-right: auto;
+/* position: absolute; */
+/* top: 12px;
+left: 220px; */
+svg {stroke: ${theme.colors.green};}
+@media (min-width: 768px) {
+    top: 12px;
+    left: 420px;
+  }
+`;
+
+export const IconCross = styled.span`
+margin-right: auto;
+/* position: absolute; */
+/* top: 12px;
+left: 220px; */
+svg {stroke: ${theme.colors.red};}
+@media (min-width: 768px) {
+    top: 12px;
+    left: 420px;
+  }
+`;
+
+export const OnIcon = styled(VisibilityIcon)`
+  /* position: absolute; */
+  color: ${theme.colors.blue};
+  /* top: 12px;
+  left: 218px; */
+  @media (min-width: 768px) {
+    top: 12px;
+    left: 420px;
+  }
 `;
 
 export const OffIcon = styled(VisibilityOffIcon)`
-position: absolute;
-color: ${theme.colors.blue};
-top: 12px;
-left:218px;
-@media screen and (min-width: 768px) {
-  top: 12px;
-    left:420px;
-  };
-@media screen and (min-width: 1281px) {
-  };
+  /* position: absolute; */
+  color: ${theme.colors.blue};
+  /* margin-right: 15px; */
+  /* top: 12px;
+  left: 218px; */
+  @media (min-width: 768px) {
+    top: 12px;
+    left: 420px;
+  }
 `;
 
 export const Button = styled.button`

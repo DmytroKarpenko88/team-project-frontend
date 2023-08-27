@@ -44,7 +44,7 @@ export const LinkRegister = styled(NavLink)`
 export const LinkLogin = styled(NavLink)`
   display: block;
   font-family: ${theme.fonts.main.semiBold};
-  padding: 6px 20px;
+  padding: 8px 20px;
   width: 165px;
   height: 40px;
   margin-bottom: 15px;
