@@ -6,6 +6,7 @@ import {
   fetchCurrentUser,
   getUserProfile,
   updateUser,
+  getUserCurrentNotices,
 } from './auth-operations';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
+    pets: [],
   },
   token: null,
   isLoading: false,
@@ -36,6 +38,7 @@ const authSlice = createSlice({
       })
 
       .addCase(register.fulfilled, (state, action) => {
+        console.log("actionRegister:", action)
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.error = null;
@@ -49,41 +52,40 @@ const authSlice = createSlice({
       })
 
       .addCase(login.fulfilled, (state, action) => {
-        console.log("action:", action)
         state.user = action.payload;
         state.token = action.payload.token;
         state.error = null;
         state.isLoggedIn = true;
-        state.isRegistered = false;
       })
 
       .addCase(logOut.fulfilled, (state, action) => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isRegistered = false;
       })
 
       .addCase(fetchCurrentUser.pending, state => {
         state.isRefreshing = true;
       })
-
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-        console.log(" action:",  action)
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.isLoggedIn = true;
+        // state.isRegistered = true;
         state.isRefreshing = false;
       })
-
       .addCase(fetchCurrentUser.rejected, state => {
         state.isRefreshing = false;
       })
+
       .addCase(getUserProfile.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        state.user = action.payload;
+        // console.log(" action:",  action)
+        state.user = action.payload.data;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
@@ -95,7 +97,6 @@ const authSlice = createSlice({
       .addCase(updateUser.pending, state => {
         state.isLoading = true;
       })
-
       .addCase(updateUser.fulfilled, (state, action) => {
         if (action.payload.token) {
           state.token = action.payload.token;
@@ -107,7 +108,22 @@ const authSlice = createSlice({
       .addCase(updateUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
-      });
+      })
+
+      .addCase(getUserCurrentNotices.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getUserCurrentNotices.fulfilled, (state, action) => {
+        // console.log(" action:",  action)
+        state.user.pets = action.payload;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(getUserCurrentNotices.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
   },
 });
 
