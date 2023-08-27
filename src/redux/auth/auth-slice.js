@@ -68,13 +68,14 @@ const authSlice = createSlice({
       })
 
       .addCase(fetchCurrentUser.pending, state => {
+        state.isLoading = true;
         state.isRefreshing = true;
       })
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
+        state.isLoading = false;
         state.isLoggedIn = true;
-        // state.isRegistered = true;
         state.isRefreshing = false;
       })
       .addCase(fetchCurrentUser.rejected, state => {
@@ -86,8 +87,7 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        // console.log(" action:",  action)
-        state.user = action.payload.data;
+        state.user = action.payload;
         state.isLoggedIn = true;
         state.isLoading = false;
       })
