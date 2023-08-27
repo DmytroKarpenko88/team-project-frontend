@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Plus } from 'components/icons';
+import { ArrowLeft, Paw, Plus } from 'components/icons';
 import {
   ThirdStepFormComments,
   ThirdStepFormDiv,
@@ -18,23 +18,98 @@ import {
   ThirdStepSexPhotoDiv,
   // ThirdStepSexTitle,
 } from './ThirdStepForm.styled';
+import {
+  AddPetBtnCancel,
+  AddPetBtnCancelDiv,
+  AddPetBtnItem,
+  AddPetBtnList,
+  AddPetBtnNext,
+} from '../AddPetForm.styled';
+import { validateField } from '../validatePet';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-const ThirdStepForm = ({ data, setData }) => {
+const ThirdStepForm = ({ data, setData, submit, backStep }) => {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [errors, setErrors] = useState({});
+  const [imageValue, setImageValue] = useState('');
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+
+  const isPetPhotoFieldValid = Boolean(!errors.petPhoto && !!data.petPhoto);
+  const isCommentsFieldValid = Boolean(!errors.comments);
+  const isLocationFieldValid = Boolean(!errors.location && !!data.location);
+  const isSexFieldValid = Boolean(!errors.sex && !!data.sex);
+  const isPriceFieldValid = Boolean(!errors.price && !!data.price);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (data.category === 'sell') {
+      setIsDisabled(
+        !(
+          isPetPhotoFieldValid &&
+          isLocationFieldValid &&
+          isSexFieldValid &&
+          isPriceFieldValid &&
+          isCommentsFieldValid
+        )
+      );
+    }
+    if (data.category === 'pet') {
+      setIsDisabled(!(isPetPhotoFieldValid && isCommentsFieldValid));
+    } else {
+      setIsDisabled(
+        !(
+          isPetPhotoFieldValid &&
+          isLocationFieldValid &&
+          isSexFieldValid &&
+          isCommentsFieldValid
+        )
+      );
+    }
+  }, [
+    errors,
+    data.category,
+    isCommentsFieldValid,
+    isLocationFieldValid,
+    isPetPhotoFieldValid,
+    isPriceFieldValid,
+    isSexFieldValid,
+  ]);
+
   const handleChange = e => {
-    const input = e.target.name;
-    const value = e.target.value;
-    setData(prev => ({ ...prev, [input]: value }));
+    // const input = e.target.name;
+    // const value = e.target.value;
+    // setData(prev => ({ ...prev, [input]: value }));
+    const { name, value, type, files } = e.target;
+    const fieldValue = type === 'file' ? files[0] : value;
+
+    setErrors(prevState => ({ ...prevState, [name]: '' }));
+
+    if (type === 'file') {
+      setImageValue(value);
+    }
+
+    setData(prevState => ({
+      ...prevState,
+      [name]: fieldValue,
+    }));
   };
 
-  const focusHandle = e => {};
-
-  const getphotoURL = () => {};
-
   return (
-    <ThirdStepFormDiv>
-      {/* sex for sell lostFond ingood hands*/}
-      <ThirdStepSexPhotoDiv>
-        {/* {data.option !== 'pet' && (
+    <>
+      <ThirdStepFormDiv>
+        {/* sex for sell lostFond ingood hands*/}
+        <ThirdStepSexPhotoDiv>
+          {/* {data.option !== 'pet' && (
           <div>
             <ThirdStepSexTitle>The sex</ThirdStepSexTitle>
             <ThirdStepSexDiv>
@@ -51,38 +126,46 @@ const ThirdStepForm = ({ data, setData }) => {
             </ThirdStepSexDiv>
           </div>
         )} */}
-        {/* --- */}
-        {/* label */}
-        <ThirdStepFormPhotoTitle>
-          {/* Add photo prewiew on 3 stage */}
-          <ThirdStepFormPhotoDiv>Load the pet's image:</ThirdStepFormPhotoDiv>
-          {/* div - svg */}
-          <ThirdStepFormPlus>
-            <Plus />
-            {/* img */}
-            {/* {fileInputRef.current?.files[0] && <img></img>} */}
-            <ThirdStepFormImgPreview
-              src={getphotoURL()}
-              alt="pet preview"
-            ></ThirdStepFormImgPreview>
-            {/* input */}
-            <ThirdStepFormImgInput
-              type="file"
-              alt="pet`s photo"
-              value={data.photo ?? ''}
-              name="photo"
-              onChange={handleChange}
-              onFocus={focusHandle}
-              accept="image/jpeg, image/png, image/webp, image/gif"
-              required
-            />
-          </ThirdStepFormPlus>
-        </ThirdStepFormPhotoTitle>
-      </ThirdStepSexPhotoDiv>
+          {/* --- */}
+          {/* label */}
+          <ThirdStepFormPhotoTitle htmlFor="pet-image" category={data.option}>
+            <ThirdStepFormPhotoDiv>
+              {data.option === 'pet' || viewportWidth < 768
+                ? 'Add photo'
+                : 'Load the pet’s image:'}
+            </ThirdStepFormPhotoDiv>
+            {/* div - svg */}
+            <ThirdStepFormPlus>
+              {/* <Plus /> */}
+              {/* img */}
+              {/* {fileInputRef.current?.files[0] && <img></img>} */}
+              {!data.petPhoto && <Plus width="30" height="30" />}
+              <ThirdStepFormImgPreview
+                src={URL.createObjectURL(data.petPhoto)}
+                alt={data.petPhoto.name}
+                // alt="pet preview"
+              ></ThirdStepFormImgPreview>
+              {/* input */}
+              <ThirdStepFormImgInput
+                type="file"
+                id="pet-image"
+                alt="pet`s photo"
+                // value={data.photo ?? ''}
+                name="petPhoto"
+                onChange={handleChange}
+                // onFocus={focusHandle}
+                value={imageValue}
+                onBlur={() => validateField('petPhoto', data, setErrors)}
+                accept=".jpeg, .png, .webp, .gif"
+                required
+              />
+            </ThirdStepFormPlus>
+          </ThirdStepFormPhotoTitle>
+        </ThirdStepSexPhotoDiv>
 
-      {/* location price for sell lostFond ingood hands*/}
-      <div>
-        {/* {data.option !== 'pet' && (
+        {/* location price for sell lostFond ingood hands*/}
+        <div>
+          {/* {data.option !== 'pet' && (
           <div>
             <ThirdStepFormTitle>
               Location
@@ -105,27 +188,71 @@ const ThirdStepForm = ({ data, setData }) => {
             </ThirdStepFormTitle>
           </div>
         )} */}
-        {/* ----- -------- */}
-        <ThirdStepFormTitle>
-          Comments
-          <ThirdStepFormComments
-            type="text"
-            // value="comments"
-            name="comments"
-            placeholder="Type of pet"
-            onChange={handleChange}
-            onFocus={focusHandle}
-            required
-          />
-        </ThirdStepFormTitle>
-      </div>
-    </ThirdStepFormDiv>
+          {/* ----- -------- */}
+          <>
+            <ThirdStepFormTitle htmlFor="comments">
+              Comments
+              <ThirdStepFormComments
+                type="text"
+                component="textarea"
+                // value="comments"
+                name="comments"
+                placeholder="Type of pet"
+                onChange={handleChange}
+                // onFocus={focusHandle}
+                value={data.comments}
+                onBlur={() => validateField('comments', data, setErrors)}
+                className={errors.comments ? 'invalid' : ''}
+                required
+              />
+            </ThirdStepFormTitle>
+            {!!errors.comments && <ErrorMessage message={errors.comments} />}
+          </>
+        </div>
+      </ThirdStepFormDiv>
+      <AddPetBtnList>
+        <AddPetBtnItem>
+          <AddPetBtnNext
+            type="button"
+            // text="Done"
+            // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
+            filled={true}
+            clickHandler={submit}
+            isDisabled={isDisabled}
+          >
+            Done
+            {/* {step === 3 ? 'Done' : 'Next'} */}
+            <Paw width="24" height="24" fill="#FEF9F9" />
+          </AddPetBtnNext>
+        </AddPetBtnItem>
+
+        <AddPetBtnItem>
+          {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
+          <AddPetBtnCancel
+            type="button"
+            clickHandler={backStep}
+            // text="Back"
+            isLink={false}
+          >
+            {/* <Link to={backPage}> */}
+            <AddPetBtnCancelDiv>
+              <ArrowLeft width="24" height="24" />
+              Back
+              {/* {step === 1 ? 'Cancel' : 'Back'} */}
+            </AddPetBtnCancelDiv>
+            {/* </Link> */}
+          </AddPetBtnCancel>
+        </AddPetBtnItem>
+      </AddPetBtnList>
+    </>
   );
 };
 
 ThirdStepForm.propTypes = {
   data: PropTypes.object.isRequired,
   setData: PropTypes.func.isRequired,
+  backStep: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired,
 };
 
 export default ThirdStepForm;
