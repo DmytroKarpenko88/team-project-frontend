@@ -9,6 +9,7 @@ import {
 const FirstStepForm = ({ data, setData }) => {
   const handleChange = e => {
     const value = e.target.value;
+    console.log("value:", value)
     setData(prev => ({ ...prev, option: value }));
   };
   const { option } = data;

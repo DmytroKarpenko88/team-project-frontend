@@ -55,7 +55,8 @@ const AddPetForm = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (value) => {
+    
     if (!data.option) return;
 
     const newFormData = new FormData();
@@ -104,40 +105,41 @@ const AddPetForm = () => {
 
   return (
     <AddPetDiv data={data} step={step}>
-      <AddPetContainerForm onClick={onClick}>
-        <AddPetFormTitle>{title}</AddPetFormTitle>
-        <StepTitles step={step} />
+      <Formik
+        initialValues={data}
+        validationSchema={validatePetSchema}
+        onSubmit={handleSubmit}
+        validateOnChange={false}
+      >
+        {({}) => (
+          <AddPetContainerForm onClick={onClick}>
+            <AddPetFormTitle>{title}</AddPetFormTitle>
+            <StepTitles step={step} />
+            {getFormBasedOnStep(step, data, setData)}
 
-        <Formik
-          initialValues={data}
-          validationSchema={validatePetSchema}
-          onSubmit={handleSubmit}
-          validateOnChange={false}
-        >
-          {getFormBasedOnStep(step, data, setData)}
-        </Formik>
+            <AddPetBtnList>
+              <AddPetBtnItem>
+                <AddPetBtnNext type="button">
+                  {step === 3 ? 'Done' : 'Next'}
+                  <Paw width="24" height="24" fill="#FEF9F9" />
+                </AddPetBtnNext>
+              </AddPetBtnItem>
 
-        <AddPetBtnList>
-          <AddPetBtnItem>
-            <AddPetBtnNext type="button">
-              {step === 3 ? 'Done' : 'Next'}
-              <Paw width="24" height="24" fill="#FEF9F9" />
-            </AddPetBtnNext>
-          </AddPetBtnItem>
-
-          <AddPetBtnItem>
-            {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-            <AddPetBtnCancel type="button">
-              <Link to={backPage}>
-                <AddPetBtnCancelDiv>
-                  <ArrowLeft width="24" height="24" />
-                  {step === 1 ? 'Cancel' : 'Back'}
-                </AddPetBtnCancelDiv>
-              </Link>
-            </AddPetBtnCancel>
-          </AddPetBtnItem>
-        </AddPetBtnList>
-      </AddPetContainerForm>
+              <AddPetBtnItem>
+                {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
+                <AddPetBtnCancel type="button">
+                  <Link to={backPage}>
+                    <AddPetBtnCancelDiv>
+                      <ArrowLeft width="24" height="24" />
+                      {step === 1 ? 'Cancel' : 'Back'}
+                    </AddPetBtnCancelDiv>
+                  </Link>
+                </AddPetBtnCancel>
+              </AddPetBtnItem>
+            </AddPetBtnList>
+          </AddPetContainerForm>
+        )}
+      </Formik>
     </AddPetDiv>
   );
 };

@@ -49,7 +49,7 @@ export default function AuthForm() {
   const toggleConfirmPassword = () =>
     setConfirmPasswordShow(prevState => !prevState);
 
-  const handleSubmit =async (values, { resetForm, setSubmitting }) => {
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     const data = {
       name: values.name,
       email: values.email,
