@@ -27,6 +27,18 @@ import { Container } from 'components/Notices/Container/Container.styled';
 function Notices() {
   const [search, setSearch] = useState('');
 
+  // fetch(`https://team-project-backend-881k.onrender.com/api/notices`)
+  //   .then(response => {
+  //     console.log(response.json);
+  //     return response.json;
+  //   })
+  //   .then(noticeі => {
+  //     console.log(noticeі);
+  //   })
+  //   .catch(error => {
+  //     console.log(error);
+  //   });
+
   // const [isShowModalUnautorised, setIsShowModalUnautorised] = useState(false);
   // const [currentPage, setCurrentPage] = useState(1);
 
@@ -38,7 +50,7 @@ function Notices() {
   // useEffect(() => {
   //   if (isLoggedIn) {
   //     // 'get('/notices/user/favorite')'
-  // dispatch(fetchAllFavNotices());
+  // dispatch(getAllFavoriteNotices());
   //   }
   //   if (
   //     categoryName === 'sell' ||
@@ -52,7 +64,7 @@ function Notices() {
   //   }
   //   if (categoryName === 'favorite' && isLoggedIn) {
   //     // get(`/notices/user/favorite${params}`)
-  // dispatch(getFavNoticesbyCategory(`?page=${currentPage}`));
+  // dispatch(getFavoriteNoticesbyCategory(`?page=${currentPage}`));
   //     return;
   //   }
   //   if (categoryName === 'own' && isLoggedIn) {
