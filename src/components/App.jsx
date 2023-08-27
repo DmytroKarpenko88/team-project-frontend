@@ -1,7 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchCurrentUser, getUserProfile, getUserCurrentNotices } from 'redux/auth/auth-operations';
+import {
+  fetchCurrentUser,
+  getUserProfile,
+  getUserCurrentNotices,
+} from 'redux/auth/auth-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
 import Main from './Main/Main';
@@ -21,18 +25,18 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing, isLoggedIn, isRegistered } = useAuth();
-  console.log("isRegistered:", isRegistered)
-  console.log("isLoggedIn :", isLoggedIn )
+  // console.log("isRegistered:", isRegistered)
+  // console.log("isLoggedIn :", isLoggedIn )
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    dispatch(getUserProfile())
-    dispatch(getUserCurrentNotices())
+    dispatch(getUserProfile());
+    dispatch(getUserCurrentNotices());
     // if(isLoggedIn) {
     //   dispatch(fetchCurrentUser());
     //   dispatch(getUserProfile())
     // }
-  }, [dispatch, isLoggedIn, isRegistered ]);
+  }, [dispatch, isLoggedIn, isRegistered]);
 
   return (
     <>
@@ -70,7 +74,9 @@ export const App = () => {
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
-      ) : <Loader/>}
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };
