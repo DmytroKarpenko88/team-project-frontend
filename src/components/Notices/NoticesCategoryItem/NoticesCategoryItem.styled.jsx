@@ -62,9 +62,7 @@ export const Img = styled.img`
   // }
 `;
 
-export const HeartBtn = styled.button.withConfig({
-  shouldForwardProp: prop => prop !== 'search',
-})`
+export const HeartBtn = styled.button`
   position: absolute;
   top: 12px;
   right: 12px;
@@ -107,6 +105,15 @@ export const DeleteNoticeBtn = styled.button`
   background-color: ${theme.colors.blueLight};
 
   border: none;
+
+  &:hover,
+  &:focus {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
+
+    svg {
+      stroke: ${theme.colors.white};
+    }
 `;
 
 export const FilterStatus = styled.div`

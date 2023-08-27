@@ -14,27 +14,15 @@ export const AddPetButton = () => {
 
   const [modalAttentionShow, setModalAttentionShow] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  console.log('isLoggedIn:', isLoggedIn);
 
   const toggleModalUautorised = () => {
     setModalAttentionShow(!modalAttentionShow);
   };
 
-  // const onAddPetBtn = e => {
-  //   e.preventDefault();
-  //   if (isLoggedIn) {
-  //     toggleModalUautorised();
-  //     return false;
-  //   }
-  // };
-
   return (
     <>
       {isLoggedIn ? (
-        <Btn
-          to="/add-pet"
-          // onClick={onAddPetBtn}
-        >
+        <Btn to="/add-pet">
           {screenWidth < 768 && <Plus />}
           Add Pet
           {screenWidth >= 768 && <PlusSmall />}
@@ -53,8 +41,3 @@ export const AddPetButton = () => {
     </>
   );
 };
-
-// AddPetButton.propTypes = {
-//   path: PropTypes.string.isRequired,
-//   toggleModalUautorised: PropTypes.func,
-// };
