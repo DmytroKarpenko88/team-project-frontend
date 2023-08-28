@@ -6,7 +6,7 @@ import { selectPets } from 'redux/pets/pets-selectors';
 
 const PetsList = () => {
   const { data } = useSelector(selectPets);
-  // console.log('pets:', data.pets);
+  // console.log('pets:', data);
 
   return (
     <>
