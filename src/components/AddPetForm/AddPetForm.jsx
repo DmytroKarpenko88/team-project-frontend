@@ -111,7 +111,7 @@ const AddPetForm = () => {
         onSubmit={handleSubmit}
         validateOnChange={false}
       >
-        {({}) => (
+        {({values}) => (
           <AddPetContainerForm onClick={onClick}>
             <AddPetFormTitle>{title}</AddPetFormTitle>
             <StepTitles step={step} />

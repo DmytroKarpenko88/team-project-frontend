@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import {
   fetchCurrentUser,
   getUserProfile,
-  getUserCurrentNotices,
 } from 'redux/auth/auth-operations';
+import { getUserCurrentNotices } from 'redux/user/user-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
 import Main from './Main/Main';
