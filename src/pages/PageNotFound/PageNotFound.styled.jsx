@@ -95,7 +95,7 @@ export const Button = styled(Link)`
   text-decoration: none;
   svg {
     fill: ${theme.colors.white};
-  }
+  };
 
   &:hover,
   &:focus {

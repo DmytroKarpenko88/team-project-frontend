@@ -36,6 +36,7 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
     // }));
 
     const value = e.target.value;
+    console.log("value:", value)
     setData(prev => ({ ...prev, option: value }));
 
     console.log('data', data);

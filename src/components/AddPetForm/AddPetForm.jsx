@@ -80,7 +80,7 @@ const AddPetForm = () => {
     setStep(prevState => prevState - 1);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async value => {
     if (!data.option) return;
 
     const newFormData = new FormData();

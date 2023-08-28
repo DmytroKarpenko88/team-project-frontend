@@ -22,25 +22,34 @@ export const fetchNotices = createAsyncThunk(
   }
 );
 
-export const getNoticeById = createAsyncThunk(
-  'notices/getNoticeById',
-  async (_id, thunkAPI) => {
-    try {
-      const { data } = await axios.get(`/api/notices/notice/${_id}`);
+// export const getNoticeById = createAsyncThunk(
+//   'notices/getNoticeById',
+//   async (_id, thunkAPI) => {
+//     try {
+//       const { data } = await axios.get(`/api/notices/notice/${_id}`);
 
-      return data.result;
+//       return data.result;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+  export const getNoticeById = createAsyncThunk('notices/fetchOne', async (noticeId, thunkAPI) => {
+    try {
+      // const params = query ? `?${queryString.stringify({ query })}` : '';
+      const {data} = await axios.get(`/api/notices/${noticeId}`);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
-);
+  });
 
-export const addNotice = createAsyncThunk(
-  'notices/addNotice',
-  async (fields, thunkAPI) => {
+  export const addNotice = createAsyncThunk('notices/addNotice', async (fields, thunkAPI) => {
     try {
-      const response = await axios.post('/api/notices', fields);
-      return response.data;
+      const {data} = await axios.post('/api/notices', fields);
+      console.log("addNotice:", data)
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -51,7 +60,7 @@ export const removeNotice = createAsyncThunk(
   'notices/removeNotice',
   async (_id, { rejectWithValue }) => {
     try {
-      await axios.delete(`/api/notices/notice/${_id}`);
+      await axios.delete(`/api/notices/${_id}`);
 
       return { _id };
     } catch (error) {
@@ -60,11 +69,25 @@ export const removeNotice = createAsyncThunk(
   }
 );
 
+export const filterNotice = createAsyncThunk(
+  'notices/filterNotice',
+  async (category, { rejectWithValue }) => {
+    try {
+     const {data} = await axios.delete(`/api/notices/filter/${category}`);
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addFavoriteNotice = createAsyncThunk(
   'notices/addFavoriteNotice',
-  async (pet, { rejectWithValue }) => {
+  async (notice, { rejectWithValue }) => {
+
     try {
-      const { data } = await axios.post(`/api/notices/favorite/${pet._id}`);
+      const { data } = await axios.post(`/api/notices/favorite/${notice}`);
 
       return data.result.updatedNotice;
     } catch (error) {
@@ -75,9 +98,9 @@ export const addFavoriteNotice = createAsyncThunk(
 
 export const removeFavoriteNotice = createAsyncThunk(
   'notices/removeFavoriteNotice',
-  async (pet, { rejectWithValue }) => {
+  async (petId, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/api/notices/favorite/${pet._id}`);
+      const { data } = await axios.delete(`/api/notices/favorite/${petId}`);
 
       return data.result.updatedNotice;
     } catch (error) {

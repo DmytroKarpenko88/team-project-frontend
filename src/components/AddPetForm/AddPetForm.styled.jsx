@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from 'formik';
 import { theme } from 'styles';
 
 //  --------- AddPetForm
@@ -27,7 +28,7 @@ export const AddPetDiv = styled.div`
   // and (max-width: ${theme.breakpoints.desktop})
 `;
 
-export const AddPetContainerForm = styled.form`
+export const AddPetContainerForm = styled(Form)`
   padding: 20px 8px;
   min-height: 496px;
 
