@@ -25,8 +25,6 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing, isLoggedIn, isRegistered } = useAuth();
-  // console.log("isRegistered:", isRegistered)
-  // console.log("isLoggedIn :", isLoggedIn )
 
   useEffect(() => {
     dispatch(fetchCurrentUser());

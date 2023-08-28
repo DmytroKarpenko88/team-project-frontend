@@ -118,10 +118,12 @@ left: 187px;
 
 export const IconCheck = styled.span`
 margin-right: auto;
-/* position: absolute; */
-/* top: 12px;
-left: 220px; */
-svg {stroke: ${theme.colors.green};}
+svg {
+  stroke: ${theme.colors.green};
+  &:hover {
+    stroke: ${theme.colors.green};
+  };
+}
 @media (min-width: 768px) {
     top: 12px;
     left: 420px;
@@ -130,10 +132,12 @@ svg {stroke: ${theme.colors.green};}
 
 export const IconCross = styled.span`
 margin-right: auto;
-/* position: absolute; */
-/* top: 12px;
-left: 220px; */
-svg {stroke: ${theme.colors.red};}
+svg {
+  stroke: ${theme.colors.red};
+  &:hover {
+    stroke: ${theme.colors.red};
+  };
+}
 @media (min-width: 768px) {
     top: 12px;
     left: 420px;
@@ -141,10 +145,7 @@ svg {stroke: ${theme.colors.red};}
 `;
 
 export const OnIcon = styled(VisibilityIcon)`
-  /* position: absolute; */
   color: ${theme.colors.blue};
-  /* top: 12px;
-  left: 218px; */
   @media (min-width: 768px) {
     top: 12px;
     left: 420px;
@@ -152,11 +153,7 @@ export const OnIcon = styled(VisibilityIcon)`
 `;
 
 export const OffIcon = styled(VisibilityOffIcon)`
-  /* position: absolute; */
   color: ${theme.colors.blue};
-  /* margin-right: 15px; */
-  /* top: 12px;
-  left: 218px; */
   @media (min-width: 768px) {
     top: 12px;
     left: 420px;
