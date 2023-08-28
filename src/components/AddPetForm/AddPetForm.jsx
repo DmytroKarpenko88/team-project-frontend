@@ -55,8 +55,7 @@ const AddPetForm = () => {
     }
   };
 
-  const handleSubmit = async (value) => {
-    
+  const handleSubmit = async value => {
     if (!data.option) return;
 
     const newFormData = new FormData();
@@ -111,7 +110,7 @@ const AddPetForm = () => {
         onSubmit={handleSubmit}
         validateOnChange={false}
       >
-        {({}) => (
+        {() => (
           <AddPetContainerForm onClick={onClick}>
             <AddPetFormTitle>{title}</AddPetFormTitle>
             <StepTitles step={step} />
