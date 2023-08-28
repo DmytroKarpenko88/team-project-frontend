@@ -198,7 +198,7 @@ export const Button = styled.button`
   border-radius: 40px;
   background-color: ${theme.colors.blue};
   &:hover {
-    background-color: ${theme.colors.grBlue};
+    background-color: rgb(121, 189, 253);
   }
   @media (min-width: 768px) {
     margin-top: 30px;

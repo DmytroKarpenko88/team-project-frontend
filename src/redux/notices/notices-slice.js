@@ -12,7 +12,7 @@ import {
 const noticesInitialState = {
   items: [],
   category: 'in good hands',
-  noticeById: {},
+  noticeById: null,
   searchQuery: '',
   isLoading: false,
   error: null,

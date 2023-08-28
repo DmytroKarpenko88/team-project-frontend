@@ -170,9 +170,9 @@ color: ${theme.colors.white};
 border-radius: 40px;
 background-color: ${theme.colors.blue};
 transition: ${theme.transition};
-&:focus,
+
 &:hover {
-    /* background-color: ${theme.colors.green}; */
+    background-color: rgb(121, 189, 253);
 };
 @media screen and (min-width: 768px) {
     margin-top: 28px;
