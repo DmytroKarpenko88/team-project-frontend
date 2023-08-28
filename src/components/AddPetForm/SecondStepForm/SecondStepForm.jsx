@@ -171,7 +171,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
             // clickHandler={nextStep}
             onClick={nextStep && (() => nextStep(false))}
-            filled={false}
+            // filled={false}
             disabled={isDisabled}
           >
             Next
@@ -186,7 +186,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             type="button"
             onClick={backStep}
             // text="Back"
-            isLink={false}
+            // isLink={false}
           >
             {/* <Link to={backPage}> */}
             <AddPetBtnCancelDiv>

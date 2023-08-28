@@ -34,6 +34,7 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
     //   // [name]: value,
     //   option: value,
     // }));
+    console.log('data', data);
 
     const value = e.target.value;
     console.log("value:", value)
@@ -112,7 +113,7 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
             // text="Next"
             // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
             onClick={nextStep && (() => nextStep(false))}
-            filled={false}
+            // filled={false}
             disabled={isDisabled}
           >
             Next
@@ -126,8 +127,8 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
           <AddPetBtnCancel
             type="button"
             // text="Cancel"
-            isLink={true}
-            path={cancel}
+            // isLink={true}
+            to={cancel}
           >
             {/* <Link to={backPage}> */}
             <AddPetBtnCancelDiv>

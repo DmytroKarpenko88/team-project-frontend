@@ -52,7 +52,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   }, []);
 
   useEffect(() => {
-    if (data.category === 'sell') {
+    if (data.option === 'sell') {
       setIsDisabled(
         !(
           isPetPhotoFieldValid &&
@@ -63,7 +63,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         )
       );
     }
-    if (data.category === 'pet') {
+    if (data.option === 'pet') {
       setIsDisabled(!(isPetPhotoFieldValid && isCommentsFieldValid));
     } else {
       setIsDisabled(
@@ -77,7 +77,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
     }
   }, [
     errors,
-    data.category,
+    data.option,
     isCommentsFieldValid,
     isLocationFieldValid,
     isPetPhotoFieldValid,
@@ -128,7 +128,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         )} */}
           {/* --- */}
           {/* label */}
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" category={data.option}>
+          <ThirdStepFormPhotoTitle htmlFor="pet-image" option={data.option}>
             <ThirdStepFormPhotoDiv>
               {data.option === 'pet' || viewportWidth < 768
                 ? 'Add photo'
@@ -140,11 +140,13 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
               {/* img */}
               {/* {fileInputRef.current?.files[0] && <img></img>} */}
               {!data.petPhoto && <Plus width="30" height="30" />}
-              <ThirdStepFormImgPreview
-                src={URL.createObjectURL(data.petPhoto)}
-                alt={data.petPhoto.name}
-                // alt="pet preview"
-              ></ThirdStepFormImgPreview>
+              {!!data.petPhoto && (
+                <ThirdStepFormImgPreview
+                  src={URL.createObjectURL(data.petPhoto)}
+                  alt={data.petPhoto.name}
+                  // alt="pet preview"
+                ></ThirdStepFormImgPreview>
+              )}
               {/* input */}
               <ThirdStepFormImgInput
                 type="file"
@@ -194,7 +196,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
               Comments
               <ThirdStepFormComments
                 type="text"
-                component="textarea"
+                // component="textarea"
                 // value="comments"
                 name="comments"
                 placeholder="Type of pet"
@@ -216,7 +218,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
             type="button"
             // text="Done"
             // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
-            filled={true}
+            // filled={true}
             onClick={submit && (() => submit(false))}
             disabled={isDisabled}
           >
@@ -232,7 +234,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
             type="button"
             onClick={backStep}
             // text="Back"
-            isLink={false}
+            // isLink={false}
           >
             {/* <Link to={backPage}> */}
             <AddPetBtnCancelDiv>
