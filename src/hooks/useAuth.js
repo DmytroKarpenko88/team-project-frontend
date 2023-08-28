@@ -13,13 +13,13 @@ export const useAuth = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
   const user = useSelector(selectUser);
   const userCurrentNotices = useSelector(selectUserCurrentNotices);
-  console.log("userCurrentNotices:", userCurrentNotices)
-  
+  // console.log("userCurrentNotices:", userCurrentNotices)
+
   return {
     isRegistered,
     isLoggedIn,
     isRefreshing,
     user,
-    userCurrentNotices
+    userCurrentNotices,
   };
 };
