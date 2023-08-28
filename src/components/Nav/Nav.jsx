@@ -21,7 +21,7 @@ export const Nav = ({ click, onClick }) => {
   return (
     <NavMenu click={click}>
       {isLoggedIn && (
-        <LogoutButtnMobile>
+        <LogoutButtnMobile onClick={onClick}>
                   <LogoutLink/>
         </LogoutButtnMobile>
                   

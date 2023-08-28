@@ -29,7 +29,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   @media screen and (max-width: 1199px) {
     max-width: 780px;
@@ -47,8 +47,8 @@ export const HeaderMenu = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row-reverse;
-    margin-right: auto;
-    max-width: 950px;
+    // margin-right: auto;
+    max-width: 1000px;
     justify-content: space-between;
     align-items: baseline;
   }

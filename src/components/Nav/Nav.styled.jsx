@@ -37,7 +37,7 @@ export const NavMenu = styled.ul.withConfig({
   }
 
   @media screen and (min-width: 1280px) {
-  margin-right: 140px;
+  margin-right: 244px;
   flex-direction: row-reverse;
   }
 `;
