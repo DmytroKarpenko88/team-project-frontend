@@ -7,6 +7,8 @@ import catmobile2x from 'images/NotFound/catmobile2x.png';
 import { Link } from 'react-router-dom';
 import catdesktop from 'images/NotFound/catdesktop.png';
 import catdesktop2x from 'images/NotFound/catdesktop2x.png';
+
+
 export const ContainerPg = styled.div`
   width: 100%;
   height: 772px;
@@ -33,7 +35,7 @@ export const H1Text = styled.p`
   color: #000000;
   padding-bottom: 80px;
 
-  @media (min-width: 768px) {
+  @media (max-width: 768px) {
     font-weight: 600;
     font-size: 32px;
     line-height: 42px;
