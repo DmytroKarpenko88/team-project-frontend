@@ -4,8 +4,8 @@ import React, {
 } from 'react';
 // import PropTypes from 'prop-types';
 import {
-  // useDispatch,
-  useSelector,
+  useDispatch,
+  // useSelector
 } from 'react-redux';
 import cat from '../../../images/cat.jpg';
 import {
@@ -25,137 +25,139 @@ import {
 import { Heart, Location, Clock, Female, Paw, Trash } from 'components/icons';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
 // import { useParams } from 'react-router-dom';
-import {
-  selectIsLoggedIn,
-  // selectUser
-} from 'redux/auth/auth-selectors';
+import // selectIsLoggedIn,
+// selectUser
+'redux/auth/auth-selectors';
+import { getNoticeById } from 'redux/notices/notices-operations';
 // import { current } from '@reduxjs/toolkit';
 
-export const NoticesCategoryItem = ({ notice }) => {
-  const [favorite, setFavorite] = useState(false);
-  const [showAttentionModal, setShowAttentionModal] = useState(false);
-  const [noticeModalShow, setNoticeModalShow] = useState(false);
-  const [modalDeleteShow, setModalDeleteShow] = useState(false);
+export const NoticesCategoryItem = () =>
+  // { notice }
+  {
+    const [favorite, setFavorite] = useState(false);
+    const [showAttentionModal, setShowAttentionModal] = useState(false);
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const { categoryName } = useParams();
-  // const currentUser = useSelector(selectUser);
-  // const favoriteNotices = useSelector(selectFavoriteNotices);
-  // const dispatch = useDispatch();
+    const [modalDeleteShow, setModalDeleteShow] = useState(false);
 
-  // useEffect(() => {
-  //   const newNotices = favoriteNotices => {
-  //     favoriteNotices.forEach(favoriteNotics => {
-  //       if (favoriteNotices._id === notice._id) {
-  //         setFavorite(true);
-  //       }
-  //     });
-  //   };
-  //   if (isLoggedIn) {
-  //     return newNotices;
-  //   }
-  // }, [isLoggedIn, notice._id]);
+    const [noticeModalShow, setNoticeModalShow] = useState(false);
 
-  // const handleAddInFavorite = async () => {
-  //   try {
-  //     if (currentUser.name === null && currentUser.email === null) {
-  //       setShowAttentionModal(true);
-  //     } else if (isLoggedIn && !favorite) {
-  //       dispatch(addToFavorite(notice._id));
-  //       setFavorite(true);
-  //       alert('Added your favorite');
-  //     } else if (isLoggedIn && favorite && categoryName !== favorite) {
-  //       dispatch(deleteFromFavorite(notice._id));
-  //       setFavorite(false);
-  //       alert('Delete fron favorite');
-  //     }
-  //   } catch (error) {
-  //     setShowAttentionModal(true);
-  //   }
-  // };
+    // const isLoggedIn = useSelector(selectIsLoggedIn);
+    // const { categoryName } = useParams();
+    // const currentUser = useSelector(selectUser);
+    // const favoriteNotices = useSelector(selectFavoriteNotices);
+    const dispatch = useDispatch();
 
-  // const handleDeleteOwnNotice = async () => {};
+    // useEffect(() => {
+    //   const newNotices = favoriteNotices => {
+    //     favoriteNotices.forEach(favoriteNotics => {
+    //       if (favoriteNotices._id === notice._id) {
+    //         setFavorite(true);
+    //       }
+    //     });
+    //   };
+    //   if (isLoggedIn) {
+    //     return newNotices;
+    //   }
+    // }, [isLoggedIn, notice._id]);
 
-  // const callForContact = () => {
-  //   const phoneNumberFormated = notice._owner.phone.replace(/\D/g, '');
-  //   const telLink = `tel:`;
+    // const handleAddInFavorite = async () => {
+    //   try {
+    //     if (currentUser.name === null && currentUser.email === null) {
+    //       setShowAttentionModal(true);
+    //     } else if (isLoggedIn && !favorite) {
+    //       dispatch(addToFavorite(notice._id));
+    //       setFavorite(true);
+    //       alert('Added your favorite');
+    //     } else if (isLoggedIn && favorite && categoryName !== favorite) {
+    //       dispatch(deleteFromFavorite(notice._id));
+    //       setFavorite(false);
+    //       alert('Delete fron favorite');
+    //     }
+    //   } catch (error) {
+    //     setShowAttentionModal(true);
+    //   }
+    // };
 
-  // };
-  const toggleNoticeModal = () => {
-    setNoticeModalShow(!noticeModalShow);
-  };
-  const toggleModalDelete = () => {
-    setModalDeleteShow(!modalDeleteShow);
-  };
+    // const handleDeleteOwnNotice = async () => {};
 
-  const toggleAttentionModal = () => {
-    setShowAttentionModal(!showAttentionModal);
-  };
+    const toggleNoticeModal = () => {
+      setNoticeModalShow(!noticeModalShow);
+      dispatch(getNoticeById('64eb4e07d4adeb20c17af839'));
+    };
+    const toggleModalDelete = () => {
+      setModalDeleteShow(!modalDeleteShow);
+    };
 
-  return (
-    <Item>
-      <ImgContainer>
-        <Img onClick={toggleNoticeModal} src={cat} alt="pet" />
+    const toggleAttentionModal = () => {
+      setShowAttentionModal(!showAttentionModal);
+    };
 
-        <FilterStatus>
-          {/* {categoryFilter(notice._category.title)} */}
-          Filter
-        </FilterStatus>
+    return (
+      <Item>
+        <ImgContainer>
+          <Img onClick={toggleNoticeModal} src={cat} alt="pet" />
 
-        <HeartBtn
-          type="button"
-          className={favorite ? 'heart favorite' : 'heart'}
-          onClick={
-            () => setFavorite(!favorite)
-            // handleAddInFavorite
-          }
-        >
-          <Heart />
-        </HeartBtn>
+          <FilterStatus>
+            {/* {categoryFilter(notice._category.title)} */}
+            Filter
+          </FilterStatus>
 
-        {/* {currentUser.email === notice._owner.email && ( */}
-        <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
-          <Trash />
-        </DeleteNoticeBtn>
-        {/* )} */}
+          <HeartBtn
+            type="button"
+            className={favorite ? 'heart favorite' : 'heart'}
+            onClick={
+              () => setFavorite(!favorite)
+              // handleAddInFavorite
+            }
+          >
+            <Heart />
+          </HeartBtn>
 
-        <ListPetInfo>
-          <LocationItem>
-            <Location />
-            Lviv
-          </LocationItem>
+          {/* {currentUser.email === notice._owner.email && ( */}
+          <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
+            <Trash />
+          </DeleteNoticeBtn>
+          {/* )} */}
 
-          <AgeItem>
-            <Clock />1 year
-          </AgeItem>
+          <ListPetInfo>
+            <LocationItem>
+              <Location />
+              Lviv
+            </LocationItem>
 
-          <SexItem>
-            <Female />
-            female
-          </SexItem>
-        </ListPetInfo>
-      </ImgContainer>
-      <TextItem>
-        Title
-        {/* {notice.title} */}
-      </TextItem>
+            <AgeItem>
+              <Clock />1 year
+            </AgeItem>
 
-      <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
-        <span>Learn more</span>
-        <span>
-          <Paw />
-        </span>
-      </LoadMoreBtn>
+            <SexItem>
+              <Female />
+              female
+            </SexItem>
+          </ListPetInfo>
+        </ImgContainer>
+        <TextItem>
+          Title
+          {/* {notice.title} */}
+        </TextItem>
 
-      {isLoggedIn && (
+        <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
+          <span>Learn more</span>
+          <span>
+            <Paw />
+          </span>
+        </LoadMoreBtn>
+
+        {/* modals */}
         <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
-      )}
-      <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
-      <ModalAttention show={showAttentionModal} onHide={toggleAttentionModal} />
-    </Item>
-  );
-};
+        <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
+        <ModalAttention
+          show={showAttentionModal}
+          onHide={toggleAttentionModal}
+        />
+      </Item>
+    );
+  };
 
-// NoticesCategoryItem.propTypes = {
-//   notice: PropTypes.arrayOf,
-// };
+NoticesCategoryItem.propTypes = {
+  // notice: PropTypes.arrayOf,
+};

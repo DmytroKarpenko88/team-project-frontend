@@ -100,8 +100,7 @@ export const getUserProfile = createAsyncThunk(
   'auth/user',
   async (_, thunkAPI) => {
     try {
-
-      const { data } = await axios.get('/api/users/profile')
+      const { data } = await axios.get('/api/users/profile');
       return data.data.userInfo;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -127,16 +126,4 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-export const getUserCurrentNotices = createAsyncThunk(
-  'auth/userCurrentNotices',
-  async (_, thunkAPI) => {
-    try {
-      const { data } = await axios.get('/api/users/current/notices');
-      // console.log('dataCurrentNotices:', data);
 
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
