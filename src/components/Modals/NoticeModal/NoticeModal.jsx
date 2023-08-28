@@ -20,8 +20,27 @@ import {
 import { Cross, Heart } from 'components/icons';
 import img from 'images/cat.jpg';
 import { theme } from 'styles';
+import { useSelector } from 'react-redux';
+import { selectNoticeById } from 'redux/notices/notices-selectors';
+
+// import { useEffect } from 'react';
 
 export const NoticeModal = props => {
+  const {
+    birthday,
+    describe,
+    location,
+    name,
+    sex,
+    title,
+    type,
+    _owner: { email, phone },
+  } = useSelector(selectNoticeById);
+
+  const cutTitle = title => {
+    return title.length >= 35 ? title.slice(0, 35) + ' ...' : title;
+  };
+
   return (
     <ModalContainer {...props} size="lg" centered={true}>
       <Modal.Body>
@@ -34,36 +53,36 @@ export const NoticeModal = props => {
             <Img src={img} alt="" />
           </ImgBox>
           <div>
-            <Title>Сute dog looking for a home</Title>
+            <Title>{title}</Title>
 
             <Container>
               <Info>
                 <InfoName>Name:</InfoName>
-                <InfoValues>Rich</InfoValues>
+                <InfoValues>{name}</InfoValues>
               </Info>
               <Info>
                 <InfoName>Birthday: </InfoName>
-                <InfoValues>21.09.2020</InfoValues>
+                <InfoValues>{birthday}</InfoValues>
               </Info>
               <Info>
                 <InfoName>Type:</InfoName>
-                <InfoValues>Pomeranian</InfoValues>
+                <InfoValues>{type}</InfoValues>
               </Info>
               <Info>
                 <InfoName>Place:</InfoName>
-                <InfoValues>Lviv</InfoValues>
+                <InfoValues>{location}</InfoValues>
               </Info>
               <Info>
                 <InfoName>The sex:</InfoName>
-                <InfoValues>male</InfoValues>
+                <InfoValues>{sex}</InfoValues>
               </Info>
               <Info>
                 <InfoName>Email:</InfoName>
-                <Contact href="mailto:user@mail.com">user@mail.com</Contact>
+                <Contact href="mailto:user@mail.com">{email}</Contact>
               </Info>
               <Info>
                 <InfoName>Phone:</InfoName>
-                <Contact href="tel:+380971234567">+380971234567</Contact>
+                <Contact href="tel:+380971234567">{phone}</Contact>
               </Info>
             </Container>
           </div>
@@ -73,8 +92,7 @@ export const NoticeModal = props => {
           <span style={{ fontFamily: `${theme.fonts.main.semiBold}` }}>
             Comments:
           </span>
-          Rich would be the perfect addition to an active family that loves to
-          play and go on walks. I bet he would love having a doggy playmate too!
+          {describe}
         </InfoMessage>
 
         <BtnWrapper>
