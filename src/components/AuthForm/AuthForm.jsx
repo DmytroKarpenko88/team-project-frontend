@@ -75,7 +75,7 @@ export default function AuthForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, touched, resetForm, isSubmitting }) => (
+        {({ values, errors, touched, setFieldValue, isSubmitting }) => (
           <Form>
             <Titel>Registration</Titel>
             <FormField>
@@ -109,7 +109,7 @@ export default function AuthForm() {
                     style={{ marginLeft: '36px' }}
                     id="resetBtn"
                     onClick={() => {
-                      resetForm({ values: { ...values.name, name: '' } });
+                      setFieldValue('name', '');
                     }}
                   >
                     <Cross />
@@ -151,7 +151,7 @@ export default function AuthForm() {
                     style={{ marginLeft: '36px' }}
                     id="resetBtn"
                     onClick={() => {
-                      resetForm({ values: { ...values.email, email: '' } });
+                      setFieldValue('email', '');
                     }}
                   >
                     <Cross />
@@ -189,9 +189,7 @@ export default function AuthForm() {
                   <IconCross
                     id="resetBtn"
                     onClick={() => {
-                      resetForm({
-                        values: { ...values.password, password: '' },
-                      });
+                      setFieldValue('password', '');
                     }}
                   >
                     <Cross />
@@ -237,12 +235,7 @@ export default function AuthForm() {
                   <IconCross
                     id="resetBtn"
                     onClick={() => {
-                      resetForm({
-                        values: {
-                          ...values.confirmPassword,
-                          confirmPassword: '',
-                        },
-                      });
+                      setFieldValue('confirmPassword', '');
                     }}
                   >
                     <Cross />
