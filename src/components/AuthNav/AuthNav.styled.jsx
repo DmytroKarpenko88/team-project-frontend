@@ -20,7 +20,6 @@ export const LinkRegister = styled(NavLink)`
   font-family: ${theme.fonts.main.semiBold};
   width: 165px;
   height: 40px;
-  /* padding: 6px 20px; */
   color: ${theme.colors.yellow};
   border: solid 2px ${theme.colors.yellow};
   border-radius: 40px;
@@ -48,7 +47,6 @@ export const LinkLogin = styled(NavLink)`
   justify-content: center;
   align-items: center;
   font-family: ${theme.fonts.main.semiBold};
-  /* padding: 8px 20px; */
   width: 165px;
   height: 40px;
   margin-bottom: 15px;
