@@ -1,33 +1,27 @@
 import React from 'react';
-// import {
-//   selecteNotices,
-//   selectNoticesIsLoading,
-// } from 'redux/notices/notices-selectors';
+import { useSelector } from 'react-redux';
+import { selectAllNotices } from 'redux/notices/notices-selectors';
 import { NoticesCategoryItem } from '../NoticesCategoryItem/NoticesCategoryItem';
-import {
-  NoticeList,
-
-  // Text
-} from './NoticesCategoriesList.styled';
+import { NoticeList, Text } from './NoticesCategoriesList.styled';
 
 export const NoticesCategoriesList = () => {
-  // const notices = useSelector(selecteNotices);
+  const notices = useSelector(selectAllNotices);
+  console.log(notices);
   return (
     <>
-      {/* <NoticeList>
+      <NoticeList>
         {notices.length > 0 ? (
           notices.map(item => (
-            <NoticesCategoryItem 
-            key={item.id} notice={item} />
+            <NoticesCategoryItem key={item._id} notice={item} />
           ))
         ) : (
           <Text>Sorry, we can't find that</Text>
         )}
-      </NoticeList> */}
-
-      <NoticeList>
-        <NoticesCategoryItem />
       </NoticeList>
+
+      {/* <NoticeList>
+        <NoticesCategoryItem />
+      </NoticeList> */}
     </>
   );
 };

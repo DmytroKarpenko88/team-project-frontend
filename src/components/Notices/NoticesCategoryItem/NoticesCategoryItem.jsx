@@ -2,7 +2,7 @@ import React, {
   // useEffect,
   useState,
 } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   // useDispatch,
   useSelector,
@@ -76,6 +76,11 @@ export const NoticesCategoryItem = ({ notice }) => {
 
   // const handleDeleteOwnNotice = async () => {};
 
+  // const callForContact = () => {
+  //   const phoneNumberFormated = notice._owner.phone.replace(/\D/g, '');
+  //   const telLink = `tel:`;
+
+  // };
   const toggleNoticeModal = () => {
     setNoticeModalShow(!noticeModalShow);
   };
@@ -151,6 +156,6 @@ export const NoticesCategoryItem = ({ notice }) => {
   );
 };
 
-NoticesCategoryItem.propTypes = {
-  notice: PropTypes.arrayOf,
-};
+// NoticesCategoryItem.propTypes = {
+//   notice: PropTypes.arrayOf,
+// };
