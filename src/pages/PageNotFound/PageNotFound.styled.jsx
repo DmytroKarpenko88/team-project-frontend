@@ -5,6 +5,9 @@ import cattablet2x from 'images/NotFound/cattablet2x.png';
 import catmobile from 'images/NotFound/catmobile.png';
 import catmobile2x from 'images/NotFound/catmobile2x.png';
 import { Link } from 'react-router-dom';
+import catdesktop from 'images/NotFound/catdesktop.png';
+import catdesktop2x from 'images/NotFound/catdesktop2x.png';
+
 
 export const ContainerPg = styled.div`
   width: 100%;
@@ -32,7 +35,7 @@ export const H1Text = styled.p`
   color: #000000;
   padding-bottom: 80px;
 
-  @media (min-width: 320px) {
+  @media (max-width: 768px) {
     font-weight: 600;
     font-size: 32px;
     line-height: 42px;
@@ -45,8 +48,8 @@ export const H1Text = styled.p`
 `;
 
 export const PicContainer = styled.div`
-  position: relative;
-  //width:280px;
+  //position: relative;
+ 
   height: 123px;
 
   align-items: center;
@@ -54,11 +57,16 @@ export const PicContainer = styled.div`
   justify-content: center;
   line-height: 130%;
   padding-bottom: 60px;
+
+  @media screen and (min-width: 768px) {
+
+  }
 `;
 
 export const Image = styled.img`
   display: flex;
   height: 115px;
+
   content: url('${catmobile}');
 
   @media (min-device-pixel-ratio: 2),
@@ -66,20 +74,30 @@ export const Image = styled.img`
     (min-resolution: 2dppx) {
     content: url('${catmobile2x}');
   }
-  /* height: 360px; */
-  @media screen and (max-width: 320px) {
+  @media screen and (min-width:768px)  {
+    width: 704px;
+    bottom: 112px;
+    right: 410px;
+    height: 308px; 
     content: url('${cattablet}');
 
-    @media (min-device-pixel-ratio: 2),
+     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dpi) {
       content: url('${cattablet2x}');
-    }
+    } 
   }
+  @media screen and (min-width: 1200px){
+    content: url('${catdesktop}');
+    @media (min-devise-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dpi) {
+      content: url('${catdesktop2x}');
+      }
 `;
 
 export const Button = styled(Link)`
-  position: relative;
+  //position: relative;
   display: flex;
   justify-content: center;
   align-items: center;

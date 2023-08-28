@@ -1,8 +1,9 @@
 import React, {
+  useEffect,
   useState,
   // useEffect
 } from 'react';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   // useSelector,
   useDispatch,
@@ -21,35 +22,41 @@ import { fetchNotices } from 'redux/notices/notices-operations';
 // import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
+import { getUserCurrentNotices } from 'redux/user/user-operations';
 
 function Notices() {
   const [search, setSearch] = useState('');
   // const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
-  // const { categoryName } = useParams();
-  dispatch(fetchNotices());
+  const { categoryName } = useParams();
+
   // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     return ;
-  //   }
-  // if (
-  //   categoryName === 'sell' ||
-  //   categoryName === 'lost-found' ||
-  //   categoryName === 'in-good-handls'
-  // ) {
-  //   return dispatch(fetchNotices(`?category=${categoryName})`));
-  // }
-  //   if (categoryName === 'favorite' && isLoggedIn) {
-  //     // get(`/notices/user/favorite${params}`)
-  // dispatch(getFavoriteNoticesbyCategory(`?page=${currentPage}`));
-  //     return;
-  // //   }
-  //   if (categoryName === 'own' && isLoggedIn) {
-  //     // get(`/notices/user/added${data}`)
-  // dispatch(getAllOwnNotices(`?page=${currentPage}`));
-  //     return;
-  //   }
-  // }, [categoryName, dispatch, isLoggedIn]);
+  //   dispatch(fetchNotices());
+  // }, [dispatch]);
+
+  useEffect(() => {
+    //   if (isLoggedIn) {
+    //     return ;
+    //   }
+    if (
+      categoryName === 'sell' ||
+      categoryName === 'lost-found' ||
+      categoryName === 'in-good-handls'
+    ) {
+      dispatch(fetchNotices(`${categoryName},${search})`));
+      // dispatch(getUserCurrentNotices());
+    }
+    //   if (categoryName === 'favorite' && isLoggedIn) {
+    //     // get(`/notices/user/favorite${params}`)
+    // dispatch(getFavoriteNoticesbyCategory(`?page=${currentPage}`));
+    //     return;
+    // //   }
+    //   if (categoryName === 'own' && isLoggedIn) {
+    //     // get(`/notices/user/added${data}`)
+    // dispatch(getAllOwnNotices(`?page=${currentPage}`));
+    //     return;
+    //   }
+  }, [categoryName, dispatch]);
 
   // const handleCategoriesChange = option => {
   //   // при зміні фільтраціїБ змінює сторінку пагінації на 1
