@@ -35,7 +35,10 @@ const petsSlice = createSlice({
       .addCase(deletePet.fulfilled, (state, { payload }) => {
         state.isLoading = false;
         state.error = null;
-        state.pets = state.pets.filter(pet => pet._id !== payload.item._id);
+        // state.pets = state.pets.filter(pet => pet._id !== payload.item._id);
+        if (Array.isArray(state.pets)) {
+          state.pets = state.pets.filter(pet => pet._id !== payload.item._id);
+        }
       })
       .addCase(fetchPets.pending, handlePending)
       .addCase(addPet.pending, handlePending)

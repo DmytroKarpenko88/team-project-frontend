@@ -6,7 +6,6 @@ import { selectPets } from 'redux/pets/pets-selectors';
 
 const PetsList = () => {
   const { data } = useSelector(selectPets);
-  // console.log('pets:', data);
 
   return (
     <>
@@ -15,7 +14,6 @@ const PetsList = () => {
           {data.pets.length === 0 && <Title>You didn't add pets yet.</Title>}
           {data.pets.length !== 0 &&
             data.pets.map(item => {
-              // console.log(item);
               return <PetsItem key={item._id} pet={item} />;
             })}
         </PetsListStyled>
