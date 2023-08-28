@@ -2,7 +2,7 @@ import React, {
   // useEffect,
   useState,
 } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import {
   // useDispatch,
   useSelector,
@@ -31,7 +31,9 @@ import {
 } from 'redux/auth/auth-selectors';
 // import { current } from '@reduxjs/toolkit';
 
-export const NoticesCategoryItem = ({ notice }) => {
+export const NoticesCategoryItem = (
+  // { notice }
+  ) => {
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
   const [noticeModalShow, setNoticeModalShow] = useState(false);
@@ -152,5 +154,5 @@ export const NoticesCategoryItem = ({ notice }) => {
 };
 
 NoticesCategoryItem.propTypes = {
-  notice: PropTypes.arrayOf,
+  // notice: PropTypes.arrayOf,
 };
