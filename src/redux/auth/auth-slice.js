@@ -40,7 +40,7 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         console.log('actionRegister:', action);
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.user.token;
         state.error = null;
         state.isLoading = false;
         state.isRegistered = true;
