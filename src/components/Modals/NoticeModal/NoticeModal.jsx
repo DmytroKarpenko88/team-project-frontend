@@ -27,9 +27,17 @@ import { selectNoticeById } from 'redux/notices/notices-selectors';
 
 export const NoticeModal = props => {
   const noticeById = useSelector(selectNoticeById);
-  const { birthday, describe, location, name, sex, title, type, _owner } =
-    noticeById;
-  console.log('noticeById:', noticeById);
+  const {
+    birthday,
+    describe,
+    location,
+    name,
+    sex,
+    title,
+    type,
+
+    // _owner: { email, phone },
+  } = noticeById;
 
   return (
     <>
@@ -71,7 +79,7 @@ export const NoticeModal = props => {
                   <Info>
                     <InfoName>Email:</InfoName>
                     <Contact href="mailto:user@mail.com">
-                      {/* {_owner.email} */}
+                      {/* {email} */}
                     </Contact>
                   </Info>
                   <Info>
