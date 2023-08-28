@@ -49,7 +49,7 @@ export default function AuthForm() {
   const toggleConfirmPassword = () =>
     setConfirmPasswordShow(prevState => !prevState);
 
-  const handleSubmit =async (values, { resetForm, setSubmitting }) => {
+  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
     const data = {
       name: values.name,
       email: values.email,
@@ -57,8 +57,10 @@ export default function AuthForm() {
     };
    const responsed = await dispatch(register(data));
    console.log(" responsed :",  responsed )
-   
-    // resetForm();
+   if(responsed) {
+    resetForm();
+   }
+    
   };
 
   useEffect(() => {

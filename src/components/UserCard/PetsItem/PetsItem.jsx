@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { Trash } from 'components/icons';
 import {
@@ -8,33 +9,41 @@ import {
   PetsCard,
 } from './PetsItem.styled';
 import { ModalDelete } from 'components/Modals';
+import { deletePet } from 'redux/pets/pets-operations';
 
-const PetsItem = () => {
+const PetsItem = ({ pet }) => {
+  const dispatch = useDispatch();
+  const { name, birthday, type, petURL, describe } = pet;
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
 
   const closeModal = () => {
     setModalDeleteShow(prevState => !prevState);
   };
+
+  const approveAction = () => {
+    dispatch(deletePet(pet._id));
+    setModalDeleteShow(prevState => !prevState);
+  };
   return (
     <>
       <PetsCard>
-        <PetImage />
+        <PetImage src={petURL} alt={name} />
         <InfoContainer>
           <DeleteBtn type="button" onClick={closeModal}>
             <Trash />
           </DeleteBtn>
           <div>
             <PetInfo>
-              <b>Name:</b>
+              <b>Name: {name}</b>
             </PetInfo>
             <PetInfo>
-              <b>Date of birth:</b>
+              <b>Date of birth: {birthday}</b>
             </PetInfo>
             <PetInfo>
-              <b>Type:</b>
+              <b>Type: {type}</b>
             </PetInfo>
             <PetInfo>
-              <b>Comments:</b>
+              <b>Comments: {describe}</b>
             </PetInfo>
           </div>
         </InfoContainer>
@@ -43,6 +52,7 @@ const PetsItem = () => {
         <ModalDelete
           show={modalDeleteShow}
           onHide={() => setModalDeleteShow(false)}
+          handleDelete={approveAction}
         />
       )}
     </>

@@ -3,17 +3,19 @@ import styled from 'styled-components';
 import { theme } from 'styles';
 
 const MainContainer = styled.section`
-  max-width: 100vw;
   margin-top: 72px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   gap: 46px;
+  margin-left: auto;
+  margin-right: auto;
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row;
     gap: 32px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 1280px;
   }
 `;
 

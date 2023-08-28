@@ -7,7 +7,7 @@ export const AuthNav = () => {
   return (
    
         <Auth>
-          <LinkLogin to="/login" ><Text>Log IN <Paw/></Text></LinkLogin>
+          <LinkLogin to="/login" ><Text>Log IN </Text><Paw/></LinkLogin>
           <LinkRegister to="/register"><Text>Registration</Text></LinkRegister>
         </Auth>
       )}

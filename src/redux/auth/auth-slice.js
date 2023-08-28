@@ -6,7 +6,7 @@ import {
   fetchCurrentUser,
   getUserProfile,
   updateUser,
-  getUserCurrentNotices,
+  
 } from './auth-operations';
 
 const initialState = {
@@ -17,7 +17,6 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
-    
   },
   pets: [],
   token: null,
@@ -101,6 +100,7 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.isLoggedIn = true;
         state.user = {
           ...state.user,
           avatarURL: action.payload.data.avatarURL,
@@ -110,21 +110,6 @@ const authSlice = createSlice({
       .addCase(updateUser.rejected, state => {
         state.isLoading = false;
       })
-
-      .addCase(getUserCurrentNotices.pending, state => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(getUserCurrentNotices.fulfilled, (state, action) => {
-        // console.log(" action:",  action)
-        state.pets.push(action.payload);
-        state.isLoggedIn = true;
-        state.isLoading = false;
-      })
-      .addCase(getUserCurrentNotices.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
   },
 });
 
