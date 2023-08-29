@@ -5,7 +5,7 @@ import React, {
 // import PropTypes from 'prop-types';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
-import cat from '../../../images/cat.jpg';
+// import cat from '../../../images/cat.jpg';
 import {
   Item,
   ImgContainer,
@@ -115,7 +115,7 @@ export const NoticesCategoryItem = ({ notice }) => {
   return (
     <Item>
       <ImgContainer>
-        <Img onClick={toggleNoticeModal} src={cat} alt="pet" />
+        <Img onClick={toggleNoticeModal} src={notice.petURL} alt="pet" />
 
         {notice.category.title ? (
           <FilterStatus>{notice.category.title}</FilterStatus>
