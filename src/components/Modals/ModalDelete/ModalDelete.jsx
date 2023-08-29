@@ -30,7 +30,7 @@ export const ModalDelete = props => {
             <span>Cancel</span>
           </BtnCancel>
 
-          <BtnYes onClick={props.handleDelete}>
+          <BtnYes onClick={props.onHandleDelete}>
             <span>Yes</span>
             <span>
               <Trash />
