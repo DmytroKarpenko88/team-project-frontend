@@ -16,7 +16,7 @@ export const fetchNotices = createAsyncThunk(
         `/api/notices/filter/${category}?${params}`
       );
 
-      console.log('data:', data);
+      // console.log('data:', data);
 
       return data;
     } catch (error) {

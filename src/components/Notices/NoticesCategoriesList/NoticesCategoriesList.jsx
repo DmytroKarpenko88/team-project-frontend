@@ -6,7 +6,7 @@ import { NoticeList, Text } from './NoticesCategoriesList.styled';
 
 export const NoticesCategoriesList = () => {
   const notices = useSelector(selectAllNotices);
-  console.log(notices);
+  // console.log(notices);
   return (
     <>
       <NoticeList>

@@ -15,7 +15,8 @@ import { fetchNotices } from 'redux/notices/notices-operations';
 // import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
-// import { getUserCurrentNotices } from 'redux/user/user-operations';
+import { getUserCurrentNotices } from 'redux/user/user-operations';
+// import { addUserCurrentFavorite } from 'redux/user/user-operations';
 
 function Notices() {
   const [search, setSearch] = useState('');
@@ -23,7 +24,10 @@ function Notices() {
   const dispatch = useDispatch();
   const { categoryName } = useParams();
 
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
+  // useEffect(() => {
+  //   dispatch(addUserCurrentFavorite());
+  // }, [dispatch]);
 
   useEffect(() => {
     if (
@@ -38,12 +42,12 @@ function Notices() {
     // dispatch(getFavoriteNoticesbyCategory());
     //     return;
     // //   }
-    //   if (categoryName === 'own' && isLoggedIn) {
-    //     // get(`/notices/user/added${data}`)
-    // dispatch(getAllOwnNotices());
-    //     return;
-    //   }
-  }, [categoryName, dispatch, search]);
+    if (categoryName === 'own' && isLoggedIn) {
+      // get(`/notices/user/added${data}`)
+      dispatch(getUserCurrentNotices());
+      return;
+    }
+  }, [categoryName, dispatch, isLoggedIn, search]);
 
   // const handleCategoriesChange = option => {
   //   // при зміні фільтраціїБ змінює сторінку пагінації на 1

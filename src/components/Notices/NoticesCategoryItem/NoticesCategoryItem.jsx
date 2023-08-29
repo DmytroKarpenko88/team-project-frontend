@@ -44,9 +44,10 @@ export const NoticesCategoryItem = ({ notice }) => {
   // const isLoggedIn = useSelector(selectIsLoggedIn);
   // const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
-  // const favoriteNotices = useSelector(selectFavoriteNotices);
+
   const dispatch = useDispatch();
-  console.log(notice);
+  // console.log(notice);
+  // console.log(notice.category);
 
   // useEffect(() => {
   //   const newNotices = favoriteNotices => {
@@ -68,12 +69,11 @@ export const NoticesCategoryItem = ({ notice }) => {
   //     } else if (isLoggedIn && !favorite) {
   //       dispatch(addToFavorite(notice._id));
   //       setFavorite(true);
-  // Notify.success('Added your favorite');
+  //       Notify.success('Added your favorite');
   //     } else if (isLoggedIn && favorite && categoryName !== favorite) {
   //       dispatch(deleteFromFavorite(notice._id));
   //       setFavorite(false);
-  // Notify.success('Deleted from favorite');
-  //
+  //       Notify.success('Deleted from favorite');
   //     }
   //   } catch (error) {
   //     setShowAttentionModal(true);
@@ -140,7 +140,6 @@ export const NoticesCategoryItem = ({ notice }) => {
         </ListPetInfo>
       </ImgContainer>
       <TextItem>{notice.title}</TextItem>
-
       <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
         <span>Learn more</span>
         <span>
@@ -149,9 +148,19 @@ export const NoticesCategoryItem = ({ notice }) => {
       </LoadMoreBtn>
 
       {/* modals */}
-      <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
-      <ModalDelete show={modalDeleteShow} onHide={toggleNoticeModal} />
-      <ModalAttention show={showAttentionModal} onHide={toggleAttentionModal} />
+      {noticeModalShow && (
+        <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
+      )}
+
+      {modalDeleteShow && (
+        <ModalDelete show={modalDeleteShow} onHide={toggleNoticeModal} />
+      )}
+      {showAttentionModal && (
+        <ModalAttention
+          show={showAttentionModal}
+          onHide={toggleAttentionModal}
+        />
+      )}
     </Item>
   );
 };

@@ -9,11 +9,18 @@ margin-bottom: 40px;
 
 @media (min-width: 768px) {
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;
     flex-wrap: wrap;
-    gap: 32px;
+    align-items: center;
+  justify-content: center;
+    // gap: 32px;
+    // flex-basis: calc((100% - 64px) / 2);
+    margin-left: -32px;
   }
 
+  @media (min-width: 1280px) {
+    margiт-left: -16px;
+  }
 `;
 
 export const Text = styled.p`
