@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Search, Cross } from 'components/icons';
 import { Form, Input, Button, ClearBtn } from './NoticeSearch.styled';
 // import { useDispatch } from 'react-redux';
-// import { useLocation, useParams } from 'react-router-dom';
+import {
+  // useLocation,
+  useParams,
+} from 'react-router-dom';
 
 export const NoticeSearch = ({ onSubmitNoticeForm }) => {
   const [search, setSearch] = useState('');
   // const dispatch = useDispatch();
   // const location = useLocation();
   // const locationIsLoginUser = location.pathname.split('/')[2];
-  // const { categoryName } = useParams();
+  const { categoryName } = useParams();
+  console.log(categoryName);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -18,20 +23,16 @@ export const NoticeSearch = ({ onSubmitNoticeForm }) => {
       .toLowerCase()
       .trim();
     onSubmitNoticeForm(searchQuery);
-    // if (searchQuery === '') {
-    //   alert('Please enter something');
-    //   return;
-    // }
-    // if (locationIsLoginUser === 'own') {
-    //   dispatch(getNoticesByOwn({ searchQuery }));
-    // } else if (locationIsLoginUser === 'favorite') {
-    //   dispatch(getNoticesAllFavorite({ searchQuery }));
+    if (searchQuery === '') {
+      Notify.warning('Please enter something');
+      return;
+    }
+    // if (categoryName === 'own') {
+    //   dispatch(getNoticesById(${category}, ${ searchQuery }));
+    // } else if (categoryName === 'favorite') {
+    //   dispatch(getNoticesAllFavorite(${category}, ${ searchQuery }));
     // } else if (category) {
-    //   dispatch(
-    //     getNoticeByCategory({
-    //       category: categoryName,
-    //       query: searchQuery,
-    //     })
+    //   dispatch(fetchNotices(${category}, ${ searchQuery }))
     //   );
     // }
   };

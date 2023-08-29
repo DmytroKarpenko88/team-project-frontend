@@ -18,10 +18,6 @@ export const NoticesCategoriesList = () => {
           <Text>Sorry, we can't find that</Text>
         )}
       </NoticeList>
-
-      {/* <NoticeList>
-        <NoticesCategoryItem />
-      </NoticeList> */}
     </>
   );
 };

@@ -252,7 +252,7 @@ export const SexItem = styled.div`
 
 export const TextItem = styled.h2`
   font-size: 24px;
-  width: 231px;
+  min- width: 231px;
   font-weight: ${theme.fonts.main.bold};
 
   padding: 20px;
@@ -264,8 +264,9 @@ export const LoadMoreBtn = styled.button`
   justify-content: center;
   gap: 12px;
   align-items: center;
+  padding: 0 16px;
   background-color: ${theme.colors.white};
-  width: 248px;
+  min-width: 248px;
   height: 40px;
   outline: none;
   border-width: 1px;
@@ -274,7 +275,7 @@ export const LoadMoreBtn = styled.button`
   border-radius: 40px;
   color: ${theme.colors.blue};
   cursor: pointer;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 
   font-size: 16px;
   font-style: normal;
