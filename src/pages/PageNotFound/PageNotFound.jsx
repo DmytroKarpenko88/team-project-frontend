@@ -13,7 +13,7 @@ const PageNotFound = () => {
     <>
       <ContainerPg>
         <H1Text>
-          Oops! <br /> This page not found...
+          Ooops! <br /> This page not found:(  
         </H1Text>
         <PicContainer>
           <Image alt="not found" />
