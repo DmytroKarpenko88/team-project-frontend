@@ -33,9 +33,9 @@ function Notices() {
     if (
       categoryName === 'sell' ||
       categoryName === 'lost-found' ||
-      categoryName === 'in-good-handls'
+      categoryName === 'in-good-hands'
     ) {
-      dispatch(fetchNotices(`${categoryName},${search})`));
+      dispatch(fetchNotices({ categoryName, search }));
     }
     //   if (categoryName === 'favorite' && isLoggedIn) {
     //     // get(`/notices/user/favorite${params}`)
