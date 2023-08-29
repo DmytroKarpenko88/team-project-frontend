@@ -5,7 +5,7 @@ import { theme } from 'styles';
 export const Auth = styled.div`
   @media (min-width: 768px) {
     display: flex;
-    margin-right: 24px;
+    // margin-right: 24px;
   }
 
   @media screen and (min-width: 1279px) {
