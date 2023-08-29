@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
 export const Filter = styled.div`
   display: flex;
-  // align-items: flex-start;
+  align-items: flex-start;
   justify-content: space-between;
 
   margin-bottom: 24px;
@@ -30,13 +30,13 @@ export const Filter = styled.div`
     align-items: center;
     gap: 0;
 
-    width: 100%;
+    // width: 100%;
   }
 `;
 
 export const Boxing = styled.div`
   display: flex;
-  align-items: center;
+  align-items: centre;
   justify-content: center;
   gap: 12px;
 
