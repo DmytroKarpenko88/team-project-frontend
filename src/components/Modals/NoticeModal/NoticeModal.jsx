@@ -21,12 +21,17 @@ import { Cross, Heart } from 'components/icons';
 import img from 'images/cat.jpg';
 import { theme } from 'styles';
 import { useSelector } from 'react-redux';
-import { selectNoticeById } from 'redux/notices/notices-selectors';
-
+import { selectNoticeById, selectNoticesIsLoading } from 'redux/notices/notices-selectors';
+import Loader from 'components/Loader/Loader';
 // import { useEffect } from 'react';
 
 export const NoticeModal = props => {
   const noticeById = useSelector(selectNoticeById);
+  const isLoading = useSelector(selectNoticesIsLoading);
+  console.log("isLoading :", isLoading )
+  
+  console.log("noticeById:", noticeById)
+  
   const {
     birthday,
     describe,
@@ -36,12 +41,12 @@ export const NoticeModal = props => {
     title,
     type,
 
-    // _owner: { email, phone },
+    _owner: { email, phone },
   } = noticeById;
 
   return (
     <>
-      {noticeById && (
+      {!isLoading ? (
         <ModalContainer {...props} size="lg" centered={true}>
           <Modal.Body>
             <CrossBtn onClick={props.onHide}>
@@ -111,7 +116,8 @@ export const NoticeModal = props => {
             </BtnWrapper>
           </Modal.Body>
         </ModalContainer>
-      )}
+      )
+      : <Loader/>}
     </>
   );
 };

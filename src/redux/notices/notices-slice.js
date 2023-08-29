@@ -12,7 +12,7 @@ import {
 const noticesInitialState = {
   items: [],
   category: 'in good hands',
-  noticeById: null,
+  noticeById: {},
   searchQuery: '',
   isLoading: false,
   error: null,
@@ -42,10 +42,19 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
+      .addCase(getNoticeById.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
       .addCase(getNoticeById.fulfilled, (state, action) => {
+        console.log("action:", action)
         state.noticeById = action.payload;
         state.isLoading = false;
         state.error = null;
+      })
+      .addCase(getNoticeById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       })
       .addCase(addNotice.fulfilled, (state, action) => {
         console.log('action:', action);
