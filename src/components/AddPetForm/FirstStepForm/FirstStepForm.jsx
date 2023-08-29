@@ -25,24 +25,23 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
   // console.log(isDisabled);
 
   const handleChange = e => {
-    // const { name, value } = e.target;
+    const { name, value } = e.target;
     // const value = e.target.value;
     // const name = e.target.name;
 
-    // setData(prevState => ({
-    //   ...prevState,
-    //   // [name]: value,
-    //   option: value,
-    // }));
-    console.log('data', data);
+    setData(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+    // console.log('data', data);
 
-    const value = e.target.value;
-    console.log("value:", value)
-    setData(prev => ({ ...prev, option: value }));
+    // const value = e.target.value;
+    // console.log("value:", value)
+    // setData(prev => ({ ...prev, option: value }));
 
-    console.log('data', data);
-    console.log('data.option', data.option);
-    console.log('value:', value);
+    // console.log('data', data);
+    // console.log('data.option', data.option);
+    // console.log('value:', value);
   };
 
   // const handleChange = e => {
