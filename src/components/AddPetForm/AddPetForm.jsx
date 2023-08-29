@@ -25,6 +25,7 @@ import ThirdStepForm from './ThirdStepForm/ThirdStepForm';
 import { selectIsLoading } from 'redux/auth/auth-selectors';
 import { selectNoticesIsLoading } from 'redux/notices/notices-selectors';
 import { ModalAddPet } from 'components/Modals';
+import { addPet } from 'redux/pets/pets-operations';
 
 const AddPetForm = () => {
   const location = useLocation();
@@ -37,7 +38,7 @@ const AddPetForm = () => {
 
   const [step, setStep] = useState(1);
   const [data, setData] = useState({
-    option: 'pet', //pet
+    option: '', //pet
     name: '',
     title: '',
     birthday: '',
@@ -55,23 +56,6 @@ const AddPetForm = () => {
     setIsModalOpen(prevState => !prevState);
   };
 
-  // const onClick = e => {
-  //   const btn = e.target.innerHTML;
-
-  //   if (btn.includes('Next')) {
-  //     if (step === 1) return setStep(2);
-  //     if (step === 2) return setStep(3);
-  //   } else if (btn.includes('Done')) {
-  //     e.preventDefault();
-  //     // server request
-  //     return;
-  //   } else if (btn.includes('Back')) {
-  //     return setStep(prev => prev - 1);
-  //   } else {
-  //     return;
-  //   }
-  // };
-
   const handleNextClick = e => {
     setStep(prevState => prevState + 1);
   };
@@ -80,7 +64,7 @@ const AddPetForm = () => {
     setStep(prevState => prevState - 1);
   };
 
-  const handleSubmit = async value => {
+  const handleSubmit = async () => {
     if (!data.option) return;
 
     const newFormData = new FormData();
@@ -95,7 +79,7 @@ const AddPetForm = () => {
     }
 
     if (data.option === 'pet') {
-      // dispatch(addMyPet(newFormData));
+      dispatch(addPet(newFormData));
       toggleModal();
       return;
     }
@@ -105,7 +89,7 @@ const AddPetForm = () => {
     newFormData.append('location', data.location);
 
     if (data.option === 'lostFound') {
-      dispatch(addNotice({ option: 'lostFound', newFormData }));
+      dispatch(addNotice({ option: 'lost-found', newFormData }));
       toggleModal();
       return;
     }
@@ -125,8 +109,10 @@ const AddPetForm = () => {
   };
 
   // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
-  const backPage = step === 1 ? location.state?.from ?? '/user' : '';
-  // console.log('data:', data);
+  // const backPage = step === 1 ? location.state?.from ?? '/user' : '';
+  const backPage = location.state?.from ?? '';
+
+  console.log('data:', data);
   // console.log('data.option:', data.option);
   return (
     <AddPetDiv data={data} step={step}>
