@@ -12,7 +12,9 @@ export const fetchNotices = createAsyncThunk(
     const { category = 'sell', ...params } = credentials;
 
     try {
-      const { data } = await axios.get(`/api/notices/filter/sell`);
+      const { data } = await axios.get(
+        `/api/notices/filter/${category}?${params}`
+      );
 
       console.log('data:', data);
 

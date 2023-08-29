@@ -20,8 +20,21 @@ const PetsItem = ({ pet }) => {
     setModalDeleteShow(prevState => !prevState);
   };
 
-  const approveAction = () => {
-    dispatch(deletePet(pet._id));
+  //   const approveAction = () => {
+  //     console.log('Deleting pet with ID:', pet._id);
+  //     dispatch(deletePet(pet._id));
+
+  //     setModalDeleteShow(prevState => !prevState);
+  //   };
+
+  const approveAction = async () => {
+    console.log('Deleting pet with ID:', pet._id);
+    try {
+      await dispatch(deletePet(pet._id));
+      console.log('Pet deleted successfully');
+    } catch (error) {
+      console.error('Error deleting pet:', error);
+    }
     setModalDeleteShow(prevState => !prevState);
   };
   return (
@@ -52,7 +65,7 @@ const PetsItem = ({ pet }) => {
         <ModalDelete
           show={modalDeleteShow}
           onHide={() => setModalDeleteShow(false)}
-          handleDelete={approveAction}
+          onHandleDelete={approveAction}
         />
       )}
     </>

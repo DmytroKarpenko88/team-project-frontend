@@ -40,6 +40,11 @@ export const HeaderWrapper = styled.div`
     max-width: 480px;
     height: 28px;
   }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+  justify-content: flex-start;
+    
+  }
 `;
 
 export const HeaderMenu = styled.div`
@@ -47,8 +52,8 @@ export const HeaderMenu = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row-reverse;
-    margin-right: auto;
-    max-width: 950px;
+    // margin-right: auto;
+    max-width: 1000px;
     justify-content: space-between;
     align-items: baseline;
   }

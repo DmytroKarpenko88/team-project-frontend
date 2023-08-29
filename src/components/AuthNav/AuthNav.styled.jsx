@@ -8,8 +8,8 @@ export const Auth = styled.div`
     margin-right: 24px;
   }
 
-  @media screen and (min-width: 1280px) {
-    margin-right: 18px;
+  @media screen and (min-width: 1279px) {
+    /* margin-right: 18px; */
   }
 `;
 

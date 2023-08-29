@@ -61,7 +61,7 @@ export default function LoginForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({values ,errors, touched, resetForm, isSubmitting}) => (
+        {({values ,errors, touched, resetForm, setFieldValue, isSubmitting}) => (
           <Form>
             <Titel>Login</Titel>
             <FormField>
@@ -78,7 +78,7 @@ export default function LoginForm() {
               <IconWraper>
               { !touched.email ? null : !errors.email ? 
               <IconCheck style={{marginLeft: "36px"}}><Check/></IconCheck> :
-               <IconCross style={{marginLeft: "36px"}} id="resetBtn" onClick={()=>{resetForm({ values: { ...values.email, email: '' } })}}><Cross/></IconCross>}
+               <IconCross style={{marginLeft: "36px"}} id="resetBtn" onClick={()=>{setFieldValue('email', '')}}><Cross/></IconCross>}
              </IconWraper>
 
               <ErrorMess name="email" component="p" />
@@ -99,7 +99,7 @@ export default function LoginForm() {
               <IconWraper>
               { !touched.password ? null : !errors.password ? 
               <IconCheck ><Check/></IconCheck> :
-               <IconCross id="resetBtn" onClick={()=>{resetForm({ values: { ...values.password, password: '' } })}}><Cross/></IconCross>}
+               <IconCross id="resetBtn" onClick={()=>{setFieldValue('password', '')}}><Cross/></IconCross>}
 
               <span id="visibilityBtn" onClick={togglePassword}>
                 {passwordShow ? <OnIcon /> : <OffIcon />}
