@@ -11,9 +11,9 @@ import {
 
 const noticesInitialState = {
   items: [],
-  category: 'in good hands',
+  // category: null,
   noticeById: {},
-  searchQuery: '',
+  searchQuery: null,
   isLoading: false,
   error: null,
   filtredNotices: [],

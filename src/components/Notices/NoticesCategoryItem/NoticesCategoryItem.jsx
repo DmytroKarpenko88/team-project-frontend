@@ -32,6 +32,7 @@ import { getNoticeById } from 'redux/notices/notices-operations';
 // import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
+  
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
 
@@ -89,7 +90,7 @@ export const NoticesCategoryItem = ({ notice }) => {
 
   const toggleNoticeModal = () => {
     setNoticeModalShow(!noticeModalShow);
-    dispatch(getNoticeById('64eb4e07d4adeb20c17af839'));
+    dispatch(getNoticeById(notice._id));
   };
   const toggleModalDelete = () => {
     setModalDeleteShow(!modalDeleteShow);

@@ -43,7 +43,6 @@ export const getNoticeById = createAsyncThunk(
       // const params = query ? `?${queryString.stringify({ query })}` : '';
       const { data } = await axios.get(`/api/notices/${noticeId}`);
       
-      console.log("getNoticeById:", data)
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

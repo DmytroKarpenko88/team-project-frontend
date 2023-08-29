@@ -40,13 +40,16 @@ export const NoticeModal = props => {
     sex,
     title,
     type,
-
-    _owner: { email, phone },
   } = noticeById;
+
+  const owner = noticeById['_owner'];
+  // const { email, phone } = owner;
+  // console.log("owner:", owner.email)
+  // console.log("owner:", owner.phone)
 
   return (
     <>
-      {!isLoading ? (
+      {!isLoading && noticeById!=={}? (
         <ModalContainer {...props} size="lg" centered={true}>
           <Modal.Body>
             <CrossBtn onClick={props.onHide}>
@@ -83,13 +86,13 @@ export const NoticeModal = props => {
                   </Info>
                   <Info>
                     <InfoName>Email:</InfoName>
-                    <Contact href="mailto:user@mail.com">
-                      {/* {email} */}
+                   <Contact href="mailto:user@mail.com">
+                      {owner.email}
                     </Contact>
                   </Info>
                   <Info>
                     <InfoName>Phone:</InfoName>
-                    <Contact href="tel:+380971234567">{/* {phone} */}</Contact>
+                    <Contact href="tel:+380971234567">{owner.phone}</Contact>
                   </Info>
                 </Container>
               </div>
@@ -97,9 +100,9 @@ export const NoticeModal = props => {
 
             <InfoMessage>
               <span style={{ fontFamily: `${theme.fonts.main.semiBold}` }}>
-                Comments:
+                Comments:{describe}
               </span>
-              {describe}
+              
             </InfoMessage>
 
             <BtnWrapper>
