@@ -29,7 +29,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
 
   @media screen and (max-width: 1199px) {
     max-width: 780px;
@@ -39,6 +39,11 @@ export const HeaderWrapper = styled.div`
   @media screen and (max-width: 767px) {
     max-width: 480px;
     height: 28px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+  justify-content: flex-start;
+    
   }
 `;
 
