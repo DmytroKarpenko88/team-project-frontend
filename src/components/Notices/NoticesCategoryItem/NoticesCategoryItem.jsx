@@ -23,16 +23,18 @@ import {
 import { Heart, Location, Clock, Female, Paw, Trash } from 'components/icons';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
 // import { useParams } from 'react-router-dom';
-import {
-  // selectIsLoggedIn,
-  selectUser,
-} from 'redux/auth/auth-selectors';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
 import { getNoticeById } from 'redux/notices/notices-operations';
+import { Notify } from 'notiflix';
 // import { removeFavoriteNotice } from 'redux/notices/notices-operations';
 // import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
-  const [favorite, setFavorite] = useState(false);
+  const dispatch = useDispatch();
+  const [
+    favorite,
+    //  setFavorite
+  ] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
 
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
@@ -41,11 +43,11 @@ export const NoticesCategoryItem = ({ notice }) => {
   // const filterNotices = useSelector(selectFiltredNotices);
   // console.log(filterNotices);
 
-  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   // const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
+  // console.log('currentUser:', currentUser);
 
-  const dispatch = useDispatch();
   // console.log(notice);
   // console.log(notice.category);
 
@@ -80,6 +82,17 @@ export const NoticesCategoryItem = ({ notice }) => {
   //   }
   // };
 
+  const handleAddInFavorite = async () => {
+    try {
+      if (!isLoggedIn) {
+        setShowAttentionModal(true);
+        return;
+      }
+    } catch (error) {
+      Notify.warning(error.message);
+    }
+  };
+
   // const handleDeleteOwnNotice = async () => {
   //   if (isLoggedIn && currentUser._id === notice._owner._id) {
   //     dispatch(removeFavoriteNotice(notice._id));
@@ -104,14 +117,18 @@ export const NoticesCategoryItem = ({ notice }) => {
       <ImgContainer>
         <Img onClick={toggleNoticeModal} src={cat} alt="pet" />
 
-        <FilterStatus>{notice.title}</FilterStatus>
+        {notice.category.title ? (
+          <FilterStatus>{notice.category.title}</FilterStatus>
+        ) : (
+          <FilterStatus></FilterStatus>
+        )}
 
         <HeartBtn
           type="button"
           className={favorite ? 'heart favorite' : 'heart'}
           onClick={
-            () => setFavorite(!favorite)
-            // handleAddInFavorite
+            // () => setFavorite(!favorite)
+            handleAddInFavorite
           }
         >
           <Heart />
@@ -153,8 +170,9 @@ export const NoticesCategoryItem = ({ notice }) => {
       )}
 
       {modalDeleteShow && (
-        <ModalDelete show={modalDeleteShow} onHide={toggleNoticeModal} />
+        <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
       )}
+
       {showAttentionModal && (
         <ModalAttention
           show={showAttentionModal}

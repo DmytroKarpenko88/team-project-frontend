@@ -15,7 +15,10 @@ import { fetchNotices } from 'redux/notices/notices-operations';
 // import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
-import { getUserCurrentNotices } from 'redux/user/user-operations';
+import {
+  getUserCurrentFavorite,
+  getUserCurrentNotices,
+} from 'redux/user/user-operations';
 // import { addUserCurrentFavorite } from 'redux/user/user-operations';
 
 function Notices() {
@@ -37,11 +40,11 @@ function Notices() {
     ) {
       dispatch(fetchNotices({ categoryName, search }));
     }
-    //   if (categoryName === 'favorite' && isLoggedIn) {
-    //     // get(`/notices/user/favorite${params}`)
-    // dispatch(getFavoriteNoticesbyCategory());
-    //     return;
-    // //   }
+    if (categoryName === 'favorite' && isLoggedIn) {
+      // get(`/notices/user/favorite${params}`)
+      dispatch(getUserCurrentFavorite());
+      return;
+    }
     if (categoryName === 'own' && isLoggedIn) {
       // get(`/notices/user/added${data}`)
       dispatch(getUserCurrentNotices());

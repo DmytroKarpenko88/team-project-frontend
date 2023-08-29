@@ -9,30 +9,22 @@ import { selectUserCurrentNotices } from 'redux/user/user-selectors';
 export const NoticesCategoriesList = () => {
   const [noticesForList, setNoticesForList] = useState([]);
   const notices = useSelector(selectAllNotices);
-  const own = useSelector(selectUserCurrentNotices);
+  const ownNotices = useSelector(selectUserCurrentNotices);
+  console.log('ownNotices:', ownNotices);
+  const favoriteNotices = useSelector(selectUserCurrentNotices);
+  console.log('favoriteNotices:', favoriteNotices);
   const categoryName = useParams().categoryName;
 
   useEffect(() => {
-    // if (categoryName === 'sell' || 'lost-found' || 'in-good-hands') {
-    //   setNoticesForList(notices);
-    // } else if (categoryName === 'own') {
-    // setNoticesForList(own);
-
-    // }
-
-    switch (categoryName) {
-      case 'sell' || 'lost-found' || 'in-good-hands':
-        setNoticesForList(notices);
-        break;
-      case 'own':
-        setNoticesForList(own);
-        break;
-      default:
-        break;
+    if (categoryName === 'own') {
+      setNoticesForList(ownNotices);
+    } else if (categoryName === 'favorite') {
+      setNoticesForList(favoriteNotices);
+    } else if (categoryName === 'sell' || 'lost-found' || 'in-good-hands') {
+      setNoticesForList(notices);
     }
-  }, [categoryName, notices, own]);
+  }, [categoryName, favoriteNotices, notices, ownNotices]);
 
-  // console.log(notices);
   return (
     <>
       <NoticeList>
