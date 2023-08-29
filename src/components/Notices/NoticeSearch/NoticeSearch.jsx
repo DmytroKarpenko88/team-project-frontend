@@ -1,27 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Search, Cross } from 'components/icons';
 import { Form, Input, Button, ClearBtn } from './NoticeSearch.styled';
 // import { useDispatch } from 'react-redux';
-import {
-  // useLocation,
-  useParams,
-} from 'react-router-dom';
+import // useLocation,
+// useParams,
+'react-router-dom';
 
 export const NoticeSearch = ({ onSubmitNoticeForm }) => {
   const [search, setSearch] = useState('');
   // const dispatch = useDispatch();
   // const location = useLocation();
   // const locationIsLoginUser = location.pathname.split('/')[2];
-  const { categoryName } = useParams();
-  console.log(categoryName);
+  // const { categoryName } = useParams();
+  // console.log(categoryName);
+
+  useEffect(() => {
+    if (!search) onSubmitNoticeForm(search);
+  }, [onSubmitNoticeForm, search]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    const searchQuery = e.currentTarget.elements.search.value
-      .toLowerCase()
-      .trim();
+    const searchQuery = search.toLowerCase().trim();
+
     onSubmitNoticeForm(searchQuery);
     if (searchQuery === '') {
       Notify.warning('Please enter something');

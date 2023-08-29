@@ -32,7 +32,6 @@ import { getNoticeById } from 'redux/notices/notices-operations';
 // import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
-  
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
 
@@ -105,7 +104,7 @@ export const NoticesCategoryItem = ({ notice }) => {
       <ImgContainer>
         <Img onClick={toggleNoticeModal} src={cat} alt="pet" />
 
-        <FilterStatus>{notice.category.title}</FilterStatus>
+        <FilterStatus>{notice.title}</FilterStatus>
 
         <HeartBtn
           type="button"

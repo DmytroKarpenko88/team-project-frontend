@@ -7,7 +7,7 @@ export const getUserCurrentNotices = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/api/users/current/notices');
-      console.log('dataCurrentNotices:', data);
+      // console.log('dataCurrentNotices:', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

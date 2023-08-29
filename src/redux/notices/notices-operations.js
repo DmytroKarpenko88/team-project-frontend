@@ -8,10 +8,12 @@ export const fetchNotices = createAsyncThunk(
   'notices/fetchAll',
 
   async (credentials, thunkAPI) => {
-    const { categoryName } = credentials;
+    const { categoryName, search } = credentials;
 
     try {
-      const { data } = await axios.get(`/api/notices/filter/${categoryName}`);
+      const { data } = await axios.get(
+        `/api/notices/filter/${categoryName}?search=${search}`
+      );
 
       console.log('data:', data);
 
