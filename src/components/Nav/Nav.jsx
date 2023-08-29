@@ -55,17 +55,6 @@ export const Nav = ({ click, onClick }) => {
         )}
       </>
 
-      {/* { isLoggedIn &&  <UserNavContainerMobile onClick={onClick}>
-                <UserNav />
-            </UserNavContainerMobile>}
-
-            { !isLoggedIn && <AuthContainerMobile onClick={onClick}>
-                <AuthNav/>
-            </AuthContainerMobile>} */}
-
-      {/* <AuthNav/> */}
-
-      {/* <UserNav/> */}
     </NavMenu>
   );
 };
