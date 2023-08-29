@@ -21,7 +21,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
   const [errors, setErrors] = useState({});
   const [isDisabled, setIsDisabled] = useState(false);
-  // const [maxDate, setMaxDate] = useState();
+  const [maxDate, setMaxDate] = useState();
 
   const isNameFieldValid = Boolean(!errors.name && !!data.name);
   const isBirthdayFieldValid = Boolean(!errors.birthday && !!data.birthday);
@@ -45,7 +45,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
         )
       );
     }
-    // setMaxDate(getCurrentDate());
+    setMaxDate(getCurrentDate());
   }, [
     errors,
     data.option,
@@ -55,15 +55,15 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
     isTitleFieldValid,
   ]);
 
-  // function getCurrentDate() {
-  //   const now = new Date();
-  //   const year = String(now.getFullYear());
-  //   const month = String(now.getMonth() + 1).padStart(2, '0');
-  //   const day = String(now.getDate()).padStart(2, '0');
-  //   // console.log(year, month, day);
-  //   // return `${year}-${month}-${day}`;
-  //   return `${day}-${month}-${year}`;
-  // }
+  function getCurrentDate() {
+    const now = new Date();
+    const year = String(now.getFullYear());
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+    // console.log(`${day}-${month}-${year}`);
+    // return `${day}-${month}-${year}`;
+  }
 
   const handleChange = e => {
     // const input = e.target.name;
@@ -71,30 +71,31 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
     // setData(prev => ({ ...prev, [input]: value }));
 
     const { name, value } = e.target;
-    // console.log(name);
-    console.log(value);
+    console.log('name', name, 'value', value);
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
-    const inputValue =
-      name === 'birthday'
-        ? new Date(value).toLocaleDateString('es-CL', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-          })
-        : value;
+    let inputValue = value;
 
-    // let inputValue;
-    // if (name === 'birthday') {
-    //   const [day, month, year] = value.split('-');
-    //   if (day && month && year) {
-    //     inputValue = `${day}-${month}-${year}`;
-    //   }
-    // }
-    console.log(value);
-    console.log('inputValue', inputValue); //uk-UA, "es-CL: " + n.toLocaleDateString("es-CL")
-    // console.log(data.birthday); //uk-UA, "es-CL: " + n.toLocaleDateString("es-CL")
+    if (name === 'birthday') {
+      const [day, month, year] = value.split('-').reverse();
+      if (day && month && year) {
+        inputValue = `${year}-${month}-${day}`;
+      }
+    }
+
+    console.log('name', name, 'value', value);
+    // const inputValue =
+    //   name === 'birthday'
+    //     ? new Date(value).toLocaleDateString('es-CL', {
+    //         day: '2-digit',
+    //         month: '2-digit',
+    //         year: 'numeric',
+    //       })
+    //     : value;
+
+    // console.log('value', value);
+    // console.log('inputValue', inputValue); //uk-UA, "es-CL: " + n.toLocaleDateString("es-CL")
 
     setData(prevState => ({
       ...prevState,
@@ -148,7 +149,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
               type="data"
               placeholder="Type date of birth in format DD-MM-YYYY"
               name="birthday"
-              // max={maxDate}
+              max={maxDate}
               onChange={handleChange}
               // data-pattern="**-**-****"
               // value={data.birthday.split('.').join('-')} //.reverse()
