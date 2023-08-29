@@ -11,9 +11,9 @@ import {
 
 const noticesInitialState = {
   items: [],
-  category: 'in good hands',
-  noticeById: null,
-  searchQuery: '',
+  // category: null,
+  noticeById: {},
+  searchQuery: null,
   isLoading: false,
   error: null,
   filtredNotices: [],
@@ -42,10 +42,19 @@ const noticesSlice = createSlice({
         state.isLoading = false;
         state.error = null;
       })
+      .addCase(getNoticeById.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
       .addCase(getNoticeById.fulfilled, (state, action) => {
+        console.log("action:", action)
         state.noticeById = action.payload;
         state.isLoading = false;
         state.error = null;
+      })
+      .addCase(getNoticeById.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       })
       .addCase(addNotice.fulfilled, (state, action) => {
         console.log('action:', action);

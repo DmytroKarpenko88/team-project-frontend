@@ -21,12 +21,17 @@ import { Cross, Heart } from 'components/icons';
 import img from 'images/cat.jpg';
 import { theme } from 'styles';
 import { useSelector } from 'react-redux';
-import { selectNoticeById } from 'redux/notices/notices-selectors';
-
+import { selectNoticeById, selectNoticesIsLoading } from 'redux/notices/notices-selectors';
+import Loader from 'components/Loader/Loader';
 // import { useEffect } from 'react';
 
 export const NoticeModal = props => {
   const noticeById = useSelector(selectNoticeById);
+  const isLoading = useSelector(selectNoticesIsLoading);
+  console.log("isLoading :", isLoading )
+  
+  console.log("noticeById:", noticeById)
+  
   const {
     birthday,
     describe,
@@ -35,13 +40,16 @@ export const NoticeModal = props => {
     sex,
     title,
     type,
-
-    // _owner: { email, phone },
   } = noticeById;
+
+  const owner = noticeById['_owner'];
+  // const { email, phone } = owner;
+  // console.log("owner:", owner.email)
+  // console.log("owner:", owner.phone)
 
   return (
     <>
-      {noticeById && (
+      {!isLoading && noticeById!=={}? (
         <ModalContainer {...props} size="lg" centered={true}>
           <Modal.Body>
             <CrossBtn onClick={props.onHide}>
@@ -78,13 +86,13 @@ export const NoticeModal = props => {
                   </Info>
                   <Info>
                     <InfoName>Email:</InfoName>
-                    <Contact href="mailto:user@mail.com">
-                      {/* {email} */}
+                   <Contact href="mailto:user@mail.com">
+                      {owner.email}
                     </Contact>
                   </Info>
                   <Info>
                     <InfoName>Phone:</InfoName>
-                    <Contact href="tel:+380971234567">{/* {phone} */}</Contact>
+                    <Contact href="tel:+380971234567">{owner.phone}</Contact>
                   </Info>
                 </Container>
               </div>
@@ -92,9 +100,9 @@ export const NoticeModal = props => {
 
             <InfoMessage>
               <span style={{ fontFamily: `${theme.fonts.main.semiBold}` }}>
-                Comments:
+                Comments:{describe}
               </span>
-              {describe}
+              
             </InfoMessage>
 
             <BtnWrapper>
@@ -111,7 +119,8 @@ export const NoticeModal = props => {
             </BtnWrapper>
           </Modal.Body>
         </ModalContainer>
-      )}
+      )
+      : <Loader/>}
     </>
   );
 };
