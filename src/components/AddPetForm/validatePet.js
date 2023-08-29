@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 // const dateRegExp =
 //   /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
 
-const dateRegExp = /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19\d\d|20\d\d)$/;
+// const dateRegExp = /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19\d\d|20\d\d)$/;
 
 export const validatePetSchema = Yup.object().shape({
   title: Yup.string()
@@ -18,14 +18,15 @@ export const validatePetSchema = Yup.object().shape({
     .min(2, 'Name must be at least 2 characters')
     .max(16, 'Name must not exceed 16 characters'),
   birthday: Yup.string()
-    // .required('Date is required')
-    // .matches(
-    //   /^(\d{2})\.(\d{2})\.(\d{4})$/,
-    //   'Invalid date format. Use DD.MM.YYYY'
-    // ),
-    .matches(dateRegExp, 'Correct format: dd-mm-yyyy')
+    .required('Date is required')
     .max(new Date(), 'Future date is not allowed')
-    .required('Birthday is required'),
+    .matches(
+      /^(\d{2})-(\d{2})-(\d{4})$/,
+      'Invalid date format. Use DD-MM-YYYY'
+    ),
+  // .matches(dateRegExp, 'Correct format: dd-mm-yyyy')
+  // .max(new Date(), 'Future date is not allowed')
+  // .required('Birthday is required'),
   breed: Yup.string()
     .required('Breed is required')
     .min(2, 'Breed must be at least 2 characters')
@@ -61,7 +62,6 @@ export const validatePetSchema = Yup.object().shape({
 export const validateField = async (fieldName, value, setErrors) => {
   try {
     await validatePetSchema.validateAt(fieldName, value);
-    console.log(fieldName, value);
     setErrors(prevErrors => ({
       ...prevErrors,
       [fieldName]: '',
