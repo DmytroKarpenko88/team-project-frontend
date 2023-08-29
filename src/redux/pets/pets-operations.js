@@ -32,6 +32,7 @@ export const addPet = createAsyncThunk(
 export const deletePet = createAsyncThunk(
   'pets/deletePet',
   async (petId, thunkAPI) => {
+    console.log('Received petId for deletion:', petId);
     try {
       const { data } = await axios.delete(`/api/pets/delete/${petId}`);
       toast.success('Pet deleted', { position: 'bottom-right' });

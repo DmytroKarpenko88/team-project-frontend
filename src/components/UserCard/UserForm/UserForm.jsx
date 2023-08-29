@@ -40,12 +40,12 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     if (trimmedValue.length <= 2) {
       return trimmedValue;
     } else if (trimmedValue.length <= 4) {
-      return `${trimmedValue.slice(0, 2)}.${trimmedValue.slice(2)}`;
+      return `${trimmedValue.slice(0, 2)}-${trimmedValue.slice(2)}`;
     } else {
-      return `${trimmedValue.slice(0, 2)}.${trimmedValue.slice(
+      return `${trimmedValue.slice(0, 2)}-${trimmedValue.slice(
         2,
         4
-      )}.${trimmedValue.slice(4, 8)}`;
+      )}-${trimmedValue.slice(4, 8)}`;
     }
   };
 
@@ -208,7 +208,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
                 <Input
                   type="text"
                   name="birthday"
-                  placeholder="dd.mm.yyyy"
+                  placeholder="dd-mm-yyyy"
                   disabled={disabled}
                   onChange={handleDateInputChange}
                   value={formikProps.values.birthday}
