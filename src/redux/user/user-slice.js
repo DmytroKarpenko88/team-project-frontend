@@ -34,6 +34,7 @@ const initialState = {
     },
   ],
   userFavoriteNotices: [],
+  userFavoriteNoticesID: [],
   error: null,
   isLoading: false,
   isLoggedIn: false,
@@ -50,24 +51,31 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(deleteUserCurrentNotices.fulfilled, (state, action) => {
-        const index = state.items.findIndex(
-          notice => notice._id === action.payload.notice.id
-        );
-        state.items[index].favorite = action.payload.notice.favorite;
-        state.isLoading = false;
-        state.isLoggedIn = true;
-      })
+      // .addCase(deleteUserCurrentNotices.fulfilled, (state, action) => {
+      //   const index = state.items.findIndex(
+      //     notice => notice._id === action.payload.notice.id
+      //   );
+      //   console.log('action.payload.notice.id:', action.payload.notice.id);
+
+      //   state.items[index].favorite = action.payload.notice.favorite;
+      //   state.isLoading = false;
+      //   state.isLoggedIn = true;
+      // })
       .addCase(addUserCurrentFavorite.fulfilled, (state, action) => {
         // const index = state.userFavoriteNotices.findIndex(
         //   notice => notice._id === action.payload.notice._id
         // );
-        state.userFavoriteNotices = action.payload.notice;
+        // state.userFavoriteNotices = action.payload.notice;
+
+        state.userFavoriteNotices.filter(it => it._id !== action.payload._id);
+
         state.isLoading = false;
         state.isLoggedIn = true;
       })
       .addCase(getUserCurrentFavorite.fulfilled, (state, action) => {
         state.userFavoriteNotices = action.payload;
+        state.userFavoriteNoticesID = action.payload.map(it => it._id);
+
         state.isLoggedIn = true;
         state.isLoading = false;
       })
