@@ -21,7 +21,7 @@ export const AddPetDiv = styled.div`
   }
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     ${({ data, step }) =>
-      (data.option !== 'pet') & (step === 3)
+      (data.option !== 'pet') && (step === 3)
         ? 'width: 704px;'
         : 'width: 458px;'};
   }
