@@ -55,12 +55,11 @@ export default function AuthForm() {
       email: values.email,
       password: values.password,
     };
-   const responsed = await dispatch(register(data));
-   console.log(" responsed :",  responsed )
-   if(responsed) {
-    resetForm();
-   }
-    
+    const responsed = await dispatch(register(data));
+    console.log(' responsed :', responsed);
+    if (responsed) {
+      resetForm();
+    }
   };
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export default function AuthForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({values ,errors, touched, resetForm, isSubmitting }) => (
+        {({ values, errors, touched, setFieldValue, isSubmitting }) => (
           <Form>
             <Titel>Registration</Titel>
             <FormField>
@@ -100,12 +99,24 @@ export default function AuthForm() {
                 <SuccessMessage>Success, name is valid!</SuccessMessage>
               ) : null}
 
-             <IconWraper >
-              { !touched.name ? null : !errors.name ? 
-              <IconCheck style={{marginLeft: "36px"}}><Check/></IconCheck> :
-               <IconCross style={{marginLeft: "36px"}} id="resetBtn" onClick={()=>{resetForm({ values: { ...values.name, name: '' } })}}><Cross/></IconCross>}
-             </IconWraper>
-             
+              <IconWraper>
+                {!touched.name ? null : !errors.name ? (
+                  <IconCheck style={{ marginLeft: '36px' }}>
+                    <Check />
+                  </IconCheck>
+                ) : (
+                  <IconCross
+                    style={{ marginLeft: '36px' }}
+                    id="resetBtn"
+                    onClick={() => {
+                      setFieldValue('name', '');
+                    }}
+                  >
+                    <Cross />
+                  </IconCross>
+                )}
+              </IconWraper>
+
               <ErrorMess name="name" component="p" />
             </FormField>
 
@@ -130,13 +141,25 @@ export default function AuthForm() {
                 <SuccessMessage>Success, email is valid!</SuccessMessage>
               ) : null}
 
-             <IconWraper>
-              { !touched.email ? null : !errors.email ? 
-              <IconCheck style={{marginLeft: "36px"}}><Check/></IconCheck> :
-               <IconCross style={{marginLeft: "36px"}} id="resetBtn" onClick={()=>{resetForm({ values: { ...values.email, email: '' } })}}><Cross/></IconCross>}
-             </IconWraper>
+              <IconWraper>
+                {!touched.email ? null : !errors.email ? (
+                  <IconCheck style={{ marginLeft: '36px' }}>
+                    <Check />
+                  </IconCheck>
+                ) : (
+                  <IconCross
+                    style={{ marginLeft: '36px' }}
+                    id="resetBtn"
+                    onClick={() => {
+                      setFieldValue('email', '');
+                    }}
+                  >
+                    <Cross />
+                  </IconCross>
+                )}
+              </IconWraper>
 
-              <ErrorMess name="email" component="p" ></ErrorMess>
+              <ErrorMess name="email" component="p"></ErrorMess>
             </FormField>
 
             <FormField>
@@ -158,13 +181,24 @@ export default function AuthForm() {
               </InputPasswordWraper>
 
               <IconWraper>
-              { !touched.password ? null : !errors.password ? 
-              <IconCheck ><Check/></IconCheck> :
-               <IconCross id="resetBtn" onClick={()=>{resetForm({ values: { ...values.password, password: '' } })}}><Cross/></IconCross>}
+                {!touched.password ? null : !errors.password ? (
+                  <IconCheck>
+                    <Check />
+                  </IconCheck>
+                ) : (
+                  <IconCross
+                    id="resetBtn"
+                    onClick={() => {
+                      setFieldValue('password', '');
+                    }}
+                  >
+                    <Cross />
+                  </IconCross>
+                )}
 
-              <span id="visibilityBtn" onClick={togglePassword}>
-                {passwordShow ? <OnIconPass /> : <OffIconPass />}
-              </span>
+                <span id="visibilityBtn" onClick={togglePassword}>
+                  {passwordShow ? <OnIconPass /> : <OffIconPass />}
+                </span>
               </IconWraper>
 
               {!errors.password && touched.password ? (
@@ -191,18 +225,29 @@ export default function AuthForm() {
                   autoComplete="off"
                 />
               </InputPasswordWraper>
-              
-              <IconWraper>
-              { !touched.confirmPassword ? null : !errors.confirmPassword ? 
-              <IconCheck ><Check/></IconCheck> :
-               <IconCross id="resetBtn" onClick={()=>{resetForm({ values: { ...values.confirmPassword, confirmPassword: '' } })}}><Cross/></IconCross>}
 
-              <span id="visibilityBtn" onClick={toggleConfirmPassword}>
-                {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}
-              </span>
+              <IconWraper>
+                {!touched.confirmPassword ? null : !errors.confirmPassword ? (
+                  <IconCheck>
+                    <Check />
+                  </IconCheck>
+                ) : (
+                  <IconCross
+                    id="resetBtn"
+                    onClick={() => {
+                      setFieldValue('confirmPassword', '');
+                    }}
+                  >
+                    <Cross />
+                  </IconCross>
+                )}
+
+                <span id="visibilityBtn" onClick={toggleConfirmPassword}>
+                  {confirmPasswordShow ? <OnIconConPass /> : <OffIconConPass />}
+                </span>
               </IconWraper>
 
-                {!errors.confirmPassword && touched.confirmPassword ? (
+              {!errors.confirmPassword && touched.confirmPassword ? (
                 <SuccessMessage>
                   Success, confirm password is valid!
                 </SuccessMessage>
@@ -212,7 +257,9 @@ export default function AuthForm() {
             </FormField>
 
             <div>
-              <Button type="submit" disabled={isSubmitting}>Registration</Button>
+              <Button type="submit" disabled={isSubmitting}>
+                Registration
+              </Button>
             </div>
 
             <ToLogin>

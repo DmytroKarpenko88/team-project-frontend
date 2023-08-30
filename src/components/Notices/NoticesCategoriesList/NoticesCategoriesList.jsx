@@ -1,32 +1,46 @@
-import React from 'react';
-// import {
-//   selecteNotices,
-//   selectNoticesIsLoading,
-// } from 'redux/notices/notices-selectors';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectAllNotices } from 'redux/notices/notices-selectors';
 import { NoticesCategoryItem } from '../NoticesCategoryItem/NoticesCategoryItem';
+import { NoticeList, Text } from './NoticesCategoriesList.styled';
+import { useParams } from 'react-router-dom';
 import {
-  NoticeList,
-
-  // Text
-} from './NoticesCategoriesList.styled';
+  selectUserCurrentFavoriteNotices,
+  selectUserCurrentNotices,
+} from 'redux/user/user-selectors';
 
 export const NoticesCategoriesList = () => {
-  // const notices = useSelector(selecteNotices);
+  const [noticesForList, setNoticesForList] = useState([]);
+  const notices = useSelector(selectAllNotices);
+  const ownNotices = useSelector(selectUserCurrentNotices);
+  const userFavotites = useSelector(selectUserCurrentFavoriteNotices);
+  // console.log('userFavotites:', userFavotites);
+
+  // console.log('ownNotices:', ownNotices);
+  // const favoriteNotices = useSelector(selectUserCurrentFavoriteNotices);
+  // console.log('favoriteNotices:', favoriteNotices);
+  const categoryName = useParams().categoryName;
+
+  useEffect(() => {
+    if (categoryName === 'own') {
+      setNoticesForList(ownNotices);
+    } else if (categoryName === 'favorite') {
+      setNoticesForList(userFavotites);
+    } else if (categoryName === 'sell' || 'lost-found' || 'in-good-hands') {
+      setNoticesForList(notices);
+    }
+  }, [categoryName, notices, ownNotices, userFavotites]);
+
   return (
     <>
-      {/* <NoticeList>
-        {notices.length > 0 ? (
-          notices.map(item => (
-            <NoticesCategoryItem 
-            key={item.id} notice={item} />
+      <NoticeList>
+        {noticesForList.length > 0 ? (
+          noticesForList.map(item => (
+            <NoticesCategoryItem key={item._id} notice={item} />
           ))
         ) : (
           <Text>Sorry, we can't find that</Text>
         )}
-      </NoticeList> */}
-
-      <NoticeList>
-        <NoticesCategoryItem />
       </NoticeList>
     </>
   );

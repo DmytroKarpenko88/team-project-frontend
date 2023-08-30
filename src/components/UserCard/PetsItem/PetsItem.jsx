@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { Trash } from 'components/icons';
 import {
@@ -8,13 +9,32 @@ import {
   PetsCard,
 } from './PetsItem.styled';
 import { ModalDelete } from 'components/Modals';
+import { deletePet } from 'redux/pets/pets-operations';
 
 const PetsItem = ({ pet }) => {
-  console.log('pet:', pet);
+  const dispatch = useDispatch();
   const { name, birthday, type, petURL, describe } = pet;
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
 
   const closeModal = () => {
+    setModalDeleteShow(prevState => !prevState);
+  };
+
+  //   const approveAction = () => {
+  //     console.log('Deleting pet with ID:', pet._id);
+  //     dispatch(deletePet(pet._id));
+
+  //     setModalDeleteShow(prevState => !prevState);
+  //   };
+
+  const approveAction = async () => {
+    console.log('Deleting pet with ID:', pet._id);
+    try {
+      await dispatch(deletePet(pet._id));
+      console.log('Pet deleted successfully');
+    } catch (error) {
+      console.error('Error deleting pet:', error);
+    }
     setModalDeleteShow(prevState => !prevState);
   };
   return (
@@ -45,6 +65,7 @@ const PetsItem = ({ pet }) => {
         <ModalDelete
           show={modalDeleteShow}
           onHide={() => setModalDeleteShow(false)}
+          onHandleDelete={approveAction}
         />
       )}
     </>

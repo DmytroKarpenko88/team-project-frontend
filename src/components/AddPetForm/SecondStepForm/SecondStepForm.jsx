@@ -57,10 +57,12 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
 
   function getCurrentDate() {
     const now = new Date();
-    const year = now.getFullYear();
+    const year = String(now.getFullYear());
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const day = String(now.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
+    // console.log(`${day}-${month}-${year}`);
+    // return `${day}-${month}-${year}`;
   }
 
   const handleChange = e => {
@@ -69,17 +71,31 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
     // setData(prev => ({ ...prev, [input]: value }));
 
     const { name, value } = e.target;
+    console.log('name', name, 'value', value);
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
-    const inputValue =
-      name === 'birthday'
-        ? new Date(value).toLocaleDateString('uk-UA', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-          })
-        : value;
+    let inputValue = value;
+
+    if (name === 'birthday') {
+      const [day, month, year] = value.split('-').reverse();
+      if (day && month && year) {
+        inputValue = `${year}-${month}-${day}`;
+      }
+    }
+
+    console.log('name', name, 'value', value);
+    // const inputValue =
+    //   name === 'birthday'
+    //     ? new Date(value).toLocaleDateString('es-CL', {
+    //         day: '2-digit',
+    //         month: '2-digit',
+    //         year: 'numeric',
+    //       })
+    //     : value;
+
+    // console.log('value', value);
+    // console.log('inputValue', inputValue); //uk-UA, "es-CL: " + n.toLocaleDateString("es-CL")
 
     setData(prevState => ({
       ...prevState,
@@ -130,13 +146,14 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
           <SecondStepFormTitle htmlFor="birthday">
             Date of birth
             <SecondStepFormInput
-              type="date"
-              placeholder="Type date of birth"
+              type="data"
+              placeholder="Type date of birth in format DD-MM-YYYY"
               name="birthday"
               max={maxDate}
               onChange={handleChange}
-              data-pattern="**.**.****"
-              value={data.birthday.split('.').reverse().join('-')}
+              // data-pattern="**-**-****"
+              // value={data.birthday.split('.').join('-')} //.reverse()
+              value={data.birthday.split('.').join('-')} //.reverse() .split('.').join('-')
               onBlur={() => validateField('birthday', data, setErrors)}
               className={errors.birthday ? 'invalid' : ''}
               required

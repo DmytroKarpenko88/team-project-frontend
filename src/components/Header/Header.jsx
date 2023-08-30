@@ -49,7 +49,7 @@ export const Header = () => {
               <UserNav />
             </UserNavBox>
           )}
-          {screenWidth >= 768 && !auth && !isRefreshing && <AuthNav />}
+          {screenWidth >= 768 && !auth && !isRefreshing && <AuthNav onClick={() => changeClick()} />}
 
           {screenWidth <= 1279 && (
             <IconOpenMenu onClick={() => changeClick()}>

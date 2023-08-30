@@ -5,11 +5,11 @@ import { theme } from 'styles';
 export const Auth = styled.div`
   @media (min-width: 768px) {
     display: flex;
-    margin-right: 24px;
+    // margin-right: 24px;
   }
 
-  @media screen and (min-width: 1280px) {
-    margin-right: 18px;
+  @media screen and (min-width: 1279px) {
+    /* margin-right: 18px; */
   }
 `;
 
@@ -20,7 +20,6 @@ export const LinkRegister = styled(NavLink)`
   font-family: ${theme.fonts.main.semiBold};
   width: 165px;
   height: 40px;
-  /* padding: 6px 20px; */
   color: ${theme.colors.yellow};
   border: solid 2px ${theme.colors.yellow};
   border-radius: 40px;
@@ -48,7 +47,6 @@ export const LinkLogin = styled(NavLink)`
   justify-content: center;
   align-items: center;
   font-family: ${theme.fonts.main.semiBold};
-  /* padding: 8px 20px; */
   width: 165px;
   height: 40px;
   margin-bottom: 15px;

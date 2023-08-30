@@ -6,7 +6,6 @@ import { ErrorMessage, Field } from 'formik';
 import { theme } from 'styles';
 
 export const FormContainer = styled.div`
-  /* position: relative; */
   margin: 0 auto;
   padding: 40px 12px;
   text-align: center;
@@ -116,49 +115,49 @@ export const SuccessMessage = styled.p`
 `;
 
 export const IconWraper = styled.div`
-display: flex;
-position: absolute;
-justify-content: end;
-width: 54px;
-top: 12px;
-left: 187px;
-@media (min-width: 768px) {
-  width: 60px;
+  display: flex;
+  position: absolute;
+  justify-content: end;
+  width: 54px;
+  top: 12px;
+  left: 187px;
+  @media (min-width: 768px) {
+    width: 60px;
     top: 12px;
     left: 383px;
   }
 `;
 
 export const IconCheck = styled.span`
-margin-right: auto;
-/* position: absolute; */
-/* top: 12px;
-left: 220px; */
-svg {stroke: ${theme.colors.green};}
-@media (min-width: 768px) {
+  margin-right: auto;
+  svg {
+    stroke: ${theme.colors.green};
+    &:hover {
+      stroke: ${theme.colors.green};
+    }
+  }
+  @media (min-width: 768px) {
     top: 12px;
     left: 420px;
   }
 `;
 
 export const IconCross = styled.span`
-margin-right: auto;
-/* position: absolute; */
-/* top: 12px;
-left: 220px; */
-svg {stroke: ${theme.colors.red};}
-@media (min-width: 768px) {
+  margin-right: auto;
+  svg {
+    stroke: ${theme.colors.red};
+    &:hover {
+      stroke: ${theme.colors.red};
+    }
+  }
+  @media (min-width: 768px) {
     top: 12px;
     left: 420px;
   }
 `;
 
-
 export const OnIconPass = styled(VisibilityIcon)`
-  /* position: absolute; */
   color: ${theme.colors.blue};
-  /* top: 12px;
-  left: 218px; */
   @media (min-width: 768px) {
     top: 12px;
     left: 420px;
@@ -166,11 +165,7 @@ export const OnIconPass = styled(VisibilityIcon)`
 `;
 
 export const OffIconPass = styled(VisibilityOffIcon)`
-  /* position: absolute; */
   color: ${theme.colors.blue};
-  /* margin-right: 15px; */
-  /* top: 12px;
-  left: 218px; */
   @media (min-width: 768px) {
     top: 12px;
     left: 420px;
@@ -178,10 +173,7 @@ export const OffIconPass = styled(VisibilityOffIcon)`
 `;
 
 export const OnIconConPass = styled(VisibilityIcon)`
-  /* position: absolute; */
   color: ${theme.colors.blue};
-  /* top: 12px;
-  left: 218px; */
   @media (min-width: 768px) {
     top: 12px;
     left: 420px;
@@ -189,10 +181,7 @@ export const OnIconConPass = styled(VisibilityIcon)`
 `;
 
 export const OffIconConPass = styled(VisibilityOffIcon)`
-  /* position: absolute; */
   color: ${theme.colors.blue};
-  /* top: 12px;
-  left: 218px; */
   @media (min-width: 768px) {
     top: 12px;
     left: 420px;
@@ -209,7 +198,7 @@ export const Button = styled.button`
   border-radius: 40px;
   background-color: ${theme.colors.blue};
   &:hover {
-    background-color: ${theme.colors.grBlue};
+    background-color: rgb(121, 189, 253);
   }
   @media (min-width: 768px) {
     margin-top: 30px;

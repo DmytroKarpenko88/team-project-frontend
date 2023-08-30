@@ -7,8 +7,8 @@ export const Item = styled.li`
   align-items: center;
   flex-direction: column;
   margin-bottom: 24px;
-  margin-right: auto;
-  margin-left: auto;
+  // margin-right: auto;
+  // margin-left: auto;
 
   width: 100%;
   height: 456px;
@@ -18,11 +18,17 @@ export const Item = styled.li`
   box-shadow: ${theme.boxShadows.main};
 
   @media screen and (min-width: 768px) {
-    width: 336px;
+   width: 336px;
+    flex-basis: calc(100% / 2 - 32px);
+    margin-left: 32px;
+    margin-bottom: 32px;
+
   }
 
   @media screen and (min-width: 1280px) {
-    width: 288px;
+   max- width: 288px;
+    flex-basis: calc(100% / 4 - 16px);
+    margin-left: -16px;
   }
 
   transition: transform 250ms ${theme.transition.main};
@@ -251,11 +257,14 @@ export const SexItem = styled.div`
 `;
 
 export const TextItem = styled.h2`
+  display: block;
+  width: 100%;
+  height: 106px;
+  padding: 20px;
   font-size: 24px;
-  width: 231px;
+  // min- width: 231px;
   font-weight: ${theme.fonts.main.bold};
 
-  padding: 20px;
   word-break: break-word;
 `;
 
@@ -265,7 +274,7 @@ export const LoadMoreBtn = styled.button`
   gap: 12px;
   align-items: center;
   background-color: ${theme.colors.white};
-  width: 248px;
+  min-width: 248px;
   height: 40px;
   outline: none;
   border-width: 1px;
@@ -274,7 +283,7 @@ export const LoadMoreBtn = styled.button`
   border-radius: 40px;
   color: ${theme.colors.blue};
   cursor: pointer;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 
   font-size: 16px;
   font-style: normal;

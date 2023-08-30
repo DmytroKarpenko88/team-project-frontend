@@ -2,7 +2,14 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
+
 import { getUserCurrentNotices } from 'redux/user/user-operations';
+
+import {
+  getUserCurrentFavorite,
+  getUserCurrentNotices,
+} from 'redux/user/user-operations';
+
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
 import Main from './Main/Main';
@@ -23,13 +30,13 @@ const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing, isLoggedIn, isRegistered } = useAuth();
-  // console.log("isRegistered:", isRegistered)
-  // console.log("isLoggedIn :", isLoggedIn )
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
     dispatch(getUserProfile());
     dispatch(getUserCurrentNotices());
+    dispatch(getUserCurrentFavorite());
+
     // if(isLoggedIn) {
     //   dispatch(fetchCurrentUser());
     //   dispatch(getUserProfile())

@@ -1,13 +1,8 @@
-import React, {
-  // useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
-import {
-  // useDispatch,
-  useSelector,
-} from 'react-redux';
-import cat from '../../../images/cat.jpg';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { useDispatch, useSelector } from 'react-redux';
+// import cat from '../../../images/cat.jpg';
 import {
   Item,
   ImgContainer,
@@ -24,30 +19,41 @@ import {
 } from './NoticesCategoryItem.styled';
 import { Heart, Location, Clock, Female, Paw, Trash } from 'components/icons';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
-// import { useParams } from 'react-router-dom';
-import {
-  selectIsLoggedIn,
-  // selectUser
-} from 'redux/auth/auth-selectors';
-// import { current } from '@reduxjs/toolkit';
+import { useParams } from 'react-router-dom';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
+import { getNoticeById } from 'redux/notices/notices-operations';
+import { Notify } from 'notiflix';
+import { addUserCurrentFavorite } from 'redux/user/user-operations';
+import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
+// import { removeFavoriteNotice } from 'redux/notices/notices-operations';
+// import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
-export const NoticesCategoryItem = (
-  // { notice }
-  ) => {
+export const NoticesCategoryItem = ({ notice }) => {
+  console.log('notice:', notice);
+  const dispatch = useDispatch();
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
-  const [noticeModalShow, setNoticeModalShow] = useState(false);
+
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
 
+  const [noticeModalShow, setNoticeModalShow] = useState(false);
+  // const filterNotices = useSelector(selectFiltredNotices);
+  // console.log(filterNotices);
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const { categoryName } = useParams();
-  // const currentUser = useSelector(selectUser);
-  // const favoriteNotices = useSelector(selectFavoriteNotices);
-  // const dispatch = useDispatch();
+  const { categoryName } = useParams();
+  const currentUser = useSelector(selectUser);
+  const userFavoriteNoticesID = useSelector(selectUserCurrentFavoriteNoticesID);
+
+  useEffect(() => {
+    if (userFavoriteNoticesID.includes(notice._id)) {
+      setFavorite(true);
+    }
+  }, [notice._id, userFavoriteNoticesID]);
 
   // useEffect(() => {
   //   const newNotices = favoriteNotices => {
-  //     favoriteNotices.forEach(favoriteNotics => {
+  //     favoriteNotices.find(favoriteNotics => {
   //       if (favoriteNotices._id === notice._id) {
   //         setFavorite(true);
   //       }
@@ -58,28 +64,45 @@ export const NoticesCategoryItem = (
   //   }
   // }, [isLoggedIn, notice._id]);
 
-  // const handleAddInFavorite = async () => {
+  const handleAddInFavorite = async () => {
+    try {
+      if (currentUser.name === null && currentUser.email === null) {
+        setShowAttentionModal(true);
+      } else if (isLoggedIn && !favorite) {
+        dispatch(addUserCurrentFavorite(notice._id));
+        setFavorite(true);
+        Notify.success('Added your favorite');
+      } else if (isLoggedIn && favorite && categoryName !== favorite) {
+        dispatch(addUserCurrentFavorite(notice._id));
+        setFavorite(false);
+        Notify.success('Deleted from favorite');
+      }
+    } catch (error) {
+      // setShowAttentionModal(true);
+    }
+  };
+
+  // const handleAddInFavorite = async  => {
   //   try {
-  //     if (currentUser.name === null && currentUser.email === null) {
+  //     if (!isLoggedIn) {
   //       setShowAttentionModal(true);
-  //     } else if (isLoggedIn && !favorite) {
-  //       dispatch(addToFavorite(notice._id));
-  //       setFavorite(true);
-  //       alert('Added your favorite');
-  //     } else if (isLoggedIn && favorite && categoryName !== favorite) {
-  //       dispatch(deleteFromFavorite(notice._id));
-  //       setFavorite(false);
-  //       alert('Delete fron favorite');
+  //       return;
   //     }
   //   } catch (error) {
-  //     setShowAttentionModal(true);
+  //     Notify.warning(error.message);
   //   }
   // };
 
-  // const handleDeleteOwnNotice = async () => {};
+  // const handleDeleteOwnNotice = async () => {
+  //   if (isLoggedIn && currentUser._id === notice._owner._id) {
+  //     dispatch(removeFavoriteNotice(notice._id));
+  //     Notify.success('Deleted your own notice');
+  //   }
+  // };
 
   const toggleNoticeModal = () => {
     setNoticeModalShow(!noticeModalShow);
+    dispatch(getNoticeById(notice._id));
   };
   const toggleModalDelete = () => {
     setModalDeleteShow(!modalDeleteShow);
@@ -92,29 +115,30 @@ export const NoticesCategoryItem = (
   return (
     <Item>
       <ImgContainer>
-        <Img onClick={toggleNoticeModal} src={cat} alt="pet" />
+        <Img onClick={toggleNoticeModal} src={notice.petURL} alt="pet" />
 
-        <FilterStatus>
-          {/* {categoryFilter(notice._category.title)} */}
-          Filter
-        </FilterStatus>
+        {notice.category.title ? (
+          <FilterStatus>{notice.category.title}</FilterStatus>
+        ) : (
+          <FilterStatus></FilterStatus>
+        )}
 
         <HeartBtn
           type="button"
           className={favorite ? 'heart favorite' : 'heart'}
           onClick={
-            () => setFavorite(!favorite)
-            // handleAddInFavorite
+            // () => setFavorite(!favorite)
+            handleAddInFavorite
           }
         >
           <Heart />
         </HeartBtn>
 
-        {/* {currentUser.email === notice._owner.email && ( */}
-        <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
-          <Trash />
-        </DeleteNoticeBtn>
-        {/* )} */}
+        {currentUser.email === notice._owner.email && (
+          <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
+            <Trash />
+          </DeleteNoticeBtn>
+        )}
 
         <ListPetInfo>
           <LocationItem>
@@ -132,11 +156,7 @@ export const NoticesCategoryItem = (
           </SexItem>
         </ListPetInfo>
       </ImgContainer>
-      <TextItem>
-        Title
-        {/* {notice.title} */}
-      </TextItem>
-
+      <TextItem>{notice.title}</TextItem>
       <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
         <span>Learn more</span>
         <span>
@@ -144,11 +164,21 @@ export const NoticesCategoryItem = (
         </span>
       </LoadMoreBtn>
 
-      {isLoggedIn && (
+      {/* modals */}
+      {noticeModalShow && (
         <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
       )}
-      <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
-      <ModalAttention show={showAttentionModal} onHide={toggleAttentionModal} />
+
+      {modalDeleteShow && (
+        <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
+      )}
+
+      {showAttentionModal && (
+        <ModalAttention
+          show={showAttentionModal}
+          onHide={toggleAttentionModal}
+        />
+      )}
     </Item>
   );
 };

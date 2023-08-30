@@ -1,10 +1,7 @@
-import React, {
-  useState,
-  // useEffect
-} from 'react';
-// import { useParams } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 // import Pagination from '@mui/material/Pagination';
 import { Title } from 'components/Notices/Title/Title';
 import { NoticeSearch } from 'components/Notices/NoticeSearch/NoticeSearch';
@@ -12,67 +9,48 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { AddPetButton } from 'components/Notices/AddPetButton/AddPetButton';
 import { NoticesFilter } from 'components/Notices/NoticesFilter/NoticesFilter';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-// import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { fetchNotices } from 'redux/notices/notices-operations';
 // import { selectIsLoading } from 'redux/notices/notices-selectors';
-// import { ModalAttention } from 'components/Modals/ModalAttention/ModalAttention';
 // import Loader from 'components/Loader/Loader';
 // import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
-import {
-  // Wrapper,
-  Filter,
-  Boxing,
-} from './NoticesPage.styled';
+import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
+import {
+  getUserCurrentFavorite,
+  getUserCurrentNotices,
+} from 'redux/user/user-operations';
+// import { addUserCurrentFavorite } from 'redux/user/user-operations';
 
 function Notices() {
   const [search, setSearch] = useState('');
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+  const { categoryName } = useParams();
 
-  // fetch(`https://team-project-backend-881k.onrender.com/api/notices`)
-  //   .then(response => {
-  //     console.log(response.json);
-  //     return response.json;
-  //   })
-  //   .then(noticeі => {
-  //     console.log(noticeі);
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   });
-
-  // const [isShowModalUnautorised, setIsShowModalUnautorised] = useState(false);
-  // const [currentPage, setCurrentPage] = useState(1);
-
-  // const totalPages = useSelector(selectTotalNotice);
-
-  // const dispatch = useDispatch();
-  // const { categoryName } = useParams();
-
+  // console.log(isLoggedIn);
   // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     // 'get('/notices/user/favorite')'
-  // dispatch(getAllFavoriteNotices());
-  //   }
-  //   if (
-  //     categoryName === 'sell' ||
-  //     categoryName === 'lost-found' ||
-  //     categoryName === 'in-good-handls'
-  //   ) {
-  //     dispatch();
-  //     // get(`notices/users/search${category}`)
-  // getNoticesByCategory(`?category=${categoryName}&page=${currentPage}`)
-  //     return;
-  //   }
-  //   if (categoryName === 'favorite' && isLoggedIn) {
-  //     // get(`/notices/user/favorite${params}`)
-  // dispatch(getFavoriteNoticesbyCategory(`?page=${currentPage}`));
-  //     return;
-  //   }
-  //   if (categoryName === 'own' && isLoggedIn) {
-  //     // get(`/notices/user/added${data}`)
-  // dispatch(getAllOwnNotices(`?page=${currentPage}`));
-  //     return;
-  //   }
-  // }, [categoryName, dispatch, isLoggedIn, currentPage]);
+  //   dispatch(addUserCurrentFavorite());
+  // }, [dispatch]);
+
+  useEffect(() => {
+    if (
+      categoryName === 'sell' ||
+      categoryName === 'lost-found' ||
+      categoryName === 'in-good-hands'
+    ) {
+      dispatch(fetchNotices({ categoryName, search }));
+    }
+    if (categoryName === 'favorite' && isLoggedIn) {
+      // get(`/notices/user/favorite${params}`)
+      dispatch(getUserCurrentFavorite());
+      return;
+    }
+    if (categoryName === 'own' && isLoggedIn) {
+      // get(`/notices/user/added${data}`)
+      dispatch(getUserCurrentNotices());
+      return;
+    }
+  }, [categoryName, dispatch, isLoggedIn, search]);
 
   // const handleCategoriesChange = option => {
   //   // при зміні фільтраціїБ змінює сторінку пагінації на 1
@@ -85,11 +63,6 @@ function Notices() {
   //   setCurrentPage(page);
   //   // scroll.scrollToTop();
   //   // код для отримання нових даних, використання фільтрів тощо
-  // };
-
-  // const handleOwnClick = () => {
-  //   // get(`/notices/user/favorite${params}`)
-  //   dispatchEvent(getNoticesByCategory({ query: '', page: ownCurrentPage }));
   // };
 
   return (
@@ -106,19 +79,6 @@ function Notices() {
           <Boxing>
             <NoticesFilter />
             <AddPetButton />
-            {/* {isLoggedIn ? (
-            <AddPetButton path={'/add-pet'} />
-          ) : (
-            <AddPetButton
-              path={'/add-pet'}
-              isLoggedIn={isLoggedIn}
-              modalAttentionShow={modalAttentionShow}
-            />
-          )} */}
-
-            {/* {isShowModalUnautorised && (
-            <ModalUnautorised onClose={toggleModalUautorised} />
-          )} */}
           </Boxing>
         </Filter>
 
@@ -145,25 +105,9 @@ function Notices() {
           }}
         />
 
-        <Filter>
-          <NoticesCategoriesNav />
-
-          <Boxing>
-            <NoticesFilter />
-            {isLoggedIn ? (
-              <AddPetButton path="/add-pet" />
-            ) : (
-              <AddPetButton onClick={setIsShowModalAttention} />
-            )}
-            ;
-            {isShowModalAttention && (
-              <ModalAttention onClose={toggleModalUautorised} />
-            )}
-          </Boxing>
-        </Filter>
+        
 
         {/* <ScrollToTopButton /> */}
-        <NoticesCategoriesList />
       </Container>
     </>
   );
