@@ -111,6 +111,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         <ThirdStepSexPhotoDiv>
        
           <ThirdStepFormPhotoTitle htmlFor="pet-image" option={data.category}>
+
             <ThirdStepFormPhotoDiv>
               {data.category === 'pet' || viewportWidth < 768
                 ? 'Add photo'
@@ -144,6 +145,20 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
                 required
               />
             </ThirdStepFormPlus>
+            {/* input */}
+            <ThirdStepFormImgInput
+              type="file"
+              id="pet-image"
+              alt="pet`s photo"
+              // value={data.photo ?? ''}
+              name="petPhoto"
+              onChange={handleChange}
+              // onFocus={focusHandle}
+              value={imageValue}
+              onBlur={() => validateField('petPhoto', data, setErrors)}
+              accept=".jpeg, .png, .webp, .gif"
+              required
+            />
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 

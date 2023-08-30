@@ -4,9 +4,10 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Search, Cross } from 'components/icons';
 import { Form, Input, Button, ClearBtn } from './NoticeSearch.styled';
 // import { useDispatch } from 'react-redux';
-import // useLocation,
-// useParams,
-'react-router-dom';
+// import {
+//   useLocation,
+//   useParams,
+// } from 'react-router-dom';
 
 export const NoticeSearch = ({ onSubmitNoticeForm }) => {
   const [search, setSearch] = useState('');
@@ -31,11 +32,13 @@ export const NoticeSearch = ({ onSubmitNoticeForm }) => {
     }
     // if (categoryName === 'own') {
     //   dispatch(getNoticesById(${category}, ${ searchQuery }));
+
     // } else if (categoryName === 'favorite') {
     //   dispatch(getNoticesAllFavorite(${category}, ${ searchQuery }));
-    // } else if (category) {
-    //   dispatch(fetchNotices(${category}, ${ searchQuery }))
-    //   );
+
+    // } else
+    // if (category) {
+    //   dispatch(fetchNotices(category, searchQuery));
     // }
   };
 

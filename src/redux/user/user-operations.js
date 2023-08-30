@@ -33,12 +33,12 @@ export const deleteUserCurrentNotices = createAsyncThunk(
 export const addUserCurrentFavorite = createAsyncThunk(
   'notices/addUserCurrentFavorite',
   async (noticeId, thunkAPI) => {
-    console.log("noticeId:", noticeId)
+    console.log('noticeId:', noticeId);
     try {
       const { data } = await axios.patch(
         `/api/users/current/favorites/${noticeId}`
       );
-      console.log('addUserCurrentFavorite:', data);
+      // console.log('addUserCurrentFavorite:', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -51,7 +51,7 @@ export const getUserCurrentFavorite = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get(`/api/users/current/favorites`);
-      console.log('data favorite', data);
+      // console.log('data favorite', data);
       return data;
     } catch (error) {
       console.log('error:', error);

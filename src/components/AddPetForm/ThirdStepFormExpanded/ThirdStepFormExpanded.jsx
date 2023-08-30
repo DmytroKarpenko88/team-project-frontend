@@ -108,7 +108,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   return (
     <>
       <ThirdStepFormDiv>
-        {/* sex for sell lostFond ingood hands*/}
+        {/* sex for sell, lostFond, and in good hands*/}
         <ThirdStepSexPhotoDiv>
           {data.category !== 'pet' && (
             <div>
@@ -153,7 +153,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
             </ThirdStepFormPhotoDiv>
             {/* div - svg */}
             <ThirdStepFormPlus>
-              <Plus />
+              {/* <Plus /> */}
               {/* img */}
               {/* {fileInputRef.current?.files[0] && <img></img>} */}
               {!data.petURL && <Plus width="30" height="30" />}
@@ -179,6 +179,21 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                 required
               />
             </ThirdStepFormPlus>
+            {/* input */}
+            {/* -----FileInput - input */}
+            <ThirdStepFormImgInput
+              type="file"
+              id="pet-image"
+              alt="pet`s photo"
+              // value={data.photo ?? ''}
+              name="petPhoto"
+              onChange={handleChange}
+              // onFocus={focusHandle}
+              value={imageValue}
+              onBlur={() => validateField('petPhoto', data, setErrors)}
+              accept=".jpeg, .png, .gif"
+              required
+            />
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 

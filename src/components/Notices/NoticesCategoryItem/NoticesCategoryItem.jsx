@@ -24,10 +24,12 @@ import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
 import { getNoticeById } from 'redux/notices/notices-operations';
 import { Notify } from 'notiflix';
 import { addUserCurrentFavorite } from 'redux/user/user-operations';
+import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
 // import { removeFavoriteNotice } from 'redux/notices/notices-operations';
 // import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
+  // console.log('notice:', notice);
   const dispatch = useDispatch();
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
@@ -41,19 +43,27 @@ export const NoticesCategoryItem = ({ notice }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
+  const userFavoriteNoticesID = useSelector(selectUserCurrentFavoriteNoticesID);
+  // console.log(currentUser);
 
   useEffect(() => {
-    const newNotices = favoriteNotices => {
-      favoriteNotices.forEach(favoriteNotics => {
-        if (favoriteNotices._id === notice._id) {
-          setFavorite(true);
-        }
-      });
-    };
-    if (isLoggedIn) {
-      return newNotices;
+    if (userFavoriteNoticesID.includes(notice._id)) {
+      setFavorite(true);
     }
-  }, [isLoggedIn, notice._id]);
+  }, [notice._id, userFavoriteNoticesID]);
+
+  // useEffect(() => {
+  //   const newNotices = favoriteNotices => {
+  //     favoriteNotices.find(favoriteNotics => {
+  //       if (favoriteNotices._id === notice._id) {
+  //         setFavorite(true);
+  //       }
+  //     });
+  //   };
+  //   if (isLoggedIn) {
+  //     return newNotices;
+  //   }
+  // }, [isLoggedIn, notice._id]);
 
   const handleAddInFavorite = async () => {
     try {
@@ -73,7 +83,7 @@ export const NoticesCategoryItem = ({ notice }) => {
     }
   };
 
-  // const handleAddInFavorite = async () => {
+  // const handleAddInFavorite = async  => {
   //   try {
   //     if (!isLoggedIn) {
   //       setShowAttentionModal(true);
@@ -95,6 +105,13 @@ export const NoticesCategoryItem = ({ notice }) => {
     setNoticeModalShow(!noticeModalShow);
     dispatch(getNoticeById(notice._id));
   };
+
+  // const callFromModal = () => {
+  //   const phoneNumberFormatted = currentUser.phone.replace(/\D/g, '');
+  //   const telLink = `tel:${phoneNumberFormatted}`;
+  //   return <a href={telLink}>Contact</a>;
+  // };
+
   const toggleModalDelete = () => {
     setModalDeleteShow(!modalDeleteShow);
   };
@@ -147,6 +164,7 @@ export const NoticesCategoryItem = ({ notice }) => {
           </SexItem>
         </ListPetInfo>
       </ImgContainer>
+
       <TextItem>{notice.title}</TextItem>
       <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
         <span>Learn more</span>
@@ -157,7 +175,11 @@ export const NoticesCategoryItem = ({ notice }) => {
 
       {/* modals */}
       {noticeModalShow && (
-        <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
+        <NoticeModal
+          show={noticeModalShow}
+          onHide={toggleNoticeModal}
+          // callFromModal={callFromModal}
+        />
       )}
 
       {modalDeleteShow && (
