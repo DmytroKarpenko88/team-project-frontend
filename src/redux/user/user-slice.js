@@ -59,10 +59,10 @@ const userSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(addUserCurrentFavorite.fulfilled, (state, action) => {
-        const index = state.userFavoriteNotices.findIndex(
-          notice => notice._id === action.payload.notice._id
-        );
-        state.items[index].favorite = action.payload.notice.favorite;
+        // const index = state.userFavoriteNotices.findIndex(
+        //   notice => notice._id === action.payload.notice._id
+        // );
+        state.userFavoriteNotices = action.payload.notice;
         state.isLoading = false;
         state.isLoggedIn = true;
       })

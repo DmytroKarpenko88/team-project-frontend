@@ -33,11 +33,12 @@ export const deleteUserCurrentNotices = createAsyncThunk(
 export const addUserCurrentFavorite = createAsyncThunk(
   'notices/addUserCurrentFavorite',
   async (noticeId, thunkAPI) => {
+    console.log("noticeId:", noticeId)
     try {
       const { data } = await axios.patch(
         `/api/users/current/favorites/${noticeId}`
       );
-      console.log('data:', data);
+      console.log('addUserCurrentFavorite:', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
