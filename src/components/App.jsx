@@ -3,8 +3,6 @@ import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
 
-import { getUserCurrentNotices } from 'redux/user/user-operations';
-
 import {
   getUserCurrentFavorite,
   getUserCurrentNotices,
