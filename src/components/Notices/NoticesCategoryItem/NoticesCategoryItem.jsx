@@ -66,20 +66,16 @@ export const NoticesCategoryItem = ({ notice }) => {
   // }, [isLoggedIn, notice._id]);
 
   const handleAddInFavorite = async () => {
-    try {
-      if (currentUser.name === null && currentUser.email === null) {
-        setShowAttentionModal(true);
-      } else if (isLoggedIn && !favorite) {
-        dispatch(addUserCurrentFavorite(notice._id));
-        setFavorite(true);
-        Notify.success('Added your favorite');
-      } else if (isLoggedIn && favorite && categoryName !== favorite) {
-        dispatch(addUserCurrentFavorite(notice._id));
-        setFavorite(false);
-        Notify.success('Deleted from favorite');
-      }
-    } catch (error) {
-      // setShowAttentionModal(true);
+    if (currentUser.name === null && currentUser.email === null) {
+      setShowAttentionModal(true);
+    } else if (isLoggedIn && !favorite) {
+      dispatch(addUserCurrentFavorite(notice._id));
+      setFavorite(true);
+      Notify.success('Added your favorite');
+    } else if (isLoggedIn && favorite && categoryName !== favorite) {
+      dispatch(addUserCurrentFavorite(notice._id));
+      setFavorite(false);
+      Notify.success('Deleted from favorite');
     }
   };
 
@@ -105,12 +101,6 @@ export const NoticesCategoryItem = ({ notice }) => {
     setNoticeModalShow(!noticeModalShow);
     dispatch(getNoticeById(notice._id));
   };
-
-  // const callFromModal = () => {
-  //   const phoneNumberFormatted = currentUser.phone.replace(/\D/g, '');
-  //   const telLink = `tel:${phoneNumberFormatted}`;
-  //   return <a href={telLink}>Contact</a>;
-  // };
 
   const toggleModalDelete = () => {
     setModalDeleteShow(!modalDeleteShow);
@@ -175,11 +165,7 @@ export const NoticesCategoryItem = ({ notice }) => {
 
       {/* modals */}
       {noticeModalShow && (
-        <NoticeModal
-          show={noticeModalShow}
-          onHide={toggleNoticeModal}
-          // callFromModal={callFromModal}
-        />
+        <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
       )}
 
       {modalDeleteShow && (

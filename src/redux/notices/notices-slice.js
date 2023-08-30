@@ -23,11 +23,11 @@ const noticesSlice = createSlice({
   name: 'notices',
   initialState: noticesInitialState,
   // reducers: {
-    // filterFavorites: (state, action) => {
-    //   state.favorites = state.favorites.filter(favorite =>
-    //     favorite.title.toLowerCase().includes(action.payload)
-    //   );
-    // },
+  // filterFavorites: (state, action) => {
+  //   state.favorites = state.favorites.filter(favorite =>
+  //     favorite.title.toLowerCase().includes(action.payload)
+  //   );
+  // },
   //   filterItems: (state, action) => {
   //     state.filtredNotice = state.items.filter(item =>
   //       item.title.toLowerCase().includes(action.payload)
@@ -47,7 +47,6 @@ const noticesSlice = createSlice({
         state.error = null;
       })
       .addCase(getNoticeById.fulfilled, (state, action) => {
-        console.log("action:", action)
         state.noticeById = action.payload;
         state.isLoading = false;
         state.error = null;
@@ -84,10 +83,7 @@ const noticesSlice = createSlice({
         // state.favorites = state.favorites.filter(
         //   favorite => favorite._id !== action.meta.arg
         // );
-      })
-
-
-
+      }),
 });
 
 // export const { filterItems } = noticesSlice.actions;

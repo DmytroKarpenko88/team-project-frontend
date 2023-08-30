@@ -17,7 +17,7 @@ export const ModalDelete = props => {
         <CrossBtn onClick={props.onHide}>
           <Cross />
         </CrossBtn>
-        <Title>Delete adverstiment?</Title>
+        <Title>Delete advertisement?</Title>
 
         <InfoMessage>
           Are you sure you want to delete <b>“Cute dog looking for a home”?</b>{' '}
