@@ -1,6 +1,6 @@
 const getTitle = data => {
   let title = 'Add';
-  switch (data.option) {
+  switch (data.category) {
     case 'sell':
       title = `${title} pet for sale`;
       break;

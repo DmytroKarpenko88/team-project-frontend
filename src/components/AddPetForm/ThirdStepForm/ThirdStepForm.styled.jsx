@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { theme } from 'styles';
+import { Field } from 'formik';
+
 
 //  ------- sex
 // export const ThirdStepSexDiv = styled.div`
@@ -179,7 +181,7 @@ export const ThirdStepFormPhotoDiv = styled.div`
   //   font-size: 28px;
   // }
 `;
-export const ThirdStepFormImgInput = styled.input`
+export const ThirdStepFormImgInput = styled(Field)`
   opacity: 0; // chose file
   width: 0px;
   height: 0px; // 112px;
@@ -227,7 +229,7 @@ export const ThirdStepFormImgPreview = styled.img`
 `;
 // ------ comments
 
-export const ThirdStepFormComments = styled.textarea`
+export const ThirdStepFormComments = styled(Field)`
   min-height: 92px;
   padding: 8px 16px;
   border-radius: 20px;

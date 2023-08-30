@@ -34,8 +34,8 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  const isPetPhotoFieldValid = Boolean(!errors.petPhoto && !!data.petPhoto);
-  const isCommentsFieldValid = Boolean(!errors.comments);
+  const isPetPhotoFieldValid = Boolean(!errors.petURL && !!data.petURL);
+  const isCommentsFieldValid = Boolean(!errors.describe);
   const isLocationFieldValid = Boolean(!errors.location && !!data.location);
   const isSexFieldValid = Boolean(!errors.sex && !!data.sex);
   const isPriceFieldValid = Boolean(!errors.price && !!data.price);
@@ -52,7 +52,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   }, []);
 
   useEffect(() => {
-    if (data.option === 'sell') {
+    if (data.category === 'sell') {
       setIsDisabled(
         !(
           isPetPhotoFieldValid &&
@@ -63,7 +63,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
         )
       );
     }
-    if (data.option === 'pet') {
+    if (data.category === 'pet') {
       setIsDisabled(!(isPetPhotoFieldValid && isCommentsFieldValid));
     } else {
       setIsDisabled(
@@ -77,7 +77,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
     }
   }, [
     errors,
-    data.option,
+    data.category,
     isCommentsFieldValid,
     isLocationFieldValid,
     isPetPhotoFieldValid,
@@ -91,6 +91,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
     // setData(prev => ({ ...prev, [input]: value }));
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
+    console.log("fieldValue:", fieldValue)
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
@@ -109,7 +110,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
       <ThirdStepFormDiv>
         {/* sex for sell lostFond ingood hands*/}
         <ThirdStepSexPhotoDiv>
-          {data.option !== 'pet' && (
+          {data.category !== 'pet' && (
             <div>
               <ThirdStepSexTitle>The sex</ThirdStepSexTitle>
               <ThirdStepSexDiv>
@@ -146,7 +147,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
           {/* label */}
           <ThirdStepFormPhotoTitle htmlFor="pet-image" option={data.option}>
             <ThirdStepFormPhotoDiv>
-              {data.option === 'pet' || viewportWidth < 768
+              {data.category === 'pet' || viewportWidth < 768
                 ? 'Add photo'
                 : 'Load the pet’s image:'}
             </ThirdStepFormPhotoDiv>
@@ -155,11 +156,11 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               <Plus />
               {/* img */}
               {/* {fileInputRef.current?.files[0] && <img></img>} */}
-              {!data.petPhoto && <Plus width="30" height="30" />}
-              {!!data.petPhoto && (
+              {!data.petURL && <Plus width="30" height="30" />}
+              {!!data.petURL && (
                 <ThirdStepFormImgPreview
-                  src={URL.createObjectURL(data.petPhoto)}
-                  alt={data.petPhoto.name}
+                  src={URL.createObjectURL(data.petURL)}
+                  alt={data.name}
                   // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
@@ -169,7 +170,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                 id="pet-image"
                 alt="pet`s photo"
                 // value={data.photo ?? ''}
-                name="petPhoto"
+                name="petURL"
                 onChange={handleChange}
                 // onFocus={focusHandle}
                 value={imageValue}
@@ -183,7 +184,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
 
         {/* location price for sell lostFond ingood hands*/}
         <div>
-          {data.option !== 'pet' && (
+          {data.category !== 'pet' && (
             <>
               <ThirdStepFormTitle>
                 Location
@@ -201,7 +202,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               {!!errors.location && <ErrorMessage message={errors.location} />}
             </>
           )}
-          {data.option === 'sell' && (
+          {data.category === 'sell' && (
             <>
               <ThirdStepFormTitle>
                 Price
@@ -221,25 +222,25 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
           )}
           {/* ----- -------- */}
           <>
-            <ThirdStepFormTitle htmlFor="comments">
+            <ThirdStepFormTitle htmlFor="describe">
               Comments
               <ThirdStepFormComments
                 type="text"
                 // component="textarea"
                 // value="comments"
-                name="comments"
+                name="describe"
                 placeholder="Type of pet"
                 onChange={handleChange}
                 // onFocus={focusHandle}
                 data={data}
                 step={step}
-                value={data.comments}
-                onBlur={() => validateField('comments', data, setErrors)}
-                className={errors.comments ? 'invalid' : ''}
+                value={data.describe}
+                onBlur={() => validateField('describe', data, setErrors)}
+                className={errors.describe ? 'invalid' : ''}
                 required
               />
             </ThirdStepFormTitle>
-            {!!errors.comments && <ErrorMessage message={errors.comments} />}
+            {!!errors.describe && <ErrorMessage message={errors.describe} />}
           </>
         </div>
       </ThirdStepFormDiv>

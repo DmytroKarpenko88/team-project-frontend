@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'styles';
+import { Field } from 'formik';
 
 // --------- FirstStepForm
 
@@ -36,7 +37,7 @@ export const FirstStepFormItemLabel = styled.label`
     background-color: ${theme.colors.blue}; // active
   }
 `;
-export const FirstStepFormItemInput = styled.input`
+export const FirstStepFormItemInput = styled(Field)`
   display: none;
 
   &:checked {
