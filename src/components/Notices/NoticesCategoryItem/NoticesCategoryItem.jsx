@@ -29,7 +29,7 @@ import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
 // import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
-  console.log('notice:', notice);
+  // console.log('notice:', notice);
   const dispatch = useDispatch();
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
@@ -156,6 +156,7 @@ export const NoticesCategoryItem = ({ notice }) => {
           </SexItem>
         </ListPetInfo>
       </ImgContainer>
+
       <TextItem>{notice.title}</TextItem>
       <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
         <span>Learn more</span>

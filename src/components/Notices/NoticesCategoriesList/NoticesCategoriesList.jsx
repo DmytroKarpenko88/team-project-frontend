@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAllNotices } from 'redux/notices/notices-selectors';
 import { NoticesCategoryItem } from '../NoticesCategoryItem/NoticesCategoryItem';
-import { NoticeList, Text } from './NoticesCategoriesList.styled';
+import { NoticeList, Text, TextBox } from './NoticesCategoriesList.styled';
 import { useParams } from 'react-router-dom';
 import {
   selectUserCurrentFavoriteNotices,
@@ -32,16 +32,16 @@ export const NoticesCategoriesList = () => {
   }, [categoryName, notices, ownNotices, userFavotites]);
 
   return (
-    <>
-      <NoticeList>
-        {noticesForList.length > 0 ? (
-          noticesForList.map(item => (
-            <NoticesCategoryItem key={item._id} notice={item} />
-          ))
-        ) : (
+    <NoticeList>
+      {noticesForList.length > 0 ? (
+        noticesForList.map(item => (
+          <NoticesCategoryItem key={item._id} notice={item} />
+        ))
+      ) : (
+        <TextBox>
           <Text>Sorry, we can't find that</Text>
-        )}
-      </NoticeList>
-    </>
+        </TextBox>
+      )}
+    </NoticeList>
   );
 };
