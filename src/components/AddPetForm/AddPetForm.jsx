@@ -1,18 +1,11 @@
-// import { ArrowLeft, Paw } from 'components/icons';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import StepTitles from './StepTitles/StepTitles';
-// import getFormBasedOnStep from './getFormBasedOnStep';
 import getTitle from './getTitle';
 import {
   AddPetDiv,
   AddPetFormTitle,
   AddPetContainerForm,
-  // AddPetBtnList,
-  // AddPetBtnItem,
-  // AddPetBtnNext,
-  // AddPetBtnCancel,
-  // AddPetBtnCancelDiv,
 } from './AddPetForm.styled';
 import { Formik } from 'formik';
 import { validatePetSchema } from './validatePet';
@@ -110,10 +103,9 @@ const AddPetForm = () => {
 
   // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
   // const backPage = step === 1 ? location.state?.from ?? '/user' : '';
-  const backPage = location.state?.from ?? '';
+  const backPage = location.state?.from ?? '/';
 
-  console.log('data:', data);
-  // console.log('data.option:', data.option);
+  // console.log('data:', data);
   return (
     <AddPetDiv data={data} step={step}>
       <Formik
@@ -123,12 +115,9 @@ const AddPetForm = () => {
         validateOnChange={false}
       >
         {() => (
-          <AddPetContainerForm
-          // onClick={onClick}
-          >
+          <AddPetContainerForm>
             <AddPetFormTitle>{title}</AddPetFormTitle>
             <StepTitles step={step} />
-            {/* {getFormBasedOnStep(step, data, setData)} */}
             {step === 1 && (
               <FirstStepForm
                 data={data}
@@ -164,26 +153,6 @@ const AddPetForm = () => {
                 />
               )
             )}
-
-            {/* <AddPetBtnList>
-              <AddPetBtnItem>
-                <AddPetBtnNext type="button">
-                  {step === 3 ? 'Done' : 'Next'}
-                  <Paw width="24" height="24" fill="#FEF9F9" />
-                </AddPetBtnNext>
-              </AddPetBtnItem>
-
-              <AddPetBtnItem>
-                <AddPetBtnCancel type="button">
-                  <Link to={backPage}>
-                    <AddPetBtnCancelDiv>
-                      <ArrowLeft width="24" height="24" />
-                      {step === 1 ? 'Cancel' : 'Back'}
-                    </AddPetBtnCancelDiv>
-                  </Link>
-                </AddPetBtnCancel>
-              </AddPetBtnItem>
-            </AddPetBtnList> */}
           </AddPetContainerForm>
         )}
       </Formik>

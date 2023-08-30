@@ -13,6 +13,7 @@ import {
   AddPetBtnNext,
 } from '../AddPetForm.styled';
 import { ArrowLeft, Paw } from 'components/icons';
+import { Link } from 'react-router-dom';
 
 const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -119,20 +120,16 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
 
         <AddPetBtnItem>
           {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-          <AddPetBtnCancel
-            type="button"
-            // text="Cancel"
-            // isLink={true}
-            to={cancel}
-          >
-            {/* <Link to={backPage}> */}
-            <AddPetBtnCancelDiv>
-              <ArrowLeft width="24" height="24" />
-              Cancel
-              {/* {step === 1 ? 'Cancel' : 'Back'} */}
-            </AddPetBtnCancelDiv>
-            {/* </Link> */}
-          </AddPetBtnCancel>
+          <Link to={cancel}>
+            <AddPetBtnCancel type="button">
+              <AddPetBtnCancelDiv>
+                <ArrowLeft width="24" height="24" />
+                Cancel
+                {/* {step === 1 ? 'Cancel' : 'Back'} */}
+              </AddPetBtnCancelDiv>
+              {/* </Link> */}
+            </AddPetBtnCancel>
+          </Link>
         </AddPetBtnItem>
       </AddPetBtnList>
     </>
