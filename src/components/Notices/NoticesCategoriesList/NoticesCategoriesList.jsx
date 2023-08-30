@@ -14,6 +14,7 @@ export const NoticesCategoriesList = () => {
   const notices = useSelector(selectAllNotices);
   const ownNotices = useSelector(selectUserCurrentNotices);
   const userFavotites = useSelector(selectUserCurrentFavoriteNotices);
+  // console.log('userFavotites:', userFavotites);
 
   // console.log('ownNotices:', ownNotices);
   // const favoriteNotices = useSelector(selectUserCurrentFavoriteNotices);
