@@ -7,7 +7,7 @@ import {
   ThirdStepFormImgInput,
   ThirdStepFormImgPreview,
   ThirdStepFormInput,
-  ThirdStepFormPhotoDiv,
+  // ThirdStepFormPhotoDiv,
   ThirdStepFormPhotoTitle,
   ThirdStepFormPlus,
   ThirdStepFormTitle,
@@ -107,7 +107,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   return (
     <>
       <ThirdStepFormDiv>
-        {/* sex for sell lostFond ingood hands*/}
+        {/* sex for sell, lostFond, and in good hands*/}
         <ThirdStepSexPhotoDiv>
           {data.option !== 'pet' && (
             <div>
@@ -142,17 +142,22 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               </ThirdStepSexDiv>
             </div>
           )}
-          {/* --- */}
-          {/* label */}
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" option={data.option}>
-            <ThirdStepFormPhotoDiv>
-              {data.option === 'pet' || viewportWidth < 768
-                ? 'Add photo'
-                : 'Load the pet’s image:'}
-            </ThirdStepFormPhotoDiv>
+          {/* ------ AddFormImageLabel - label*/}
+          <ThirdStepFormPhotoTitle
+            htmlFor="pet-image"
+            data={data}
+            step={step}
+            // option={data.option}
+          >
+            {/* <ThirdStepFormPhotoDiv> */}
+            {data.option === 'pet' || viewportWidth < 768
+              ? 'Add photo'
+              : 'Load the pet’s image:'}
+            {/* </ThirdStepFormPhotoDiv> */}
+            {/* ------- AddFormImageWrapper  - div*/}
             {/* div - svg */}
             <ThirdStepFormPlus>
-              <Plus />
+              {/* <Plus /> */}
               {/* img */}
               {/* {fileInputRef.current?.files[0] && <img></img>} */}
               {!data.petPhoto && <Plus width="30" height="30" />}
@@ -163,21 +168,22 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                   // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
-              {/* input */}
-              <ThirdStepFormImgInput
-                type="file"
-                id="pet-image"
-                alt="pet`s photo"
-                // value={data.photo ?? ''}
-                name="petPhoto"
-                onChange={handleChange}
-                // onFocus={focusHandle}
-                value={imageValue}
-                onBlur={() => validateField('petPhoto', data, setErrors)}
-                accept=".jpeg, .png, .gif"
-                required
-              />
             </ThirdStepFormPlus>
+            {/* input */}
+            {/* -----FileInput - input */}
+            <ThirdStepFormImgInput
+              type="file"
+              id="pet-image"
+              alt="pet`s photo"
+              // value={data.photo ?? ''}
+              name="petPhoto"
+              onChange={handleChange}
+              // onFocus={focusHandle}
+              value={imageValue}
+              onBlur={() => validateField('petPhoto', data, setErrors)}
+              accept=".jpeg, .png, .gif"
+              required
+            />
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 

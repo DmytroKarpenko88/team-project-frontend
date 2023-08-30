@@ -17,13 +17,16 @@ export const AddPetDiv = styled.div`
   line-height: 1.5; //21px
 
   @media screen and (min-width: 498px) {
-    width: 458px;
+    // width: 458px;
   }
+  @media screen and (min-width: ${theme.breakpoints
+      .mobile}) and (max-width: 767px) {
+    width: 280px;
+  }
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     ${({ data, step }) =>
-      (data.option !== 'pet') && (step === 3)
-        ? 'width: 704px;'
-        : 'width: 458px;'};
+      data.option !== 'pet' && step === 3 ? 'width: 704px;' : 'width: 458px;'};
   }
   // and (max-width: ${theme.breakpoints.desktop})
 `;
@@ -31,6 +34,11 @@ export const AddPetDiv = styled.div`
 export const AddPetContainerForm = styled(Form)`
   padding: 20px 8px;
   min-height: 496px;
+
+  @media screen and (min-width: ${theme.breakpoints
+      .mobile}) and (max-width: 767px) {
+    width: 280px;
+  }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     padding: 20px 32px;

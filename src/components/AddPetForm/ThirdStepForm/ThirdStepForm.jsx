@@ -7,7 +7,7 @@ import {
   ThirdStepFormImgInput,
   ThirdStepFormImgPreview,
   // ThirdStepFormInput,
-  ThirdStepFormPhotoDiv,
+  // ThirdStepFormPhotoDiv,
   ThirdStepFormPhotoTitle,
   ThirdStepFormPlus,
   ThirdStepFormTitle,
@@ -128,12 +128,17 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         )} */}
           {/* --- */}
           {/* label */}
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" option={data.option}>
-            <ThirdStepFormPhotoDiv>
-              {data.option === 'pet' || viewportWidth < 768
-                ? 'Add photo'
-                : 'Load the pet’s image:'}
-            </ThirdStepFormPhotoDiv>
+          <ThirdStepFormPhotoTitle
+            htmlFor="pet-image"
+            data={data}
+            // step={step}
+            // option={data.option}
+          >
+            {/* <ThirdStepFormPhotoDiv> */}
+            {data.option === 'pet' || viewportWidth < 768
+              ? 'Add photo'
+              : 'Load the pet’s image:'}
+            {/* </ThirdStepFormPhotoDiv> */}
             {/* div - svg */}
             <ThirdStepFormPlus>
               {/* <Plus /> */}
@@ -147,21 +152,21 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
                   // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
-              {/* input */}
-              <ThirdStepFormImgInput
-                type="file"
-                id="pet-image"
-                alt="pet`s photo"
-                // value={data.photo ?? ''}
-                name="petPhoto"
-                onChange={handleChange}
-                // onFocus={focusHandle}
-                value={imageValue}
-                onBlur={() => validateField('petPhoto', data, setErrors)}
-                accept=".jpeg, .png, .webp, .gif"
-                required
-              />
             </ThirdStepFormPlus>
+            {/* input */}
+            <ThirdStepFormImgInput
+              type="file"
+              id="pet-image"
+              alt="pet`s photo"
+              // value={data.photo ?? ''}
+              name="petPhoto"
+              onChange={handleChange}
+              // onFocus={focusHandle}
+              value={imageValue}
+              onBlur={() => validateField('petPhoto', data, setErrors)}
+              accept=".jpeg, .png, .webp, .gif"
+              required
+            />
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 
