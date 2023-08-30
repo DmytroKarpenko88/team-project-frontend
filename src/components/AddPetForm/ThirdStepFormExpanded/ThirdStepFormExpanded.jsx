@@ -174,7 +174,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                 // onFocus={focusHandle}
                 value={imageValue}
                 onBlur={() => validateField('petPhoto', data, setErrors)}
-                accept=".jpeg, .png, .webp, .gif"
+                accept=".jpeg, .png, .gif"
                 required
               />
             </ThirdStepFormPlus>
@@ -231,6 +231,8 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                 placeholder="Type of pet"
                 onChange={handleChange}
                 // onFocus={focusHandle}
+                data={data}
+                step={step}
                 value={data.comments}
                 onBlur={() => validateField('comments', data, setErrors)}
                 className={errors.comments ? 'invalid' : ''}
