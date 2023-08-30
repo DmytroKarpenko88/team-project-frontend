@@ -1,7 +1,4 @@
-import React, {
-  // useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
 // import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,19 +19,17 @@ import {
 } from './NoticesCategoryItem.styled';
 import { Heart, Location, Clock, Female, Paw, Trash } from 'components/icons';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
 import { getNoticeById } from 'redux/notices/notices-operations';
 import { Notify } from 'notiflix';
+import { addUserCurrentFavorite } from 'redux/user/user-operations';
 // import { removeFavoriteNotice } from 'redux/notices/notices-operations';
 // import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
-  const [
-    favorite,
-    //  setFavorite
-  ] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
 
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
@@ -44,54 +39,50 @@ export const NoticesCategoryItem = ({ notice }) => {
   // console.log(filterNotices);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const { categoryName } = useParams();
+  const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
-  // console.log('currentUser:', currentUser);
 
-  // console.log(notice);
-  // console.log(notice.category);
-
-  // useEffect(() => {
-  //   const newNotices = favoriteNotices => {
-  //     favoriteNotices.forEach(favoriteNotics => {
-  //       if (favoriteNotices._id === notice._id) {
-  //         setFavorite(true);
-  //       }
-  //     });
-  //   };
-  //   if (isLoggedIn) {
-  //     return newNotices;
-  //   }
-  // }, [isLoggedIn, notice._id]);
-
-  // const handleAddInFavorite = async () => {
-  //   try {
-  //     if (currentUser.name === null && currentUser.email === null) {
-  //       setShowAttentionModal(true);
-  //     } else if (isLoggedIn && !favorite) {
-  //       dispatch(addToFavorite(notice._id));
-  //       setFavorite(true);
-  //       Notify.success('Added your favorite');
-  //     } else if (isLoggedIn && favorite && categoryName !== favorite) {
-  //       dispatch(deleteFromFavorite(notice._id));
-  //       setFavorite(false);
-  //       Notify.success('Deleted from favorite');
-  //     }
-  //   } catch (error) {
-  //     setShowAttentionModal(true);
-  //   }
-  // };
+  useEffect(() => {
+    const newNotices = favoriteNotices => {
+      favoriteNotices.forEach(favoriteNotics => {
+        if (favoriteNotices._id === notice._id) {
+          setFavorite(true);
+        }
+      });
+    };
+    if (isLoggedIn) {
+      return newNotices;
+    }
+  }, [isLoggedIn, notice._id]);
 
   const handleAddInFavorite = async () => {
     try {
-      if (!isLoggedIn) {
+      if (currentUser.name === null && currentUser.email === null) {
         setShowAttentionModal(true);
-        return;
+      } else if (isLoggedIn && !favorite) {
+        dispatch(addUserCurrentFavorite(notice._id));
+        setFavorite(true);
+        Notify.success('Added your favorite');
+      } else if (isLoggedIn && favorite && categoryName !== favorite) {
+        dispatch(addUserCurrentFavorite(notice._id));
+        setFavorite(false);
+        Notify.success('Deleted from favorite');
       }
     } catch (error) {
-      Notify.warning(error.message);
+      // setShowAttentionModal(true);
     }
   };
+
+  // const handleAddInFavorite = async () => {
+  //   try {
+  //     if (!isLoggedIn) {
+  //       setShowAttentionModal(true);
+  //       return;
+  //     }
+  //   } catch (error) {
+  //     Notify.warning(error.message);
+  //   }
+  // };
 
   // const handleDeleteOwnNotice = async () => {
   //   if (isLoggedIn && currentUser._id === notice._owner._id) {

@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
 import {
-  fetchCurrentUser,
-  getUserProfile,
-} from 'redux/auth/auth-operations';
-import { getUserCurrentNotices } from 'redux/user/user-operations';
+  getUserCurrentFavorite,
+  getUserCurrentNotices,
+} from 'redux/user/user-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
 import Main from './Main/Main';
@@ -30,6 +30,8 @@ export const App = () => {
     dispatch(fetchCurrentUser());
     dispatch(getUserProfile());
     dispatch(getUserCurrentNotices());
+    dispatch(getUserCurrentFavorite());
+
     // if(isLoggedIn) {
     //   dispatch(fetchCurrentUser());
     //   dispatch(getUserProfile())
