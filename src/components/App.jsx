@@ -1,10 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  fetchCurrentUser,
-  getUserProfile,
-} from 'redux/auth/auth-operations';
+import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
 import { getUserCurrentNotices } from 'redux/user/user-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
@@ -21,6 +18,7 @@ const Login = lazy(() => import('pages/LoginPage/LoginPage'));
 const User = lazy(() => import('pages/User/User'));
 const IconPage = lazy(() => import('pages/IconPage'));
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
+const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -78,6 +76,7 @@ export const App = () => {
               }
             />
             <Route path="icons" element={<IconPage />} />
+            <Route path="friends" element={<FriendsPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
