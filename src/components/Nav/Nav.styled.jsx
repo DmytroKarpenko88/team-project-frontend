@@ -9,18 +9,18 @@ export const NavMenu = styled.ul.withConfig({
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  z-index: 0;
+  z-index: 5;
 
   @media screen and (max-width: 767px) {
     padding: 40px 70px 219px 70px;
-    top: 35px;
-    height: 100vh;
+    top: 50px;
+    height: 100%;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    top: 49px;
+    top: 70px;
     padding: 94px 0 700px 0;
-    height: 100vh;
+    height: 100%;
   }
 
   @media screen and (max-width: 1279px) {
@@ -106,7 +106,7 @@ export const UserNavContainerMobile = styled.div`
   }
 
   @media screen and (max-width: 767px) {
-    margin-bottom: 159px;
+    margin-bottom: 84px;
     display: visible;
   }
 `;
@@ -118,7 +118,7 @@ export const LogoutButtnMobile = styled.div`
   }
   @media screen and (max-width: 767px) {
     display: visible;
-    top: 50%;
+    top: 499px;
     left: 10%;
   }
 `;
