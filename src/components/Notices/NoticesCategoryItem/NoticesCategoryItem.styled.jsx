@@ -2,34 +2,10 @@ import styled from 'styled-components';
 import { theme } from 'styles';
 
 export const Item = styled.li`
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 24px;
-  // margin-right: auto;
-  // margin-left: auto;
-
-  width: 100%;
-  height: 456px;
   background-color: ${theme.colors.white};
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
   box-shadow: ${theme.boxShadows.main};
-
-  @media screen and (min-width: 768px) {
-   width: 336px;
-    flex-basis: calc(100% / 2 - 32px);
-    margin-left: 32px;
-    margin-bottom: 32px;
-
-  }
-
-  @media screen and (min-width: 1280px) {
-   max- width: 288px;
-    flex-basis: calc(100% / 4 - 16px);
-    margin-left: -16px;
-  }
 
   transition: transform 250ms ${theme.transition.main};
 
@@ -41,16 +17,8 @@ export const Item = styled.li`
 
 export const ImgContainer = styled.div`
   position: relative;
-  width: 100%;
+  max-width: 100%;
   height: 288px;
-
-  @media screen and (min-width: 768px) {
-    width: 336px;
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 288px;
-  }
 `;
 
 export const Img = styled.img`
@@ -256,9 +224,23 @@ export const SexItem = styled.div`
   }
 `;
 
+export const ItemWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const TextItem = styled.h2`
-  display: block;
-  width: 100%;
+  display: -webkit-box;
+  min-width: 248px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-items: start;
+  justify-content: start;
+
   height: 106px;
   padding: 20px;
   font-size: 24px;
@@ -266,6 +248,14 @@ export const TextItem = styled.h2`
   font-weight: ${theme.fonts.main.bold};
 
   word-break: break-word;
+
+  @media screen and (min-width: 768px) {
+    min-width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    min-width: 288px;
+  }
 `;
 
 export const LoadMoreBtn = styled.button`
@@ -274,7 +264,7 @@ export const LoadMoreBtn = styled.button`
   gap: 12px;
   align-items: center;
   background-color: ${theme.colors.white};
-  min-width: 248px;
+  width: 248px;
   height: 40px;
   outline: none;
   border-width: 1px;
@@ -283,7 +273,7 @@ export const LoadMoreBtn = styled.button`
   border-radius: 40px;
   color: ${theme.colors.blue};
   cursor: pointer;
-  margin-bottom: 24px;
+  margin: 0 auto 24px auto;
 
   font-size: 16px;
   font-style: normal;

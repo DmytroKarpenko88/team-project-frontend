@@ -51,7 +51,7 @@ export const getUserCurrentFavorite = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get(`/api/users/current/favorites`);
-      console.log('data favorite', data);
+      // console.log('data favorite', data);
       return data;
     } catch (error) {
       console.log('error:', error);
