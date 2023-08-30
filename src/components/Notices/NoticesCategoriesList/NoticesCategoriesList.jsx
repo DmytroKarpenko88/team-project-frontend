@@ -5,7 +5,7 @@ import { NoticesCategoryItem } from '../NoticesCategoryItem/NoticesCategoryItem'
 import { NoticeList, Text } from './NoticesCategoriesList.styled';
 import { useParams } from 'react-router-dom';
 import {
-  // selectUserCurrentFavoriteNotices,
+  selectUserCurrentFavoriteNotices,
   selectUserCurrentNotices,
 } from 'redux/user/user-selectors';
 
@@ -13,6 +13,8 @@ export const NoticesCategoriesList = () => {
   const [noticesForList, setNoticesForList] = useState([]);
   const notices = useSelector(selectAllNotices);
   const ownNotices = useSelector(selectUserCurrentNotices);
+  const userFavotites = useSelector(selectUserCurrentFavoriteNotices);
+
   // console.log('ownNotices:', ownNotices);
   // const favoriteNotices = useSelector(selectUserCurrentFavoriteNotices);
   // console.log('favoriteNotices:', favoriteNotices);
@@ -22,11 +24,11 @@ export const NoticesCategoriesList = () => {
     if (categoryName === 'own') {
       setNoticesForList(ownNotices);
     } else if (categoryName === 'favorite') {
-      // setNoticesForList(favoriteNotices);
+      setNoticesForList(userFavotites);
     } else if (categoryName === 'sell' || 'lost-found' || 'in-good-hands') {
       setNoticesForList(notices);
     }
-  }, [categoryName, notices, ownNotices]);
+  }, [categoryName, notices, ownNotices, userFavotites]);
 
   return (
     <>
