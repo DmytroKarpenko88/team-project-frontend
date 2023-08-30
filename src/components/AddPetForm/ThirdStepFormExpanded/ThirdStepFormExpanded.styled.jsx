@@ -1,5 +1,7 @@
+import { Field } from 'formik';
 import styled from 'styled-components';
 import { theme } from 'styles';
+import { visualyHidden } from 'utils/visualyHidden';
 
 //  ------- sex
 export const ThirdStepSexDiv = styled.div`
@@ -163,86 +165,128 @@ export const ThirdStepFormInput = styled.input`
 
 // ------- photo
 
-export const ThirdStepFormPhotoTitle = styled.label`
-  position: relative;
+// export const ThirdStepFormPhotoTitle = styled.label`
+//   position: relative;
 
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   gap: 14px;
+//   height: 112px;
+//   margin-bottom: 16px;
+
+//   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+//     // height: 182px;
+//     margin-top: 40px;
+//     flex-direction: column;
+
+//     // margin-bottom: 16px;
+//   }
+// `;
+export const ThirdStepFormPhotoTitle = styled.label`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 14px;
-  height: 112px;
-  margin-bottom: 16px;
+  column-gap: 28px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    // height: 182px;
-    margin-top: 40px;
-    flex-direction: column;
-
-    // margin-bottom: 16px;
+    ${({ data }) => (data.option !== 'pet' ? 'flex-direction: column' : '')};
   }
 `;
-export const ThirdStepFormPhotoDiv = styled.div`
-  color: ${theme.colors.black}; // #111111
-  font-family: ${theme.fonts.main.medium}; // Manrope 500
-  font-weight: 500;
-  font-size: ${theme.fontSizes.s}; //14px;
-  font-style: normal;
-  line-height: normal;
-  width: 81px;
 
-  // margin-top: 34px; // 50px
-  // margin-bottom: 64px;
+// export const ThirdStepFormPhotoDiv = styled.div`
+//   color: ${theme.colors.black}; // #111111
+//   font-family: ${theme.fonts.main.medium}; // Manrope 500
+//   font-weight: 500;
+//   font-size: ${theme.fontSizes.s}; //14px;
+//   font-style: normal;
+//   line-height: normal;
+//   width: 81px;
 
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-size: 20px;
-    width: 100%;
-  }
+//   // margin-top: 34px; // 50px
+//   // margin-bottom: 64px;
+
+//   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+//     font-size: 20px;
+//     width: 100%;
+//   }
+// `;
+export const ThirdStepFormImgInput = styled(Field)`
+  ${visualyHidden}
 `;
-export const ThirdStepFormImgInput = styled.input`
-  opacity: 0; // chose file
-  width: 0px;
-  height: 0px; // 112px;
-`;
+// export const ThirdStepFormPlus = styled.div`
+//   cursor: pointer;
+//   // overflow: hidden;
+
+//   svg {
+//     position: absolute;
+//     top: 42px;
+//     left: 145px;
+
+//     @media screen and (min-width: ${theme.breakpoints.tablet}) {
+//       top: 80px;
+//       left: 68px;
+
+//       width: 48px;
+//       height: 48px;
+//     }
+//   }
+
+//   &::after {
+//     position: absolute;
+//     content: '';
+//     opacity: 0.7;
+//     top: 0px; // -45px
+//     left: 103px;
+//     // z-index: 7;
+//     width: 112px;
+//     height: 112px;
+//     border-radius: 20px;
+//     background-color: ${theme.colors.blueLight}; //#cce4fb;
+
+//     @media screen and (min-width: ${theme.breakpoints.tablet}) {
+//       top: 38px; // -45px
+//       left: 0px;
+//       width: 182px;
+//       height: 182px;
+//     }
+//   }
+// `;
+
 export const ThirdStepFormPlus = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 112px;
+
+  background-color: ${theme.colors.blueLight};
+  border-radius: 20px;
+  color: ${theme.colors.blue};
+
   cursor: pointer;
-  // overflow: hidden;
+  overflow: hidden;
+  object-position: center;
+  object-fit: cover;
 
-  svg {
-    position: absolute;
-    top: 42px;
-    left: 145px;
-
-    @media screen and (min-width: ${theme.breakpoints.tablet}) {
-      top: 80px;
-      left: 68px;
-
-      width: 48px;
-      height: 48px;
-    }
+  & svg {
+    stroke: currentColor;
   }
 
-  &::after {
-    position: absolute;
-    content: '';
-    opacity: 0.7;
-    top: 0px; // -45px
-    left: 103px;
-    // z-index: 7;
-    width: 112px;
-    height: 112px;
-    border-radius: 20px;
-    background-color: ${theme.colors.blueLight}; //#cce4fb;
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-    @media screen and (min-width: ${theme.breakpoints.tablet}) {
-      top: 38px; // -45px
-      left: 0px;
-      width: 182px;
-      height: 182px;
-    }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    min-width: 182px;
+    height: 182px;
   }
 `;
+
 export const ThirdStepFormImgPreview = styled.img`
-  opacity: 0;
+  // opacity: 0;
 `;
 // ------ comments
 
