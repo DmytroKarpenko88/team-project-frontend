@@ -106,8 +106,8 @@ export const FilterStatus = styled.div`
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 
-  font-weight: ${theme.fonts.main.semiBold};
-  font-size: ${theme.fontSizes.xs};
+  font-weight: ${theme.fonts.main.medium};
+  font-size: ${theme.fontSizes.s};
 `;
 
 export const ListPetInfo = styled.div`
@@ -243,7 +243,7 @@ export const TextItem = styled.h2`
 
   height: 106px;
   padding: 20px;
-  font-size: 24px;
+  font-size: ${theme.fontSizes.xl};
   // min- width: 231px;
   font-weight: ${theme.fonts.main.bold};
 
@@ -275,9 +275,9 @@ export const LoadMoreBtn = styled.button`
   cursor: pointer;
   margin: 0 auto 24px auto;
 
-  font-size: 16px;
+  font-size: ${theme.fontSizes.m};
   font-style: normal;
-  font-weight: 600;
+  font-weight: ${theme.fonts.main.semiBold};
   line-height: normal;
   letter-spacing: 0.64px;
   transition: color 250ms ${theme.transition.main},
