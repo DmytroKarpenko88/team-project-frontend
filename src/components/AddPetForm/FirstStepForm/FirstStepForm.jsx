@@ -54,53 +54,49 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
     <>
       <FirstStepFormList>
         {/* ----------- first step content radio btn ------------- */}
-        <FirstStepFormItemLabel>
-          <FirstStepFormItemInput
-            autoFocus="on"
-            type="radio"
-            value="pet"
-            checked={data.option === 'pet'}
-            // name="pet"
-            onChange={handleChange}
-            id="my-pet"
-            name="option"
-          />
-          your pet
-        </FirstStepFormItemLabel>
-        <FirstStepFormItemLabel>
-          <FirstStepFormItemInput
-            type="radio"
-            value="sell"
-            checked={data.option === 'sell'}
-            // name="sell"
-            onChange={handleChange}
-            id="sell"
-            name="option"
-          />
-          sell
-        </FirstStepFormItemLabel>
-        <FirstStepFormItemLabel>
-          <FirstStepFormItemInput
-            type="radio"
-            value="lostFound"
-            checked={data.option === 'lostFound'}
-            // name="lostFound"
-            onChange={handleChange}
-            id="lost-found"
-            name="option"
-          />
+        <FirstStepFormItemInput
+          autoFocus="on"
+          type="radio"
+          value="pet"
+          checked={data.option === 'pet'}
+          // name="pet"
+          onChange={handleChange}
+          id="pet"
+          name="option"
+        />
+        <FirstStepFormItemLabel htmlFor="pet">your pet</FirstStepFormItemLabel>
+        <FirstStepFormItemInput
+          type="radio"
+          value="sell"
+          checked={data.option === 'sell'}
+          // name="sell"
+          onChange={handleChange}
+          id="sell"
+          name="option"
+        />
+        <FirstStepFormItemLabel htmlFor="sell">sell</FirstStepFormItemLabel>
+        <FirstStepFormItemInput
+          type="radio"
+          value="lostFound"
+          checked={data.option === 'lostFound'}
+          // name="lostFound"
+          onChange={handleChange}
+          id="lostFound"
+          name="option"
+        />
+        <FirstStepFormItemLabel htmlFor="lostFound">
           lost/found
         </FirstStepFormItemLabel>
-        <FirstStepFormItemLabel>
-          <FirstStepFormItemInput
-            type="radio"
-            value="hands"
-            checked={data.option === 'hands'}
-            // name="hands"
-            onChange={handleChange}
-            id="for-free"
-            name="option"
-          />
+        <FirstStepFormItemInput
+          type="radio"
+          value="hands"
+          checked={data.option === 'hands'}
+          // name="hands"
+          onChange={handleChange}
+          id="hands"
+          name="option"
+        />
+        <FirstStepFormItemLabel htmlFor="hands">
           in good hands
         </FirstStepFormItemLabel>
       </FirstStepFormList>
