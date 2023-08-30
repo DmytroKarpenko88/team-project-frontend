@@ -6,7 +6,6 @@ import {
   fetchCurrentUser,
   getUserProfile,
   updateUser,
-  
 } from './auth-operations';
 
 const initialState = {
@@ -104,11 +103,12 @@ const authSlice = createSlice({
           ...state.user,
           avatarURL: action.payload.data.avatarURL,
         };
-        state.token = action.payload.token;
       })
+      // state.token = action.payload.token;
+
       .addCase(updateUser.rejected, state => {
         state.isLoading = false;
-      })
+      });
   },
 });
 
