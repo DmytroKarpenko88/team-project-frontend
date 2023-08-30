@@ -5,6 +5,7 @@ import {
   H1Text,
   PicContainer,
   Image,
+  Paragraph,
 } from './PageNotFound.styled';
 import { Paw } from 'components/icons';
 const PageNotFound = () => {
@@ -12,7 +13,7 @@ const PageNotFound = () => {
     <>
       <ContainerPg>
         <H1Text>
-          Oops!  This page not found:(
+          Oops! <Paragraph> This page not found:( </Paragraph>
         </H1Text>
         <PicContainer>
           <Image alt="not found" />
