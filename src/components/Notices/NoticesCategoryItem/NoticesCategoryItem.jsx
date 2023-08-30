@@ -44,6 +44,7 @@ export const NoticesCategoryItem = ({ notice }) => {
   const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
   const userFavoriteNoticesID = useSelector(selectUserCurrentFavoriteNoticesID);
+  // console.log(currentUser);
 
   useEffect(() => {
     if (userFavoriteNoticesID.includes(notice._id)) {
@@ -104,6 +105,13 @@ export const NoticesCategoryItem = ({ notice }) => {
     setNoticeModalShow(!noticeModalShow);
     dispatch(getNoticeById(notice._id));
   };
+
+  // const callFromModal = () => {
+  //   const phoneNumberFormatted = currentUser.phone.replace(/\D/g, '');
+  //   const telLink = `tel:${phoneNumberFormatted}`;
+  //   return <a href={telLink}>Contact</a>;
+  // };
+
   const toggleModalDelete = () => {
     setModalDeleteShow(!modalDeleteShow);
   };
@@ -167,7 +175,11 @@ export const NoticesCategoryItem = ({ notice }) => {
 
       {/* modals */}
       {noticeModalShow && (
-        <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
+        <NoticeModal
+          show={noticeModalShow}
+          onHide={toggleNoticeModal}
+          // callFromModal={callFromModal}
+        />
       )}
 
       {modalDeleteShow && (
