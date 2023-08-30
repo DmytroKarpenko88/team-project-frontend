@@ -1,5 +1,7 @@
+import { Field } from 'formik';
 import styled from 'styled-components';
 import { theme } from 'styles';
+import { visualyHidden } from 'utils/visualyHidden';
 
 // --------- FirstStepForm
 
@@ -17,9 +19,16 @@ export const FirstStepFormList = styled.div`
     margin-bottom: 137px; //20px;;
   }
 `;
+export const FirstStepFormItemInput = styled(Field)`
+  ${visualyHidden}
+`;
+
 export const FirstStepFormItemLabel = styled.label`
   padding: 8px 16px;
   border-radius: 40px;
+  width: fit-content;
+  font-weight: 500;
+  font-size: 14px;
 
   letter-spacing: 0.56px;
   color: ${theme.colors.blue};
@@ -31,16 +40,9 @@ export const FirstStepFormItemLabel = styled.label`
 
   &:hover,
   &:focus,
-  &.active {
-    color: ${theme.colors.bgColor}; // active
-    background-color: ${theme.colors.blue}; // active
-  }
-`;
-export const FirstStepFormItemInput = styled.input`
-  display: none;
-
-  &:checked {
-    color: ${theme.colors.bgColor}; // active
-    background-color: ${theme.colors.blue}; // active
+  &.active,
+  ${FirstStepFormItemInput}:checked + && {
+    background-color: ${theme.colors.blue};
+    color: ${theme.colors.white};
   }
 `;
