@@ -75,11 +75,11 @@ export const NoticesCategoryItem = ({ notice }) => {
     } else if (isLoggedIn && !favorite) {
       dispatch(addUserCurrentFavorite(notice._id));
       setFavorite(true);
-      Notify.success('Added your favorite');
+      Notify.success('Added your favorites');
     } else if (isLoggedIn && favorite && categoryName !== favorite) {
       dispatch(addUserCurrentFavorite(notice._id));
       setFavorite(false);
-      Notify.success('Deleted from favorite');
+      Notify.success('Deleted from favorites');
     } else if (categoryName === 'favorite') {
       // dispatch(removeFromFavoriteCategory(notice._id));
       setFavorite(false);
