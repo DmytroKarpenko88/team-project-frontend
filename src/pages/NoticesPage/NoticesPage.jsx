@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 // import Pagination from '@mui/material/Pagination';
 import { Title } from 'components/Notices/Title/Title';
 import { NoticeSearch } from 'components/Notices/NoticeSearch/NoticeSearch';
@@ -9,7 +10,8 @@ import { AddPetButton } from 'components/Notices/AddPetButton/AddPetButton';
 import { NoticesFilter } from 'components/Notices/NoticesFilter/NoticesFilter';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import { fetchNotices } from 'redux/notices/notices-operations';
-import Loader from 'components/Loader/Loader';
+// import { selectIsLoading } from 'redux/notices/notices-selectors';
+// import Loader from 'components/Loader/Loader';
 // import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
@@ -17,12 +19,12 @@ import {
   getUserCurrentFavorite,
   getUserCurrentNotices,
 } from 'redux/user/user-operations';
-import { selectIsLoading, selectIsLoggedIn } from 'redux/auth/auth-selectors';
+// import { addUserCurrentFavorite } from 'redux/user/user-operations';
+// import { getNoticeById } from 'redux/notices/notices-operations';
 
 function Notices() {
   const [search, setSearch] = useState('');
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
   const { categoryName } = useParams();
 
@@ -35,10 +37,12 @@ function Notices() {
       dispatch(fetchNotices({ categoryName, search }));
     }
     if (categoryName === 'favorite' && isLoggedIn) {
+      // get(`/notices/user/favorite${params}`)
       dispatch(getUserCurrentFavorite());
       return;
     }
     if (categoryName === 'own' && isLoggedIn) {
+      // get(`/notices/user/added${data}`)
       dispatch(getUserCurrentNotices());
       return;
     }
@@ -59,7 +63,7 @@ function Notices() {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />} */}
       <Container>
         <Title>Find your favorite pet</Title>
 

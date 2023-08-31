@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Notify } from 'notiflix';
 // import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import fotoAlternate from 'images/not-found.png';
@@ -25,11 +26,11 @@ import {
   Paw,
   Trash,
 } from 'components/icons';
+import { converterAge } from 'utils/converterAge';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
 import { useParams } from 'react-router-dom';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
 import { getNoticeById } from 'redux/notices/notices-operations';
-import { Notify } from 'notiflix';
 import { addUserCurrentFavorite } from 'redux/user/user-operations';
 import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
 import { deleteUserCurrentNotices } from 'redux/user/user-operations.js';
@@ -122,26 +123,7 @@ export const NoticesCategoryItem = ({ notice }) => {
     return location.length > 5 ? location.slice(0, 4) + '...' : location;
   };
   const titleFormat = title => {
-    return title.length > 55 ? title.slice(0, 55) + '...' : title;
-  };
-
-  const converterAge = date => {
-    const age =
-      new Date(Date.now() - Date.parse(date)).getFullYear() - 1970 || 0;
-
-    if (age < 0.3) {
-      return '3 month';
-    } else if (age < 0.6) {
-      return '6 month';
-    } else if (age < 0.9) {
-      return '9 month';
-    } else if (age === 1) {
-      return '1 year';
-    }
-
-    const ageString = age.toString();
-
-    return ageString + ' years';
+    return title.length > 45 ? title.slice(0, 45) + '...' : title;
   };
 
   return (
@@ -150,7 +132,7 @@ export const NoticesCategoryItem = ({ notice }) => {
         <Img
           onClick={toggleNoticeModal}
           src={notice.petURL ? notice.petURL : fotoAlternate}
-          alt="pet"
+          alt=""
         />
 
         {notice.category.title ? (
@@ -184,7 +166,7 @@ export const NoticesCategoryItem = ({ notice }) => {
 
           <AgeItem>
             <Clock />
-            {converterAge(notice.updatedAt)}
+            {notice.birthday ? converterAge(notice.birthday) : '1 year'}
           </AgeItem>
 
           <SexItem>
