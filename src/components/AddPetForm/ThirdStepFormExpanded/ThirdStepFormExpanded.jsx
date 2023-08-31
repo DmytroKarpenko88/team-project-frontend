@@ -90,6 +90,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
     // const value = e.target.value;
     // setData(prev => ({ ...prev, [input]: value }));
     const { name, value, type, files } = e.target;
+    console.log(" value:",  value)
     const fieldValue = type === 'file' ? files[0] : value;
     console.log('fieldValue:', fieldValue);
 
@@ -145,7 +146,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
           )}
           {/* --- */}
           {/* label */}
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" option={data.option}>
+          <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data}>
             <ThirdStepFormPhotoDiv>
               {data.category === 'pet' || viewportWidth < 768
                 ? 'Add photo'
@@ -164,20 +165,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                   // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
-              {/* input */}
-              <ThirdStepFormImgInput
-                type="file"
-                id="pet-image"
-                alt="pet`s photo"
-                // value={data.photo ?? ''}
-                name="petURL"
-                onChange={handleChange}
-                // onFocus={focusHandle}
-                value={imageValue}
-                onBlur={() => validateField('petPhoto', data, setErrors)}
-                accept=".jpeg, .png, .gif"
-                required
-              />
+              
             </ThirdStepFormPlus>
             {/* input */}
             {/* -----FileInput - input */}
@@ -186,12 +174,12 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               id="pet-image"
               alt="pet`s photo"
               // value={data.photo ?? ''}
-              name="petPhoto"
+              name="petURL"
               onChange={handleChange}
               // onFocus={focusHandle}
               value={imageValue}
-              onBlur={() => validateField('petPhoto', data, setErrors)}
-              accept=".jpeg, .png, .gif"
+              onBlur={() => validateField('petURL', data, setErrors)}
+              accept=".jpg, .png"
               required
             />
           </ThirdStepFormPhotoTitle>
@@ -241,7 +229,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               Comments
               <ThirdStepFormComments
                 type="text"
-                // component="textarea"
+                component="textarea"
                 // value="comments"
                 name="describe"
                 placeholder="Type of pet"
@@ -252,7 +240,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                 value={data.describe}
                 onBlur={() => validateField('describe', data, setErrors)}
                 className={errors.describe ? 'invalid' : ''}
-                required
+                // required
               />
             </ThirdStepFormTitle>
             {!!errors.describe && <ErrorMessage message={errors.describe} />}

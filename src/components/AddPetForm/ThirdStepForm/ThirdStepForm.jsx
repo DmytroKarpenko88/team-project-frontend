@@ -130,20 +130,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
                   // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
-              {/* input */}
-              <ThirdStepFormImgInput
-                type="file"
-                id="pet-image"
-                alt="pet`s photo"
-                // value={data.photo ?? ''}
-                name="petURL"
-                onChange={handleChange}
-                // onFocus={focusHandle}
-                value={imageValue}
-                onBlur={() => validateField('petPhoto', data, setErrors)}
-                accept=".jpeg, .png, .webp, .gif"
-                required
-              />
+             
             </ThirdStepFormPlus>
             {/* input */}
             <ThirdStepFormImgInput
@@ -151,12 +138,12 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
               id="pet-image"
               alt="pet`s photo"
               // value={data.photo ?? ''}
-              name="petPhoto"
+              name="petURL"
               onChange={handleChange}
               // onFocus={focusHandle}
               value={imageValue}
-              onBlur={() => validateField('petPhoto', data, setErrors)}
-              accept=".jpeg, .png, .webp, .gif"
+              onBlur={() => validateField('petURL', data, setErrors)}
+              accept=".jpg, .png"
               required
             />
           </ThirdStepFormPhotoTitle>
