@@ -20,7 +20,7 @@ export const fetchPets = createAsyncThunk(
 export const addPet = createAsyncThunk(
   'pets/addPet',
   async (newPet, thunkAPI) => {
-    console.log('newPet:', newPet);
+    // console.log('newPet:', newPet);
     try {
       const { data } = await axios.post('/api/pets/add', newPet);
       toast.success('Pet added', { position: 'bottom-right' });

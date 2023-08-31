@@ -54,7 +54,7 @@ const noticesSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addNotice.fulfilled, (state, action) => {
-        console.log('action:', action);
+        // console.log('action:', action);
         // state.items.splice(0, 0, action.payload);
         state.items = action.payload;
         state.isLoading = false;
@@ -62,7 +62,7 @@ const noticesSlice = createSlice({
       })
       .addCase(removeNotice.fulfilled, (state, action) => {
         state.items = action.payload;
-        console.log('state.items:', state.items);
+        // console.log('state.items:', state.items);
 
         state.isLoading = false;
         state.error = null;

@@ -66,7 +66,7 @@ const AddPetForm = () => {
         type: data.type,
         describe: data.describe,
       };
-      console.log(' pets:', pets);
+      // console.log(' pets:', pets);
 
       const formData = new FormData();
       for (let keys in pets) {
@@ -135,7 +135,7 @@ const AddPetForm = () => {
   // const backPage = step === 1 ? location.state?.from ?? '/user' : '';
   const backPage = location.state?.from ?? '/user';
 
-  console.log('data:', data);
+  // console.log('data:', data);
   return (
     <AddPetDiv data={data} step={step}>
       <Formik

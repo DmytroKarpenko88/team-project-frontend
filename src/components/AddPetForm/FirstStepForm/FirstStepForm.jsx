@@ -15,7 +15,7 @@ import {
 import { ArrowLeft, Paw } from 'components/icons';
 import { Link } from 'react-router-dom';
 
-const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
+const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
   // console.log("values:", values)
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -28,18 +28,15 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    console.log(" value :",  value )
-    console.log("name:", name)
-
+    // console.log(" value :",  value )
+    // console.log("name:", name)
 
     setData(prevState => ({
       ...prevState,
       [name]: value,
     }));
-  
   };
 
- 
   return (
     <>
       <FirstStepFormList>
@@ -85,7 +82,7 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
           <FirstStepFormItemInput
             type="radio"
             value="in-good-hands"
-            checked={data.category === "in-good-hands"}
+            checked={data.category === 'in-good-hands'}
             // name="hands"
             onChange={handleChange}
             // id="for-free"

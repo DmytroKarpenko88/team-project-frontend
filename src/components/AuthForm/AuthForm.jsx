@@ -56,7 +56,7 @@ export default function AuthForm() {
       password: values.password,
     };
     const responsed = await dispatch(register(data));
-    console.log(' responsed :', responsed);
+    // console.log(' responsed :', responsed);
     if (responsed) {
       resetForm();
     }

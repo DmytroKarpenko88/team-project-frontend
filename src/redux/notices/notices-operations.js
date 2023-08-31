@@ -55,10 +55,10 @@ export const getNoticeById = createAsyncThunk(
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (fields, thunkAPI) => {
-    console.log('fields:', fields);
+    // console.log('fields:', fields);
     try {
       const { data } = await axios.post('/api/notices', fields);
-      console.log('addNotice:', data);
+      // console.log('addNotice:', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -71,7 +71,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
     // setData(prev => ({ ...prev, [input]: value }));
 
     const { name, value } = e.target;
-    console.log('name', name, 'value', value);
+    // console.log('name', name, 'value', value);
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
@@ -84,7 +84,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
       }
     }
 
-    console.log('name', name, 'value', value);
+    // console.log('name', name, 'value', value);
 
     setData(prevState => ({
       ...prevState,
