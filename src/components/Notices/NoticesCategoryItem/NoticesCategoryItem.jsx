@@ -122,7 +122,7 @@ export const NoticesCategoryItem = ({ notice }) => {
     return location.length > 5 ? location.slice(0, 4) + '...' : location;
   };
   const titleFormat = title => {
-    return title.length > 15 ? title.slice(0, 15) + '...' : title;
+    return title.length > 55 ? title.slice(0, 55) + '...' : title;
   };
 
   const converterAge = date => {
