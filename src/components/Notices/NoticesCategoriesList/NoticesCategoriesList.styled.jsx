@@ -16,6 +16,7 @@ export const NoticeList = styled.ul`
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
+    margin-bottom: 40px;
   }
 
   @media (min-width: 1280px) {
