@@ -3,10 +3,9 @@ import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
 
-import {
-  getUserCurrentFavorite,
-  getUserCurrentNotices,
-} from 'redux/user/user-operations';
+import // getUserCurrentFavorite,
+// getUserCurrentNotices,
+'redux/user/user-operations';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
@@ -33,8 +32,8 @@ export const App = () => {
   useEffect(() => {
     dispatch(fetchCurrentUser());
     dispatch(getUserProfile());
-    dispatch(getUserCurrentNotices());
-    dispatch(getUserCurrentFavorite());
+    // dispatch(getUserCurrentNotices());
+    // dispatch(getUserCurrentFavorite());
 
     // if(isLoggedIn) {
     //   dispatch(fetchCurrentUser());
