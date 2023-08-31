@@ -19,7 +19,7 @@
 //   }
 //   @media screen and (min-width: ${theme.breakpoints.tablet}) {
 //     ${({ data, step }) =>
-//       (data.option === 'sell') & (step === 3)
+//       (data.category === 'sell') & (step === 3)
 //         ? 'width: 704px;'
 //         : 'width: 458px;'};
 //   }
