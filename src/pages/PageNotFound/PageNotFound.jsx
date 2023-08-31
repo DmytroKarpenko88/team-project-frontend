@@ -12,9 +12,7 @@ const PageNotFound = () => {
   return (
     <>
       <ContainerPg>
-        <H1Text>
-          Oops! <Paragraph> This page not found:( </Paragraph>
-        </H1Text>
+        <H1Text> Oops! <Paragraph/> This page not found:( </H1Text>
         <PicContainer>
           <Image alt="not found" />
         </PicContainer>
