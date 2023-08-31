@@ -235,7 +235,7 @@ export const TextItem = styled.h2`
   display: -webkit-box;
   min-width: 248px;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
   align-items: start;
