@@ -107,7 +107,7 @@ export const FilterStatus = styled.div`
   border-bottom-right-radius: 20px;
 
   font-weight: ${theme.fonts.main.medium};
-  font-size: ${theme.fontSizes.s};
+  font-size: ${theme.fontSizes.m};
 `;
 
 export const ListPetInfo = styled.div`
@@ -282,6 +282,7 @@ export const LoadMoreBtn = styled.button`
   letter-spacing: 0.64px;
   transition: color 250ms ${theme.transition.main},
     background-color 250ms ${theme.transition.main};
+
   svg {
     display: none;
   }
@@ -292,9 +293,6 @@ export const LoadMoreBtn = styled.button`
   }
   &:hover svg {
     display: inline-block;
-    fill: ${theme.colors.white};
-  }
-  svg {
     fill: ${theme.colors.white};
   }
 `;
