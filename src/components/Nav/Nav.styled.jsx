@@ -37,7 +37,7 @@ export const NavMenu = styled.ul.withConfig({
   }
 
   @media screen and (min-width: 1280px) {
-  margin-right: 244px;
+  margin-right: 226px;
   flex-direction: row-reverse;
   }
 `;
@@ -64,6 +64,10 @@ export const NavMenuItem = styled.li`
       height: 44px;
       margin-bottom: 20px;
     }
+  }
+
+  @media screen and (min-width: 1280px) {
+width: ;
   }
 
   
