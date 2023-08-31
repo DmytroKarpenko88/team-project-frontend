@@ -1,11 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
+
 import {
-  fetchCurrentUser,
-  getUserProfile,
-} from 'redux/auth/auth-operations';
-import { getUserCurrentNotices } from 'redux/user/user-operations';
+  getUserCurrentFavorite,
+  getUserCurrentNotices,
+} from 'redux/user/user-operations';
+
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
 import Main from './Main/Main';
@@ -21,6 +23,10 @@ const Login = lazy(() => import('pages/LoginPage/LoginPage'));
 const User = lazy(() => import('pages/User/User'));
 const IconPage = lazy(() => import('pages/IconPage'));
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
+const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
+const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
+
+
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -30,6 +36,8 @@ export const App = () => {
     dispatch(fetchCurrentUser());
     dispatch(getUserProfile());
     dispatch(getUserCurrentNotices());
+    dispatch(getUserCurrentFavorite());
+
     // if(isLoggedIn) {
     //   dispatch(fetchCurrentUser());
     //   dispatch(getUserProfile())
@@ -42,6 +50,14 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Main />} />
+            <Route
+              path="news"
+              element={
+                <PublicRoute>
+                  <NewsPage />
+                </PublicRoute>
+                }
+            />
             <Route
               path="register"
               element={
@@ -76,6 +92,7 @@ export const App = () => {
               }
             />
             <Route path="icons" element={<IconPage />} />
+            <Route path="friends" element={<FriendsPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

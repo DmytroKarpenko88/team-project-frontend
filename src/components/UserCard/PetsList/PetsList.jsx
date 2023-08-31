@@ -5,8 +5,12 @@ import PetsItem from '../PetsItem/PetsItem';
 import { selectPets } from 'redux/pets/pets-selectors';
 
 const PetsList = () => {
+  // const [petsList, setPetsList] = useState([]);
   const { data } = useSelector(selectPets);
 
+  // useEffect(() => {
+  //   // setPetsList(data.pets);
+  // }, [data, petsList]);
   return (
     <>
       {data && (

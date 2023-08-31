@@ -20,17 +20,16 @@ export const Filter = styled.div`
   // margin-top: 20px;
 
   @media screen and (min-width: 768px) {
-    // margin-top: 40px;
-    gap: 80px;
+    margin-bottom: 40px;
+    gap: 92px;
   }
 
   @media screen and (min-width: 1280px) {
     display: flex;
+    margin-bottom: 42px;
     justify-content: space-between;
     align-items: center;
-    gap: 0;
-
-    // width: 100%;
+    gap: 403;
   }
 `;
 

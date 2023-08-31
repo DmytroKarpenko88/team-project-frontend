@@ -18,38 +18,75 @@ import {
   Title,
 } from './NoticeModal.styled';
 import { Cross, Heart } from 'components/icons';
-import img from 'images/cat.jpg';
 import { theme } from 'styles';
-import { useSelector } from 'react-redux';
-import { selectNoticeById, selectNoticesIsLoading } from 'redux/notices/notices-selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectNoticeById,
+  selectNoticesIsLoading,
+} from 'redux/notices/notices-selectors';
 import Loader from 'components/Loader/Loader';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
+import { useEffect, useState } from 'react';
+import { Notify } from 'notiflix';
+import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
+import { addUserCurrentFavorite } from 'redux/user/user-operations';
+import { ModalAttention } from '..';
 // import { useEffect } from 'react';
 
 export const NoticeModal = props => {
+  console.log('props:', props);
+  const [showAttentionModal, setShowAttentionModal] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+
   const noticeById = useSelector(selectNoticeById);
   const isLoading = useSelector(selectNoticesIsLoading);
-  console.log("isLoading :", isLoading )
-  
-  console.log("noticeById:", noticeById)
-  
-  const {
-    birthday,
-    describe,
-    location,
-    name,
-    sex,
-    title,
-    type,
-  } = noticeById;
+  const currentUser = useSelector(selectUser);
+  const userFavoriteNoticesID = useSelector(selectUserCurrentFavoriteNoticesID);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
 
+  const toggleAttentionModal = () => {
+    setShowAttentionModal(!showAttentionModal);
+  };
+
+  const { _id, birthday, describe, location, name, sex, title, type, petURL } =
+    noticeById;
+
+  const category = noticeById['category'];
   const owner = noticeById['_owner'];
-  // const { email, phone } = owner;
-  // console.log("owner:", owner.email)
-  // console.log("owner:", owner.phone)
+
+  // const callFromModal = () => {
+  //   const phoneNumberFormatted = owner.phone.replace(/\D/g, '');
+  //   const telLink = `tel:${phoneNumberFormatted}`;
+
+  //   console.log('telLink:', telLink);
+  //   return telLink;
+  // };
+
+  useEffect(() => {
+    if (userFavoriteNoticesID.includes(_id)) {
+      setFavorite(true);
+    }
+  }, [_id, userFavoriteNoticesID]);
+
+  const handleAddInFavorite = () => {
+    if (currentUser.name === null && currentUser.email === null) {
+      setShowAttentionModal(true);
+      // props.onHide();
+    } else if (isLoggedIn && !favorite) {
+      dispatch(addUserCurrentFavorite(_id));
+      setFavorite(true);
+      Notify.success('Added your favorite');
+    } else if (isLoggedIn && favorite) {
+      dispatch(addUserCurrentFavorite(_id));
+      setFavorite(false);
+      Notify.success('Deleted from favorite');
+    }
+  };
 
   return (
     <>
-      {!isLoading && noticeById!=={}? (
+      {!isLoading && noticeById !== {} ? (
         <ModalContainer {...props} size="lg" centered={true}>
           <Modal.Body>
             <CrossBtn onClick={props.onHide}>
@@ -57,8 +94,8 @@ export const NoticeModal = props => {
             </CrossBtn>
             <FlexWrapper>
               <ImgBox>
-                <CategoryName>In good hands</CategoryName>
-                <Img src={img} alt="" />
+                <CategoryName>{category.title}</CategoryName>
+                <Img src={petURL} alt="pet" />
               </ImgBox>
               <div>
                 <Title>{title}</Title>
@@ -81,14 +118,12 @@ export const NoticeModal = props => {
                     <InfoValues>{location}</InfoValues>
                   </Info>
                   <Info>
-                    <InfoName>The sex:</InfoName>
+                    <InfoName>Sex:</InfoName>
                     <InfoValues>{sex}</InfoValues>
                   </Info>
                   <Info>
                     <InfoName>Email:</InfoName>
-                   <Contact href="mailto:user@mail.com">
-                      {owner.email}
-                    </Contact>
+                    <Contact href="mailto:user@mail.com">{owner.email}</Contact>
                   </Info>
                   <Info>
                     <InfoName>Phone:</InfoName>
@@ -102,25 +137,39 @@ export const NoticeModal = props => {
               <span style={{ fontFamily: `${theme.fonts.main.semiBold}` }}>
                 Comments:{describe}
               </span>
-              
             </InfoMessage>
 
             <BtnWrapper>
-              <BtnContact onClick={props.onHide}>
+              <BtnContact
+                // href={callFromModal()}
+                href={
+                  owner.phone ? `tel:${owner.phone}` : `mailto:${owner.email}`
+                }
+              >
                 <span>Contact</span>
               </BtnContact>
 
-              <BtnAddTo onClick={props.onHide}>
-                <span>Add to</span>
+              <BtnAddTo
+                onClick={handleAddInFavorite}
+                className={favorite ? 'heart favorite' : 'heart'}
+              >
+                <span>{favorite ? 'Remove from' : 'Add to'}</span>
                 <span>
                   <Heart />
                 </span>
               </BtnAddTo>
             </BtnWrapper>
           </Modal.Body>
+          {showAttentionModal && (
+            <ModalAttention
+              show={showAttentionModal}
+              onHide={toggleAttentionModal}
+            />
+          )}
         </ModalContainer>
-      )
-      : <Loader/>}
+      ) : (
+        <Loader />
+      )}
     </>
   );
 };

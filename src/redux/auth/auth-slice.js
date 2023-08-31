@@ -16,6 +16,7 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
+    pets: [],
   },
   token: null,
   isLoading: false,

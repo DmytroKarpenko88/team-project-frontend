@@ -1,11 +1,7 @@
-import React, {
-  // useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
-// import cat from '../../../images/cat.jpg';
+import fotoAlternate from 'images/not-found.png';
 import {
   Item,
   ImgContainer,
@@ -22,19 +18,19 @@ import {
 } from './NoticesCategoryItem.styled';
 import { Heart, Location, Clock, Female, Paw, Trash } from 'components/icons';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
 import { getNoticeById } from 'redux/notices/notices-operations';
 import { Notify } from 'notiflix';
-// import { removeFavoriteNotice } from 'redux/notices/notices-operations';
+import { addUserCurrentFavorite } from 'redux/user/user-operations';
+import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
+import { deleteUserCurrentNotices } from 'redux/user/user-operations.js';
 // import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
+  // console.log('notice:', notice);
   const dispatch = useDispatch();
-  const [
-    favorite,
-    //  setFavorite
-  ] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
 
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
@@ -44,16 +40,20 @@ export const NoticesCategoryItem = ({ notice }) => {
   // console.log(filterNotices);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const { categoryName } = useParams();
+  const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
-  // console.log('currentUser:', currentUser);
+  const userFavoriteNoticesID = useSelector(selectUserCurrentFavoriteNoticesID);
+  // console.log(currentUser);
 
-  // console.log(notice);
-  // console.log(notice.category);
+  useEffect(() => {
+    if (userFavoriteNoticesID.includes(notice._id)) {
+      setFavorite(true);
+    }
+  }, [notice._id, userFavoriteNoticesID]);
 
   // useEffect(() => {
   //   const newNotices = favoriteNotices => {
-  //     favoriteNotices.forEach(favoriteNotics => {
+  //     favoriteNotices.find(favoriteNotics => {
   //       if (favoriteNotices._id === notice._id) {
   //         setFavorite(true);
   //       }
@@ -64,46 +64,46 @@ export const NoticesCategoryItem = ({ notice }) => {
   //   }
   // }, [isLoggedIn, notice._id]);
 
-  // const handleAddInFavorite = async () => {
-  //   try {
-  //     if (currentUser.name === null && currentUser.email === null) {
-  //       setShowAttentionModal(true);
-  //     } else if (isLoggedIn && !favorite) {
-  //       dispatch(addToFavorite(notice._id));
-  //       setFavorite(true);
-  //       Notify.success('Added your favorite');
-  //     } else if (isLoggedIn && favorite && categoryName !== favorite) {
-  //       dispatch(deleteFromFavorite(notice._id));
-  //       setFavorite(false);
-  //       Notify.success('Deleted from favorite');
-  //     }
-  //   } catch (error) {
-  //     setShowAttentionModal(true);
-  //   }
-  // };
-
   const handleAddInFavorite = async () => {
-    try {
-      if (!isLoggedIn) {
-        setShowAttentionModal(true);
-        return;
-      }
-    } catch (error) {
-      Notify.warning(error.message);
+    if (currentUser.name === null && currentUser.email === null) {
+      setShowAttentionModal(true);
+    } else if (isLoggedIn && !favorite) {
+      dispatch(addUserCurrentFavorite(notice._id));
+      setFavorite(true);
+      Notify.success('Added your favorite');
+    } else if (isLoggedIn && favorite && categoryName !== favorite) {
+      dispatch(addUserCurrentFavorite(notice._id));
+      setFavorite(false);
+      Notify.success('Deleted from favorite');
+    } else if (categoryName === 'favorite') {
+      // dispatch(removeFromFavoriteCategory(notice._id));
+      setFavorite(false);
     }
   };
 
-  // const handleDeleteOwnNotice = async () => {
-  //   if (isLoggedIn && currentUser._id === notice._owner._id) {
-  //     dispatch(removeFavoriteNotice(notice._id));
-  //     Notify.success('Deleted your own notice');
+  // const handleAddInFavorite = async  => {
+  //   try {
+  //     if (!isLoggedIn) {
+  //       setShowAttentionModal(true);
+  //       return;
+  //     }
+  //   } catch (error) {
+  //     Notify.warning(error.message);
   //   }
   // };
+
+  const handleDeleteOwnNotice = async () => {
+    if (isLoggedIn && currentUser.email === notice._owner.email) {
+      dispatch(deleteUserCurrentNotices(notice._id));
+      Notify.success('Deleted your own notice');
+    }
+  };
 
   const toggleNoticeModal = () => {
     setNoticeModalShow(!noticeModalShow);
     dispatch(getNoticeById(notice._id));
   };
+
   const toggleModalDelete = () => {
     setModalDeleteShow(!modalDeleteShow);
   };
@@ -115,7 +115,11 @@ export const NoticesCategoryItem = ({ notice }) => {
   return (
     <Item>
       <ImgContainer>
-        <Img onClick={toggleNoticeModal} src={notice.petURL} alt="pet" />
+        <Img
+          onClick={toggleNoticeModal}
+          src={notice.petURL ? notice.petURL : fotoAlternate}
+          alt="pet"
+        />
 
         {notice.category.title ? (
           <FilterStatus>{notice.category.title}</FilterStatus>
@@ -135,7 +139,7 @@ export const NoticesCategoryItem = ({ notice }) => {
         </HeartBtn>
 
         {currentUser.email === notice._owner.email && (
-          <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
+          <DeleteNoticeBtn type="button" onClick={handleDeleteOwnNotice}>
             <Trash />
           </DeleteNoticeBtn>
         )}
@@ -156,6 +160,7 @@ export const NoticesCategoryItem = ({ notice }) => {
           </SexItem>
         </ListPetInfo>
       </ImgContainer>
+
       <TextItem>{notice.title}</TextItem>
       <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
         <span>Learn more</span>

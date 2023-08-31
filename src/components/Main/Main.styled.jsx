@@ -106,6 +106,7 @@ export const ImgDog = styled.img`
   height: auto;
   right: -55px;
   bottom: 125px;
+  z-index: 1;
   content: url('${dogmobile1x}');
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),

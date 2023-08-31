@@ -20,17 +20,13 @@ import {
   getUserCurrentNotices,
 } from 'redux/user/user-operations';
 // import { addUserCurrentFavorite } from 'redux/user/user-operations';
+// import { getNoticeById } from 'redux/notices/notices-operations';
 
 function Notices() {
   const [search, setSearch] = useState('');
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
   const { categoryName } = useParams();
-
-  // console.log(isLoggedIn);
-  // useEffect(() => {
-  //   dispatch(addUserCurrentFavorite());
-  // }, [dispatch]);
 
   useEffect(() => {
     if (
