@@ -95,7 +95,7 @@ const AddPetForm = () => {
         onSubmit={handleSubmit}
         validateOnChange={false}
       >
-        {({ values, errors, touched, setFieldValue, }) => (
+        {({ values, errors, touched, setFieldValue }) => (
           <AddPetContainerForm
           // onClick={onClick}
           >
@@ -103,8 +103,8 @@ const AddPetForm = () => {
             <StepTitles step={step} />
             {step === 1 && (
               <FirstStepForm
-              errors= {errors}
-              values={values}
+                errors={errors}
+                values={values}
                 data={data}
                 setData={setData}
                 nextStep={handleNextClick}
@@ -113,16 +113,16 @@ const AddPetForm = () => {
             )}
             {step === 2 && (
               <SecondStepForm
-              setFieldValue= {setFieldValue}
-              errors= {errors}
-              values={values}
+                setFieldValue={setFieldValue}
+                errors={errors}
+                values={values}
                 data={data}
                 setData={setData}
                 nextStep={handleNextClick}
                 backStep={handlePrevClick}
               />
             )}
-            {step === 3 && data.option !== 'pet' ? (
+            {step === 3 && data.category !== 'pet' ? (
               <ThirdStepFormExpanded
                 data={data}
                 step={step}
@@ -146,7 +146,7 @@ const AddPetForm = () => {
       </Formik>
       {isModalOpen && !isLoading && (
         <ModalAddPet toggleModal={() => navigate(backPage)}>
-          {/* <AddPetModal backLink={backPage} category={data.option} /> */}
+          {/* <AddPetModal backLink={backPage} category={data.category} /> */}
         </ModalAddPet>
       )}
     </AddPetDiv>

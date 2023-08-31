@@ -145,7 +145,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
           )}
           {/* --- */}
           {/* label */}
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" option={data.option}>
+          <ThirdStepFormPhotoTitle htmlFor="pet-image" category={data.category}>
             <ThirdStepFormPhotoDiv>
               {data.category === 'pet' || viewportWidth < 768
                 ? 'Add photo'
