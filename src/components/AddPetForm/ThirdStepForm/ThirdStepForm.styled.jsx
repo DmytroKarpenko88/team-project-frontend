@@ -126,7 +126,7 @@ export const ThirdStepFormImgPreview = styled.img`
 `;
 // ------ comments
 
-export const ThirdStepFormComments = styled.textarea`
+export const ThirdStepFormComments = styled(Field)`
   min-height: 92px;
   padding: 8px 16px;
   border-radius: 20px;

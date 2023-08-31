@@ -31,16 +31,15 @@ const AddPetForm = () => {
 
   const [step, setStep] = useState(1);
   const [data, setData] = useState({
-    option: '', //pet
-    name: '',
+    category: '',
     title: '',
-    birthday: '',
-    breed: '',
-    location: '',
-    comments: '',
-    petPhoto: null,
+    name: '',
     sex: '',
-    price: 0,
+    petURL: '',
+    location: '',
+    birthday: '',
+    type: '',
+    describe: '',
   });
 
   const title = getTitle(data);
@@ -48,56 +47,38 @@ const AddPetForm = () => {
   const toggleModal = () => {
     setIsModalOpen(prevState => !prevState);
   };
-
   const handleNextClick = e => {
     setStep(prevState => prevState + 1);
   };
-
   const handlePrevClick = () => {
     setStep(prevState => prevState - 1);
   };
 
-  const handleSubmit = async () => {
-    if (!data.option) return;
+  const handleSubmit = async value => {
+    console.log('value:', value);
 
-    const newFormData = new FormData();
-
-    newFormData.append('name', data.name);
-    newFormData.append('birthday', data.birthday);
-    newFormData.append('breed', data.breed);
-    newFormData.append('pets-photo', data.petPhoto);
-
-    if (data.comments) {
-      newFormData.append('comments', data.comments);
-    }
-
-    if (data.option === 'pet') {
-      dispatch(addPet(newFormData));
+    if (!data.category) return;
+    if (data.category === 'pet') {
+      const pets = {
+        name: data.name,
+        petURL: data.petURL,
+        birthday: data.birthday,
+        type: data.type,
+        describe: data.describe,
+      };
+      dispatch(addPet(pets));
       toggleModal();
       return;
     }
 
-    newFormData.append('titleOfAdd', data.title);
-    newFormData.append('sex', data.sex);
-    newFormData.append('location', data.location);
-
-    if (data.option === 'lostFound') {
-      dispatch(addNotice({ option: 'lost-found', newFormData }));
+    if (
+      data.category === 'hands' ||
+      data.category === 'sell' ||
+      data.category === 'lostFound'
+    ) {
+      dispatch(addNotice(data));
       toggleModal();
       return;
-    }
-
-    if (data.option === 'hands') {
-      dispatch(addNotice({ option: 'in-good-hands', newFormData }));
-      toggleModal();
-      return;
-    }
-
-    newFormData.append('price', data.price);
-
-    if (data.option === 'sell') {
-      dispatch(addNotice({ option: data.option, newFormData }));
-      toggleModal();
     }
   };
 
@@ -114,12 +95,16 @@ const AddPetForm = () => {
         onSubmit={handleSubmit}
         validateOnChange={false}
       >
-        {() => (
-          <AddPetContainerForm>
+        {({ values, errors, touched, setFieldValue, }) => (
+          <AddPetContainerForm
+          // onClick={onClick}
+          >
             <AddPetFormTitle>{title}</AddPetFormTitle>
             <StepTitles step={step} />
             {step === 1 && (
               <FirstStepForm
+              errors= {errors}
+              values={values}
                 data={data}
                 setData={setData}
                 nextStep={handleNextClick}
@@ -128,6 +113,9 @@ const AddPetForm = () => {
             )}
             {step === 2 && (
               <SecondStepForm
+              setFieldValue= {setFieldValue}
+              errors= {errors}
+              values={values}
                 data={data}
                 setData={setData}
                 nextStep={handleNextClick}
