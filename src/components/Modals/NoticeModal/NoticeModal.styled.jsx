@@ -85,7 +85,8 @@ export const CategoryName = styled.span`
   border-radius: 0 20px 20px 0;
   display: flex;
   align-items: center;
-  padding-left: 12px;
+  justify-content: center;
+  // padding-left: 12px;
 
   font-size: 14px;
   font-family: ${theme.fonts.main.medium};

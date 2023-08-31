@@ -109,7 +109,7 @@ export const removeFavoriteNotice = createAsyncThunk(
   async (petId, { rejectWithValue }) => {
     try {
       const { data } = await axios.delete(`/api/notices/favorite/${petId}`);
-
+      console.log(data);
       return data.result.updatedNotice;
     } catch (error) {
       return rejectWithValue(error.message);
