@@ -8,18 +8,15 @@ const PetsList = () => {
   // const [petsList, setPetsList] = useState([]);
   const { data } = useSelector(selectPets);
 
-  // useEffect(() => {
-  //   // setPetsList(data.pets);
-  // }, [data, petsList]);
+  console.log('data:', data);
+
   return (
     <>
       {data && (
         <PetsListStyled>
-          {/* {data.pets.length === 0 && <Title>You didn't add pets yet.</Title>} */}
-          {/* {data.pets.length !== 0 &&
-            data.pets.map(item => {
-              return <PetsItem key={item._id} pet={item} />;
-            })} */}
+          {data.pets.length === 0 && <Title>You didn't add pets yet.</Title>}
+          {data.pets.length !== 0 &&
+            data.pets.map(item => <PetsItem key={item._id} pet={item} />)}
         </PetsListStyled>
       )}
     </>
