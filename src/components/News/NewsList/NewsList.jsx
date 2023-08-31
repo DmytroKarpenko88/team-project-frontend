@@ -5,22 +5,18 @@ import { useSelector } from 'react-redux';
 import { selectAllNews } from 'redux/news/news-selectors';
 // import { Text, TextBox } from './NewsList.styled';
 
-
 export const NewsList = () => {
   const news = useSelector(selectAllNews);
-    return (
-      <>
+  return (
+    <>
       <NewsListContainer>
-          {/* <NewsItem/> */}
-          {news ? (
-          news.map(item => (
-            <NewsItem key={news._id} news={item} />
-          ))
+        {/* <NewsItem/> */}
+        {news ? (
+          news.map((item, index) => <NewsItem key={index} news={item} />)
         ) : (
           <p>No friends</p>
         )}
-        </NewsListContainer>
-      </>
-    
+      </NewsListContainer>
+    </>
   );
 };

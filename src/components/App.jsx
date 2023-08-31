@@ -26,8 +26,6 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
-
-
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing, isLoggedIn, isRegistered } = useAuth();
@@ -50,14 +48,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Main />} />
-            <Route
-              path="news"
-              element={
-                <PublicRoute>
-                  <NewsPage />
-                </PublicRoute>
-                }
-            />
+            <Route path="news" element={<NewsPage />} />
             <Route
               path="register"
               element={
