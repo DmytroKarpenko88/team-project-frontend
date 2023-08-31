@@ -172,7 +172,7 @@ export const ThirdStepFormPhotoTitle = styled.label`
   column-gap: 28px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    ${({ data }) => (data.option !== 'pet' ? 'flex-direction: column' : '')};
+    ${({ data }) => (data.category !== 'pet') ? ('flex-direction: column') : ('')};
   }
 `;
 
@@ -216,7 +216,7 @@ export const ThirdStepFormImgPreview = styled.img`
 `;
 // ------ comments
 
-export const ThirdStepFormComments = styled.textarea`
+export const ThirdStepFormComments = styled(Field)`
   min-height: 92px;
   padding: 8px 16px;
   border-radius: 20px;
@@ -231,9 +231,10 @@ export const ThirdStepFormComments = styled.textarea`
 
   @media (min-width: 768px) {
     flex-direction: row-reverse;
-    ${({ data, step }) =>
-      data.option !== 'pet' && (data.option !== 'sell') & (step === 3)
+    ${({data, step }) =>
+         (data.category !== 'pet') && (data.category !== 'sell') && (step === 3)
         ? 'min-height: 182px;'
-        : 'min-height: 92px;'};
+        : 'min-height: 92px;'
+        };
   }
 `;

@@ -16,7 +16,15 @@ import {
   TextItem,
   LoadMoreBtn,
 } from './NoticesCategoryItem.styled';
-import { Heart, Location, Clock, Female, Paw, Trash } from 'components/icons';
+import {
+  Heart,
+  Location,
+  Clock,
+  Female,
+  Male,
+  Paw,
+  Trash,
+} from 'components/icons';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
 import { useParams } from 'react-router-dom';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
@@ -25,7 +33,6 @@ import { Notify } from 'notiflix';
 import { addUserCurrentFavorite } from 'redux/user/user-operations';
 import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
 import { deleteUserCurrentNotices } from 'redux/user/user-operations.js';
-// import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
   // console.log('notice:', notice);
@@ -36,8 +43,6 @@ export const NoticesCategoryItem = ({ notice }) => {
   const [modalDeleteShow, setModalDeleteShow] = useState(false);
 
   const [noticeModalShow, setNoticeModalShow] = useState(false);
-  // const filterNotices = useSelector(selectFiltredNotices);
-  // console.log(filterNotices);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const { categoryName } = useParams();
@@ -70,11 +75,11 @@ export const NoticesCategoryItem = ({ notice }) => {
     } else if (isLoggedIn && !favorite) {
       dispatch(addUserCurrentFavorite(notice._id));
       setFavorite(true);
-      Notify.success('Added your favorite');
+      Notify.success('Added your favorites');
     } else if (isLoggedIn && favorite && categoryName !== favorite) {
       dispatch(addUserCurrentFavorite(notice._id));
       setFavorite(false);
-      Notify.success('Deleted from favorite');
+      Notify.success('Deleted from favorites');
     } else if (categoryName === 'favorite') {
       // dispatch(removeFromFavoriteCategory(notice._id));
       setFavorite(false);
@@ -97,6 +102,7 @@ export const NoticesCategoryItem = ({ notice }) => {
       dispatch(deleteUserCurrentNotices(notice._id));
       Notify.success('Deleted your own notice');
     }
+    setModalDeleteShow(!modalDeleteShow);
   };
 
   const toggleNoticeModal = () => {
@@ -110,6 +116,32 @@ export const NoticesCategoryItem = ({ notice }) => {
 
   const toggleAttentionModal = () => {
     setShowAttentionModal(!showAttentionModal);
+  };
+
+  const locationSlice = location => {
+    return location.length > 5 ? location.slice(0, 4) + '...' : location;
+  };
+  const titleFormat = title => {
+    return title.length > 55 ? title.slice(0, 55) + '...' : title;
+  };
+
+  const converterAge = date => {
+    const age =
+      new Date(Date.now() - Date.parse(date)).getFullYear() - 1970 || 0;
+
+    if (age < 0.3) {
+      return '3 month';
+    } else if (age < 0.6) {
+      return '6 month';
+    } else if (age < 0.9) {
+      return '9 month';
+    } else if (age === 1) {
+      return '1 year';
+    }
+
+    const ageString = age.toString();
+
+    return ageString + ' years';
   };
 
   return (
@@ -139,7 +171,7 @@ export const NoticesCategoryItem = ({ notice }) => {
         </HeartBtn>
 
         {currentUser.email === notice._owner.email && (
-          <DeleteNoticeBtn type="button" onClick={handleDeleteOwnNotice}>
+          <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
             <Trash />
           </DeleteNoticeBtn>
         )}
@@ -147,21 +179,22 @@ export const NoticesCategoryItem = ({ notice }) => {
         <ListPetInfo>
           <LocationItem>
             <Location />
-            Lviv
+            {locationSlice(notice.location)}
           </LocationItem>
 
           <AgeItem>
-            <Clock />1 year
+            <Clock />
+            {converterAge(notice.updatedAt)}
           </AgeItem>
 
           <SexItem>
-            <Female />
-            female
+            {notice.sex === 'male' ? <Male /> : <Female />}
+            {notice.sex}
           </SexItem>
         </ListPetInfo>
       </ImgContainer>
 
-      <TextItem>{notice.title}</TextItem>
+      <TextItem>{titleFormat(notice.title)}</TextItem>
       <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
         <span>Learn more</span>
         <span>
@@ -175,7 +208,11 @@ export const NoticesCategoryItem = ({ notice }) => {
       )}
 
       {modalDeleteShow && (
-        <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
+        <ModalDelete
+          show={modalDeleteShow}
+          onHide={toggleModalDelete}
+          onExit={handleDeleteOwnNotice}
+        />
       )}
 
       {showAttentionModal && (

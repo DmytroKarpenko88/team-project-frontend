@@ -3,7 +3,7 @@ import { theme } from '../../styles/theme';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 
 export const HeaderContainer = styled.div`
-  width: 100% -40px;
+  width: calc(100% -40px);
   height: 48px;
   position: static;
   top: 0;
@@ -12,12 +12,12 @@ export const HeaderContainer = styled.div`
   background-color: ${theme.colors.bgColor};
 
   @media screen and (max-width: 1199px) {
-    width: 100% -40px;
+    width: calc(100% -40px);
     height: 44px;
   }
 
   @media screen and (max-width: 767px) {
-    width: 100%-40px;
+    width: calc(100%-40px);
     height: 28px;
   }
 
@@ -57,7 +57,7 @@ export const HeaderMenu = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row-reverse;
     // margin-right: auto;
-    max-width: 1000px;
+    max-width: 925px;
     justify-content: space-between;
     align-items: baseline;
   }

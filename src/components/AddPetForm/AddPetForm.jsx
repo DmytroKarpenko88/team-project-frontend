@@ -37,6 +37,7 @@ const AddPetForm = () => {
     sex: '',
     petURL: '',
     location: '',
+    price: '',
     birthday: '',
     type: '',
     describe: '',
@@ -54,10 +55,9 @@ const AddPetForm = () => {
     setStep(prevState => prevState - 1);
   };
 
-  const handleSubmit = async value => {
-    console.log('value:', value);
-
+  const handleSubmit = values => {
     if (!data.category) return;
+
     if (data.category === 'pet') {
       const pets = {
         name: data.name,
@@ -66,18 +66,67 @@ const AddPetForm = () => {
         type: data.type,
         describe: data.describe,
       };
-      dispatch(addPet(pets));
+      console.log(' pets:', pets);
+
+      const formData = new FormData();
+      for (let keys in pets) {
+        formData.append(keys, pets[keys]);
+      }
+      dispatch(addPet(formData));
       toggleModal();
+      navigate('/user');
       return;
     }
 
-    if (
-      data.category === 'hands' ||
-      data.category === 'sell' ||
-      data.category === 'lostFound'
-    ) {
-      dispatch(addNotice(data));
+    if (data.category === 'in-good-hands' || data.category === 'lost-found') {
+      const pets = {
+        name: data.name,
+        petURL: data.petURL,
+        birthday: data.birthday,
+        type: data.type,
+        describe: data.describe,
+        category: data.category,
+        title: data.title,
+        sex: data.sex,
+        location: data.location,
+      };
+      const formData = new FormData();
+      for (let keys in pets) {
+        formData.append(keys, pets[keys]);
+      }
+      dispatch(addNotice(formData));
       toggleModal();
+
+      if (data.category === 'in-good-hands') {
+        navigate('/notices/in-good-hands');
+      }
+      if (data.category === 'lost-found') {
+        navigate('/notices/lost-found');
+      }
+
+      return;
+    }
+
+    if (data.category === 'sell') {
+      const pets = {
+        name: data.name,
+        petURL: data.petURL,
+        birthday: data.birthday,
+        type: data.type,
+        describe: data.describe,
+        category: data.category,
+        title: data.title,
+        price: data.price,
+        sex: data.sex,
+        location: data.location,
+      };
+      const formData = new FormData();
+      for (let keys in pets) {
+        formData.append(keys, pets[keys]);
+      }
+      dispatch(addNotice(formData));
+      toggleModal();
+      navigate('/notices/sell');
       return;
     }
   };
@@ -86,14 +135,14 @@ const AddPetForm = () => {
   // const backPage = step === 1 ? location.state?.from ?? '/user' : '';
   const backPage = location.state?.from ?? '/user';
 
-  // console.log('data:', data);
+  console.log('data:', data);
   return (
     <AddPetDiv data={data} step={step}>
       <Formik
         initialValues={data}
         validationSchema={validatePetSchema}
         onSubmit={handleSubmit}
-        validateOnChange={false}
+        // validateOnChange={false}
       >
         {({ values, errors, touched, setFieldValue }) => (
           <AddPetContainerForm
@@ -106,6 +155,7 @@ const AddPetForm = () => {
                 errors={errors}
                 values={values}
                 data={data}
+                step={step}
                 setData={setData}
                 nextStep={handleNextClick}
                 cancel={backPage}
@@ -117,13 +167,15 @@ const AddPetForm = () => {
                 errors={errors}
                 values={values}
                 data={data}
+                step={step}
                 setData={setData}
                 nextStep={handleNextClick}
                 backStep={handlePrevClick}
               />
             )}
-            {step === 3 && data.option !== 'pet' ? (
+            {step === 3 && data.category !== 'pet' ? (
               <ThirdStepFormExpanded
+                errors={errors}
                 data={data}
                 step={step}
                 setData={setData}
@@ -133,6 +185,7 @@ const AddPetForm = () => {
             ) : (
               step === 3 && (
                 <ThirdStepForm
+                  errors={errors}
                   data={data}
                   step={step}
                   setData={setData}
@@ -165,8 +218,8 @@ const AddPetForm = () => {
         )}
       </Formik>
       {isModalOpen && !isLoading && (
-        <ModalAddPet toggleModal={() => navigate(backPage)} backLink={backPage}>
-          {/* <AddPetModal backLink={backPage} category={data.option} /> */}
+        <ModalAddPet toggleModal={() => navigate(backPage)}>
+          {/* <AddPetModal backLink={backPage} category={data.category} /> */}
         </ModalAddPet>
       )}
     </AddPetDiv>

@@ -3,10 +3,9 @@ import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
 
-import {
-  getUserCurrentFavorite,
-  getUserCurrentNotices,
-} from 'redux/user/user-operations';
+import // getUserCurrentFavorite,
+// getUserCurrentNotices,
+'redux/user/user-operations';
 
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
@@ -26,8 +25,6 @@ const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
 const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
-
-
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing, isLoggedIn, isRegistered } = useAuth();
@@ -35,8 +32,8 @@ export const App = () => {
   useEffect(() => {
     dispatch(fetchCurrentUser());
     dispatch(getUserProfile());
-    dispatch(getUserCurrentNotices());
-    dispatch(getUserCurrentFavorite());
+    // dispatch(getUserCurrentNotices());
+    // dispatch(getUserCurrentFavorite());
 
     // if(isLoggedIn) {
     //   dispatch(fetchCurrentUser());
@@ -50,14 +47,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Main />} />
-            <Route
-              path="news"
-              element={
-                <PublicRoute>
-                  <NewsPage />
-                </PublicRoute>
-                }
-            />
+            <Route path="news" element={<NewsPage />} />
             <Route
               path="register"
               element={

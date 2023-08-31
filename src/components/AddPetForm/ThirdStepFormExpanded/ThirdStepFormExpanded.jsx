@@ -86,9 +86,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   ]);
 
   const handleChange = e => {
-    // const input = e.target.name;
-    // const value = e.target.value;
-    // setData(prev => ({ ...prev, [input]: value }));
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
     console.log('fieldValue:', fieldValue);
@@ -147,7 +144,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
           {/* label */}
           <ThirdStepFormPhotoTitle
             htmlFor="pet-image"
-            option={data.option}
+            option={data.category}
             data={data}
             step={step}
           >
@@ -169,20 +166,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                   // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
-              {/* input */}
-              <ThirdStepFormImgInput
-                type="file"
-                id="pet-image"
-                alt="pet`s photo"
-                // value={data.photo ?? ''}
-                name="petURL"
-                onChange={handleChange}
-                // onFocus={focusHandle}
-                value={imageValue}
-                onBlur={() => validateField('petPhoto', data, setErrors)}
-                accept=".jpeg, .png, .gif"
-                required
-              />
+              
             </ThirdStepFormPlus>
             {/* input */}
             {/* -----FileInput - input */}
@@ -191,12 +175,12 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               id="pet-image"
               alt="pet`s photo"
               // value={data.photo ?? ''}
-              name="petPhoto"
+              name="petURL"
               onChange={handleChange}
               // onFocus={focusHandle}
               value={imageValue}
-              onBlur={() => validateField('petPhoto', data, setErrors)}
-              accept=".jpeg, .png, .gif"
+              onBlur={() => validateField('petURL', data, setErrors)}
+              accept=".jpg, .png"
               required
             />
           </ThirdStepFormPhotoTitle>

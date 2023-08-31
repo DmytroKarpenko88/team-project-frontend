@@ -12,29 +12,19 @@ import { Link } from 'react-router-dom';
 export const ContainerPg = styled.div`
   width:100%;
   height: 100vh;
-  padding-top: 84px;
-  padding-bottom: 275px;
-  margin-left: auto;
-  margin-right: auto;
+  padding-top: 80px;
+  padding-bottom: 102px;
+  //margin-left: auto;
+  //margin-right: auto;
 
   @media (min-width: ${theme.breakpoints.tablet}) {
     padding-top: 60px;
   }
+  `;
 
 
-  @media (min-width: ${theme.breakpoints.desktop}) {
-    padding-top: 71px;
-  }
-`;
 export const H1Text = styled.p`
-  
-  width: 280px;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: 'Manrope';
+ font-family: 'Manrope';
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
@@ -45,21 +35,31 @@ export const H1Text = styled.p`
 
   @media (min-width: 768px) {
     display: flex;
-    width:768px;
+    align-items: center;
+    justify-content: center;
 
-  font-family: Manrope;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 600;
-    text-align: inherit;
+     font-size: 32px;
+     font-weight: 600;
+     line-height: 42px; 
+     text-align: inherit;
   }
   @media (min-width: 1280px) {
     display: flex;
     font-weight: 600;
     font-size: 32px;
-    line-height: 42px;
   }
 `;
+
+export const Paragraph = styled.h2`
+font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  line-height: 33px;
+  color: #000000;
+`; 
+
 export const PicContainer = styled.div`
 display: flex;
 justify-content: center;

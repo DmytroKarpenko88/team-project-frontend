@@ -30,18 +30,23 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const ThirdStepForm = ({ data, setData, submit, backStep }) => {
 
-  console.log("ThirdStepForm-data:", data)
   
   const [isDisabled, setIsDisabled] = useState(true);
   const [errors, setErrors] = useState({});
+  
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   const isPetPhotoFieldValid = Boolean(!errors.petURL && !data.petURL);
+  console.log("isPetPhotoFieldValid:", isPetPhotoFieldValid)
   const isCommentsFieldValid = Boolean(!errors.describe);
+  console.log("isCommentsFieldValid:", isCommentsFieldValid)
   const isLocationFieldValid = Boolean(!errors.location && !data.location);
+  console.log("isLocationFieldValid:", isLocationFieldValid)
   const isSexFieldValid = Boolean(!errors.sex && !data.sex);
+  console.log("isSexFieldValid:", isSexFieldValid)
   const isPriceFieldValid = Boolean(!errors.price && !data.price);
+  console.log("isPriceFieldValid:", isPriceFieldValid)
 
   useEffect(() => {
     const handleResize = () => {
@@ -91,6 +96,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const handleChange = e => {
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
+    console.log("fieldValue:", fieldValue)
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
@@ -110,7 +116,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         {/* sex for sell lostFond ingood hands*/}
         <ThirdStepSexPhotoDiv>
        
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" option={data.category}>
+          <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data}>
 
             <ThirdStepFormPhotoDiv>
               {data.category === 'pet' || viewportWidth < 768
@@ -119,9 +125,6 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
             </ThirdStepFormPhotoDiv>
             {/* div - svg */}
             <ThirdStepFormPlus>
-              {/* <Plus /> */}
-              {/* img */}
-              {/* {fileInputRef.current?.files[0] && <img></img>} */}
               {!data.petURL && <Plus width="30" height="30" />}
               {!!data.petURL && (
                 <ThirdStepFormImgPreview
@@ -130,20 +133,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
                   // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
-              {/* input */}
-              <ThirdStepFormImgInput
-                type="file"
-                id="pet-image"
-                alt="pet`s photo"
-                // value={data.photo ?? ''}
-                name="petURL"
-                onChange={handleChange}
-                // onFocus={focusHandle}
-                value={imageValue}
-                onBlur={() => validateField('petPhoto', data, setErrors)}
-                accept=".jpeg, .png, .webp, .gif"
-                required
-              />
+             
             </ThirdStepFormPlus>
             {/* input */}
             <ThirdStepFormImgInput
@@ -151,12 +141,12 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
               id="pet-image"
               alt="pet`s photo"
               // value={data.photo ?? ''}
-              name="petPhoto"
+              name="petURL"
               onChange={handleChange}
               // onFocus={focusHandle}
               value={imageValue}
-              onBlur={() => validateField('petPhoto', data, setErrors)}
-              accept=".jpeg, .png, .webp, .gif"
+              onBlur={() => validateField('petURL', data, setErrors)}
+              accept=".jpg, .png"
               required
             />
           </ThirdStepFormPhotoTitle>

@@ -11,7 +11,6 @@ import {
 import { Cross, Trash } from 'components/icons';
 
 export const ModalDelete = props => {
-  console.log('props:', props);
   return (
     <ModalContainer {...props} size="lg" centered={true}>
       <Modal.Body>

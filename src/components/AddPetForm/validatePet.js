@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 export const validatePetSchema = Yup.object().shape({
   title: Yup.string()
     .required('Title is required')
-    .min(8, 'Name must be at least 8 characters')
+    .min(4, 'Name must be at least 8 characters')
     .max(60, 'Name must not exceed 60 characters'),
   category: Yup.string()
     .required('Category is required')
@@ -44,9 +44,9 @@ export const validatePetSchema = Yup.object().shape({
   location: Yup.string()
     .required('Location is required')
     .matches(/^[A-Z][a-zA-Z]*(-[a-zA-Z]+)?$/i, 'Invalid location format'),
-  // price: Yup.number()
-  //   .positive('Price must be greater than 0')
-  //   .required('Price is required'),
+  price: Yup.number()
+    .positive('Price must be greater than 0')
+    .required('Price is required'),
   describe: Yup.string().test(
     'comments',
     'Comments must be between 8 and 120 characters',
