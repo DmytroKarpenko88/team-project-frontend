@@ -45,7 +45,7 @@ const userSlice = createSlice({
       //   state.isLoggedIn = true;
       // })
       .addCase(addUserCurrentFavorite.fulfilled, (state, action) => {
-        console.log('action:', action.payload);
+        // console.log('action:', action.payload);
         // const index = state.userFavoriteNotices.findIndex(
         //   notice => notice._id === action.payload.notice._id
         // );
