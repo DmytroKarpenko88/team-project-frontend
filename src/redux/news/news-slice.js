@@ -3,6 +3,7 @@ import { getAllNews } from './news-operations';
 
 const initialState = {
   news: [],
+  totalCount: 0,
   error: null,
   isLoading: false,
   isLoggedIn: false,
@@ -13,8 +14,8 @@ const newsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getAllNews.fulfilled, (state, action) => {
-      // console.log(" action:",  action)
-      state.news = action.payload;
+      state.news = action.payload.news;
+      state.totalCount = action.payload.totalCount;
       state.isLoggedIn = true;
       state.isLoading = false;
     });

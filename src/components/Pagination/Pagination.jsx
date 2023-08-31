@@ -38,6 +38,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const handlePageClick = page => {
     onPageChange(page);
     updatePages(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handlePrevClick = () => {
