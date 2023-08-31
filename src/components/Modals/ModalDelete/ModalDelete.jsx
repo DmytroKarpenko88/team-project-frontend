@@ -19,18 +19,14 @@ export const ModalDelete = props => {
         </CrossBtn>
         <Title>Delete advertisement?</Title>
 
-        <InfoMessage>
-          Are you sure you want to delete <b>“Cute dog looking for a home”?</b>{' '}
-          <br />
-          You can`t undo this action.
-        </InfoMessage>
+        <InfoMessage>Are you sure you want to delete?</InfoMessage>
 
         <BtnWrapper>
           <BtnCancel onClick={props.onHide}>
             <span>Cancel</span>
           </BtnCancel>
 
-          <BtnYes onClick={props.onHide}>
+          <BtnYes onClick={props.onExit}>
             <span>Yes</span>
             <span>
               <Trash />

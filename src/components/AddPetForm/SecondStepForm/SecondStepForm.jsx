@@ -95,7 +95,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
   return (
     <>
       <SecondStepFormDiv>
-        {data.option !== 'pet' && (
+        {data.category !== 'pet' && (
           <>
             <SecondStepFormTitle htmlFor="title">
               Title of add

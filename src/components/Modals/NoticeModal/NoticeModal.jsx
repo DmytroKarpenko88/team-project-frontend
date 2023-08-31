@@ -34,7 +34,6 @@ import { ModalAttention } from '..';
 // import { useEffect } from 'react';
 
 export const NoticeModal = props => {
-  console.log('props:', props);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
   const [favorite, setFavorite] = useState(false);
 

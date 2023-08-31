@@ -65,7 +65,7 @@ const PetsItem = ({ pet }) => {
         <ModalDelete
           show={modalDeleteShow}
           onHide={() => setModalDeleteShow(false)}
-          onHandleDelete={approveAction}
+          onExit={approveAction}
         />
       )}
     </>

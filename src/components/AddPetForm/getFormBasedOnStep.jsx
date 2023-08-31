@@ -10,7 +10,7 @@
 //       formBasedOnStep = <SecondStepForm data={data} setData={setData} />;
 //       break;
 //     case 3:
-//       if (data.option !== 'pet') {
+//       if (data.category !== 'pet') {
 //         formBasedOnStep = (
 //           <ThirdStepFormExpanded
 //             data={data}

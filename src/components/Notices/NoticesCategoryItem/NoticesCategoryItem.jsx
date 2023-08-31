@@ -97,6 +97,7 @@ export const NoticesCategoryItem = ({ notice }) => {
       dispatch(deleteUserCurrentNotices(notice._id));
       Notify.success('Deleted your own notice');
     }
+    setModalDeleteShow(!modalDeleteShow);
   };
 
   const toggleNoticeModal = () => {
@@ -139,7 +140,7 @@ export const NoticesCategoryItem = ({ notice }) => {
         </HeartBtn>
 
         {currentUser.email === notice._owner.email && (
-          <DeleteNoticeBtn type="button" onClick={handleDeleteOwnNotice}>
+          <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
             <Trash />
           </DeleteNoticeBtn>
         )}
@@ -175,7 +176,11 @@ export const NoticesCategoryItem = ({ notice }) => {
       )}
 
       {modalDeleteShow && (
-        <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
+        <ModalDelete
+          show={modalDeleteShow}
+          onHide={toggleModalDelete}
+          onExit={handleDeleteOwnNotice}
+        />
       )}
 
       {showAttentionModal && (

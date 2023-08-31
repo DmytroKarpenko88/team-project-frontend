@@ -172,7 +172,7 @@ export const ThirdStepFormPhotoTitle = styled.label`
   column-gap: 28px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    ${( {data}) => (data.category !== 'pet') ? ('flex-direction: column') : ('')};
+    ${({ data }) => (data.category !== 'pet' ? 'flex-direction: column' : '')};
   }
 `;
 

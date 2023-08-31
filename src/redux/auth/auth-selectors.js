@@ -4,5 +4,6 @@ export const selectIsRefreshing = state => state.auth.isRefreshing;
 export const selectIsLoading = state => state.auth.isLoading;
 export const selectError = state => state.auth.error;
 export const selectIsRegistered = state => state.auth.isRegistered;
+export const selectUserProfile = state => state.auth;
 
 // export const selectUserCurrentNotices = state => state.auth.pets;
