@@ -9,6 +9,7 @@ import {
 } from './auth-operations';
 
 const initialState = {
+  pets: [],
   user: {
     name: null,
     email: null,
@@ -16,7 +17,6 @@ const initialState = {
     city: null,
     birthday: null,
     avatarURL: null,
-    pets: [],
   },
   token: null,
   isLoading: false,
