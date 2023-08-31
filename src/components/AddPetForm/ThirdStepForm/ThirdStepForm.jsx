@@ -31,17 +31,22 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 const ThirdStepForm = ({ data, setData, submit, backStep }) => {
 
   
-  // const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [errors, setErrors] = useState({});
   
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   const isPetPhotoFieldValid = Boolean(!errors.petURL && !data.petURL);
+  console.log("isPetPhotoFieldValid:", isPetPhotoFieldValid)
   const isCommentsFieldValid = Boolean(!errors.describe);
+  console.log("isCommentsFieldValid:", isCommentsFieldValid)
   const isLocationFieldValid = Boolean(!errors.location && !data.location);
+  console.log("isLocationFieldValid:", isLocationFieldValid)
   const isSexFieldValid = Boolean(!errors.sex && !data.sex);
-  // const isPriceFieldValid = Boolean(!errors.price && !data.price);
+  console.log("isSexFieldValid:", isSexFieldValid)
+  const isPriceFieldValid = Boolean(!errors.price && !data.price);
+  console.log("isPriceFieldValid:", isPriceFieldValid)
 
   useEffect(() => {
     const handleResize = () => {
@@ -55,28 +60,28 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   }, []);
 
   useEffect(() => {
-    // if (data.category === 'sell') {
-    //   setIsDisabled(
-    //     !(
-    //       isPetPhotoFieldValid &&
-    //       isLocationFieldValid &&
-    //       isSexFieldValid &&
-    //       // isPriceFieldValid &&
-    //       isCommentsFieldValid
-    //     )
-    //   );
-    // }
+    if (data.category === 'sell') {
+      setIsDisabled(
+        !(
+          isPetPhotoFieldValid &&
+          isLocationFieldValid &&
+          isSexFieldValid &&
+          isPriceFieldValid &&
+          isCommentsFieldValid
+        )
+      );
+    }
     if (data.category === 'pet') {
-      // setIsDisabled(!(isPetPhotoFieldValid && isCommentsFieldValid));
+      setIsDisabled(!(isPetPhotoFieldValid && isCommentsFieldValid));
     } else {
-      // setIsDisabled(
-      //   !(
-      //     isPetPhotoFieldValid &&
-      //     isLocationFieldValid &&
-      //     isSexFieldValid &&
-      //     isCommentsFieldValid
-      //   )
-      // );
+      setIsDisabled(
+        !(
+          isPetPhotoFieldValid &&
+          isLocationFieldValid &&
+          isSexFieldValid &&
+          isCommentsFieldValid
+        )
+      );
     }
   }, [
     errors,
@@ -84,7 +89,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
     isCommentsFieldValid,
     isLocationFieldValid,
     isPetPhotoFieldValid,
-    // isPriceFieldValid,
+    isPriceFieldValid,
     isSexFieldValid,
   ]);
 
@@ -177,7 +182,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
             // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
             // filled={true}
             onClick={submit && (() => submit(false))}
-            // disabled={isDisabled}
+            disabled={isDisabled}
           >
             Done
             {/* {step === 3 ? 'Done' : 'Next'} */}

@@ -28,6 +28,8 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
 
   const handleChange = e => {
     const { name, value } = e.target;
+    console.log(" value :",  value )
+    console.log("name:", name)
 
 
     setData(prevState => ({
@@ -82,8 +84,8 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
         <FirstStepFormItemLabel>
           <FirstStepFormItemInput
             type="radio"
-            value="hands"
-            checked={data.category === 'hands'}
+            value="in-good-hands"
+            checked={data.category === "in-good-hands"}
             // name="hands"
             onChange={handleChange}
             // id="for-free"

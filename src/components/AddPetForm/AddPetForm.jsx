@@ -78,7 +78,7 @@ const AddPetForm = () => {
       return;
     }
 
-    if (data.category === 'hands' || data.category === 'lost-found') {
+    if (data.category === "in-good-hands" || data.category === 'lost-found') {
       const pets = {
         name: data.name,
         petURL: data.petURL,
@@ -94,10 +94,10 @@ const AddPetForm = () => {
       for (let keys in pets) {
         formData.append(keys, pets[keys]);
       }
-      dispatch(addPet(formData));
+      dispatch(addNotice(formData));
       toggleModal();
 
-      if (data.category === 'hands') {
+      if (data.category === "in-good-hands") {
         navigate('/notices/in-good-hands');
       }
       if (data.category === 'lost-found') {
