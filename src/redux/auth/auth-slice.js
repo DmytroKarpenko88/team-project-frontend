@@ -35,36 +35,33 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-
       .addCase(register.fulfilled, (state, action) => {
         console.log('actionRegister:', action);
         state.user = action.payload.user;
         state.token = action.payload.user.token;
         state.error = null;
-        state.isLoading = false;
         state.isRegistered = true;
         state.isLoggedIn = true;
-      })
-
-      .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
       })
-
+      .addCase(register.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      })
       .addCase(login.fulfilled, (state, action) => {
         state.user = action.payload;
         state.token = action.payload.token;
         state.error = null;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
-
       .addCase(logOut.fulfilled, (state, action) => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
         state.isRegistered = false;
+        state.isLoading = false;
       })
-
       .addCase(fetchCurrentUser.pending, state => {
         state.isLoading = true;
         state.isRefreshing = true;
@@ -72,39 +69,39 @@ const authSlice = createSlice({
       .addCase(fetchCurrentUser.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
-        state.isLoading = false;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+        state.isLoading = false;
       })
       .addCase(fetchCurrentUser.rejected, state => {
         state.isRefreshing = false;
+        state.isLoading = false;
       })
-
       .addCase(getUserProfile.pending, state => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(getUserProfile.fulfilled, (state, action) => {
         state.user = action.payload;
+
         state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(getUserProfile.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
+        state.isLoading = false;
       })
-
       .addCase(updateUser.pending, state => {
         state.isLoading = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        state.isLoading = false;
         state.isLoggedIn = true;
         state.user = {
           ...state.user,
           avatarURL: action.payload.data.avatarURL,
         };
         state.token = action.payload.token;
+        state.isLoading = false;
       })
 
       .addCase(updateUser.rejected, state => {

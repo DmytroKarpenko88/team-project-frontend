@@ -5,8 +5,6 @@ import {
   getNoticeById,
   removeNotice,
   filterNotice,
-  addFavoriteNotice,
-  removeFavoriteNotice,
 } from './notices-operations';
 
 const noticesInitialState = {
@@ -39,8 +37,8 @@ const noticesSlice = createSlice({
     builder
       .addCase(fetchNotices.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(getNoticeById.pending, state => {
         state.isLoading = true;
@@ -48,12 +46,12 @@ const noticesSlice = createSlice({
       })
       .addCase(getNoticeById.fulfilled, (state, action) => {
         state.noticeById = action.payload;
-        state.isLoading = false;
         state.error = null;
+        state.isLoading = false;
       })
       .addCase(getNoticeById.rejected, (state, action) => {
-        state.isLoading = false;
         state.error = action.payload;
+        state.isLoading = false;
       })
       .addCase(addNotice.fulfilled, (state, action) => {
         console.log('action:', action);
@@ -64,6 +62,8 @@ const noticesSlice = createSlice({
       })
       .addCase(removeNotice.fulfilled, (state, action) => {
         state.items = action.payload;
+        console.log('state.items:', state.items);
+
         state.isLoading = false;
         state.error = null;
       })
@@ -71,19 +71,20 @@ const noticesSlice = createSlice({
         state.filtredNotices = action.payload;
         state.isLoading = false;
         state.error = null;
-      })
-      .addCase(addFavoriteNotice.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(removeFavoriteNotice.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        // state.favorites = state.favorites.filter(
-        //   favorite => favorite._id !== action.meta.arg
-        // );
       }),
+  // .addCase(addFavoriteNotice.fulfilled, (state, action) => {
+  //   state.items = action.payload;
+  //   console.log('state.items:', state.items);
+  //   state.isLoading = false;
+  //   state.error = null;
+  // })
+  // .addCase(removeFavoriteNotice.fulfilled, (state, action) => {
+  //   state.isLoading = false;
+  //   state.error = null;
+  //   // state.favorites = state.favorites.filter(
+  //   //   favorite => favorite._id !== action.meta.arg
+  //   // );
+  // }),
 });
 
 // export const { filterItems } = noticesSlice.actions;

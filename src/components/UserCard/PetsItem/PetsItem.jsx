@@ -21,14 +21,12 @@ const PetsItem = ({ pet }) => {
   };
 
   const approveAction = async () => {
-    console.log('Deleting pet with ID:', pet._id);
     try {
       await dispatch(deletePet(pet._id));
-      console.log('Pet deleted successfully');
     } catch (error) {
       console.error('Error deleting pet:', error);
     }
-    setModalDeleteShow(prevState => !prevState);
+    // setModalDeleteShow(prevState => !prevState);
   };
   return (
     <>
@@ -36,6 +34,7 @@ const PetsItem = ({ pet }) => {
         <PetImage src={petURL} alt={name} />
         <InfoContainer>
           <DeleteBtn type="button" onClick={closeModal}>
+            {/* <DeleteBtn type="button" onClick={approveAction}> */}
             <Trash />
           </DeleteBtn>
           <div>
