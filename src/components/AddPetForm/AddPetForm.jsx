@@ -78,7 +78,7 @@ const AddPetForm = () => {
       return;
     }
 
-    if (data.category === "in-good-hands" || data.category === 'lost-found') {
+    if (data.category === 'in-good-hands' || data.category === 'lost-found') {
       const pets = {
         name: data.name,
         petURL: data.petURL,
@@ -97,7 +97,7 @@ const AddPetForm = () => {
       dispatch(addNotice(formData));
       toggleModal();
 
-      if (data.category === "in-good-hands") {
+      if (data.category === 'in-good-hands') {
         navigate('/notices/in-good-hands');
       }
       if (data.category === 'lost-found') {
@@ -133,7 +133,7 @@ const AddPetForm = () => {
 
   // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
   // const backPage = step === 1 ? location.state?.from ?? '/user' : '';
-  const backPage = location.state?.from ?? '/';
+  const backPage = location.state?.from ?? '/user';
 
   console.log('data:', data);
   return (
@@ -194,6 +194,26 @@ const AddPetForm = () => {
                 />
               )
             )}
+
+            {/* <AddPetBtnList>
+              <AddPetBtnItem>
+                <AddPetBtnNext type="button">
+                  {step === 3 ? 'Done' : 'Next'}
+                  <Paw width="24" height="24" fill="#FEF9F9" />
+                </AddPetBtnNext>
+              </AddPetBtnItem>
+
+              <AddPetBtnItem>
+                <AddPetBtnCancel type="button" onClick={back}>
+                  <Link to={backPage}>
+                    <AddPetBtnCancelDiv>
+                      <ArrowLeft width="24" height="24" />
+                      {step === 1 ? 'Cancel' : 'Back'}
+                    </AddPetBtnCancelDiv>
+                  </Link>
+                </AddPetBtnCancel>
+              </AddPetBtnItem>
+            </AddPetBtnList> */}
           </AddPetContainerForm>
         )}
       </Formik>

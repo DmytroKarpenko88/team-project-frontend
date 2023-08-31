@@ -125,7 +125,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
               ) : (
                 <UserPhoto
                   className="defaultAvatar"
-                  src={defaultAvatar}
+                  src={user.avatarURL ? user.avatarURL : defaultAvatar}
                   alt="default avatar"
                 />
               )}
