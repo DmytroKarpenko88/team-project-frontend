@@ -28,7 +28,7 @@ import {
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-const ThirdStepForm = ({ data, setData, submit, backStep }) => {
+const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
   console.log('ThirdStepForm-data:', data);
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -108,7 +108,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
       <ThirdStepFormDiv>
         {/* sex for sell lostFond ingood hands*/}
         <ThirdStepSexPhotoDiv>
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" category={data.category}>
+          <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data} step={step}>
             <ThirdStepFormPhotoDiv>
               {data.category === 'pet' || viewportWidth < 768
                 ? 'Add photo'
