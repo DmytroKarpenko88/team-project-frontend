@@ -25,7 +25,7 @@ const petsSlice = createSlice({
     builder
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.pets = payload.pets;
+        state.pets = payload;
         console.log('State before modification:', state.pets);
       })
       .addCase(addPet.fulfilled, (state, { payload }) => {
