@@ -83,6 +83,10 @@ export const NoticeModal = props => {
     }
   };
 
+  const titleFormat = title => {
+    return title.length > 45 ? title.slice(0, 45) + '...' : title;
+  };
+
   return (
     <>
       {!isLoading && noticeById !== {} ? (
@@ -97,7 +101,7 @@ export const NoticeModal = props => {
                 <Img src={petURL} alt="pet" />
               </ImgBox>
               <div>
-                <Title>{title}</Title>
+                <Title>{titleFormat(title)}</Title>
 
                 <Container>
                   <Info>
