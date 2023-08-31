@@ -7,7 +7,6 @@ import {
   ThirdStepFormImgInput,
   ThirdStepFormImgPreview,
   ThirdStepFormInput,
-  ThirdStepFormPhotoDiv,
   ThirdStepFormPhotoTitle,
   ThirdStepFormPlus,
   ThirdStepFormTitle,
@@ -27,6 +26,7 @@ import {
 } from '../AddPetForm.styled';
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { ThirdStepFormPhotoDiv } from '../ThirdStepForm/ThirdStepForm.styled';
 
 const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -91,7 +91,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
     // setData(prev => ({ ...prev, [input]: value }));
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
-    console.log("fieldValue:", fieldValue)
+    console.log('fieldValue:', fieldValue);
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
