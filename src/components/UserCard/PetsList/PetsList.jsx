@@ -15,11 +15,11 @@ const PetsList = () => {
     <>
       {data && (
         <PetsListStyled>
-          {data.pets.length === 0 && <Title>You didn't add pets yet.</Title>}
-          {data.pets.length !== 0 &&
+          {/* {data.pets.length === 0 && <Title>You didn't add pets yet.</Title>} */}
+          {/* {data.pets.length !== 0 &&
             data.pets.map(item => {
               return <PetsItem key={item._id} pet={item} />;
-            })}
+            })} */}
         </PetsListStyled>
       )}
     </>

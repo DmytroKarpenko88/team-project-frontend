@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 export const validatePetSchema = Yup.object().shape({
   title: Yup.string()
     .required('Title is required')
-    .min(4, 'Name must be at least 8 characters')
+    .min(2, 'Name must be at least 2 characters')
     .max(60, 'Name must not exceed 60 characters'),
   category: Yup.string()
     .required('Category is required')
@@ -28,9 +28,9 @@ export const validatePetSchema = Yup.object().shape({
   // .max(new Date(), 'Future date is not allowed')
   // .required('Birthday is required'),
   type: Yup.string()
-    .required('Breed is required')
-    .min(2, 'Breed must be at least 2 characters')
-    .max(30, 'Breed must not exceed 30 characters'),
+    .required('Type is required')
+    .min(2, 'Type must be at least 2 characters')
+    .max(30, 'Type must not exceed 30 characters'),
   petURL: Yup.mixed()
     .required('File is required')
     .test(
@@ -49,12 +49,12 @@ export const validatePetSchema = Yup.object().shape({
     .required('Price is required'),
   describe: Yup.string().test(
     'comments',
-    'Comments must be between 8 and 120 characters',
+    'Comments must be between 4 and 120 characters',
     value => {
       if (!value) {
         return true;
       }
-      return value.length >= 8 && value.length <= 120;
+      return value.length >= 4 && value.length <= 120;
     }
   ),
 });

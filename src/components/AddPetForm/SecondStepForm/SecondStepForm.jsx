@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { theme } from 'styles';
 import {
   SecondStepFormDiv,
   SecondStepFormInput,
   SecondStepFormTitle,
+  InputWraper,
 } from './SecondStepForm.styled';
 import {
   AddPetBtnCancel,
@@ -15,8 +17,6 @@ import {
 import { ArrowLeft, Paw } from 'components/icons';
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-// import { Link } from 'react-router-dom';
-// import { TextField } from '@mui/material';
 
 const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
   const [errors, setErrors] = useState({});
@@ -61,20 +61,11 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const day = String(now.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
-    // console.log(`${day}-${month}-${year}`);
-    // return `${day}-${month}-${year}`;
   }
 
   const handleChange = e => {
-    // const input = e.target.name;
-    // const value = e.target.value;
-    // setData(prev => ({ ...prev, [input]: value }));
-
     const { name, value } = e.target;
-    console.log('name', name, 'value', value);
-
     setErrors(prevState => ({ ...prevState, [name]: '' }));
-
     let inputValue = value;
 
     if (name === 'birthday') {
@@ -84,8 +75,6 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
       }
     }
 
-    console.log('name', name, 'value', value);
-
     setData(prevState => ({
       ...prevState,
       [name]: inputValue,
@@ -94,12 +83,13 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
 
   return (
     <>
-      <SecondStepFormDiv>
+      <SecondStepFormDiv >
         {data.category !== 'pet' && (
-          <>
+          <InputWraper>
             <SecondStepFormTitle htmlFor="title">
               Title of add
               <SecondStepFormInput
+              style={{borderColor:  errors.title === '' ? `${theme.colors.blue}` : `${theme.colors.red}`}}
                 autoFocus
                 type="text"
                 name="title"
@@ -111,14 +101,15 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
               />
             </SecondStepFormTitle>
             {!!errors.title && <ErrorMessage message={errors.title} />}
-          </>
+          </InputWraper>
         )}
-        <>
+
+        <InputWraper>
           <SecondStepFormTitle htmlFor="name">
             Pet's name
             <SecondStepFormInput
-              // autoFocus={data.category !== 'pet' ? false : true}
               type="text"
+              style={{borderColor:  errors.name === '' ? `${theme.colors.blue}` : `${theme.colors.red}`}}
               placeholder="Type name pet"
               name="name"
               onChange={handleChange}
@@ -129,58 +120,54 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             />
           </SecondStepFormTitle>
           {!!errors.name && <ErrorMessage message={errors.name} />}
-        </>
-        <>
+        </InputWraper>
+
+        <InputWraper>
           <SecondStepFormTitle htmlFor="birthday">
             Date of birth
             <SecondStepFormInput
               type="data"
               placeholder="Type date of birth in format DD-MM-YYYY"
+              style={{borderColor:  errors.birthday === '' ? `${theme.colors.blue}` : `${theme.colors.red}`}}
               name="birthday"
               max={maxDate}
               onChange={handleChange}
-              // data-pattern="**-**-****"
-              // value={data.birthday.split('.').join('-')} //.reverse()
-              value={data.birthday.split('.').join('-')} //.reverse() .split('.').join('-')
+              value={data.birthday.split('.').join('-')} 
               onBlur={() => validateField('birthday', data, setErrors)}
               className={errors.birthday ? 'invalid' : ''}
               required
             />
           </SecondStepFormTitle>
           {!!errors.birthday && <ErrorMessage message={errors.birthday} />}
-        </>
-        <>
-          <SecondStepFormTitle htmlFor="breed">
+        </InputWraper>
+
+        <InputWraper>
+          <SecondStepFormTitle htmlFor="type">
             Type
             <SecondStepFormInput
-              // autoFocus
               type="text"
               placeholder="Type of pet"
+              style={{borderColor:  errors.type === '' ? `${theme.colors.blue}` : `${theme.colors.red}`}}
               name="type"
               onChange={handleChange}
               value={data.type}
               onBlur={() => validateField('type', data, setErrors)}
-              className={errors.breed ? 'invalid' : ''}
+              className={errors.type ? 'invalid' : ''}
               required
             />
           </SecondStepFormTitle>
-          {!!errors.breed && <ErrorMessage message={errors.breed} />}
-        </>
+          {!!errors.type && <ErrorMessage message={errors.type} />}
+        </InputWraper>
       </SecondStepFormDiv>
 
       <AddPetBtnList>
         <AddPetBtnItem>
           <AddPetBtnNext
             type="button"
-            // text="Next"
-            // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
-            // clickHandler={nextStep}
             onClick={nextStep && (() => nextStep(false))}
-            // filled={false}
             disabled={isDisabled}
           >
             Next
-            {/* {step === 3 ? 'Done' : 'Next'} */}
             <Paw width="24" height="24" fill="#FEF9F9" />
           </AddPetBtnNext>
         </AddPetBtnItem>
@@ -190,16 +177,11 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
           <AddPetBtnCancel
             type="button"
             onClick={backStep}
-            // text="Back"
-            // isLink={false}
           >
-            {/* <Link to={backPage}> */}
             <AddPetBtnCancelDiv>
               <ArrowLeft width="24" height="24" />
               Back
-              {/* {step === 1 ? 'Cancel' : 'Back'} */}
             </AddPetBtnCancelDiv>
-            {/* </Link> */}
           </AddPetBtnCancel>
         </AddPetBtnItem>
       </AddPetBtnList>

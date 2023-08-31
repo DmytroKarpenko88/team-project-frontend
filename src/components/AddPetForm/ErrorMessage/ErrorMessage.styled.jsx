@@ -3,11 +3,10 @@ import { theme } from 'styles';
 
 export const ErrorText = styled.p`
   position: absolute;
-  bottom: -4px;
+  bottom: 4px;
   left: 16px;
-
-  font-size: ${theme.fontSizes.l};
+  font-size: ${theme.fontSizes.xs};
   line-height: 1.33;
   color: ${theme.colors.red};
-  transform: translateY(100%);
+  /* transform: translateY(100%); */
 `;
