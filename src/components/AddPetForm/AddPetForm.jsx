@@ -104,8 +104,9 @@ const AddPetForm = () => {
             {step === 1 && (
               <FirstStepForm
                 errors={errors}
-                values={values}
+                value={values}
                 data={data}
+                step={step}
                 setData={setData}
                 nextStep={handleNextClick}
                 cancel={backPage}
@@ -115,8 +116,9 @@ const AddPetForm = () => {
               <SecondStepForm
                 setFieldValue={setFieldValue}
                 errors={errors}
-                values={values}
+                value={values}
                 data={data}
+                step={step}
                 setData={setData}
                 nextStep={handleNextClick}
                 backStep={handlePrevClick}
