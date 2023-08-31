@@ -26,7 +26,9 @@ export const AddPetDiv = styled.div`
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     ${({ data, step }) =>
-      data.option !== 'pet' && step === 3 ? 'width: 704px;' : 'width: 458px;'};
+      data.category !== 'pet' && step === 3
+        ? 'width: 704px;'
+        : 'width: 458px;'};
   }
   // and (max-width: ${theme.breakpoints.desktop})
 `;
@@ -64,6 +66,7 @@ export const AddPetFormTitle = styled.h2`
     text-align: center;
   }
 `;
+//  --------- AddPetBtn
 
 export const AddPetBtnList = styled.ul`
   display: flex;

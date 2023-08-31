@@ -85,7 +85,8 @@ export const CategoryName = styled.span`
   border-radius: 0 20px 20px 0;
   display: flex;
   align-items: center;
-  padding-left: 12px;
+  justify-content: center;
+  // padding-left: 12px;
 
   font-size: 14px;
   font-family: ${theme.fonts.main.medium};
@@ -205,7 +206,7 @@ export const BtnWrapper = styled.div`
   }
 `;
 
-export const BtnContact = styled.button`
+export const BtnContact = styled.a`
   display: flex;
 
   width: 256px;
@@ -242,9 +243,9 @@ export const BtnContact = styled.button`
 export const BtnAddTo = styled.button`
   display: flex;
 
-  width: 256px;
+  min-width: 256px;
   height: 40px;
-  padding: 8px 0;
+  padding: 8px 20px;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -260,21 +261,22 @@ export const BtnAddTo = styled.button`
   transition: color ${theme.transition.duration} ${theme.transition.main};
   transition: fill ${theme.transition.duration} ${theme.transition.main};
 
-  svg {
+  &.heart svg {
     stroke: ${theme.colors.white};
   }
 
-  &:hover,
-  &:focus {
-    background: ${theme.colors.grBlue2};
-    color: ${theme.colors.white};
+  &.heart.favorite svg {
+    stroke: ${theme.colors.white};
+    fill: ${theme.colors.white};
+  }
 
-    svg {
-      stroke: ${theme.colors.white};
-    }
+  &.heart svg:hover,
+  svg:focus {
+    fill: ${theme.colors.white};
+    stroke: ${theme.colors.white};
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    width: 129px;
+    min-width: 129px;
   }
 `;

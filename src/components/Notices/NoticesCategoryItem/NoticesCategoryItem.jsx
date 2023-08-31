@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import PropTypes from 'prop-types';
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useDispatch, useSelector } from 'react-redux';
-// import cat from '../../../images/cat.jpg';
+import fotoAlternate from 'images/not-found.png';
 import {
   Item,
   ImgContainer,
@@ -25,7 +24,7 @@ import { getNoticeById } from 'redux/notices/notices-operations';
 import { Notify } from 'notiflix';
 import { addUserCurrentFavorite } from 'redux/user/user-operations';
 import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
-// import { removeFavoriteNotice } from 'redux/notices/notices-operations';
+import { deleteUserCurrentNotices } from 'redux/user/user-operations.js';
 // import { selectFiltredNotices } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
@@ -44,6 +43,7 @@ export const NoticesCategoryItem = ({ notice }) => {
   const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
   const userFavoriteNoticesID = useSelector(selectUserCurrentFavoriteNoticesID);
+  // console.log(currentUser);
 
   useEffect(() => {
     if (userFavoriteNoticesID.includes(notice._id)) {
@@ -65,20 +65,19 @@ export const NoticesCategoryItem = ({ notice }) => {
   // }, [isLoggedIn, notice._id]);
 
   const handleAddInFavorite = async () => {
-    try {
-      if (currentUser.name === null && currentUser.email === null) {
-        setShowAttentionModal(true);
-      } else if (isLoggedIn && !favorite) {
-        dispatch(addUserCurrentFavorite(notice._id));
-        setFavorite(true);
-        Notify.success('Added your favorite');
-      } else if (isLoggedIn && favorite && categoryName !== favorite) {
-        dispatch(addUserCurrentFavorite(notice._id));
-        setFavorite(false);
-        Notify.success('Deleted from favorite');
-      }
-    } catch (error) {
-      // setShowAttentionModal(true);
+    if (currentUser.name === null && currentUser.email === null) {
+      setShowAttentionModal(true);
+    } else if (isLoggedIn && !favorite) {
+      dispatch(addUserCurrentFavorite(notice._id));
+      setFavorite(true);
+      Notify.success('Added your favorite');
+    } else if (isLoggedIn && favorite && categoryName !== favorite) {
+      dispatch(addUserCurrentFavorite(notice._id));
+      setFavorite(false);
+      Notify.success('Deleted from favorite');
+    } else if (categoryName === 'favorite') {
+      // dispatch(removeFromFavoriteCategory(notice._id));
+      setFavorite(false);
     }
   };
 
@@ -93,17 +92,19 @@ export const NoticesCategoryItem = ({ notice }) => {
   //   }
   // };
 
-  // const handleDeleteOwnNotice = async () => {
-  //   if (isLoggedIn && currentUser._id === notice._owner._id) {
-  //     dispatch(removeFavoriteNotice(notice._id));
-  //     Notify.success('Deleted your own notice');
-  //   }
-  // };
+  const handleDeleteOwnNotice = async () => {
+    if (isLoggedIn && currentUser.email === notice._owner.email) {
+      dispatch(deleteUserCurrentNotices(notice._id));
+      Notify.success('Deleted your own notice');
+    }
+    setModalDeleteShow(!modalDeleteShow);
+  };
 
   const toggleNoticeModal = () => {
     setNoticeModalShow(!noticeModalShow);
     dispatch(getNoticeById(notice._id));
   };
+
   const toggleModalDelete = () => {
     setModalDeleteShow(!modalDeleteShow);
   };
@@ -115,7 +116,11 @@ export const NoticesCategoryItem = ({ notice }) => {
   return (
     <Item>
       <ImgContainer>
-        <Img onClick={toggleNoticeModal} src={notice.petURL} alt="pet" />
+        <Img
+          onClick={toggleNoticeModal}
+          src={notice.petURL ? notice.petURL : fotoAlternate}
+          alt="pet"
+        />
 
         {notice.category.title ? (
           <FilterStatus>{notice.category.title}</FilterStatus>
@@ -171,7 +176,11 @@ export const NoticesCategoryItem = ({ notice }) => {
       )}
 
       {modalDeleteShow && (
-        <ModalDelete show={modalDeleteShow} onHide={toggleModalDelete} />
+        <ModalDelete
+          show={modalDeleteShow}
+          onHide={toggleModalDelete}
+          onExit={handleDeleteOwnNotice}
+        />
       )}
 
       {showAttentionModal && (

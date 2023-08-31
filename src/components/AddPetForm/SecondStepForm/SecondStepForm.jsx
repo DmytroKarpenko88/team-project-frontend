@@ -25,17 +25,17 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
 
   const isNameFieldValid = Boolean(!errors.name && !!data.name);
   const isBirthdayFieldValid = Boolean(!errors.birthday && !!data.birthday);
-  const isBreedFieldValid = Boolean(!errors.breed && !!data.breed);
+  const isBreedFieldValid = Boolean(!errors.type && !!data.type);
   const isTitleFieldValid = Boolean(!errors.title && !!data.title);
 
   useEffect(() => {
-    if (data.option === 'pet') {
+    if (data.category === 'pet') {
       setIsDisabled(
         !(isNameFieldValid && isBirthdayFieldValid && isBreedFieldValid)
       );
     }
 
-    if (data.option !== 'pet') {
+    if (data.category !== 'pet') {
       setIsDisabled(
         !(
           isNameFieldValid &&
@@ -48,7 +48,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
     setMaxDate(getCurrentDate());
   }, [
     errors,
-    data.option,
+    data.category,
     isBirthdayFieldValid,
     isBreedFieldValid,
     isNameFieldValid,
@@ -85,17 +85,6 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
     }
 
     console.log('name', name, 'value', value);
-    // const inputValue =
-    //   name === 'birthday'
-    //     ? new Date(value).toLocaleDateString('es-CL', {
-    //         day: '2-digit',
-    //         month: '2-digit',
-    //         year: 'numeric',
-    //       })
-    //     : value;
-
-    // console.log('value', value);
-    // console.log('inputValue', inputValue); //uk-UA, "es-CL: " + n.toLocaleDateString("es-CL")
 
     setData(prevState => ({
       ...prevState,
@@ -106,7 +95,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
   return (
     <>
       <SecondStepFormDiv>
-        {data.option !== 'pet' && (
+        {data.category !== 'pet' && (
           <>
             <SecondStepFormTitle htmlFor="title">
               Title of add
@@ -119,7 +108,6 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
                 onChange={handleChange}
                 onBlur={() => validateField('title', data, setErrors)}
                 className={errors.title ? 'invalid' : ''}
-                required
               />
             </SecondStepFormTitle>
             {!!errors.title && <ErrorMessage message={errors.title} />}
@@ -129,7 +117,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
           <SecondStepFormTitle htmlFor="name">
             Pet's name
             <SecondStepFormInput
-              autoFocus={data.option !== 'pet' ? false : true}
+              // autoFocus={data.category !== 'pet' ? false : true}
               type="text"
               placeholder="Type name pet"
               name="name"
@@ -168,10 +156,10 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
               // autoFocus
               type="text"
               placeholder="Type of pet"
-              name="breed"
+              name="type"
               onChange={handleChange}
-              value={data.breed}
-              onBlur={() => validateField('breed', data, setErrors)}
+              value={data.type}
+              onBlur={() => validateField('type', data, setErrors)}
               className={errors.breed ? 'invalid' : ''}
               required
             />

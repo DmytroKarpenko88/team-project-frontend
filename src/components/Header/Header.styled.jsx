@@ -5,7 +5,7 @@ import { AuthNav } from 'components/AuthNav/AuthNav';
 export const HeaderContainer = styled.div`
   width: 100% -40px;
   height: 48px;
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 50;
   padding: 2px 0;
@@ -19,6 +19,10 @@ export const HeaderContainer = styled.div`
   @media screen and (max-width: 767px) {
     width: 100%-40px;
     height: 28px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    margin-top: 0;
   }
 `;
 

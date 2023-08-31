@@ -24,6 +24,7 @@ const User = lazy(() => import('pages/User/User'));
 const IconPage = lazy(() => import('pages/IconPage'));
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 const FriendsPage = lazy(() => import('pages/FriendsPage/FriendsPage'));
+const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Main />} />
+            <Route path="news" element={<NewsPage />} />
             <Route
               path="register"
               element={

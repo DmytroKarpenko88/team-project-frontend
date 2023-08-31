@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { theme } from 'styles';
+import { Field } from 'formik';
 
 //  --------- AddPetForm
 
@@ -33,7 +34,7 @@ export const SecondStepFormTitle = styled.label`
   // }
 `;
 
-export const SecondStepFormInput = styled.input`
+export const SecondStepFormInput = styled(Field)`
   display: flex;
   align-items: center;
   gap: 10px;

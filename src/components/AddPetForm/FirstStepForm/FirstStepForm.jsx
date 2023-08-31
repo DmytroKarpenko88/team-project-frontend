@@ -13,43 +13,31 @@ import {
   AddPetBtnNext,
 } from '../AddPetForm.styled';
 import { ArrowLeft, Paw } from 'components/icons';
+import { Link } from 'react-router-dom';
 
-const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
+const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
+  // console.log("values:", values)
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    if (!data.option) setIsDisabled(true);
+    if (!data.category) setIsDisabled(true);
     else setIsDisabled(false);
-  }, [data.option]);
+  }, [data.category]);
 
   // console.log(isDisabled);
 
   const handleChange = e => {
     const { name, value } = e.target;
-    // const value = e.target.value;
-    // const name = e.target.name;
+
 
     setData(prevState => ({
       ...prevState,
       [name]: value,
     }));
-    // console.log('data', data);
-
-    // const value = e.target.value;
-    // console.log("value:", value)
-    // setData(prev => ({ ...prev, option: value }));
-
-    // console.log('data', data);
-    // console.log('data.option', data.option);
-    // console.log('value:', value);
+  
   };
 
-  // const handleChange = e => {
-  //   const value = e.target.value;
-  //   setData(prev => ({ ...prev, option: value }));
-  // };
-  // const { option } = data;
-  // console.log(isDisabled);
+ 
   return (
     <>
       <FirstStepFormList>
@@ -59,11 +47,11 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
             autoFocus="on"
             type="radio"
             value="pet"
-            checked={data.option === 'pet'}
-            // name="pet"
+            checked={data.category === 'pet'}
+            name="category"
             onChange={handleChange}
-            id="my-pet"
-            name="option"
+            // id="my-pet"
+            // name="category"
           />
           your pet
         </FirstStepFormItemLabel>
@@ -71,11 +59,11 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
           <FirstStepFormItemInput
             type="radio"
             value="sell"
-            checked={data.option === 'sell'}
+            checked={data.category === 'sell'}
             // name="sell"
             onChange={handleChange}
-            id="sell"
-            name="option"
+            // id="sell"
+            name="category"
           />
           sell
         </FirstStepFormItemLabel>
@@ -83,11 +71,11 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
           <FirstStepFormItemInput
             type="radio"
             value="lostFound"
-            checked={data.option === 'lostFound'}
+            checked={data.category === 'lostFound'}
             // name="lostFound"
             onChange={handleChange}
-            id="lost-found"
-            name="option"
+            // id="lost-found"
+            name="category"
           />
           lost/found
         </FirstStepFormItemLabel>
@@ -95,11 +83,11 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
           <FirstStepFormItemInput
             type="radio"
             value="hands"
-            checked={data.option === 'hands'}
+            checked={data.category === 'hands'}
             // name="hands"
             onChange={handleChange}
-            id="for-free"
-            name="option"
+            // id="for-free"
+            name="category"
           />
           in good hands
         </FirstStepFormItemLabel>
@@ -123,20 +111,16 @@ const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
 
         <AddPetBtnItem>
           {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-          <AddPetBtnCancel
-            type="button"
-            // text="Cancel"
-            // isLink={true}
-            to={cancel}
-          >
-            {/* <Link to={backPage}> */}
-            <AddPetBtnCancelDiv>
-              <ArrowLeft width="24" height="24" />
-              Cancel
-              {/* {step === 1 ? 'Cancel' : 'Back'} */}
-            </AddPetBtnCancelDiv>
-            {/* </Link> */}
-          </AddPetBtnCancel>
+          <Link to={cancel}>
+            <AddPetBtnCancel type="button">
+              <AddPetBtnCancelDiv>
+                <ArrowLeft width="24" height="24" />
+                Cancel
+                {/* {step === 1 ? 'Cancel' : 'Back'} */}
+              </AddPetBtnCancelDiv>
+              {/* </Link> */}
+            </AddPetBtnCancel>
+          </Link>
         </AddPetBtnItem>
       </AddPetBtnList>
     </>

@@ -10,7 +10,7 @@ export const validatePetSchema = Yup.object().shape({
     .required('Title is required')
     .min(8, 'Name must be at least 8 characters')
     .max(60, 'Name must not exceed 60 characters'),
-  option: Yup.string()
+  category: Yup.string()
     .required('Category is required')
     .oneOf(['pet', 'sell', 'lostFound', 'hands'], 'Invalid category'),
   name: Yup.string()
@@ -27,11 +27,11 @@ export const validatePetSchema = Yup.object().shape({
   // .matches(dateRegExp, 'Correct format: dd-mm-yyyy')
   // .max(new Date(), 'Future date is not allowed')
   // .required('Birthday is required'),
-  breed: Yup.string()
+  type: Yup.string()
     .required('Breed is required')
     .min(2, 'Breed must be at least 2 characters')
     .max(30, 'Breed must not exceed 30 characters'),
-  petPhoto: Yup.mixed()
+  petURL: Yup.mixed()
     .required('File is required')
     .test(
       'fileSize',
@@ -44,10 +44,10 @@ export const validatePetSchema = Yup.object().shape({
   location: Yup.string()
     .required('Location is required')
     .matches(/^[A-Z][a-zA-Z]*(-[a-zA-Z]+)?$/i, 'Invalid location format'),
-  price: Yup.number()
-    .positive('Price must be greater than 0')
-    .required('Price is required'),
-  comments: Yup.string().test(
+  // price: Yup.number()
+  //   .positive('Price must be greater than 0')
+  //   .required('Price is required'),
+  describe: Yup.string().test(
     'comments',
     'Comments must be between 8 and 120 characters',
     value => {
