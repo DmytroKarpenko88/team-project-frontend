@@ -84,7 +84,7 @@ const AddPetForm = () => {
 
   // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
   // const backPage = step === 1 ? location.state?.from ?? '/user' : '';
-  const backPage = location.state?.from ?? '/';
+  const backPage = location.state?.from ?? '/user';
 
   // console.log('data:', data);
   return (
@@ -95,7 +95,7 @@ const AddPetForm = () => {
         onSubmit={handleSubmit}
         validateOnChange={false}
       >
-        {({ values, errors, touched, setFieldValue, }) => (
+        {({ values, errors, touched, setFieldValue }) => (
           <AddPetContainerForm
           // onClick={onClick}
           >
@@ -103,8 +103,8 @@ const AddPetForm = () => {
             <StepTitles step={step} />
             {step === 1 && (
               <FirstStepForm
-              errors= {errors}
-              values={values}
+                errors={errors}
+                values={values}
                 data={data}
                 setData={setData}
                 nextStep={handleNextClick}
@@ -113,9 +113,9 @@ const AddPetForm = () => {
             )}
             {step === 2 && (
               <SecondStepForm
-              setFieldValue= {setFieldValue}
-              errors= {errors}
-              values={values}
+                setFieldValue={setFieldValue}
+                errors={errors}
+                values={values}
                 data={data}
                 setData={setData}
                 nextStep={handleNextClick}
@@ -141,11 +141,31 @@ const AddPetForm = () => {
                 />
               )
             )}
+
+            {/* <AddPetBtnList>
+              <AddPetBtnItem>
+                <AddPetBtnNext type="button">
+                  {step === 3 ? 'Done' : 'Next'}
+                  <Paw width="24" height="24" fill="#FEF9F9" />
+                </AddPetBtnNext>
+              </AddPetBtnItem>
+
+              <AddPetBtnItem>
+                <AddPetBtnCancel type="button" onClick={back}>
+                  <Link to={backPage}>
+                    <AddPetBtnCancelDiv>
+                      <ArrowLeft width="24" height="24" />
+                      {step === 1 ? 'Cancel' : 'Back'}
+                    </AddPetBtnCancelDiv>
+                  </Link>
+                </AddPetBtnCancel>
+              </AddPetBtnItem>
+            </AddPetBtnList> */}
           </AddPetContainerForm>
         )}
       </Formik>
       {isModalOpen && !isLoading && (
-        <ModalAddPet toggleModal={() => navigate(backPage)}>
+        <ModalAddPet toggleModal={() => navigate(backPage)} backLink={backPage}>
           {/* <AddPetModal backLink={backPage} category={data.option} /> */}
         </ModalAddPet>
       )}

@@ -20,13 +20,6 @@ const PetsItem = ({ pet }) => {
     setModalDeleteShow(prevState => !prevState);
   };
 
-  //   const approveAction = () => {
-  //     console.log('Deleting pet with ID:', pet._id);
-  //     dispatch(deletePet(pet._id));
-
-  //     setModalDeleteShow(prevState => !prevState);
-  //   };
-
   const approveAction = async () => {
     console.log('Deleting pet with ID:', pet._id);
     try {

@@ -9,11 +9,12 @@ const petsInitialState = {
 
 const handlePending = state => {
   state.isLoading = true;
+  state.error = null;
 };
 
-const handleRejected = (state, action) => {
+const handleRejected = (state, { payload }) => {
   state.isLoading = false;
-  state.error = action.payload;
+  state.error = payload;
 };
 
 const petsSlice = createSlice({
@@ -24,21 +25,26 @@ const petsSlice = createSlice({
     builder
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = null;
-        state.pets = payload;
+        state.pets = payload.pets;
+        console.log('State before modification:', state.pets);
       })
       .addCase(addPet.fulfilled, (state, { payload }) => {
         state.isLoading = false;
-        state.error = null;
         state.pets.push(payload);
       })
       .addCase(deletePet.fulfilled, (state, { payload }) => {
+        console.log('Payload:', payload);
+        console.log('State before modification:', state);
         state.isLoading = false;
-        state.error = null;
-        // state.pets = state.pets.filter(pet => pet._id !== payload.item._id);
-        if (Array.isArray(state.pets)) {
-          state.pets = state.pets.filter(pet => pet._id !== payload.item._id);
-        }
+
+        state.pets = state.pets.filter(pet => pet._id !== payload._id);
+
+        console.log('State after modification:', state.pets);
+
+        // const index = state.pets.findIndex(
+        //   pet => pet._id === payload
+        // );
+        // state.pets.splice(index, 1);
       })
       .addCase(fetchPets.pending, handlePending)
       .addCase(addPet.pending, handlePending)

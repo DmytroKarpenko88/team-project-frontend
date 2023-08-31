@@ -96,21 +96,9 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
     }
   }, [disabled, formikProps, user.avatarURL]);
 
-  useEffect(() => {
-    const storedAvatarURL = localStorage.getItem('avatarURL');
-    console.log('Stored avatar URL:', storedAvatarURL);
-    if (storedAvatarURL) {
-      setPreview(storedAvatarURL);
-    } else {
-      setPreview(defaultAvatar);
-    }
-  }, []);
-
   const handleFileInputChange = event => {
     const file = event.currentTarget.files[0];
     formikProps.setFieldValue('avatarURL', file);
-    localStorage.setItem('avatarURL', file);
-    console.log('Saved avatar URL:', file);
     setPreview(URL.createObjectURL(file));
     setAvatarSelected(true);
     setShowConfirm(true);
@@ -137,7 +125,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
               ) : (
                 <UserPhoto
                   className="defaultAvatar"
-                  src={defaultAvatar}
+                  src={user.avatarURL ? user.avatarURL : defaultAvatar}
                   alt="default avatar"
                 />
               )}
