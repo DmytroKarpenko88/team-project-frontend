@@ -28,11 +28,12 @@ import {
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
-  console.log('ThirdStepForm-data:', data);
+const ThirdStepForm = ({ data, setData, submit, backStep }) => {
 
-  const [isDisabled, setIsDisabled] = useState(true);
+  
+  // const [isDisabled, setIsDisabled] = useState(true);
   const [errors, setErrors] = useState({});
+  
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
@@ -40,7 +41,7 @@ const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
   const isCommentsFieldValid = Boolean(!errors.describe);
   const isLocationFieldValid = Boolean(!errors.location && !data.location);
   const isSexFieldValid = Boolean(!errors.sex && !data.sex);
-  const isPriceFieldValid = Boolean(!errors.price && !data.price);
+  // const isPriceFieldValid = Boolean(!errors.price && !data.price);
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,28 +55,28 @@ const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
   }, []);
 
   useEffect(() => {
-    if (data.category === 'sell') {
-      setIsDisabled(
-        !(
-          isPetPhotoFieldValid &&
-          isLocationFieldValid &&
-          isSexFieldValid &&
-          isPriceFieldValid &&
-          isCommentsFieldValid
-        )
-      );
-    }
+    // if (data.category === 'sell') {
+    //   setIsDisabled(
+    //     !(
+    //       isPetPhotoFieldValid &&
+    //       isLocationFieldValid &&
+    //       isSexFieldValid &&
+    //       // isPriceFieldValid &&
+    //       isCommentsFieldValid
+    //     )
+    //   );
+    // }
     if (data.category === 'pet') {
-      setIsDisabled(!(isPetPhotoFieldValid && isCommentsFieldValid));
+      // setIsDisabled(!(isPetPhotoFieldValid && isCommentsFieldValid));
     } else {
-      setIsDisabled(
-        !(
-          isPetPhotoFieldValid &&
-          isLocationFieldValid &&
-          isSexFieldValid &&
-          isCommentsFieldValid
-        )
-      );
+      // setIsDisabled(
+      //   !(
+      //     isPetPhotoFieldValid &&
+      //     isLocationFieldValid &&
+      //     isSexFieldValid &&
+      //     isCommentsFieldValid
+      //   )
+      // );
     }
   }, [
     errors,
@@ -83,13 +84,14 @@ const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
     isCommentsFieldValid,
     isLocationFieldValid,
     isPetPhotoFieldValid,
-    isPriceFieldValid,
+    // isPriceFieldValid,
     isSexFieldValid,
   ]);
 
   const handleChange = e => {
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
+    console.log("fieldValue:", fieldValue)
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
@@ -108,7 +110,9 @@ const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
       <ThirdStepFormDiv>
         {/* sex for sell lostFond ingood hands*/}
         <ThirdStepSexPhotoDiv>
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data} step={step}>
+       
+          <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data}>
+
             <ThirdStepFormPhotoDiv>
               {data.category === 'pet' || viewportWidth < 768
                 ? 'Add photo'
@@ -116,9 +120,6 @@ const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
             </ThirdStepFormPhotoDiv>
             {/* div - svg */}
             <ThirdStepFormPlus>
-              {/* <Plus /> */}
-              {/* img */}
-              {/* {fileInputRef.current?.files[0] && <img></img>} */}
               {!data.petURL && <Plus width="30" height="30" />}
               {!!data.petURL && (
                 <ThirdStepFormImgPreview
@@ -155,7 +156,6 @@ const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
                 type="text"
                 component="textarea"
                 name="describe"
-                data={data}
                 placeholder="Type of pet"
                 onChange={handleChange}
                 // onFocus={focusHandle}
@@ -177,7 +177,7 @@ const ThirdStepForm = ({ data, step, setData, submit, backStep }) => {
             // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
             // filled={true}
             onClick={submit && (() => submit(false))}
-            disabled={isDisabled}
+            // disabled={isDisabled}
           >
             Done
             {/* {step === 3 ? 'Done' : 'Next'} */}

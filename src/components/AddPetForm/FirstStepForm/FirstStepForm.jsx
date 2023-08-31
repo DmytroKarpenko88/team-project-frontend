@@ -70,8 +70,8 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
         <FirstStepFormItemLabel>
           <FirstStepFormItemInput
             type="radio"
-            value="lostFound"
-            checked={data.category === 'lostFound'}
+            value="lost-found"
+            checked={data.category === 'lost-found'}
             // name="lostFound"
             onChange={handleChange}
             // id="lost-found"

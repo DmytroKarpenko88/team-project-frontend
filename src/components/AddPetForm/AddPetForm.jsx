@@ -55,8 +55,7 @@ const AddPetForm = () => {
     setStep(prevState => prevState - 1);
   };
 
-  const handleSubmit = (values) => {
-
+  const handleSubmit = values => {
     if (!data.category) return;
 
     if (data.category === 'pet') {
@@ -67,17 +66,19 @@ const AddPetForm = () => {
         type: data.type,
         describe: data.describe,
       };
+      console.log(' pets:', pets);
+
       const formData = new FormData();
-        for (let keys in pets) {
-          formData.append(keys, pets[keys]);
-        }
+      for (let keys in pets) {
+        formData.append(keys, pets[keys]);
+      }
       dispatch(addPet(formData));
       toggleModal();
-      navigate('user')
+      navigate('/user');
       return;
     }
 
-    if (data.category === 'hands' || data.category === 'lostFound') {
+    if (data.category === 'hands' || data.category === 'lost-found') {
       const pets = {
         name: data.name,
         petURL: data.petURL,
@@ -90,12 +91,19 @@ const AddPetForm = () => {
         location: data.location,
       };
       const formData = new FormData();
-        for (let keys in pets) {
-          formData.append(keys, pets[keys]);
-        }
+      for (let keys in pets) {
+        formData.append(keys, pets[keys]);
+      }
       dispatch(addPet(formData));
       toggleModal();
-      navigate('notices')
+
+      if (data.category === 'hands') {
+        navigate('/notices/in-good-hands');
+      }
+      if (data.category === 'lost-found') {
+        navigate('/notices/lost-found');
+      }
+
       return;
     }
 
@@ -113,15 +121,14 @@ const AddPetForm = () => {
         location: data.location,
       };
       const formData = new FormData();
-        for (let keys in pets) {
-          formData.append(keys, pets[keys]);
-        }
+      for (let keys in pets) {
+        formData.append(keys, pets[keys]);
+      }
       dispatch(addNotice(formData));
       toggleModal();
-      navigate('notices')
+      navigate('/notices/sell');
       return;
     }
-    
   };
 
   // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
@@ -146,7 +153,7 @@ const AddPetForm = () => {
             {step === 1 && (
               <FirstStepForm
                 errors={errors}
-                value={values}
+                values={values}
                 data={data}
                 step={step}
                 setData={setData}
@@ -158,7 +165,7 @@ const AddPetForm = () => {
               <SecondStepForm
                 setFieldValue={setFieldValue}
                 errors={errors}
-                value={values}
+                values={values}
                 data={data}
                 step={step}
                 setData={setData}
@@ -168,6 +175,7 @@ const AddPetForm = () => {
             )}
             {step === 3 && data.category !== 'pet' ? (
               <ThirdStepFormExpanded
+                errors={errors}
                 data={data}
                 step={step}
                 setData={setData}
@@ -177,6 +185,7 @@ const AddPetForm = () => {
             ) : (
               step === 3 && (
                 <ThirdStepForm
+                  errors={errors}
                   data={data}
                   step={step}
                   setData={setData}

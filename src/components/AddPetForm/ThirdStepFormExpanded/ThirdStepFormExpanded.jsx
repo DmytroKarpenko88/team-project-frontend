@@ -86,11 +86,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   ]);
 
   const handleChange = e => {
-    // const input = e.target.name;
-    // const value = e.target.value;
-    // setData(prev => ({ ...prev, [input]: value }));
     const { name, value, type, files } = e.target;
-    console.log(" value:",  value)
     const fieldValue = type === 'file' ? files[0] : value;
     console.log('fieldValue:', fieldValue);
 
@@ -146,7 +142,12 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
           )}
           {/* --- */}
           {/* label */}
-          <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data} step={step}>
+          <ThirdStepFormPhotoTitle
+            htmlFor="pet-image"
+            option={data.category}
+            data={data}
+            step={step}
+          >
             <ThirdStepFormPhotoDiv>
               {data.category === 'pet' || viewportWidth < 768
                 ? 'Add photo'
@@ -229,7 +230,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               Comments
               <ThirdStepFormComments
                 type="text"
-                component="textarea"
+                // component="textarea"
                 // value="comments"
                 name="describe"
                 placeholder="Type of pet"
@@ -240,7 +241,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                 value={data.describe}
                 onBlur={() => validateField('describe', data, setErrors)}
                 className={errors.describe ? 'invalid' : ''}
-                // required
+                required
               />
             </ThirdStepFormTitle>
             {!!errors.describe && <ErrorMessage message={errors.describe} />}
