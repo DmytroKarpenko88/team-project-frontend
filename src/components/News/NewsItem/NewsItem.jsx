@@ -41,7 +41,7 @@ export const NewsItem = ({ news }) => {
 
           <BottomInfoWrapper>
             <NewsDate>{formatDate(date)}</NewsDate>
-            <NewsLink href="#" target="_blank" rel="noreferrer">
+            <NewsLink href={url} target="_blank" rel="noreferrer">
               Read more
             </NewsLink>
           </BottomInfoWrapper>
