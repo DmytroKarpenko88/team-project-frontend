@@ -11,6 +11,7 @@ import {
   ThirdStepFormPhotoTitle,
   ThirdStepFormPlus,
   ThirdStepFormTitle,
+  ThirdStepFormTitleContainer,
   // ThirdStepSexDiv,
   // ThirdStepSexFemaleLabel,
   // ThirdStepSexInput,
@@ -36,15 +37,15 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   const isPetPhotoFieldValid = Boolean(!errors.petURL && !data.petURL);
-  // console.log("isPetPhotoFieldValid:", isPetPhotoFieldValid)
+  // console.log('isPetPhotoFieldValid:', isPetPhotoFieldValid);
   const isCommentsFieldValid = Boolean(!errors.describe);
-  // console.log("isCommentsFieldValid:", isCommentsFieldValid)
+  // console.log('isCommentsFieldValid:', isCommentsFieldValid);
   const isLocationFieldValid = Boolean(!errors.location && !data.location);
-  // console.log("isLocationFieldValid:", isLocationFieldValid)
+  // console.log('isLocationFieldValid:', isLocationFieldValid);
   const isSexFieldValid = Boolean(!errors.sex && !data.sex);
-  // console.log("isSexFieldValid:", isSexFieldValid)
+  // console.log('isSexFieldValid:', isSexFieldValid);
   const isPriceFieldValid = Boolean(!errors.price && !data.price);
-  // console.log("isPriceFieldValid:", isPriceFieldValid)
+  // console.log('isPriceFieldValid:', isPriceFieldValid);
 
   useEffect(() => {
     const handleResize = () => {
@@ -94,6 +95,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const handleChange = e => {
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
+    console.log('fieldValue:', fieldValue);
     console.log('fieldValue:', fieldValue);
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
@@ -148,26 +150,24 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         </ThirdStepSexPhotoDiv>
 
         {/* location price for sell lostFond ingood hands*/}
-        <div>
-          <>
-            <ThirdStepFormTitle htmlFor="describe">
-              Comments
-              <ThirdStepFormComments
-                type="text"
-                component="textarea"
-                name="describe"
-                placeholder="Type of pet"
-                onChange={handleChange}
-                // onFocus={focusHandle}
-                value={data.describe}
-                onBlur={() => validateField('describe', data, setErrors)}
-                className={errors.describe ? 'invalid' : ''}
-                required
-              />
-            </ThirdStepFormTitle>
-            {!!errors.describe && <ErrorMessage message={errors.describe} />}
-          </>
-        </div>
+        <ThirdStepFormTitleContainer>
+          <ThirdStepFormTitle htmlFor="describe">
+            Comments
+            <ThirdStepFormComments
+              type="text"
+              component="textarea"
+              name="describe"
+              placeholder="Type of pet"
+              onChange={handleChange}
+              // onFocus={focusHandle}
+              value={data.describe}
+              onBlur={() => validateField('describe', data, setErrors)}
+              className={errors.describe ? 'invalid' : ''}
+              required
+            />
+          </ThirdStepFormTitle>
+          {!!errors.describe && <ErrorMessage message={errors.describe} />}
+        </ThirdStepFormTitleContainer>
       </ThirdStepFormDiv>
       <AddPetBtnList>
         <AddPetBtnItem>

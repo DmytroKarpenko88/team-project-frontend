@@ -23,7 +23,9 @@ export const FirstStepFormItemInput = styled(Field)`
   ${visualyHidden}
 `;
 
-export const FirstStepFormItemLabel = styled.label`
+export const FirstStepFormItemLabel = styled.label.withConfig({
+  shouldForwardProp: prop => prop !== 'active',
+})`
   padding: 8px 16px;
   border-radius: 40px;
   width: fit-content;
@@ -40,9 +42,13 @@ export const FirstStepFormItemLabel = styled.label`
 
   &:hover,
   &:focus,
-  &.active,
-  ${FirstStepFormItemInput}:checked + && {
+  &:active {
     background-color: ${theme.colors.blue};
     color: ${theme.colors.white};
   }
+
+  // ${FirstStepFormItemInput}:checked + && {} //active
+
+  ${({ active }) =>
+    active ? 'background-color:  #54adff; color: #FFFFFF; }' : ''};
 `;
