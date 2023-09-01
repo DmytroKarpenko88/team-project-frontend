@@ -7,7 +7,8 @@ Your Pet is a web service created to help you find your pet that will become you
 ## <div align=center>Features of the service:</div>
 
 Intuitive and convenient interface that allows you to quickly find and view information about animals.
-####How to use "Your Pet"?
+#### How to use "Your Pet"?
+
 -Sign up or log in to your account.
 -Through the site itself - you can create an account on our site by filling in the necessary fields of the registration form.
 -Browse our list of pets for sale or adoption.
@@ -53,7 +54,7 @@ Intuitive and convenient interface that allows you to quickly find and view info
 * `yarn`
 
 
-###### <div align=center>[Link to backend:](https://github.com/DmytroKarpenko88/team-project-backend)</div>
+###### <div align=center>[Link to backend](https://github.com/DmytroKarpenko88/team-project-backend)</div>
 ---
 
 
