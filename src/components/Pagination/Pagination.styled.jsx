@@ -18,7 +18,9 @@ export const PaginationContainer = styled.div`
   }
 `;
 
-export const PaginationButton = styled.button`
+export const PaginationButton = styled.button.withConfig({
+  shouldForwardProp: prop => prop !== 'active',
+})`
   display: flex;
   justify-content: center;
   align-items: center;

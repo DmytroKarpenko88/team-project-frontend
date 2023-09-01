@@ -17,6 +17,7 @@ import { userReducer } from './user/user-slice';
 import { friendsReducer } from './friends/friends-slice';
 import { newsReducer } from './news/news-slice';
 
+
 const authPersistConfig = {
   key: 'auth',
   storage,
