@@ -31,6 +31,7 @@ import {
 } from '../AddPetForm.styled';
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { theme } from 'styles';
 
 const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -167,15 +168,11 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
             </ThirdStepFormPhotoDiv>
             {/* div - svg */}
             <ThirdStepFormPlus>
-              {/* <Plus /> */}
-              {/* img */}
-              {/* {fileInputRef.current?.files[0] && <img></img>} */}
               {!data.petURL && <Plus width="30" height="30" />}
               {!!data.petURL && (
                 <ThirdStepFormImgPreview
                   src={URL.createObjectURL(data.petURL)}
                   alt={data.name}
-                  // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
             </ThirdStepFormPlus>
@@ -185,15 +182,14 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               type="file"
               id="pet-image"
               alt="pet`s photo"
-              // value={data.photo ?? ''}
               name="petURL"
               onChange={handleChange}
-              // onFocus={focusHandle}
               value={imageValue}
               onBlur={() => validateField('petURL', data, setErrors)}
               accept=".jpg, .png"
               required
             />
+            {!!errors.petURL && <ErrorMessage message={errors.petURL} />}
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 
@@ -204,6 +200,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               <ThirdStepFormTitle>
                 Location
                 <ThirdStepFormInput
+                  style={{borderColor: `${!errors.location ? `${theme.colors.blue}`: !isLocationFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
                   type="text"
                   required
                   name="location"
@@ -213,8 +210,9 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                   onBlur={() => validateField('location', data, setErrors)}
                   className={errors.location ? 'invalid' : ''}
                 />
+                {!!errors.location && <ErrorMessage message={errors.location} />}
               </ThirdStepFormTitle>
-              {!!errors.location && <ErrorMessage message={errors.location} />}
+              
             </>
           )}
           {data.category === 'sell' && (
@@ -222,6 +220,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               <ThirdStepFormTitle>
                 Price
                 <ThirdStepFormInput
+                style={{borderColor: `${!errors.price? `${theme.colors.blue}`: !isPriceFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
                   type="number"
                   name="price"
                   placeholder="Type of price"
@@ -231,8 +230,9 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                   className={errors.price ? 'invalid' : ''}
                   required
                 />
+                {!!errors.price && <ErrorMessage  message={errors.price} />}
               </ThirdStepFormTitle>
-              {!!errors.price && <ErrorMessage message={errors.price} />}
+              
             </>
           )}
           {/* ----- -------- */}
@@ -241,12 +241,11 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               Comments
               <ThirdStepFormComments
                 type="text"
-                // component="textarea"
-                // value="comments"
+                style={{borderColor: `${!errors.describe? `${theme.colors.blue}`: !isCommentsFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
+                component="textarea"
                 name="describe"
                 placeholder="Type of pet"
                 onChange={handleChange}
-                // onFocus={focusHandle}
                 data={data}
                 step={step}
                 value={data.describe}
@@ -254,8 +253,9 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                 className={errors.describe ? 'invalid' : ''}
                 required
               />
+              {!!errors.describe && <ErrorMessage message={errors.describe} />}
             </ThirdStepFormTitle>
-            {!!errors.describe && <ErrorMessage message={errors.describe} />}
+            
           </ThirdStepFormTitleContainer>
         </ThirdStepFormContainer>
       </ThirdStepFormDiv>
@@ -263,9 +263,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
         <AddPetBtnItem>
           <AddPetBtnNext
             type="button"
-            // text="Done"
-            // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
-            // filled={true}
             onClick={submit && (() => submit(false))}
             disabled={isDisabled}
           >
@@ -280,8 +277,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
           <AddPetBtnCancel
             type="button"
             onClick={backStep}
-            // text="Back"
-            // isLink={false}
           >
             {/* <Link to={backPage}> */}
             <AddPetBtnCancelDiv>
@@ -289,7 +284,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               Back
               {/* {step === 1 ? 'Cancel' : 'Back'} */}
             </AddPetBtnCancelDiv>
-            {/* </Link> */}
           </AddPetBtnCancel>
         </AddPetBtnItem>
       </AddPetBtnList>

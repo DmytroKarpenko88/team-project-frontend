@@ -5,6 +5,7 @@ import { Field } from 'formik';
 //  --------- AddPetForm
 
 export const SecondStepFormDiv = styled.div`
+
   display: flex;
   flex-direction: column;
   margin-top: 16px;
@@ -16,7 +17,13 @@ export const SecondStepFormDiv = styled.div`
   }
 `;
 
+export const InputWraper = styled.div`
+position: relative;
+`;
+
+
 export const SecondStepFormTitle = styled.label`
+  position: relative;
   color: ${theme.colors.black}; // #111111
   font-family: ${theme.fonts.main.medium}; // Manrope 500
   font-weight: 500;
@@ -39,6 +46,10 @@ export const SecondStepFormTitle = styled.label`
   }
 `;
 
+// export const inputWrapper = styled.div`
+// position: relative;
+// `;
+
 export const SecondStepFormInput = styled(Field)`
   font-family: Manrope;
   font-size: 14px; //16px
@@ -56,15 +67,13 @@ export const SecondStepFormInput = styled(Field)`
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-
   padding: 8px 16px;
   border-radius: 40px;
-  border: 1px solid ${theme.colors.blue};
-
+  border: 1px solid ;
   &:hover,
   &focus,
   &:active {
-    border: 1px solid ${theme.colors.blue};
+    border: 1px solid ;
     outline: 1px solid ${theme.colors.blue};
   }
   // @media (min-width: 768px) {

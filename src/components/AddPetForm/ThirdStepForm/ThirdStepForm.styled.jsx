@@ -38,6 +38,7 @@ export const ThirdStepFormTitleContainer = styled.div`
 `;
 
 export const ThirdStepFormTitle = styled.label`
+position: relative;
   color: ${theme.colors.black}; // #111111
   font-family: ${theme.fonts.main.medium}; // Manrope 500
   font-weight: 500;
@@ -62,6 +63,7 @@ export const ThirdStepFormTitle = styled.label`
 // ------- photo
 
 export const ThirdStepFormPhotoTitle = styled.label`
+position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -97,7 +99,9 @@ export const ThirdStepFormImgInput = styled(Field)`
   ${visualyHidden}
 `;
 
+
 export const ThirdStepFormPlus = styled.div`
+/* position: relative; */
   cursor: pointer;
   display: flex;
   align-items: center;

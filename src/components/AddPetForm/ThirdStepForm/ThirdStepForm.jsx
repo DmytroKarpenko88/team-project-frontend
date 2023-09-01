@@ -22,6 +22,7 @@ import {
 } from '../AddPetForm.styled';
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { theme } from 'styles';
 
 const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -30,11 +31,10 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  const isPetPhotoFieldValid = Boolean(!errors.petURL && !data.petURL);
+
+  const isPetPhotoFieldValid = Boolean(!errors.petURL && !!data.petURL);
   const isCommentsFieldValid = Boolean(!errors.describe);
-  const isLocationFieldValid = Boolean(!errors.location && !data.location);
-  const isSexFieldValid = Boolean(!errors.sex && !data.sex);
-  const isPriceFieldValid = Boolean(!errors.price && !data.price);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -52,9 +52,6 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
       setIsDisabled(
         !(
           isPetPhotoFieldValid &&
-          isLocationFieldValid &&
-          isSexFieldValid &&
-          isPriceFieldValid &&
           isCommentsFieldValid
         )
       );
@@ -65,8 +62,6 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
       setIsDisabled(
         !(
           isPetPhotoFieldValid &&
-          isLocationFieldValid &&
-          isSexFieldValid &&
           isCommentsFieldValid
         )
       );
@@ -75,17 +70,13 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
     errors,
     data.category,
     isCommentsFieldValid,
-    isLocationFieldValid,
     isPetPhotoFieldValid,
-    isPriceFieldValid,
-    isSexFieldValid,
   ]);
 
   const handleChange = e => {
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
-    console.log('fieldValue:', fieldValue);
-    console.log('fieldValue:', fieldValue);
+    
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
@@ -117,6 +108,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
                   alt={data.name}
                 ></ThirdStepFormImgPreview>
               )}
+              
             </ThirdStepFormPlus>
             <ThirdStepFormImgInput
               type="file"
@@ -129,6 +121,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
               accept=".jpg, .png"
               required
             />
+            {!!errors.petURL && <ErrorMessage message={errors.petURL} />}
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 
@@ -136,6 +129,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
           <ThirdStepFormTitle htmlFor="describe">
             Comments
             <ThirdStepFormComments
+            style={{borderColor: `${!errors.describe? `${theme.colors.blue}`: !isCommentsFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
               type="text"
               // component="textarea"
               name="describe"
@@ -146,8 +140,8 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
               className={errors.describe ? 'invalid' : ''}
               required
             />
+            {!!errors.describe && <ErrorMessage message={errors.describe} />}
           </ThirdStepFormTitle>
-          {!!errors.describe && <ErrorMessage message={errors.describe} />}
         </ThirdStepFormTitleContainer>
       </ThirdStepFormDiv>
       <AddPetBtnList>
@@ -163,7 +157,12 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         </AddPetBtnItem>
 
         <AddPetBtnItem>
-          <AddPetBtnCancel type="button" onClick={backStep}>
+          {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
+          <AddPetBtnCancel
+            type="button"
+            onClick={backStep}
+          >
+
             <AddPetBtnCancelDiv>
               <ArrowLeft width="24" height="24" />
               Back

@@ -65,23 +65,16 @@ export const ThirdStepSexLabel = styled.label.withConfig({
   padding: 8px 16px;
   cursor: pointer;
   border-radius: 40px;
-
   svg {
-    margin-right: 12px;
+    /* margin-right: 12px; */
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     gap: 12px;
-    
     ${({ active }) =>
       active
         ? 'border-radius: 40px; background-color: #54adff; color: #fef9f9; svg {stroke: #FFFFFF;}'
         : ''};
-      
-    }
-    
-    
-    
     
     
     ${({ value }) => (value === 'female' ? 'svg {stroke: #F43F5E;}' : '')};
@@ -91,45 +84,8 @@ export const ThirdStepSexLabel = styled.label.withConfig({
       active
         ? 'font-size: 14px; letter-spacing: 0.56px; border-radius: 40px; background-color: #54adff; color: #fef9f9; svg {stroke: #FFFFFF;}'
         : ''};
-  }
+  };
 `;
-// export const ThirdStepSexMaleLabel = styled.label`
-//   // margin-top: 8px;
-//   // margin-bottom: 16px;
-
-//   display: flex;
-//   gap: 12px;
-//   padding: 8px 16px;
-//   cursor: pointer;
-//   border-radius: 40px;
-//   // background-color: #54adff;
-//   // color: #fef9f9;
-
-//   svg {
-//     margin-right: 12px;
-//   }
-
-//   &:hover,
-//   &:focus,
-//   &:active {
-//     margin-top: 3px;
-//     margin-bottom: 10px;
-
-//     font-size: 14px;
-
-//     color: ${theme.colors.white};
-//     background-color: ${theme.colors.blue};
-
-//     padding: 8px 16px;
-//     border-radius: 40px;
-
-//     svg {
-//       stroke: ${theme.colors.white};
-//     }
-//   }
-// `;
-
-// ------- form
 
 export const ThirdStepFormDiv = styled.div`
   display: flex;
@@ -159,6 +115,7 @@ export const ThirdStepFormContainer = styled.div`
 `;
 
 export const ThirdStepFormTitle = styled.label`
+position: relative;
   color: ${theme.colors.black}; // #111111
   font-family: ${theme.fonts.main.medium}; // Manrope 500
   font-weight: 500;
@@ -216,6 +173,7 @@ export const ThirdStepFormInput = styled.input`
 // ------- photo
 
 export const ThirdStepFormPhotoTitle = styled.label`
+position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
