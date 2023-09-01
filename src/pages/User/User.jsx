@@ -15,15 +15,16 @@ import {
 } from 'redux/auth/auth-selectors';
 import { ModalCongrats } from 'components/Modals';
 import { fetchPets } from 'redux/pets/pets-operations';
+import { useLocation } from 'react-router-dom';
 
 const User = () => {
   const [modalCongratsShow, setModalCongratsShow] = useState(true);
   const isRegistered = useSelector(selectIsRegistered);
+  const location = useLocation();
   const dispatch = useDispatch();
   // const user = useSelector(selectUser);
   // console.log('user:', user);
   useEffect(() => {
-    
     dispatch(fetchPets());
   }, [dispatch]);
 
@@ -45,7 +46,7 @@ const User = () => {
         <div style={{ width: '100%' }}>
           <PetsContainer>
             <Title>My pets:</Title>
-            <AddPetBtn to="/add-pet">
+            <AddPetBtn to="/add-pet" state={{ from: `${location.pathname}` }}>
               Add Pet <PlusSmall />
             </AddPetBtn>
           </PetsContainer>
