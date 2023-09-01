@@ -17,6 +17,7 @@ export const SecondStepFormDiv = styled.div`
 `;
 
 export const SecondStepFormTitle = styled.label`
+  position: relative;
   color: ${theme.colors.black}; // #111111
   font-family: ${theme.fonts.main.medium}; // Manrope 500
   font-weight: 500;
@@ -39,6 +40,10 @@ export const SecondStepFormTitle = styled.label`
   }
 `;
 
+// export const inputWrapper = styled.div`
+// position: relative;
+// `;
+
 export const SecondStepFormInput = styled(Field)`
   font-family: Manrope;
   font-size: 14px; //16px
@@ -59,7 +64,7 @@ export const SecondStepFormInput = styled(Field)`
 
   padding: 8px 16px;
   border-radius: 40px;
-  border: 1px solid ${theme.colors.blue};
+  border: 1px solid ;
 
   &:hover,
   &focus,

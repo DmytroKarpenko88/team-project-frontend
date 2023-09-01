@@ -15,6 +15,8 @@ import {
 import { ArrowLeft, Paw } from 'components/icons';
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { theme } from 'styles';
+
 // import { Link } from 'react-router-dom';
 // import { TextField } from '@mui/material';
 
@@ -100,7 +102,8 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             <SecondStepFormTitle htmlFor="title">
               Title of add
               <SecondStepFormInput
-                autoFocus
+              style={{borderColor: `${!errors.title ? `${theme.colors.blue}`: !isTitleFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
+                // autoFocus
                 type="text"
                 name="title"
                 placeholder="Title of add"
@@ -109,15 +112,16 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
                 onBlur={() => validateField('title', data, setErrors)}
                 className={errors.title ? 'invalid' : ''}
               />
+              {!!errors.title && <ErrorMessage message={errors.title} />}
             </SecondStepFormTitle>
-            {!!errors.title && <ErrorMessage message={errors.title} />}
+            
           </>
         )}
         <>
           <SecondStepFormTitle htmlFor="name">
             Pet's name
             <SecondStepFormInput
-              // autoFocus={data.category !== 'pet' ? false : true}
+              style={{borderColor: `${!errors.name ? `${theme.colors.blue}`: !isNameFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
               type="text"
               placeholder="Type name pet"
               name="name"
@@ -127,13 +131,15 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
               className={errors.title ? 'invalid' : ''}
               required
             />
+            {!!errors.name && <ErrorMessage message={errors.name} />}
           </SecondStepFormTitle>
-          {!!errors.name && <ErrorMessage message={errors.name} />}
+          
         </>
         <>
           <SecondStepFormTitle htmlFor="birthday">
             Date of birth
             <SecondStepFormInput
+            style={{borderColor: `${!errors.birthday ? `${theme.colors.blue}`: !isBirthdayFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
               type="data"
               placeholder="Type date of birth in format DD-MM-YYYY"
               name="birthday"
@@ -146,25 +152,27 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
               className={errors.birthday ? 'invalid' : ''}
               required
             />
+            {!!errors.birthday && <ErrorMessage message={errors.birthday} />}
           </SecondStepFormTitle>
-          {!!errors.birthday && <ErrorMessage message={errors.birthday} />}
+          
         </>
         <>
           <SecondStepFormTitle htmlFor="breed">
             Type
             <SecondStepFormInput
-              // autoFocus
+              style={{borderColor: `${!errors.type ? `${theme.colors.blue}`: !isBreedFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
               type="text"
               placeholder="Type of pet"
               name="type"
               onChange={handleChange}
               value={data.type}
               onBlur={() => validateField('type', data, setErrors)}
-              className={errors.breed ? 'invalid' : ''}
+              className={errors.type ? 'invalid' : ''}
               required
             />
+            {!!errors.type && <ErrorMessage message={errors.type} />}
           </SecondStepFormTitle>
-          {!!errors.breed && <ErrorMessage message={errors.breed} />}
+          
         </>
       </SecondStepFormDiv>
 
