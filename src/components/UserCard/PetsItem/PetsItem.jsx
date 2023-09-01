@@ -26,7 +26,6 @@ const PetsItem = ({ pet }) => {
     } catch (error) {
       console.error('Error deleting pet:', error);
     }
-    // setModalDeleteShow(prevState => !prevState);
   };
   return (
     <>
@@ -34,7 +33,6 @@ const PetsItem = ({ pet }) => {
         <PetImage src={petURL} alt={name} />
         <InfoContainer>
           <DeleteBtn type="button" onClick={closeModal}>
-            {/* <DeleteBtn type="button" onClick={approveAction}> */}
             <Trash />
           </DeleteBtn>
           <div>
