@@ -47,7 +47,7 @@ export const HeaderWrapper = styled.div`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    justify-content: space-between;
+    justify-content: start;
   }
 `;
 

@@ -33,16 +33,12 @@ export const LogOut = styled(Link)`
       stroke: ${theme.colors.white};
     }
   }
+
+  @media screen and (min-width: ${theme.breakpoints.mobile}){
+    margin-right: 24px;
+  }
 `;
 
-// export const LogOutButton = styled.div`
-// // margin-top:159px;
-// // height: 40px;
-// // padding: 8px 24px;
-// // background-color: ${theme.colors.blue};
-// // color: ${theme.colors.white}
-// // border-radius: 25px;
-// `
 
 export const Text = styled.p`
   color: ${theme.colors.white};
