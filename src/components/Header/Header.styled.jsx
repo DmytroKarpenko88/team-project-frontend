@@ -3,7 +3,8 @@ import { theme } from '../../styles/theme';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 
 export const HeaderContainer = styled.div`
-  width: calc(100% -40px);
+  /* width: calc(100% - 40px); */
+  width: 100%;
   height: 48px;
   position: static;
   top: 0;
@@ -12,12 +13,12 @@ export const HeaderContainer = styled.div`
   background-color: ${theme.colors.bgColor};
 
   @media screen and (max-width: 1199px) {
-    width: calc(100% -40px);
+    width: calc(100% - 40px);
     height: 44px;
   }
 
   @media screen and (max-width: 767px) {
-    width: calc(100%-40px);
+    width: calc(100% - 40px);
     height: 28px;
   }
 
@@ -46,8 +47,7 @@ export const HeaderWrapper = styled.div`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-  justify-content: flex-start;
-    
+    justify-content: space-between;
   }
 `;
 
