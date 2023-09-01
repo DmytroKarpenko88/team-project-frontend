@@ -174,6 +174,7 @@ export const ImgCat = styled.img`
 
 export const Title = styled.h1`
   font-size: 32px;
+  font-family: ${theme.fonts.main.bold};
   font-weight: 700;
   color: #000000;
   max-width: 280px;
@@ -191,5 +192,6 @@ export const Title = styled.h1`
     height: 264px;
     font-size: 68px;
     font-weight: 800;
+    line-height: 130%;
   }
 `;
