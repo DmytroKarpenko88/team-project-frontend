@@ -19,7 +19,7 @@ import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});  
   const [isDisabled, setIsDisabled] = useState(false);
   const [maxDate, setMaxDate] = useState();
 
@@ -89,8 +89,8 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             <SecondStepFormTitle htmlFor="title">
               Title of add
               <SecondStepFormInput
-              style={{borderColor:  errors.title === '' ? `${theme.colors.blue}` : `${theme.colors.red}`}}
-                autoFocus
+              style={{borderColor: !errors.title  ? `${theme.colors.blue}` : isTitleFieldValid ? null : `${theme.colors.red}`}}
+                // autoFocus
                 type="text"
                 name="title"
                 placeholder="Title of add"
@@ -109,7 +109,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             Pet's name
             <SecondStepFormInput
               type="text"
-              style={{borderColor:  errors.name === '' ? `${theme.colors.blue}` : `${theme.colors.red}`}}
+              style={{borderColor: !errors.name  ? `${theme.colors.blue}` : isNameFieldValid ? null : `${theme.colors.red}`}}
               placeholder="Type name pet"
               name="name"
               onChange={handleChange}
@@ -128,7 +128,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             <SecondStepFormInput
               type="data"
               placeholder="Type date of birth in format DD-MM-YYYY"
-              style={{borderColor:  errors.birthday === '' ? `${theme.colors.blue}` : `${theme.colors.red}`}}
+              style={{borderColor: !errors.birthday  ? `${theme.colors.blue}` : isBirthdayFieldValid ? null : `${theme.colors.red}`}}
               name="birthday"
               max={maxDate}
               onChange={handleChange}
@@ -147,7 +147,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             <SecondStepFormInput
               type="text"
               placeholder="Type of pet"
-              style={{borderColor:  errors.type === '' ? `${theme.colors.blue}` : `${theme.colors.red}`}}
+              style={{borderColor: !errors.type  ? `${theme.colors.blue}` : isBreedFieldValid ? null : `${theme.colors.red}`}}
               name="type"
               onChange={handleChange}
               value={data.type}
