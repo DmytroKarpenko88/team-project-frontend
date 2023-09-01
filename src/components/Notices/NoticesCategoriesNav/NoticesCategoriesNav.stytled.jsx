@@ -21,8 +21,7 @@ export const Link = styled(NavLink)`
   line-height: 1.73;
   color: ${theme.colors.blue};
   letter-spacing: 0.04em;
-  transition: color 250ms ${theme.transition.main},
-    background-color 250ms ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   &:hover,
   &:focus {

@@ -102,7 +102,7 @@ export const IconOpenMenu = styled.div`
     display: flex;
     margin-left: 24px;
     padding-top: 9px;
-    transition: 0.4s all ease-in;
+    transition: all ${theme.transition.main};
   }
 `;
 

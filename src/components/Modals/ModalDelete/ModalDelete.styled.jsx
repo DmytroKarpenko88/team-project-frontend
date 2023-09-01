@@ -87,8 +87,8 @@ export const BtnWrapper = styled.div`
   margin-top: 44px;
   margin-bottom: 60px;
 
-  transition: color ${theme.transition.duration} ${theme.transition.main};
-  transition: fill ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
+
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: row;

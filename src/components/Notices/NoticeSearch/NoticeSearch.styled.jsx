@@ -59,7 +59,7 @@ export const Button = styled.button.withConfig({
 
   transform: ${({ search }) => search && 'translateX(-27px)'};
 
-  transition: transform 300ms ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   svg:hover,
   svg:focus {

@@ -11,7 +11,7 @@ export const LogOut = styled(Link)`
   color: ${theme.colors.white};
   font-weight: 700;
   width: 135px;
-  
+
   padding: 8px 20px;
   font-size: ${theme.fontSizes.m};
   line-height: normal;
@@ -20,9 +20,9 @@ export const LogOut = styled(Link)`
   border: none;
   border-radius: 40px;
   box-shadow: ${theme.boxShadows.main};
-  transition: background-color ${theme.transition.duration},
-    ${theme.transition.main};
-   
+  transition: all ${theme.transition.main};
+  ${theme.transition.main};
+
   svg {
     stroke: ${theme.colors.white};
   }
@@ -33,9 +33,6 @@ export const LogOut = styled(Link)`
       stroke: ${theme.colors.white};
     }
   }
-
-  
-
 `;
 
 // export const LogOutButton = styled.div`
@@ -48,8 +45,7 @@ export const LogOut = styled(Link)`
 // `
 
 export const Text = styled.p`
-color: ${theme.colors.white};
-font-size: ${theme.fontSizes.m};
-text-align: center;
-`
-
+  color: ${theme.colors.white};
+  font-size: ${theme.fontSizes.m};
+  text-align: center;
+`;
