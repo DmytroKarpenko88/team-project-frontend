@@ -25,11 +25,11 @@ export const converterAge = date => {
   }
 
   if (yearsDiff === 0 && monthsDiff < 3) {
-    return '3 months';
+    return '3 mon...';
   } else if (yearsDiff === 0 && monthsDiff < 6) {
-    return '6 months';
+    return '6 mon...';
   } else if (yearsDiff === 0 && monthsDiff < 9) {
-    return '9 months';
+    return '9 mon...';
   }
 
   return `${yearsDiff}  ${period}`;

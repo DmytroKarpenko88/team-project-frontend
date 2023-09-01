@@ -89,7 +89,7 @@ export const NoticeModal = props => {
 
   return (
     <>
-      {!isLoading && noticeById !== {} ? (
+      {!isLoading ? (
         <ModalContainer {...props} size="lg" centered={true}>
           <Modal.Body>
             <CrossBtn onClick={props.onHide}>
