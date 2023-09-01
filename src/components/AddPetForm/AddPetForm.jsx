@@ -99,9 +99,11 @@ const AddPetForm = () => {
 
       if (data.category === 'in-good-hands') {
         navigate('/notices/in-good-hands');
+        
       }
       if (data.category === 'lost-found') {
         navigate('/notices/lost-found');
+        
       }
 
       return;
