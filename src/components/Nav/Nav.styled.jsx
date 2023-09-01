@@ -32,13 +32,12 @@ export const NavMenu = styled.ul.withConfig({
     display: ${({ click }) => (click ? 'visible' : 'none')};
 
     text-align: center;
-    transition: 0.1s all ease-in;
+    transition: all ${theme.transition.main};
     background-color: ${theme.colors.bgColor};
   }
 
   @media screen and (min-width: 1280px) {
-  margin-right: 226px;
-  flex-direction: row-reverse;
+    flex-direction: row-reverse;
   }
 `;
 
@@ -67,10 +66,7 @@ export const NavMenuItem = styled.li`
   }
 
   @media screen and (min-width: 1280px) {
-width: ;
   }
-
-  
 `;
 
 export const NavMenuItemLink = styled(Link)`
@@ -78,7 +74,7 @@ export const NavMenuItemLink = styled(Link)`
   font-size: ${theme.fontSizes.l};
   text-decoration: none;
   margin-right: 40px;
-
+  transition: all ${theme.transition.main};
   @media screen and (max-width: 1279px) {
     margin: 0;
     font-size: 32px;
@@ -89,7 +85,6 @@ export const NavMenuItemLink = styled(Link)`
   &:hover,
   :focus {
     color: ${theme.colors.yellow};
-    transition: 0.2s ease-in;
   }
 `;
 

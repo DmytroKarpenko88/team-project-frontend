@@ -18,8 +18,7 @@ export const FilterBtn = styled.button`
   border: none;
   border-radius: 50%;
 
-  transition: color 250ms ${theme.transition.main},
-    background 250ms ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   &:hover,
   &:focus {

@@ -111,8 +111,7 @@ export const BtnLogin = styled(Link)`
 
   line-height: normal;
   letter-spacing: 0.64px;
-  transition: color ${theme.transition.duration} ${theme.transition.main};
-  transition: fill ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 165px;

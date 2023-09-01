@@ -52,10 +52,9 @@ const FileInputLabel = styled.label`
   letter-spacing: 0.48px;
   color: ${theme.colors.black};
   gap: 8px;
-  transition: color ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
   cursor: pointer;
   svg {
-    transition: fill ${theme.transition.duration} ${theme.transition.main};
   }
   &:hover,
   &:focus {
@@ -79,7 +78,7 @@ const ConfirmWrapper = styled.div`
 
   .cancel-icon svg {
     stroke: ${theme.colors.red};
-    transition: stroke ${theme.transition.duration} ${theme.transition.main};
+    transition: all ${theme.transition.main};
   }
 
   .cancel-icon:hover svg,
@@ -123,7 +122,7 @@ const Input = styled.input`
   font-size: ${theme.fontSizes.xs};
   line-height: normal;
   letter-spacing: 0.48px;
-  transition: border-color ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   &:hover,
   &:focus {
@@ -155,9 +154,10 @@ const SubmitBtn = styled.button`
   font-size: ${theme.fontSizes.s};
   line-height: normal;
   letter-spacing: 0.56px;
+  color: ${theme.colors.white};
   cursor: pointer;
 
-  transition: all ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   &:hover,
   &:focus {

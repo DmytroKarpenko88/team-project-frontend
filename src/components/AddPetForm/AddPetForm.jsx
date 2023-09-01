@@ -165,7 +165,7 @@ const AddPetForm = () => {
             )}
             {step === 2 && (
               <SecondStepForm
-              touched={touched}
+                touched={touched}
                 setFieldValue={setFieldValue}
                 errors={errors}
                 values={values}

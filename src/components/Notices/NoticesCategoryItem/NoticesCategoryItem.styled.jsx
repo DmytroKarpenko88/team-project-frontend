@@ -7,11 +7,11 @@ export const Item = styled.li`
   border-bottom-left-radius: 40px;
   box-shadow: ${theme.boxShadows.main};
 
-  transition: transform 250ms ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   &:hover {
     transform: scale(1.01);
-    transition: transform 250ms ${theme.transition.main};
+    transition: all ${theme.transition.main};
   }
 `;
 
@@ -144,8 +144,7 @@ export const LocationItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
-  transition: color ${theme.transition.duration} ${theme.transition.main};
-  transition: background ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   cursor: pointer;
 
@@ -175,8 +174,7 @@ export const AgeItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
-  transition: color ${theme.transition.duration} ${theme.transition.main};
-  transition: background ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   cursor: pointer;
 
@@ -205,8 +203,7 @@ export const SexItem = styled.div`
   background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
-  transition: color ${theme.transition.duration} ${theme.transition.main};
-  transition: background ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   cursor: pointer;
 
@@ -276,8 +273,7 @@ export const LoadMoreBtn = styled.button`
   font-weight: ${theme.fonts.main.semiBold};
   line-height: normal;
   letter-spacing: 0.64px;
-  transition: color 250ms ${theme.transition.main},
-    background-color 250ms ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   svg {
     display: none;

@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { theme } from 'styles';
 
 const Item = styled.li`
   @media screen and (min-width: 768px) {
@@ -18,7 +19,7 @@ const Item = styled.li`
   padding: 16px;
   background-color: #fff;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
-  transition: transform 0.3s ease-in-out;
+  transition: all ${theme.transition.main};
 
   &:hover {
     transform: scale(1.1);
@@ -35,7 +36,7 @@ const Title = styled.a`
      cursor: pointer;
      display: block;
     text-align: center;
- transition: color 0.3s ease, transform 0.3s ease;
+    transition: all ${theme.transition.main};
 
 
     &:hover {
@@ -94,7 +95,7 @@ const InfoTitle = styled.a`
   font-weight: 600;
   line-height: normal;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: all ${theme.transition.main};
   color: #111111;
 
   &:hover {

@@ -248,7 +248,8 @@ export const ThirdStepFormImgPreview = styled.img`
 `;
 // ------ comments
 
-export const ThirdStepFormComments = styled(Field)`
+export const ThirdStepFormComments = styled.textarea`
+  //(Field)
   font-family: Manrope;
   font-size: 16px;
   font-weight: 400;

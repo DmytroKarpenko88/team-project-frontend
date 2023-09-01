@@ -8,10 +8,11 @@ import { Btn } from './AddPetButton.styled';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { ModalAttention } from 'components/Modals';
+import { useLocation } from 'react-router-dom';
 
 export const AddPetButton = () => {
   const screenWidth = useWindowSize();
-
+  const location = useLocation();
   const [modalAttentionShow, setModalAttentionShow] = useState(false);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
@@ -22,7 +23,7 @@ export const AddPetButton = () => {
   return (
     <>
       {isLoggedIn ? (
-        <Btn to="/add-pet">
+        <Btn to="/add-pet" state={{ from: `${location.pathname}` }}>
           {screenWidth < 768 && <Plus />}
           Add Pet
           {screenWidth >= 768 && <PlusSmall />}

@@ -91,8 +91,7 @@ export const ButtonGoToProfile = styled.button`
 
   line-height: normal;
   letter-spacing: 0.64px;
-  transition: color ${theme.transition.duration} ${theme.transition.main};
-  transition: fill ${theme.transition.duration} ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   svg {
     fill: ${theme.colors.white};
