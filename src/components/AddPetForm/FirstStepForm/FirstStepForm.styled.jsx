@@ -37,8 +37,7 @@ export const FirstStepFormItemLabel = styled.label.withConfig({
   background-color: ${theme.colors.blueLight};
 
   cursor: pointer;
-  transition: color ${theme.colors.bgColor},
-    background-color ${theme.colors.blue};
+  transition: all ${theme.transition.main};
 
   &:hover,
   &:focus,
@@ -49,5 +48,6 @@ export const FirstStepFormItemLabel = styled.label.withConfig({
 
   // ${FirstStepFormItemInput}:checked + && {} //active
 
-  ${({ active }) => active ? 'background-color:  #54adff; color: #FFFFFF; }' : ''}
+  ${({ active }) =>
+    active ? 'background-color:  #54adff; color: #FFFFFF; }' : ''}
 `;

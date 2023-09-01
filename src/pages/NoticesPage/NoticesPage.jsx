@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectIsLoading, selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { selectIsLoggedIn, } from 'redux/auth/auth-selectors';
+import { selectNoticesIsLoading } from 'redux/notices/notices-selectors';
+import { selectAllNotices } from 'redux/notices/notices-selectors';
 // import Pagination from '@mui/material/Pagination';
 import { Title } from 'components/Notices/Title/Title';
 import { NoticeSearch } from 'components/Notices/NoticeSearch/NoticeSearch';
@@ -24,9 +26,12 @@ import { ScrollToTopButton } from 'components/Notices/ScrollToTopButton/ScrollTo
 function Notices() {
   const [search, setSearch] = useState('');
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectNoticesIsLoading);
+  console.log("isLoading:", isLoading)
+  const allNotices = useSelector(selectAllNotices)
   const dispatch = useDispatch();
   const { categoryName } = useParams();
+  console.log("categoryName:", categoryName)
 
   useEffect(() => {
     if (
@@ -60,7 +65,7 @@ function Notices() {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {!allNotices && <Loader />}
       <Container>
         <Title>Find your favorite pet</Title>
 

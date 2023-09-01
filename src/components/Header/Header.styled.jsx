@@ -47,7 +47,7 @@ export const HeaderWrapper = styled.div`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    justify-content: space-between;
+    justify-content: start;
   }
 `;
 
@@ -57,7 +57,7 @@ export const HeaderMenu = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row-reverse;
     // margin-right: auto;
-    max-width: 925px;
+    width: 925px;
     justify-content: space-between;
     align-items: baseline;
   }
@@ -102,7 +102,7 @@ export const IconOpenMenu = styled.div`
     display: flex;
     margin-left: 24px;
     padding-top: 9px;
-    transition: 0.4s all ease-in;
+    transition: all ${theme.transition.main};
   }
 `;
 

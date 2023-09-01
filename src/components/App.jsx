@@ -27,19 +27,15 @@ const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing, isLoggedIn, isRegistered } = useAuth();
+  const { isRefreshing, isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    dispatch(getUserProfile());
-    // dispatch(getUserCurrentNotices());
-    // dispatch(getUserCurrentFavorite());
-
-    // if(isLoggedIn) {
-    //   dispatch(fetchCurrentUser());
-    //   dispatch(getUserProfile())
-    // }
-  }, [dispatch, isLoggedIn, isRegistered]);
+    
+    if(isLoggedIn) {
+      dispatch(getUserProfile())
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <>

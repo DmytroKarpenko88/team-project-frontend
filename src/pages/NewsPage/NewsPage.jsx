@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Title } from './NewsPage.styled';
 import { NewsSearch } from 'components/News/NewsSearch/NewsSearch';
 import { NewsList } from 'components/News/NewsList/NewsList';
@@ -14,6 +14,7 @@ export default function NewsPage() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  const [search, setSearch] = useState('');
   const totatalConunts = useSelector(selectTotalCount);
   const currentPage = new URLSearchParams(location.search).get('page') || 1;
 
@@ -28,8 +29,9 @@ export default function NewsPage() {
     <>
       <Container>
         <Title>News</Title>
-        <NewsSearch />
-        <NewsList />
+        {/* <NewsSearch onSubmitNoticeForm={setSearch} /> */}
+        <NewsSearch onSubmitNewsForm={setSearch} />
+        <NewsList search={search} />
         <Pagination
           currentPage={parseInt(currentPage)}
           totalPages={totatalConunts}

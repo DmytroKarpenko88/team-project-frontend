@@ -6,7 +6,7 @@ export const Form = styled.form`
   display: flex;
   justify-content: left;
   align-items: center;
-  max-width:480px ;
+  max-width: 480px;
 
   overflow: hidden;
   margin: 0 auto;
@@ -31,7 +31,7 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  max-width:480px ;
+  max-width: 480px;
   height: 44px;
   padding-left: 20px;
   border: none;
@@ -65,7 +65,7 @@ export const Button = styled.button.withConfig({
 
   transform: ${({ search }) => search && 'translateX(-27px)'};
 
-  transition: transform 300ms ${theme.transition.main};
+  transition: all ${theme.transition.main};
 
   svg:hover,
   svg:focus {

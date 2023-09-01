@@ -17,9 +17,9 @@ export const NoticeSearch = ({ onSubmitNoticeForm }) => {
   // const { categoryName } = useParams();
   // console.log(categoryName);
 
-  useEffect(() => {
-    if (!search) onSubmitNoticeForm(search);
-  }, [onSubmitNoticeForm, search]);
+  // useEffect(() => {
+  //   if (!search) onSubmitNoticeForm(search);
+  // }, [onSubmitNoticeForm, search]);
 
   const handleSubmit = e => {
     e.preventDefault();

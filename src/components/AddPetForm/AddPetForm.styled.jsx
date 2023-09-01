@@ -19,8 +19,7 @@ export const AddPetDiv = styled.div`
   @media screen and (min-width: 498px) {
     // width: 458px;
   }
-  @media screen and (min-width: ${theme.breakpoints
-      .mobile}) and (max-width: 767px) {
+  @media screen and (min-width: ${theme.breakpoints.mobile}) and (max-width: 767px) {
     width: 280px;
   }
 
@@ -37,8 +36,7 @@ export const AddPetContainerForm = styled(Form)`
   padding: 20px 8px;
   min-height: 496px;
 
-  @media screen and (min-width: ${theme.breakpoints
-      .mobile}) and (max-width: 767px) {
+  @media screen and (min-width: ${theme.breakpoints.mobile}) and (max-width: 767px) {
     width: 280px;
   }
 
@@ -102,11 +100,16 @@ export const AddPetBtnNext = styled.button`
 
   color: ${theme.colors.white};
   background-color: ${theme.colors.blue};
+  transition: all ${theme.transition.main};
 
   svg {
     fill: ${theme.colors.white};
   }
-
+  &:hover {
+    svg {
+      fill: ${theme.colors.white};
+    }
+  }
   @media (min-width: 768px) {
     // font-family: ${theme.fonts.main.semiBold};
   }
@@ -123,6 +126,15 @@ export const AddPetBtnCancel = styled.button`
   // border: none;
   // outline: none;
   background-color: transparent;
+  transition: all ${theme.transition.main};
+
+  &:hover,
+  &:focus {
+    color: ${theme.colors.yellow};
+    svg {
+      stroke: ${theme.colors.yellow};
+    }
+  }
 `;
 
 export const AddPetBtnCancelDiv = styled.div`

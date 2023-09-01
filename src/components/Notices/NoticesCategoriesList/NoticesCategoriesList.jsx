@@ -13,6 +13,7 @@ import {
   getUserCurrentFavorite,
   getUserCurrentNotices,
 } from 'redux/user/user-operations';
+import { fetchNotices } from 'redux/notices/notices-operations';
 
 export const NoticesCategoriesList = () => {
   const { isLoggedIn } = useAuth();
@@ -26,30 +27,28 @@ export const NoticesCategoriesList = () => {
   const categoryName = useParams().categoryName;
 
   useEffect(() => {
+
     try {
-      if (categoryName === 'own') {
+      if (categoryName === 'own'&& isLoggedIn) {
         setNoticesForList(ownNotices);
-      } else if (categoryName === 'favorite') {
+        dispatch(getUserCurrentNotices());
+      } else if (categoryName === 'favorite' && isLoggedIn) {
         setNoticesForList(userFavotites);
+        dispatch(getUserCurrentFavorite());
       } else if (categoryName === 'sell' || 'lost-found' || 'in-good-hands') {
         setNoticesForList(notices);
+        dispatch(fetchNotices());
       }
     } catch (error) {
       console.log(error.message);
     }
-  }, [categoryName, notices, ownNotices, userFavotites]);
+  }, [dispatch,isLoggedIn,categoryName, notices, ownNotices, userFavotites]);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getUserCurrentFavorite());
-      dispatch(getUserCurrentNotices());
-    }
-  }, [dispatch, isLoggedIn]);
-
+  
   return (
     <NoticeList>
       {noticesForList.length > 0 ? (
-        noticesForList?.map(item => (
+        noticesForList.map(item => (
           <NoticesCategoryItem key={item._id} notice={item} />
         ))
       ) : (
