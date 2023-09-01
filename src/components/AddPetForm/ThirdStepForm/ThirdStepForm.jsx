@@ -6,18 +6,12 @@ import {
   ThirdStepFormDiv,
   ThirdStepFormImgInput,
   ThirdStepFormImgPreview,
-  // ThirdStepFormInput,
   ThirdStepFormPhotoDiv,
   ThirdStepFormPhotoTitle,
   ThirdStepFormPlus,
   ThirdStepFormTitle,
   ThirdStepFormTitleContainer,
-  // ThirdStepSexDiv,
-  // ThirdStepSexFemaleLabel,
-  // ThirdStepSexInput,
-  // ThirdStepSexMaleLabel,
   ThirdStepSexPhotoDiv,
-  // ThirdStepSexTitle,
 } from './ThirdStepForm.styled';
 import {
   AddPetBtnCancel,
@@ -37,15 +31,10 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   const isPetPhotoFieldValid = Boolean(!errors.petURL && !data.petURL);
-  // console.log('isPetPhotoFieldValid:', isPetPhotoFieldValid);
   const isCommentsFieldValid = Boolean(!errors.describe);
-  // console.log('isCommentsFieldValid:', isCommentsFieldValid);
   const isLocationFieldValid = Boolean(!errors.location && !data.location);
-  // console.log('isLocationFieldValid:', isLocationFieldValid);
   const isSexFieldValid = Boolean(!errors.sex && !data.sex);
-  // console.log('isSexFieldValid:', isSexFieldValid);
   const isPriceFieldValid = Boolean(!errors.price && !data.price);
-  // console.log('isPriceFieldValid:', isPriceFieldValid);
 
   useEffect(() => {
     const handleResize = () => {
@@ -113,7 +102,6 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   return (
     <>
       <ThirdStepFormDiv>
-        {/* sex for sell lostFond ingood hands*/}
         <ThirdStepSexPhotoDiv>
           <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data}>
             <ThirdStepFormPhotoDiv>
@@ -121,26 +109,21 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
                 ? 'Add photo'
                 : 'Load the pet’s image:'}
             </ThirdStepFormPhotoDiv>
-            {/* div - svg */}
             <ThirdStepFormPlus>
               {!data.petURL && <Plus width="30" height="30" />}
               {!!data.petURL && (
                 <ThirdStepFormImgPreview
                   src={URL.createObjectURL(data.petURL)}
                   alt={data.name}
-                  // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
             </ThirdStepFormPlus>
-            {/* input */}
             <ThirdStepFormImgInput
               type="file"
               id="pet-image"
               alt="pet`s photo"
-              // value={data.photo ?? ''}
               name="petURL"
               onChange={handleChange}
-              // onFocus={focusHandle}
               value={imageValue}
               onBlur={() => validateField('petURL', data, setErrors)}
               accept=".jpg, .png"
@@ -149,17 +132,15 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 
-        {/* location price for sell lostFond ingood hands*/}
         <ThirdStepFormTitleContainer>
           <ThirdStepFormTitle htmlFor="describe">
             Comments
             <ThirdStepFormComments
               type="text"
-              component="textarea"
+              // component="textarea"
               name="describe"
               placeholder="Type of pet"
               onChange={handleChange}
-              // onFocus={focusHandle}
               value={data.describe}
               onBlur={() => validateField('describe', data, setErrors)}
               className={errors.describe ? 'invalid' : ''}
@@ -173,33 +154,20 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         <AddPetBtnItem>
           <AddPetBtnNext
             type="button"
-            // text="Done"
-            // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
-            // filled={true}
             onClick={submit && (() => submit(false))}
             disabled={isDisabled}
           >
             Done
-            {/* {step === 3 ? 'Done' : 'Next'} */}
             <Paw width="24" height="24" fill="#FEF9F9" />
           </AddPetBtnNext>
         </AddPetBtnItem>
 
         <AddPetBtnItem>
-          {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-          <AddPetBtnCancel
-            type="button"
-            onClick={backStep}
-            // text="Back"
-            // isLink={false}
-          >
-            {/* <Link to={backPage}> */}
+          <AddPetBtnCancel type="button" onClick={backStep}>
             <AddPetBtnCancelDiv>
               <ArrowLeft width="24" height="24" />
               Back
-              {/* {step === 1 ? 'Cancel' : 'Back'} */}
             </AddPetBtnCancelDiv>
-            {/* </Link> */}
           </AddPetBtnCancel>
         </AddPetBtnItem>
       </AddPetBtnList>
