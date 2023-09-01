@@ -12,7 +12,6 @@ import {
 export default function MainPage() {
   return (
     <>
-
       <Container>
         <Title>Take good care of your small pets</Title>
         <ImagesContainer>
@@ -22,6 +21,5 @@ export default function MainPage() {
         </ImagesContainer>
       </Container>
     </>
-
   );
 }

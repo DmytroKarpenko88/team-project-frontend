@@ -23,6 +23,7 @@ const User = () => {
   // const user = useSelector(selectUser);
   // console.log('user:', user);
   useEffect(() => {
+    
     dispatch(fetchPets());
   }, [dispatch]);
 

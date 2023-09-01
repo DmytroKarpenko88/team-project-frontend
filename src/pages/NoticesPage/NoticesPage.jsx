@@ -35,15 +35,19 @@ function Notices() {
       categoryName === 'in-good-hands'
     ) {
       dispatch(fetchNotices({ categoryName, search }));
+      console.log('Dispatch notice')
+      return;
     }
     if (categoryName === 'favorite' && isLoggedIn) {
       dispatch(getUserCurrentFavorite());
+      console.log('Dispatch notice')
       return;
     }
     if (categoryName === 'own' && isLoggedIn) {
       dispatch(getUserCurrentNotices());
       return;
     }
+    
   }, [categoryName, dispatch, isLoggedIn, search]);
 
   const scrollToTop = () => {

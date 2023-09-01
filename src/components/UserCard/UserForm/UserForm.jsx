@@ -139,7 +139,7 @@ const UserForm = ({ disabled, setIsFormDisabled }) => {
                     type="file"
                     name="avatarURL"
                     id="file"
-                    accept="image/*"
+                    accept=".jpg, .png"
                     onChange={handleFileInputChange}
                   />
                 </div>
