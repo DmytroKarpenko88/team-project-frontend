@@ -30,6 +30,8 @@ export const converterAge = date => {
     return '6 mon...';
   } else if (yearsDiff === 0 && monthsDiff < 9) {
     return '9 mon...';
+  } else if (yearsDiff === 0 && monthsDiff < 12) {
+    return '1 year';
   }
 
   return `${yearsDiff}  ${period}`;
