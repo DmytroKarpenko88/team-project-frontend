@@ -9,6 +9,7 @@ export const SecondStepFormDiv = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+  margin-bottom: 24px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     // font-size: 28px;
@@ -35,12 +36,28 @@ export const SecondStepFormTitle = styled.label`
 
   margin-bottom: 20px;
 
-  // @media screen and (min-width: ${theme.breakpoints.tablet}) {
-  //   font-size: 28px;
-  // }
+  &:nth-last-child(-n + 1) {
+    margin-bottom: 0px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes.l}; //20px;
+  }
 `;
 
 export const SecondStepFormInput = styled(Field)`
+  font-family: Manrope;
+  font-size: 14px; //16px
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 16px;
+  }
+
+  font-weight: 400;
+  line-height: 1.5; /* 24px */
+  letter-spacing: 0.56px; // 0.64px;
+  color: ${theme.colors.grey};
+
   display: flex;
   align-items: center;
   gap: 10px;

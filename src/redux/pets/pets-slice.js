@@ -12,9 +12,9 @@ const handlePending = state => {
   state.error = null;
 };
 
-const handleRejected = (state, { payload }) => {
+const handleRejected = (state, action) => {
+  state.error = action.payload;
   state.isLoading = false;
-  state.error = payload;
 };
 
 const petsSlice = createSlice({
@@ -24,27 +24,26 @@ const petsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+        state.error = null;
         state.pets = payload;
-        console.log('State before modification:', state.pets);
+
+        state.isLoading = false;
       })
       .addCase(addPet.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
+        state.error = null;
         state.pets.push(payload);
+        state.isLoading = false;
       })
       .addCase(deletePet.fulfilled, (state, { payload }) => {
-        console.log('Payload:', payload);
-        console.log('State before modification:', state);
-        state.isLoading = false;
+        state.error = null;
 
-        state.pets = state.pets.filter(pet => pet._id !== payload._id);
+        state.pets = state.pets.filter(pet => pet._id !== payload.id);
 
-        console.log('State after modification:', state.pets);
-
-        // const index = state.pets.findIndex(
-        //   pet => pet._id === payload
         // );
-        // state.pets.splice(index, 1);
+        // if (Array.isArray(state.pets)) {
+        //   state.pets = state.pets.filter(pet => pet._id !== payload.item._id);
+        // }
+        state.isLoading = false;
       })
       .addCase(fetchPets.pending, handlePending)
       .addCase(addPet.pending, handlePending)

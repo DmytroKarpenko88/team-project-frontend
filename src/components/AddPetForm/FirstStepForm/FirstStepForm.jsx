@@ -15,7 +15,7 @@ import {
 import { ArrowLeft, Paw } from 'components/icons';
 import { Link } from 'react-router-dom';
 
-const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
+const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
   // console.log("values:", values)
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -28,23 +28,22 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
 
   const handleChange = e => {
     const { name, value } = e.target;
-    console.log(" value :",  value )
-    console.log("name:", name)
-
+    console.log(' value :', value);
+    console.log('name:', name);
+    // console.log(" value :",  value )
+    // console.log("name:", name)
 
     setData(prevState => ({
       ...prevState,
       [name]: value,
     }));
-  
   };
 
- 
   return (
     <>
       <FirstStepFormList>
         {/* ----------- first step content radio btn ------------- */}
-        <FirstStepFormItemLabel>
+        <FirstStepFormItemLabel active={data.category === 'pet'}>
           <FirstStepFormItemInput
             autoFocus="on"
             type="radio"
@@ -57,7 +56,7 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
           />
           your pet
         </FirstStepFormItemLabel>
-        <FirstStepFormItemLabel>
+        <FirstStepFormItemLabel active={data.category === 'sell'}>
           <FirstStepFormItemInput
             type="radio"
             value="sell"
@@ -69,7 +68,7 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
           />
           sell
         </FirstStepFormItemLabel>
-        <FirstStepFormItemLabel>
+        <FirstStepFormItemLabel active={data.category === 'lost-found'}>
           <FirstStepFormItemInput
             type="radio"
             value="lost-found"
@@ -81,11 +80,11 @@ const FirstStepForm = ({ data,values, setData, nextStep, cancel }) => {
           />
           lost/found
         </FirstStepFormItemLabel>
-        <FirstStepFormItemLabel>
+        <FirstStepFormItemLabel active={data.category === 'in-good-hands'}>
           <FirstStepFormItemInput
             type="radio"
             value="in-good-hands"
-            checked={data.category === "in-good-hands"}
+            checked={data.category === 'in-good-hands'}
             // name="hands"
             onChange={handleChange}
             // id="for-free"

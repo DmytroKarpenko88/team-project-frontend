@@ -10,12 +10,17 @@ import {
   ThirdStepFormPhotoTitle,
   ThirdStepFormPlus,
   ThirdStepFormTitle,
+  ThirdStepSexContainer,
   ThirdStepSexDiv,
-  ThirdStepSexFemaleLabel,
+  // ThirdStepSexFemaleLabel,
   ThirdStepSexInput,
-  ThirdStepSexMaleLabel,
+  ThirdStepSexLabel,
+  // ThirdStepSexMaleLabel,
   ThirdStepSexPhotoDiv,
   ThirdStepSexTitle,
+  ThirdStepFormPhotoDiv,
+  ThirdStepFormContainer,
+  ThirdStepFormTitleContainer,
 } from './ThirdStepFormExpanded.styled';
 import {
   AddPetBtnCancel,
@@ -26,7 +31,6 @@ import {
 } from '../AddPetForm.styled';
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import { ThirdStepFormPhotoDiv } from '../ThirdStepForm/ThirdStepForm.styled';
 
 const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -88,7 +92,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   const handleChange = e => {
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
-    console.log('fieldValue:', fieldValue);
+    // console.log('fieldValue:', fieldValue);
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
@@ -108,10 +112,14 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
         {/* sex for sell, lostFond, and in good hands*/}
         <ThirdStepSexPhotoDiv>
           {data.category !== 'pet' && (
-            <div>
+            <ThirdStepSexContainer>
               <ThirdStepSexTitle>The sex</ThirdStepSexTitle>
               <ThirdStepSexDiv>
-                <ThirdStepSexFemaleLabel id="sex">
+                <ThirdStepSexLabel
+                  value="female"
+                  active={data.sex === 'female'}
+                  id="sex"
+                >
                   <Female />
                   <ThirdStepSexInput
                     name="sex"
@@ -123,8 +131,12 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                     onBlur={() => validateField('sex', data, setErrors)}
                   />
                   Female
-                </ThirdStepSexFemaleLabel>
-                <ThirdStepSexMaleLabel id="sex">
+                </ThirdStepSexLabel>
+                <ThirdStepSexLabel
+                  value="male"
+                  active={data.sex === 'male'}
+                  id="sex"
+                >
                   <Male />
                   <ThirdStepSexInput
                     name="sex"
@@ -136,9 +148,9 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                     onBlur={() => validateField('sex', data, setErrors)}
                   />
                   Male
-                </ThirdStepSexMaleLabel>
+                </ThirdStepSexLabel>
               </ThirdStepSexDiv>
-            </div>
+            </ThirdStepSexContainer>
           )}
           {/* --- */}
           {/* label */}
@@ -166,7 +178,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                   // alt="pet preview"
                 ></ThirdStepFormImgPreview>
               )}
-              
             </ThirdStepFormPlus>
             {/* input */}
             {/* -----FileInput - input */}
@@ -187,7 +198,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
         </ThirdStepSexPhotoDiv>
 
         {/* location price for sell lostFond ingood hands*/}
-        <div>
+        <ThirdStepFormContainer>
           {data.category !== 'pet' && (
             <>
               <ThirdStepFormTitle>
@@ -225,7 +236,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
             </>
           )}
           {/* ----- -------- */}
-          <>
+          <ThirdStepFormTitleContainer>
             <ThirdStepFormTitle htmlFor="describe">
               Comments
               <ThirdStepFormComments
@@ -245,8 +256,8 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               />
             </ThirdStepFormTitle>
             {!!errors.describe && <ErrorMessage message={errors.describe} />}
-          </>
-        </div>
+          </ThirdStepFormTitleContainer>
+        </ThirdStepFormContainer>
       </ThirdStepFormDiv>
       <AddPetBtnList>
         <AddPetBtnItem>

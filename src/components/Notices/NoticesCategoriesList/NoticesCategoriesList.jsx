@@ -19,10 +19,7 @@ export const NoticesCategoriesList = () => {
   const dispatch = useDispatch();
 
   const [noticesForList, setNoticesForList] = useState([]);
-  // console.log('noticesForList:', noticesForList);
-  // console.log('noticesForList:', noticesForList.length);
   const notices = useSelector(selectAllNotices);
-  // console.log('notices:', notices);
   const ownNotices = useSelector(selectUserCurrentNotices);
   const userFavotites = useSelector(selectUserCurrentFavoriteNotices);
 

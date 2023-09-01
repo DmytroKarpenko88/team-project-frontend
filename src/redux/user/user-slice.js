@@ -16,23 +16,7 @@ const handleRejected = (state, action) => {
 };
 
 const initialState = {
-  userNotices: [
-    {
-      title: null,
-      name: null,
-      sex: null,
-      _category: null,
-      favorite: false,
-      photo: null,
-      place: null,
-      birthday: null,
-      type: null,
-      describe: null,
-      _id: null,
-      createdAt: null,
-      updatedAt: null,
-    },
-  ],
+  userNotices: [],
   userFavoriteNotices: [],
   userFavoriteNoticesID: [],
   error: null,
@@ -46,7 +30,6 @@ const userSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getUserCurrentNotices.fulfilled, (state, action) => {
-        // console.log(" action:",  action)
         state.userNotices = action.payload;
         state.isLoggedIn = true;
         state.isLoading = false;
@@ -62,18 +45,22 @@ const userSlice = createSlice({
       //   state.isLoggedIn = true;
       // })
       .addCase(addUserCurrentFavorite.fulfilled, (state, action) => {
+        // console.log('action:', action.payload);
         // const index = state.userFavoriteNotices.findIndex(
         //   notice => notice._id === action.payload.notice._id
         // );
         // state.userFavoriteNotices = action.payload.notice;
 
-        state.userFavoriteNotices.filter(it => it._id !== action.payload._id);
+        state.userFavoriteNotices = state.userFavoriteNotices.filter(
+          it => it._id !== action.payload._id
+        );
 
         state.isLoading = false;
         state.isLoggedIn = true;
       })
       .addCase(getUserCurrentFavorite.fulfilled, (state, action) => {
         state.userFavoriteNotices = action.payload;
+
         state.userFavoriteNoticesID = action.payload.map(it => it._id);
 
         state.isLoggedIn = true;

@@ -26,6 +26,17 @@ export const ThirdStepFormDiv = styled.div`
   flex-direction: column;
   margin-top: 16px;
 `;
+
+export const ThirdStepFormTitleContainer = styled.div`
+  margin-top: 24px;
+  margin-bottom: 24px;
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    margin-top: 24px;
+    margin-bottom: 17px;
+  }
+`;
+
 export const ThirdStepFormTitle = styled.label`
   color: ${theme.colors.black}; // #111111
   font-family: ${theme.fonts.main.medium}; // Manrope 500
@@ -38,13 +49,14 @@ export const ThirdStepFormTitle = styled.label`
   flex-direction: column;
   gap: 4px;
 
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 
-  // color: ${theme.colors.black};
-
-  // @media screen and (min-width: ${theme.breakpoints.tablet}) {
-  //   font-size: 28px;
-  // }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-family: Manrope;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 26.5px;
+  }
 `;
 
 // ------- photo
@@ -76,12 +88,9 @@ export const ThirdStepFormPhotoDiv = styled.div`
   line-height: normal;
   width: 81px;
 
-  // margin-top: 34px; // 50px
-  // margin-bottom: 64px;
-
-  // @media screen and (min-width: ${theme.breakpoints.tablet}) {
-  //   font-size: 28px;
-  // }
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 20px;
+  }
 `;
 
 export const ThirdStepFormImgInput = styled(Field)`
@@ -107,6 +116,8 @@ export const ThirdStepFormPlus = styled.div`
 
   & svg {
     stroke: currentColor;
+    width: 30px;
+    height: 30px;
   }
 
   & img {
@@ -118,6 +129,11 @@ export const ThirdStepFormPlus = styled.div`
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     min-width: 182px;
     height: 182px;
+
+    svg {
+      width: 48px;
+      height: 48px;
+    }
   }
 `;
 
@@ -127,6 +143,14 @@ export const ThirdStepFormImgPreview = styled.img`
 // ------ comments
 
 export const ThirdStepFormComments = styled(Field)`
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5; /* 24px */
+  letter-spacing: 0.64px;
+  color: ${theme.colors.grey};
+  text-overflow: ellipsis;
+
   min-height: 92px;
   padding: 8px 16px;
   border-radius: 20px;
@@ -139,7 +163,7 @@ export const ThirdStepFormComments = styled(Field)`
     outline: 1px solid ${theme.colors.blue};
   }
 
-  // @media (min-width: 768px) {
-  //   flex-direction: row-reverse;
-  // }
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
 `;

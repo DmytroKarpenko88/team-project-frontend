@@ -18,6 +18,11 @@ const Item = styled.li`
   padding: 16px;
   background-color: #fff;
   box-shadow: 3px 8px 14px 0px rgba(136, 198, 253, 0.19);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 const Title = styled.a`

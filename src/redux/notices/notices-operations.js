@@ -55,10 +55,10 @@ export const getNoticeById = createAsyncThunk(
 export const addNotice = createAsyncThunk(
   'notices/addNotice',
   async (fields, thunkAPI) => {
-    console.log("fields:", fields)
+    // console.log('fields:', fields);
     try {
       const { data } = await axios.post('/api/notices', fields);
-      console.log('addNotice:', data);
+      // console.log('addNotice:', data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -72,7 +72,7 @@ export const removeNotice = createAsyncThunk(
     try {
       await axios.delete(`/api/notices/${_id}`);
 
-      return { _id };
+      return _id;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -92,28 +92,30 @@ export const filterNotice = createAsyncThunk(
   }
 );
 
-export const addFavoriteNotice = createAsyncThunk(
-  'notices/addFavoriteNotice',
-  async (notice, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post(`/api/notices/favorite/${notice}`);
+// export const addFavoriteNotice = createAsyncThunk(
+//   'notices/addFavoriteNotice',
+//   async (notice, { rejectWithValue }) => {
+//     console.log('notice:', notice);
+//     try {
+//       const { data } = await axios.patch(`/api/notices/favorite/${notice}`);
 
-      return data.result.updatedNotice;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+//       console.log('data:', data);
+//       return data.result.updatedNotice;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
 
-export const removeFavoriteNotice = createAsyncThunk(
-  'notices/removeFavoriteNotice',
-  async (petId, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.delete(`/api/notices/favorite/${petId}`);
-      console.log(data);
-      return data.result.updatedNotice;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+// export const removeFavoriteNotice = createAsyncThunk(
+//   'notices/removeFavoriteNotice',
+//   async (petId, { rejectWithValue }) => {
+//     try {
+//       const { data } = await axios.delete(`/api/notices/favorite/${petId}`);
+//       console.log(data);
+//       return data.result.updatedNotice;
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );

@@ -4,6 +4,7 @@ import { theme } from 'styles';
 export const Wrapper = styled.h2`
   padding-top: 40px;
   margin-bottom: 24px;
+  font-family: ${theme.fonts.main.bold};
   font-size: ${theme.fontSizes.xl};
   line-height: 1.38;
   text-align: center;
@@ -14,6 +15,6 @@ export const Wrapper = styled.h2`
     margin-bottom: 40px;
     font-size: ${theme.fontSizes.xxxl};
     line-height: 1.38;
-    font-famaly: ${theme.fonts.main.bold};
+    font-family: ${theme.fonts.main.bold};
   }
 `;

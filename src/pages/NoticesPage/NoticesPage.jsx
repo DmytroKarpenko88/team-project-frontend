@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { selectIsLoading, selectIsLoggedIn } from 'redux/auth/auth-selectors';
 // import Pagination from '@mui/material/Pagination';
 import { Title } from 'components/Notices/Title/Title';
 import { NoticeSearch } from 'components/Notices/NoticeSearch/NoticeSearch';
@@ -10,14 +11,15 @@ import { NoticesFilter } from 'components/Notices/NoticesFilter/NoticesFilter';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import { fetchNotices } from 'redux/notices/notices-operations';
 import Loader from 'components/Loader/Loader';
-// import { ScrollToTopButton } from './ScrollToTopButton/ScrollToTopButton';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
 import {
   getUserCurrentFavorite,
   getUserCurrentNotices,
 } from 'redux/user/user-operations';
-import { selectIsLoading, selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { ScrollToTopButton } from 'components/Notices/ScrollToTopButton/ScrollToTopButton';
+// import { addUserCurrentFavorite } from 'redux/user/user-operations';
+// import { getNoticeById } from 'redux/notices/notices-operations';
 
 function Notices() {
   const [search, setSearch] = useState('');
@@ -44,18 +46,14 @@ function Notices() {
     }
   }, [categoryName, dispatch, isLoggedIn, search]);
 
-  // const handleCategoriesChange = option => {
-  //   // при зміні фільтраціїБ змінює сторінку пагінації на 1
-  //   setCurrentPage(1);
-  //   scroll.scrollToTop();
-  //   console.log('object');
-  // };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
-  // const handlePageChange = (event, page) => {
-  //   setCurrentPage(page);
-  //   // scroll.scrollToTop();
-  //   // код для отримання нових даних, використання фільтрів тощо
-  // };
+  scrollToTop();
 
   return (
     <>
@@ -95,11 +93,9 @@ function Notices() {
             alignItems: 'center',
             marginBottom: '100px',
           }}
-        />
+        /> */}
 
-        
-
-        {/* <ScrollToTopButton /> */}
+        <ScrollToTopButton />
       </Container>
     </>
   );
