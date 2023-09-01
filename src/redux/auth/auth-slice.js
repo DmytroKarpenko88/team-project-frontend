@@ -96,11 +96,12 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.isLoggedIn = true;
-        state.user = {
-          ...state.user,
-          avatarURL: action.payload.data.avatarURL,
-        };
-        state.token = action.payload.token;
+        // state.user = {
+        //   ...state.user,
+        //   avatarURL: action.payload.data.avatarURL,
+        // };
+        // state.token = action.payload.token;
+        state.user = action.payload.data;
         state.isLoading = false;
       })
 
