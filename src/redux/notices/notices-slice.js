@@ -14,6 +14,7 @@ const noticesInitialState = {
   searchQuery: null,
   isLoading: false,
   error: null,
+
   filtredNotices: [],
 };
 
@@ -35,6 +36,10 @@ const noticesSlice = createSlice({
 
   extraReducers: builder =>
     builder
+    .addCase(fetchNotices.pending, state => {
+      state.isLoading = true;
+      state.error = null;
+    })
       .addCase(fetchNotices.fulfilled, (state, action) => {
         state.items = action.payload;
         state.error = null;
@@ -56,7 +61,7 @@ const noticesSlice = createSlice({
       .addCase(addNotice.fulfilled, (state, action) => {
         // console.log('action:', action);
         // state.items.splice(0, 0, action.payload);
-        state.items = action.payload;
+        // state.items = action.payload;
         state.isLoading = false;
         state.error = null;
       })

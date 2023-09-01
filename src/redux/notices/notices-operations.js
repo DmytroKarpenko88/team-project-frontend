@@ -14,6 +14,7 @@ export const fetchNotices = createAsyncThunk(
       const { data } = await axios.get(
         `/api/notices/filter/${categoryName}?search=${search}`
       );
+      console.log(" fetchNoticesData:",  data)
 
       // console.log('data:', data);
 
@@ -58,8 +59,8 @@ export const addNotice = createAsyncThunk(
     // console.log('fields:', fields);
     try {
       const { data } = await axios.post('/api/notices', fields);
-      // console.log('addNotice:', data);
-      return data;
+      console.log('addNoticeData:', data);
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

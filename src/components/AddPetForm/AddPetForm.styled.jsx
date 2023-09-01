@@ -19,8 +19,7 @@ export const AddPetDiv = styled.div`
   @media screen and (min-width: 498px) {
     // width: 458px;
   }
-  @media screen and (min-width: ${theme.breakpoints
-      .mobile}) and (max-width: 767px) {
+  @media screen and (min-width: ${theme.breakpoints.mobile}) and (max-width: 767px) {
     width: 280px;
   }
 
@@ -37,8 +36,7 @@ export const AddPetContainerForm = styled(Form)`
   padding: 20px 8px;
   min-height: 496px;
 
-  @media screen and (min-width: ${theme.breakpoints
-      .mobile}) and (max-width: 767px) {
+  @media screen and (min-width: ${theme.breakpoints.mobile}) and (max-width: 767px) {
     width: 280px;
   }
 
@@ -107,15 +105,11 @@ export const AddPetBtnNext = styled.button`
   svg {
     fill: ${theme.colors.white};
   }
-
-  &:hover,
-  &:focus {
-    background: ${theme.colors.grBlue2};
+  &:hover {
     svg {
       fill: ${theme.colors.white};
     }
   }
-
   @media (min-width: 768px) {
     // font-family: ${theme.fonts.main.semiBold};
   }
