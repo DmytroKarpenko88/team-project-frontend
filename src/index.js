@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import 'modern-normalize';
 import { Global, ThemeProvider } from '@emotion/react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { App } from 'components/App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
@@ -21,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <App />
         </ThemeProvider>
       </BrowserRouter>
+      <ToastContainer position="bottom-right" />
     </PersistGate>
   </Provider>
   //    </React.StrictMode>
