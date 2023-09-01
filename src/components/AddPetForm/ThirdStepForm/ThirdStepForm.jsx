@@ -31,9 +31,10 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
+
   const isPetPhotoFieldValid = Boolean(!errors.petURL && !!data.petURL);
-  console.log("isPetPhotoFieldValid:", isPetPhotoFieldValid)
   const isCommentsFieldValid = Boolean(!errors.describe);
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -75,8 +76,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const handleChange = e => {
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
-    console.log('fieldValue:', fieldValue);
-    console.log('fieldValue:', fieldValue);
+    
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
@@ -93,7 +93,6 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   return (
     <>
       <ThirdStepFormDiv>
-        {/* sex for sell lostFond ingood hands*/}
         <ThirdStepSexPhotoDiv>
           <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data}>
             <ThirdStepFormPhotoDiv>
@@ -111,7 +110,6 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
               )}
               
             </ThirdStepFormPlus>
-            {/* input */}
             <ThirdStepFormImgInput
               type="file"
               id="pet-image"
@@ -127,18 +125,16 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 
-        {/* location price for sell lostFond ingood hands*/}
         <ThirdStepFormTitleContainer>
           <ThirdStepFormTitle htmlFor="describe">
             Comments
             <ThirdStepFormComments
             style={{borderColor: `${!errors.describe? `${theme.colors.blue}`: !isCommentsFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
               type="text"
-              component="textarea"
+              // component="textarea"
               name="describe"
               placeholder="Type of pet"
               onChange={handleChange}
-              // onFocus={focusHandle}
               value={data.describe}
               onBlur={() => validateField('describe', data, setErrors)}
               className={errors.describe ? 'invalid' : ''}
@@ -156,7 +152,6 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
             disabled={isDisabled}
           >
             Done
-            {/* {step === 3 ? 'Done' : 'Next'} */}
             <Paw width="24" height="24" fill="#FEF9F9" />
           </AddPetBtnNext>
         </AddPetBtnItem>
@@ -167,10 +162,10 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
             type="button"
             onClick={backStep}
           >
+
             <AddPetBtnCancelDiv>
               <ArrowLeft width="24" height="24" />
               Back
-              {/* {step === 1 ? 'Cancel' : 'Back'} */}
             </AddPetBtnCancelDiv>
           </AddPetBtnCancel>
         </AddPetBtnItem>
