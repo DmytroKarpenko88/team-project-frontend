@@ -5,7 +5,6 @@ import {
   SecondStepFormDiv,
   SecondStepFormInput,
   SecondStepFormTitle,
-  InputWraper,
 } from './SecondStepForm.styled';
 import {
   AddPetBtnCancel,
@@ -85,11 +84,11 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
     <>
       <SecondStepFormDiv >
         {data.category !== 'pet' && (
-          <InputWraper>
+          <>
             <SecondStepFormTitle htmlFor="title">
               Title of add
               <SecondStepFormInput
-              style={{borderColor: !errors.title  ? `${theme.colors.blue}` : isTitleFieldValid ? null : `${theme.colors.red}`}}
+              style={{borderColor: `${!errors.title ? `${theme.colors.blue}`: !isTitleFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
                 // autoFocus
                 type="text"
                 name="title"
@@ -99,12 +98,13 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
                 onBlur={() => validateField('title', data, setErrors)}
                 className={errors.title ? 'invalid' : ''}
               />
+              {!!errors.title && <ErrorMessage message={errors.title} />}
             </SecondStepFormTitle>
-            {!!errors.title && <ErrorMessage message={errors.title} />}
-          </InputWraper>
+            
+          </>
         )}
 
-        <InputWraper>
+        <>
           <SecondStepFormTitle htmlFor="name">
             Pet's name
             <SecondStepFormInput
@@ -118,17 +118,17 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
               className={errors.title ? 'invalid' : ''}
               required
             />
+            {!!errors.name && <ErrorMessage message={errors.name} />}
           </SecondStepFormTitle>
-          {!!errors.name && <ErrorMessage message={errors.name} />}
-        </InputWraper>
+        </>
 
-        <InputWraper>
+        <>
           <SecondStepFormTitle htmlFor="birthday">
             Date of birth
             <SecondStepFormInput
+            style={{borderColor: `${!errors.birthday ? `${theme.colors.blue}`: !isBirthdayFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
               type="data"
               placeholder="Type date of birth in format DD-MM-YYYY"
-              style={{borderColor: !errors.birthday  ? `${theme.colors.blue}` : isBirthdayFieldValid ? null : `${theme.colors.red}`}}
               name="birthday"
               max={maxDate}
               onChange={handleChange}
@@ -137,11 +137,11 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
               className={errors.birthday ? 'invalid' : ''}
               required
             />
+            {!!errors.birthday && <ErrorMessage message={errors.birthday} />}
           </SecondStepFormTitle>
-          {!!errors.birthday && <ErrorMessage message={errors.birthday} />}
-        </InputWraper>
+        </>
 
-        <InputWraper>
+        <>
           <SecondStepFormTitle htmlFor="type">
             Type
             <SecondStepFormInput
@@ -155,9 +155,9 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
               className={errors.type ? 'invalid' : ''}
               required
             />
+            {!!errors.type && <ErrorMessage message={errors.type} />}
           </SecondStepFormTitle>
-          {!!errors.type && <ErrorMessage message={errors.type} />}
-        </InputWraper>
+        </>
       </SecondStepFormDiv>
 
       <AddPetBtnList>

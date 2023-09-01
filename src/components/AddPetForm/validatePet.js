@@ -32,7 +32,7 @@ export const validatePetSchema = Yup.object().shape({
     .min(2, 'Type must be at least 2 characters')
     .max(30, 'Type must not exceed 30 characters'),
   petURL: Yup.mixed()
-    .required('File is required')
+    .required('Foto is required')
     .test(
       'fileSize',
       'File size must not exceed 3MB',
@@ -52,7 +52,7 @@ export const validatePetSchema = Yup.object().shape({
     'Comments must be between 4 and 120 characters',
     value => {
       if (!value) {
-        return true;
+        return false;
       }
       return value.length >= 4 && value.length <= 120;
     }
