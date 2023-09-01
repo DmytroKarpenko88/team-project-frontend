@@ -106,6 +106,7 @@ export const AddPetBtnNext = styled.button`
     fill: ${theme.colors.white};
   }
   &:hover {
+    background-color: rgb(118, 184, 245);
     svg {
       fill: ${theme.colors.white};
     }
