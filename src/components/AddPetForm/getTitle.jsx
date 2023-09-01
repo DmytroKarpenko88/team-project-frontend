@@ -2,12 +2,12 @@ const getTitle = data => {
   let title = 'Add';
   switch (data.category) {
     case 'sell':
-      title = `${title} pet for sale`;
+      title = `${title} pet for sell`;
       break;
-    case 'lostFound':
+    case 'lost-found':
       title = `${title} lost or found pet`;
       break;
-    case 'hands':
+    case 'in-good-hands':
       title = `${title} pet for 'in good hands'`;
       break;
     default:

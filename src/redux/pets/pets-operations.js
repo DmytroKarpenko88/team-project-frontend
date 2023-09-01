@@ -9,10 +9,9 @@ export const fetchPets = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axios.get('/api/pets/getAll');
-
       return data.data.pets;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.massage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -20,37 +19,22 @@ export const fetchPets = createAsyncThunk(
 export const addPet = createAsyncThunk(
   'pets/addPet',
   async (newPet, thunkAPI) => {
-    // console.log('newPet:', newPet);
     try {
       const { data } = await axios.post('/api/pets/add', newPet);
-      toast.success('Pet added', { position: 'bottom-right' });
+      toast.success('Pet added');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.massage);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-// export const deletePet = createAsyncThunk(
-//   'pets/deletePet',
-//   async (petId, thunkAPI) => {
-//     console.log('Received petId for deletion:', petId);
-//     try {
-//       const { data } = await axios.delete(`/api/pets/delete/${petId}`);
-//       toast.success('Pet deleted', { position: 'bottom-right' });
-//       return data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.massage);
-//     }
-//   }
-// );
 
 export const deletePet = createAsyncThunk(
   'pets/deletePet',
   async (petId, thunkAPI) => {
     try {
       const { data } = await axios.delete(`/api/pets/delete/${petId}`);
-
+      toast.success('Pet deleted');
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -66,12 +66,11 @@ const noticesSlice = createSlice({
         state.error = null;
       })
       .addCase(removeNotice.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.items = state.items.filter(item => item._id !== action.payload.id);
-        // console.log('state.items:', state.items);
-
         state.isLoading = false;
         state.error = null;
+        state.items = state.items.filter(
+          item => item._id !== action.payload.id
+        );
       })
       .addCase(filterNotice.fulfilled, (state, action) => {
         state.filtredNotices = action.payload;
