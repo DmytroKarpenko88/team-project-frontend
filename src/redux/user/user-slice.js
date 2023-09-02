@@ -45,16 +45,10 @@ const userSlice = createSlice({
       //   state.isLoggedIn = true;
       // })
       .addCase(addUserCurrentFavorite.fulfilled, (state, action) => {
-        // console.log('action:', action.payload);
-        // const index = state.userFavoriteNotices.findIndex(
-        //   notice => notice._id === action.payload.notice._id
-        // );
-        // state.userFavoriteNotices = action.payload.notice;
-
-        state.userFavoriteNotices = state.userFavoriteNotices.filter(
-          it => it._id !== action.payload._id
+        state.userFavoriteNotices = state.userFavoriteNotices.filter(it =>
+          action.payload.favorites.includes(it._id)
         );
-
+        state.userFavoriteNoticesID = action.payload.favorites;
         state.isLoading = false;
         state.isLoggedIn = true;
       })

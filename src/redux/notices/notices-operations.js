@@ -14,7 +14,7 @@ export const fetchNotices = createAsyncThunk(
       const { data } = await axios.get(
         `/api/notices/filter/${categoryName}?search=${search}`
       );
-      console.log(" fetchNoticesData:",  data)
+      // console.log(" fetchNoticesData:",  data)
 
       // console.log('data:', data);
 

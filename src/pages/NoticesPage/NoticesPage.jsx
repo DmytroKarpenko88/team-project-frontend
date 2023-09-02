@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectIsLoggedIn, } from 'redux/auth/auth-selectors';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { selectNoticesIsLoading } from 'redux/notices/notices-selectors';
 import { selectAllNotices } from 'redux/notices/notices-selectors';
 // import Pagination from '@mui/material/Pagination';
@@ -27,11 +27,10 @@ function Notices() {
   const [search, setSearch] = useState('');
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isLoading = useSelector(selectNoticesIsLoading);
-  console.log("isLoading:", isLoading)
-  const allNotices = useSelector(selectAllNotices)
+
+  const allNotices = useSelector(selectAllNotices);
   const dispatch = useDispatch();
   const { categoryName } = useParams();
-  console.log("categoryName:", categoryName)
 
   useEffect(() => {
     if (
@@ -65,7 +64,7 @@ function Notices() {
 
   return (
     <>
-      {!allNotices && <Loader />}
+      {!allNotices && isLoading && <Loader />}
       <Container>
         <Title>Find your favorite pet</Title>
 
