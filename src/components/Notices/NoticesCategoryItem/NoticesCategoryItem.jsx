@@ -127,83 +127,87 @@ export const NoticesCategoryItem = ({ notice }) => {
   };
 
   return (
-    <Item>
-      <ImgContainer>
-        <Img
-          onClick={toggleNoticeModal}
-          src={notice.petURL ? notice.petURL : fotoAlternate}
-          alt=""
-        />
+    <>
+      {notice && (
+        <Item>
+          <ImgContainer>
+            <Img
+              onClick={toggleNoticeModal}
+              src={notice.petURL ? notice.petURL : fotoAlternate}
+              alt=""
+            />
 
-        {notice.category.title ? (
-          <FilterStatus>{notice.category.title}</FilterStatus>
-        ) : (
-          <FilterStatus></FilterStatus>
-        )}
+            {notice.category.title ? (
+              <FilterStatus>{notice.category.title}</FilterStatus>
+            ) : (
+              <FilterStatus></FilterStatus>
+            )}
 
-        <HeartBtn
-          type="button"
-          className={favorite ? 'heart favorite' : 'heart'}
-          onClick={
-            // () => setFavorite(!favorite)
-            handleAddInFavorite
-          }
-        >
-          <Heart />
-        </HeartBtn>
+            <HeartBtn
+              type="button"
+              className={favorite ? 'heart favorite' : 'heart'}
+              onClick={
+                // () => setFavorite(!favorite)
+                handleAddInFavorite
+              }
+            >
+              <Heart />
+            </HeartBtn>
 
-        {currentUser.email === notice._owner.email && (
-          <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
-            <Trash />
-          </DeleteNoticeBtn>
-        )}
+            {currentUser.email === notice._owner.email && (
+              <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
+                <Trash />
+              </DeleteNoticeBtn>
+            )}
 
-        <ListPetInfo>
-          <LocationItem>
-            <Location />
-            {locationSlice(notice.location)}
-          </LocationItem>
+            <ListPetInfo>
+              <LocationItem>
+                <Location />
+                {locationSlice(notice.location)}
+              </LocationItem>
 
-          <AgeItem>
-            <Clock />
-            {notice.birthday ? converterAge(notice.birthday) : '1 year'}
-          </AgeItem>
+              <AgeItem>
+                <Clock />
+                {notice.birthday ? converterAge(notice.birthday) : '1 year'}
+              </AgeItem>
 
-          <SexItem>
-            {notice.sex === 'male' ? <Male /> : <Female />}
-            {notice.sex}
-          </SexItem>
-        </ListPetInfo>
-      </ImgContainer>
+              <SexItem>
+                {notice.sex === 'male' ? <Male /> : <Female />}
+                {notice.sex}
+              </SexItem>
+            </ListPetInfo>
+          </ImgContainer>
 
-      <TextItem>{titleFormat(notice.title)}</TextItem>
-      <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
-        <span>Learn more</span>
-        <span>
-          <Paw />
-        </span>
-      </LoadMoreBtn>
+          <TextItem>{titleFormat(notice.title)}</TextItem>
+          <LoadMoreBtn type="button" onClick={toggleNoticeModal}>
+            <span>Learn more</span>
+            <span>
+              <Paw />
+            </span>
+          </LoadMoreBtn>
 
-      {/* modals */}
-      {noticeModalShow && (
-        <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
+          {/* modals */}
+          {noticeModalShow && (
+            <NoticeModal show={noticeModalShow} onHide={toggleNoticeModal} />
+          )}
+
+          {modalDeleteShow && (
+            <ModalDelete
+              show={modalDeleteShow}
+              onHide={toggleModalDelete}
+              onExit={handleDeleteOwnNotice}
+            />
+          )}
+
+          {showAttentionModal && (
+            <ModalAttention
+              show={showAttentionModal}
+              onHide={toggleAttentionModal}
+            />
+          )}
+        </Item>
       )}
-
-      {modalDeleteShow && (
-        <ModalDelete
-          show={modalDeleteShow}
-          onHide={toggleModalDelete}
-          onExit={handleDeleteOwnNotice}
-        />
-      )}
-
-      {showAttentionModal && (
-        <ModalAttention
-          show={showAttentionModal}
-          onHide={toggleAttentionModal}
-        />
-      )}
-    </Item>
+    </>
   );
 };
 

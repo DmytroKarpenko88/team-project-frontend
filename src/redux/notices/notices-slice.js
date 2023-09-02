@@ -36,10 +36,10 @@ const noticesSlice = createSlice({
 
   extraReducers: builder =>
     builder
-    .addCase(fetchNotices.pending, state => {
-      state.isLoading = true;
-      state.error = null;
-    })
+      .addCase(fetchNotices.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
       .addCase(fetchNotices.fulfilled, (state, action) => {
         state.items = action.payload;
         state.error = null;
@@ -59,21 +59,20 @@ const noticesSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addNotice.fulfilled, (state, action) => {
-        // console.log('action:', action);
+        console.log('action:', action.payload);
         // state.items.splice(0, 0, action.payload);
-        // state.items = action.payload;
+        state.items = [...state.items, action.payload];
         state.isLoading = false;
         state.error = null;
       })
-      .addCase(removeNotice.fulfilled, (state, action) => {
+      .addCase(removeNotice.fulfilled, (state, { payload }) => {
+        console.log('payload:', payload);
         state.isLoading = false;
         state.error = null;
-        state.items = state.items.filter(
-          item => item._id !== action.payload.id
-        );
+        state.items = state.items.filter(item => item._id !== payload.id);
       })
-      .addCase(filterNotice.fulfilled, (state, action) => {
-        state.filtredNotices = action.payload;
+      .addCase(filterNotice.fulfilled, (state, { payload }) => {
+        state.filtredNotices = payload;
         state.isLoading = false;
         state.error = null;
       }),

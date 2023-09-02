@@ -72,6 +72,7 @@ export const removeNotice = createAsyncThunk(
   async (_id, { rejectWithValue }) => {
     try {
       await axios.delete(`/api/notices/${_id}`);
+      console.log('_id:', _id);
 
       return _id;
     } catch (error) {

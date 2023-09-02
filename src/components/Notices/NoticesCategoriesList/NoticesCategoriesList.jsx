@@ -49,8 +49,8 @@ export const NoticesCategoriesList = () => {
   return (
     <NoticeList>
       {noticesForList.length > 0 ? (
-        noticesForList?.map(item => (
-          <NoticesCategoryItem key={item._id} notice={item} />
+        noticesForList?.map((item, index) => (
+          <NoticesCategoryItem key={index} notice={item} />
         ))
       ) : (
         <TextBox>

@@ -19,11 +19,9 @@ export const deleteUserCurrentNotices = createAsyncThunk(
   'auth/deleteUserCurrentNotices',
   async (noticeId, thunkAPI) => {
     try {
-      const { data } = await axios.delete(
-        `/api/users/current/notices/${noticeId}`
-      );
-      // console.log('dataCurrentNotices:', data);
-      return data;
+      await axios.delete(`/api/users/current/notices/${noticeId}`);
+
+      return noticeId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

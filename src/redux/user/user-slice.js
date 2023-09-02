@@ -31,19 +31,25 @@ const userSlice = createSlice({
     builder
       .addCase(getUserCurrentNotices.fulfilled, (state, action) => {
         state.userNotices = action.payload;
+
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      // .addCase(deleteUserCurrentNotices.fulfilled, (state, action) => {
-      //   const index = state.items.findIndex(
-      //     notice => notice._id === action.payload.notice.id
-      //   );
-      //   console.log('action.payload.notice.id:', action.payload.notice.id);
+      .addCase(deleteUserCurrentNotices.fulfilled, (state, { payload }) => {
+        state.userNotices = state.userNotices.filter(
+          notice => notice._id !== payload
+        );
 
-      //   state.items[index].favorite = action.payload.notice.favorite;
-      //   state.isLoading = false;
-      //   state.isLoggedIn = true;
-      // })
+        // const index = state.items.findIndex(
+        //   notice => notice._id === action.payload.notice.id
+        // );
+        // console.log('action.payload.notice.id:', action.payload.notice.id);
+
+        // state.items[index].favorite = action.payload.notice.favorite;
+
+        state.isLoading = false;
+        state.isLoggedIn = true;
+      })
       .addCase(addUserCurrentFavorite.fulfilled, (state, action) => {
         state.userFavoriteNotices = state.userFavoriteNotices.filter(it =>
           action.payload.favorites.includes(it._id)
