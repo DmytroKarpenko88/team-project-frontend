@@ -48,9 +48,19 @@ export const NoticeModal = props => {
     setShowAttentionModal(!showAttentionModal);
   };
 
-  const { _id, birthday, describe, location, name, sex, title, type, petURL } =
-    noticeById;
-
+  const {
+    _id,
+    birthday,
+    describe,
+    location,
+    name,
+    sex,
+    title,
+    type,
+    petURL,
+    price,
+  } = noticeById;
+  console.log(noticeById);
   const category = noticeById['category'];
   const owner = noticeById['_owner'];
 
@@ -123,6 +133,10 @@ export const NoticeModal = props => {
                   <Info>
                     <InfoName>Sex:</InfoName>
                     <InfoValues>{sex}</InfoValues>
+                  </Info>
+                  <Info>
+                    <InfoName>Price:</InfoName>
+                    <InfoValues>{price ? price : 'xxxxxx'}</InfoValues>
                   </Info>
                   <Info>
                     <InfoName>Email:</InfoName>
