@@ -60,7 +60,7 @@ export const NoticeModal = props => {
     petURL,
     price,
   } = noticeById;
-  console.log(noticeById);
+
   const category = noticeById['category'];
   const owner = noticeById['_owner'];
 
@@ -134,10 +134,14 @@ export const NoticeModal = props => {
                     <InfoName>Sex:</InfoName>
                     <InfoValues>{sex}</InfoValues>
                   </Info>
-                  <Info>
-                    <InfoName>Price:</InfoName>
-                    <InfoValues>{price ? price : 'xxxxxx'}</InfoValues>
-                  </Info>
+                  {category.code === 'sell' && (
+                    <Info>
+                      <InfoName>Price:</InfoName>
+                      <InfoValues>
+                        {isLoggedIn ? `${price} ₴` : 'xxxxxxx'}
+                      </InfoValues>
+                    </Info>
+                  )}
                   <Info>
                     <InfoName>Email:</InfoName>
                     <Contact href="mailto:user@mail.com">{owner.email}</Contact>
