@@ -30,10 +30,12 @@ import { converterAge } from 'utils/converterAge';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
 import { useParams } from 'react-router-dom';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
-import { getNoticeById } from 'redux/notices/notices-operations';
-import { addUserCurrentFavorite } from 'redux/user/user-operations';
-import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
-import { deleteUserCurrentNotices } from 'redux/user/user-operations.js';
+import {
+  addUserCurrentFavorite,
+  deleteUserCurrentNotices,
+  getNoticeById,
+} from 'redux/notices/notices-operations';
+import { selectUserCurrentFavoriteNoticesID } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
   // console.log('notice:', notice);
@@ -49,7 +51,6 @@ export const NoticesCategoryItem = ({ notice }) => {
   const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
   const userFavoriteNoticesID = useSelector(selectUserCurrentFavoriteNoticesID);
-  // console.log(currentUser);
 
   useEffect(() => {
     if (userFavoriteNoticesID.includes(notice._id)) {

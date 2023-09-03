@@ -27,19 +27,22 @@ const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing, isLoggedIn } = useAuth();
+  const { isLoading, isLoggedIn } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-    
-    if(isLoggedIn) {
-      dispatch(getUserProfile())
+    // dispatch(fetchCurrentUser());
+    // dispatch(getUserProfile());
+
+    if (isLoggedIn) {
+      dispatch(getUserProfile());
     }
   }, [dispatch, isLoggedIn]);
 
   return (
     <>
-      {!isRefreshing ? (
+      {/* {isLoading && <Loader />} */}
+
+      {!isLoading ? (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Main />} />

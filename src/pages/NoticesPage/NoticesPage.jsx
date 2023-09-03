@@ -11,14 +11,15 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { AddPetButton } from 'components/Notices/AddPetButton/AddPetButton';
 import { NoticesFilter } from 'components/Notices/NoticesFilter/NoticesFilter';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import { fetchNotices } from 'redux/notices/notices-operations';
+import {
+  fetchNotices,
+  getUserCurrentFavorite,
+  getUserCurrentNotices,
+} from 'redux/notices/notices-operations';
 import Loader from 'components/Loader/Loader';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
-import {
-  getUserCurrentFavorite,
-  getUserCurrentNotices,
-} from 'redux/user/user-operations';
+
 import { ScrollToTopButton } from 'components/Notices/ScrollToTopButton/ScrollToTopButton';
 // import { addUserCurrentFavorite } from 'redux/user/user-operations';
 // import { getNoticeById } from 'redux/notices/notices-operations';
@@ -65,25 +66,26 @@ function Notices() {
   return (
     <>
       {!allNotices && isLoading && <Loader />}
-      <Container>
-        <Title>Find your favorite pet</Title>
+      {allNotices && (
+        <Container>
+          <Title>Find your favorite pet</Title>
 
-        <NoticeSearch onSubmitNoticeForm={setSearch} />
+          <NoticeSearch onSubmitNoticeForm={setSearch} />
 
-        <Filter>
-          <NoticesCategoriesNav />
+          <Filter>
+            <NoticesCategoriesNav />
 
-          <Boxing>
-            <NoticesFilter />
-            <AddPetButton />
-          </Boxing>
-        </Filter>
+            <Boxing>
+              <NoticesFilter />
+              <AddPetButton />
+            </Boxing>
+          </Filter>
 
-        {/* <ScrollToTopButton /> */}
-        <NoticesCategoriesList search={search} />
-        {/* <NoticesCardDetail /> */}
+          {/* <ScrollToTopButton /> */}
+          <NoticesCategoriesList search={search} />
+          {/* <NoticesCardDetail /> */}
 
-        {/* {totalPages > 8 && (
+          {/* {totalPages > 8 && (
         <Pagination
           count={Math.ceil(totalPages / 8)}
           size="large"
@@ -102,8 +104,9 @@ function Notices() {
           }}
         /> */}
 
-        <ScrollToTopButton />
-      </Container>
+          <ScrollToTopButton />
+        </Container>
+      )}
     </>
   );
 }

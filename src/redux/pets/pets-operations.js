@@ -22,7 +22,7 @@ export const addPet = createAsyncThunk(
     try {
       const { data } = await axios.post('/api/pets/add', newPet);
       toast.success('Pet added');
-      return data;
+      return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -77,30 +77,38 @@ export const logOut = createAsyncThunk(
   }
 );
 
-export const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    // console.log('persistedToken:', persistedToken);
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-    try {
-      token.set(persistedToken);
-      const { data } = await axios.get('/api/users/current');
+// export const fetchCurrentUser = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     console.log('state:', state);
 
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//     const persistedToken = state.auth.token;
+//     // console.log('persistedToken:', persistedToken);
+//     if (!persistedToken) {
+//       return thunkAPI.rejectWithValue('Unable to fetch user');
+//     }
+//     try {
+//       token.set(persistedToken);
+//       const { data } = await axios.get('/api/users/current');
+
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const getUserProfile = createAsyncThunk(
   'auth/user',
   async (_, thunkAPI) => {
+    const localToken = thunkAPI.getState().auth.token;
+    if (!localToken) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
     try {
+      token.set(localToken);
       const { data } = await axios.get('/api/users/profile');
 
       return data.data.userInfo;

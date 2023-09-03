@@ -11,18 +11,22 @@ import PetsData from 'components/UserCard/PetsData/PetsData';
 import { PlusSmall } from 'components/icons';
 import {
   selectIsRegistered,
+  selectUser,
   // selectUser
 } from 'redux/auth/auth-selectors';
 import { ModalCongrats } from 'components/Modals';
 import { fetchPets } from 'redux/pets/pets-operations';
 import { useLocation } from 'react-router-dom';
+import { useAuth } from 'hooks/useAuth';
+import Loader from 'components/Loader/Loader';
 
 const User = () => {
   const [modalCongratsShow, setModalCongratsShow] = useState(true);
-  const isRegistered = useSelector(selectIsRegistered);
+
   const location = useLocation();
   const dispatch = useDispatch();
-  // const user = useSelector(selectUser);
+  const { isLoggedIn, isLoading, isRegistered, user } = useAuth();
+
   // console.log('user:', user);
   useEffect(() => {
     dispatch(fetchPets());
@@ -30,6 +34,7 @@ const User = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       {isRegistered && modalCongratsShow && (
         <ModalCongrats
           show={modalCongratsShow}
@@ -37,22 +42,24 @@ const User = () => {
         />
       )}
 
-      <MainContainer>
-        <div>
-          <Title>My information:</Title>
-          <UserData />
-        </div>
+      {isLoggedIn && user && (
+        <MainContainer>
+          <div>
+            <Title>My information:</Title>
+            {user && <UserData />}
+          </div>
 
-        <div style={{ width: '100%' }}>
-          <PetsContainer>
-            <Title>My pets:</Title>
-            <AddPetBtn to="/add-pet" state={{ from: `${location.pathname}` }}>
-              Add Pet <PlusSmall />
-            </AddPetBtn>
-          </PetsContainer>
-          <PetsData />
-        </div>
-      </MainContainer>
+          <div style={{ width: '100%' }}>
+            <PetsContainer>
+              <Title>My pets:</Title>
+              <AddPetBtn to="/add-pet" state={{ from: `${location.pathname}` }}>
+                Add Pet <PlusSmall />
+              </AddPetBtn>
+            </PetsContainer>
+            <PetsData />
+          </div>
+        </MainContainer>
+      )}
     </>
   );
 };

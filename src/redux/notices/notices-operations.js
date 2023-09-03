@@ -26,19 +26,6 @@ export const fetchNotices = createAsyncThunk(
   }
 );
 
-// export const getNoticeById = createAsyncThunk(
-//   'notices/getNoticeById',
-//   async (_id, thunkAPI) => {
-//     try {
-//       const { data } = await axios.get(`/api/notices/notice/${_id}`);
-
-//       return data.result;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 export const getNoticeById = createAsyncThunk(
   'notices/fetchOne',
   async (noticeId, thunkAPI) => {
@@ -90,6 +77,63 @@ export const filterNotice = createAsyncThunk(
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getUserCurrentNotices = createAsyncThunk(
+  'notices/userCurrentNotices',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get('/api/users/current/notices');
+      // console.log('dataCurrentNotices:', data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteUserCurrentNotices = createAsyncThunk(
+  'notices/deleteUserCurrentNotices',
+  async (noticeId, thunkAPI) => {
+    try {
+      await axios.delete(`/api/users/current/notices/${noticeId}`);
+
+      return noticeId;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addUserCurrentFavorite = createAsyncThunk(
+  'notices/addUserCurrentFavorite',
+  async (noticeId, thunkAPI) => {
+    // console.log('noticeId:', noticeId);
+    try {
+      const { data } = await axios.patch(
+        `/api/users/current/favorites/${noticeId}`
+      );
+      // console.log('addUserCurrentFavorite:', data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getUserCurrentFavorite = createAsyncThunk(
+  'notices/getUserCurrentFavorite',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await axios.get(`/api/users/current/favorites`);
+      // console.log('data favorite', data);
+      return data;
+    } catch (error) {
+      console.log('error:', error);
+
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
