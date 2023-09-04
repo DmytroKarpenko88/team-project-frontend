@@ -38,7 +38,6 @@ import {
 import { selectUserCurrentFavoriteNoticesID } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
-  // console.log('notice:', notice);
   const dispatch = useDispatch();
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);

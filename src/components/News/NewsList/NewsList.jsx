@@ -4,27 +4,19 @@ import { NewsItem } from '../NewsItem/NewsItem';
 import { useSelector } from 'react-redux';
 import { selectAllNews } from 'redux/news/news-selectors';
 
-
-export const NewsList = ({search}) => {
-  const news = useSelector(selectAllNews); 
-
-
-  console.log(news);
+export const NewsList = ({ search }) => {
+  const news = useSelector(selectAllNews);
 
   const filterContactHandler = () => {
     const normalizedFilter = search.toLocaleLowerCase();
     if (!search) {
       return news;
     }
-    return news
-      .filter(item =>
-        item.title.toLocaleLowerCase().includes(normalizedFilter)
-      )
-    ;
+    return news.filter(item =>
+      item.title.toLocaleLowerCase().includes(normalizedFilter)
+    );
   };
   const filterNews = filterContactHandler();
-
-
 
   return (
     <>

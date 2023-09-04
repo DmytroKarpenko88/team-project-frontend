@@ -24,14 +24,12 @@ const petsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
-        console.log('payload:', payload);
         state.error = null;
         state.pets = payload;
 
         state.isLoading = false;
       })
       .addCase(addPet.fulfilled, (state, { payload }) => {
-        console.log('payload:', payload);
         state.error = null;
         state.pets = [...state.pets, payload];
         state.isLoading = false;

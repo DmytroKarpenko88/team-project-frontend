@@ -3,7 +3,6 @@ import {
   register,
   login,
   logOut,
-  fetchCurrentUser,
   getUserProfile,
   updateUser,
 } from './auth-operations';
@@ -60,7 +59,7 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       // .addCase(fetchCurrentUser.fulfilled, (state, action) => {
-      //   console.log('action:', action);
+
       //   state.user.name = action.payload.name;
       //   state.user.email = action.payload.email;
       //   state.isLoggedIn = true;

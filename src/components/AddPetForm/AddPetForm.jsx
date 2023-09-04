@@ -66,7 +66,6 @@ const AddPetForm = () => {
         type: data.type,
         describe: data.describe,
       };
-      // console.log(' pets:', pets);
 
       const formData = new FormData();
       for (let keys in pets) {
@@ -99,11 +98,9 @@ const AddPetForm = () => {
 
       if (data.category === 'in-good-hands') {
         navigate('/notices/in-good-hands');
-        
       }
       if (data.category === 'lost-found') {
         navigate('/notices/lost-found');
-        
       }
 
       return;
@@ -133,11 +130,8 @@ const AddPetForm = () => {
     }
   };
 
-  // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
-  // const backPage = step === 1 ? location.state?.from ?? '/user' : '';
   const backPage = location.state?.from ?? '/user';
 
-  // console.log('data:', data);
   return (
     <AddPetDiv data={data} step={step}>
       <Formik

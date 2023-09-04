@@ -93,7 +93,7 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   const handleChange = e => {
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
-    // console.log('fieldValue:', fieldValue);
+
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 

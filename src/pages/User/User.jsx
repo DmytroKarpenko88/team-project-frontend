@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import UserData from 'components/UserCard/UserData/UserData';
 import {
   AddPetBtn,
@@ -9,14 +10,8 @@ import {
 } from 'components/UserCard/UserData/UserData.styled';
 import PetsData from 'components/UserCard/PetsData/PetsData';
 import { PlusSmall } from 'components/icons';
-import {
-  selectIsRegistered,
-  selectUser,
-  // selectUser
-} from 'redux/auth/auth-selectors';
 import { ModalCongrats } from 'components/Modals';
 import { fetchPets } from 'redux/pets/pets-operations';
-import { useLocation } from 'react-router-dom';
 import { useAuth } from 'hooks/useAuth';
 import Loader from 'components/Loader/Loader';
 
@@ -27,7 +22,6 @@ const User = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, isLoading, isRegistered, user } = useAuth();
 
-  // console.log('user:', user);
   useEffect(() => {
     dispatch(fetchPets());
   }, [dispatch]);

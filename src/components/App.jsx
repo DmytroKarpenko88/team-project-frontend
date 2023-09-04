@@ -1,18 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
-
-import // getUserCurrentFavorite,
-// getUserCurrentNotices,
-'redux/user/user-operations';
-
+import { getUserProfile } from 'redux/auth/auth-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
+
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from '../pages/AddPet/AddPet';
-
 import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';
 import Loader from './Loader/Loader';
@@ -30,18 +25,11 @@ export const App = () => {
   const { isLoading, isLoggedIn } = useAuth();
 
   useEffect(() => {
-    // dispatch(fetchCurrentUser());
-    // dispatch(getUserProfile());
-
-    if (isLoggedIn) {
-      dispatch(getUserProfile());
-    }
+    dispatch(getUserProfile());
   }, [dispatch, isLoggedIn]);
 
   return (
     <>
-      {/* {isLoading && <Loader />} */}
-
       {!isLoading ? (
         <Routes>
           <Route path="/" element={<SharedLayout />}>

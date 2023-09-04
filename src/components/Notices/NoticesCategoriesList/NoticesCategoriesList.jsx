@@ -30,7 +30,6 @@ export const NoticesCategoriesList = () => {
     try {
       if (categoryName === 'own') {
         setNoticesForList(ownNotices);
-        console.log('ownNotices:', ownNotices);
       } else if (categoryName === 'favorite') {
         setNoticesForList(userFavotites);
       } else if (categoryName === 'sell' || 'lost-found' || 'in-good-hands') {

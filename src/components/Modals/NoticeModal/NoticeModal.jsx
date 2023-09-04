@@ -69,7 +69,7 @@ export const NoticeModal = props => {
   //   const phoneNumberFormatted = owner.phone.replace(/\D/g, '');
   //   const telLink = `tel:${phoneNumberFormatted}`;
 
-  //   console.log('telLink:', telLink);
+
   //   return telLink;
   // };
 
