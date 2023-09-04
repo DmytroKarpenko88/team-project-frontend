@@ -16,7 +16,6 @@ import { ArrowLeft, Paw } from 'components/icons';
 import { Link } from 'react-router-dom';
 
 const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
-  // console.log("values:", values)
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
@@ -24,14 +23,8 @@ const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
     else setIsDisabled(false);
   }, [data.category]);
 
-  // console.log(isDisabled);
-
   const handleChange = e => {
     const { name, value } = e.target;
-    console.log(' value :', value);
-    console.log('name:', name);
-    // console.log(" value :",  value )
-    // console.log("name:", name)
 
     setData(prevState => ({
       ...prevState,

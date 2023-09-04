@@ -15,7 +15,6 @@ export const NoticeSearch = ({ onSubmitNoticeForm }) => {
   // const location = useLocation();
   // const locationIsLoginUser = location.pathname.split('/')[2];
   // const { categoryName } = useParams();
-  // console.log(categoryName);
 
   // useEffect(() => {
   //   if (!search) onSubmitNoticeForm(search);

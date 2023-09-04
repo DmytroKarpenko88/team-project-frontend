@@ -31,7 +31,7 @@ const petsSlice = createSlice({
       })
       .addCase(addPet.fulfilled, (state, { payload }) => {
         state.error = null;
-        state.pets.push(payload);
+        state.pets = [...state.pets, payload];
         state.isLoading = false;
       })
       .addCase(deletePet.fulfilled, (state, { payload }) => {

@@ -23,14 +23,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectNoticeById,
   selectNoticesIsLoading,
+  selectUserCurrentFavoriteNoticesID,
 } from 'redux/notices/notices-selectors';
 import Loader from 'components/Loader/Loader';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
 import { useEffect, useState } from 'react';
 import { Notify } from 'notiflix';
-import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
-import { addUserCurrentFavorite } from 'redux/user/user-operations';
+import { addUserCurrentFavorite } from 'redux/notices/notices-operations';
 import { ModalAttention } from '..';
+
 // import { useEffect } from 'react';
 
 export const NoticeModal = props => {
@@ -68,7 +69,7 @@ export const NoticeModal = props => {
   //   const phoneNumberFormatted = owner.phone.replace(/\D/g, '');
   //   const telLink = `tel:${phoneNumberFormatted}`;
 
-  //   console.log('telLink:', telLink);
+
   //   return telLink;
   // };
 

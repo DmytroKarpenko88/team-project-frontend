@@ -13,7 +13,6 @@ const friendsSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getAllFriends.fulfilled, (state, action) => {
-      // console.log(" action:",  action)
       state.friends = action.payload;
       state.isLoggedIn = true;
       state.isLoading = false;

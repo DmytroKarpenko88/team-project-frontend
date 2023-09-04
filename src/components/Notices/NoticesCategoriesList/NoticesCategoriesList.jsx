@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAllNotices } from 'redux/notices/notices-selectors';
+import {
+  selectAllNotices,
+  selectUserCurrentFavoriteNotices,
+  selectUserCurrentNotices,
+} from 'redux/notices/notices-selectors';
 import { NoticesCategoryItem } from '../NoticesCategoryItem/NoticesCategoryItem';
 import { NoticeList, Text, TextBox } from './NoticesCategoriesList.styled';
 import { useParams } from 'react-router-dom';
-import {
-  selectUserCurrentFavoriteNotices,
-  selectUserCurrentNotices,
-} from 'redux/user/user-selectors';
+
 import { useAuth } from 'hooks/useAuth';
 import {
   getUserCurrentFavorite,
   getUserCurrentNotices,
-} from 'redux/user/user-operations';
+} from 'redux/notices/notices-operations';
 
 export const NoticesCategoriesList = () => {
   const { isLoggedIn } = useAuth();

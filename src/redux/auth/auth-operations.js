@@ -17,10 +17,9 @@ export const register = createAsyncThunk(
   'auth/register',
 
   async (credential, thunkAPI) => {
-    // console.log('credential:', credential);
     try {
       const { data } = await axios.post('/api/auth/register', credential);
-      // console.log('register:', data);
+
       token.set(data.user.token);
       return data;
     } catch (error) {
@@ -44,7 +43,6 @@ export const login = createAsyncThunk(
   async (credential, thunkAPI) => {
     try {
       const { data } = await axios.post('/api/auth/login', credential);
-      // console.log('login:', data);
 
       token.set(data.token);
       return data;
@@ -77,30 +75,37 @@ export const logOut = createAsyncThunk(
   }
 );
 
-export const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    // console.log('persistedToken:', persistedToken);
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-    try {
-      token.set(persistedToken);
-      const { data } = await axios.get('/api/users/current');
+// export const fetchCurrentUser = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
 
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+//     const persistedToken = state.auth.token;
+
+//     if (!persistedToken) {
+//       return thunkAPI.rejectWithValue('Unable to fetch user');
+//     }
+//     try {
+//       token.set(persistedToken);
+//       const { data } = await axios.get('/api/users/current');
+
+//       return data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const getUserProfile = createAsyncThunk(
   'auth/user',
   async (_, thunkAPI) => {
+    const localToken = thunkAPI.getState().auth.token;
+    if (!localToken) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
     try {
+      token.set(localToken);
       const { data } = await axios.get('/api/users/profile');
 
       return data.data.userInfo;
