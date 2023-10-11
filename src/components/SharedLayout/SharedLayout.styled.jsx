@@ -17,6 +17,7 @@ export const LayoutContainer = styled.div`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    width: 1280px;
     padding: 20px 16px 0;
 
     @media (min-device-pixel-ratio: 2),

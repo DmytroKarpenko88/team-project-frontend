@@ -7,13 +7,15 @@ export const HeaderContainer = styled.div`
   width: 100%;
   height: 48px;
   position: static;
+  margin-left: auto;
+  margin-right: auto;
   top: 0;
   z-index: 50;
   padding: 2px 0;
   background-color: ${theme.colors.bgColor};
 
-  @media screen and (max-width: 1199px) {
-    width: calc(100% - 40px);
+  @media screen and (max-width: 1279px) {
+    max-width: 704px;
     height: 44px;
   }
 
@@ -29,12 +31,12 @@ export const HeaderContainer = styled.div`
 
 export const HeaderWrapper = styled.div`
   margin: auto;
-  max-width: 1280px;
+  width: 100%;
   height: 100%;
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   @media screen and (max-width: 1199px) {
     max-width: 780px;
@@ -57,7 +59,7 @@ export const HeaderMenu = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row-reverse;
     // margin-right: auto;
-    width: 957px;
+    max-width: 957px;
     justify-content: space-between;
     align-items: baseline;
   }
@@ -92,7 +94,7 @@ export const UserNavContainer = styled.div`
 export const UserNavBox = styled.div`
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
 `;
 
 export const IconOpenMenu = styled.div`

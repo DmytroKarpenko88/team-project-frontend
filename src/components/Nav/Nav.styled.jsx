@@ -73,7 +73,11 @@ export const NavMenuItemLink = styled(Link)`
   color: ${theme.colors.black};
   font-size: ${theme.fontSizes.l};
   text-decoration: none;
+  font-style: normal;
+  font-size: 20.28px;
+  font-weight: 500;
   margin-right: 40px;
+  letter-spacing: 0.8px;
   transition: all ${theme.transition.main};
   @media screen and (max-width: 1279px) {
     margin: 0;

@@ -5,10 +5,12 @@ import { theme } from 'styles';
 export const Auth = styled.div`
   @media (min-width: 768px) {
     display: flex;
+    margin-left: 8px;
     // margin-right: 24px;
   }
 
   @media screen and (min-width: 1279px) {
+    margin-left: 230px;
     /* margin-right: 18px; */
   }
 `;

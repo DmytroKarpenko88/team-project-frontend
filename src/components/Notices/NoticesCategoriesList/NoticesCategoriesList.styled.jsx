@@ -14,12 +14,15 @@ export const NoticeList = styled.ul`
   }
 
   @media (min-width: 768px) {
+    width: 704px;
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
     margin-bottom: 40px;
   }
 
   @media (min-width: 1280px) {
+    margin-left: auto;
+    margin-right:auto;
     grid-template-columns: repeat(4, 1fr);
   }
 `;

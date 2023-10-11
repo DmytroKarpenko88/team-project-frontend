@@ -27,6 +27,7 @@ export const Filter = styled.div`
   @media screen and (min-width: 1280px) {
     display: flex;
     margin-bottom: 42px;
+    padding-right: 8px;
     justify-content: space-between;
     align-items: center;
     gap: 403;

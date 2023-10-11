@@ -87,7 +87,7 @@ export const DeleteNoticeBtn = styled.button`
 
     svg {
       stroke: ${theme.colors.white};
-    }
+    }}
 `;
 
 export const FilterStatus = styled.div`
