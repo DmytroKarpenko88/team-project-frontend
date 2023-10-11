@@ -57,7 +57,7 @@ export const HeaderMenu = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row-reverse;
     // margin-right: auto;
-    width: 925px;
+    width: 957px;
     justify-content: space-between;
     align-items: baseline;
   }
