@@ -11,7 +11,7 @@ export const Auth = styled.div`
   }
 
   @media screen and (min-width: 1279px) {
-    margin-left: 230px;
+    margin-left: 270px;
     /* margin-right: 18px; */
   }
 `;
