@@ -7,29 +7,32 @@ export const HeaderContainer = styled.div`
   width: 100%;
   height: 48px;
   position: static;
-  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: 0px;
   z-index: 50;
-  padding: 2px 0;
+  padding: 2px 0px;
   background-color: ${theme.colors.bgColor};
 
-  @media screen and (max-width: 1199px) {
-    width: calc(100% - 40px);
-    height: 44px;
-  }
-
   @media screen and (max-width: 767px) {
-    width: calc(100% - 40px);
+    /* width: calc(100% - 40px); */
     height: 28px;
   }
 
+  @media screen and (max-width: 1279px) {
+    max-width: 704px;
+    height: 44px;
+  }
+
   @media screen and (min-width: 1280px) {
+    width: 100%;
     margin-top: 0;
   }
 `;
 
 export const HeaderWrapper = styled.div`
   margin: auto;
-  max-width: 1280px;
+  width: 100%;
   height: 100%;
   align-items: center;
   display: flex;
@@ -57,7 +60,7 @@ export const HeaderMenu = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     flex-direction: row-reverse;
     // margin-right: auto;
-    width: 925px;
+    max-width: 957px;
     justify-content: space-between;
     align-items: baseline;
   }
@@ -92,16 +95,22 @@ export const UserNavContainer = styled.div`
 export const UserNavBox = styled.div`
   display: flex;
   justify-content: center;
-  align-item: center;
+  align-items: center;
 `;
 
 export const IconOpenMenu = styled.div`
   display: none;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    transition: all ${theme.transition.main};
+  }
 
   @media screen and (max-width: 1279px) {
     display: flex;
     margin-left: 24px;
-    padding-top: 9px;
+    align-items: center;
     transition: all ${theme.transition.main};
   }
 `;

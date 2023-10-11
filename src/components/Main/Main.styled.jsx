@@ -34,8 +34,7 @@ export const Container = styled.div`
   @media screen and (max-width: 767px) {
     flex-direction: column;
   }
-  @media screen and (min-width: ${theme.breakpoints
-      .tablet}) and (max-width: 1279px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) and (max-width: 1279px) {
     padding-top: 80px;
     flex-direction: column;
     max-width: 780px;
@@ -43,7 +42,7 @@ export const Container = styled.div`
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     padding-top: 188px;
     flex-direction: raw;
-    max-width: 1280px;
+    width: 1280px;
   }
 `;
 export const ImagesContainer = styled.div`

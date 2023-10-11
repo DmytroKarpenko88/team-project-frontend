@@ -8,6 +8,7 @@ export const LayoutContainer = styled.div`
   position: relative;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    max-width: 768px;
     padding: 26px 32px 0;
 
     @media (min-device-pixel-ratio: 2),
@@ -17,6 +18,7 @@ export const LayoutContainer = styled.div`
   }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    max-width: 1280px;
     padding: 20px 16px 0;
 
     @media (min-device-pixel-ratio: 2),

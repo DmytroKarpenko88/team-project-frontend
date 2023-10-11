@@ -9,8 +9,8 @@ export const Container = styled.div`
     max-width: 480px;
   }
   @media screen and (min-width: 768px) {
-    // padding: 0 32px;
-    max-width: 768px;
+   /* padding: 0 32px; */
+    max-width: 704px;
   }
   @media screen and (min-width: 1280px) {
     // padding: 0 16px;
