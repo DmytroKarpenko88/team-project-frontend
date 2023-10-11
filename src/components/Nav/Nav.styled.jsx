@@ -91,7 +91,7 @@ export const NavMenuItemLink = styled(Link)`
   }
   @media screen and (min-width: 1280px) {
     font-style: normal;
-  font-size: 20.28px;
+  font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.8px;
   }
