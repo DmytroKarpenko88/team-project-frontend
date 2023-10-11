@@ -18,7 +18,7 @@ export const LinkRegister = styled(NavLink)`
   justify-content: center;
   align-items: center;
   font-family: ${theme.fonts.main.semiBold};
-  width: 165px;
+  width: 142px;
   height: 40px;
   color: ${theme.colors.yellow};
   border: solid 2px ${theme.colors.yellow};
