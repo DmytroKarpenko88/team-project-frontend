@@ -19,7 +19,7 @@ export const NavMenu = styled.ul.withConfig({
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     top: 70px;
-    padding: 94px 0 700px 0;
+    padding: 92px 0 700px 0;
     height: 100%;
   }
 
@@ -42,10 +42,10 @@ export const NavMenu = styled.ul.withConfig({
 `;
 
 export const NavMenuItem = styled.li`
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
 
   @media screen and (max-width: 1279px) {
     text-align: center;
@@ -66,26 +66,35 @@ export const NavMenuItem = styled.li`
   }
 
   @media screen and (min-width: 1280px) {
+    &:not(:first-child) {
+      height: 44px;
+      margin-right: 40px;
+    }
   }
 `;
 
 export const NavMenuItemLink = styled(Link)`
   color: ${theme.colors.black};
-  font-size: ${theme.fontSizes.l};
   text-decoration: none;
   font-style: normal;
-  font-size: 20.28px;
+  font-family: ${theme.fonts.main.medium};
+  font-size: 32px;
   font-weight: 500;
-  margin-right: 40px;
-  letter-spacing: 0.8px;
+  letter-spacing: 1.28px;
   transition: all ${theme.transition.main};
-  @media screen and (max-width: 1279px) {
+  @media (min-width: 768px) and (max-width: 1279px) {
     margin: 0;
-    font-size: 32px;
+    font-size: 48px;
     font-style: normal;
     font-weight: 500;
+    letter-spacing: 1.92px;
   }
-
+  @media screen and (min-width: 1280px) {
+    font-style: normal;
+  font-size: 20.28px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  }
   &:hover,
   :focus {
     color: ${theme.colors.yellow};

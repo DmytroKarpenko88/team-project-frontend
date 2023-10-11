@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { theme } from 'styles';
 
 export const Auth = styled.div`
+
   @media (min-width: 768px) {
     display: flex;
     margin-left: 8px;
@@ -20,8 +21,13 @@ export const LinkRegister = styled(NavLink)`
   justify-content: center;
   align-items: center;
   font-family: ${theme.fonts.main.semiBold};
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.64px;
   width: 142px;
   height: 40px;
+  margin-left: auto;
+  margin-right: auto;
   color: ${theme.colors.yellow};
   border: solid 2px ${theme.colors.yellow};
   border-radius: 40px;
@@ -41,6 +47,7 @@ export const LinkRegister = styled(NavLink)`
   }
 
   @media (min-width: 768px) {
+    margin: 0;
   }
 `;
 
@@ -49,9 +56,13 @@ export const LinkLogin = styled(NavLink)`
   justify-content: center;
   align-items: center;
   font-family: ${theme.fonts.main.semiBold};
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.64px;
   width: 165px;
   height: 40px;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   color: ${theme.colors.yellow};
   border: solid 2px ${theme.colors.yellow};
   border-radius: 40px;
@@ -61,7 +72,6 @@ export const LinkLogin = styled(NavLink)`
   svg {
     fill: ${theme.colors.yellow};
     margin-left: 8px;
-    margin-bottom: 2px;
   }
   &:hover {
     /* transform: scale(1.05); */

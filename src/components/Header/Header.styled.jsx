@@ -9,22 +9,23 @@ export const HeaderContainer = styled.div`
   position: static;
   margin-left: auto;
   margin-right: auto;
-  top: 0;
+  top: 0px;
   z-index: 50;
-  padding: 2px 0;
+  padding: 2px 0px;
   background-color: ${theme.colors.bgColor};
+
+  @media screen and (max-width: 767px) {
+    /* width: calc(100% - 40px); */
+    height: 28px;
+  }
 
   @media screen and (max-width: 1279px) {
     max-width: 704px;
     height: 44px;
   }
 
-  @media screen and (max-width: 767px) {
-    width: calc(100% - 40px);
-    height: 28px;
-  }
-
   @media screen and (min-width: 1280px) {
+    width: 100%;
     margin-top: 0;
   }
 `;
@@ -36,7 +37,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 
   @media screen and (max-width: 1199px) {
     max-width: 780px;
@@ -99,11 +100,17 @@ export const UserNavBox = styled.div`
 
 export const IconOpenMenu = styled.div`
   display: none;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    transition: all ${theme.transition.main};
+  }
 
   @media screen and (max-width: 1279px) {
     display: flex;
     margin-left: 24px;
-    padding-top: 9px;
+    align-items: center;
     transition: all ${theme.transition.main};
   }
 `;
