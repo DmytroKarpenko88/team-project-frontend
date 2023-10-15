@@ -4,15 +4,16 @@ import { theme } from 'styles';
 
 export const Auth = styled.div`
 
+@media (max-width: 767px) {
+    display: block;
+  }
   @media (min-width: 768px) {
     display: flex;
     margin-left: 8px;
-    // margin-right: 24px;
   }
 
   @media screen and (min-width: 1279px) {
     margin-left: 270px;
-    /* margin-right: 18px; */
   }
 `;
 
@@ -23,8 +24,9 @@ export const LinkRegister = styled(NavLink)`
   font-family: ${theme.fonts.main.semiBold};
   font-style: normal;
   font-weight: 600;
+  line-height: normal;
   letter-spacing: 0.64px;
-  width: 142px;
+  width: 165px;
   height: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -47,6 +49,7 @@ export const LinkRegister = styled(NavLink)`
   }
 
   @media (min-width: 768px) {
+    width: 142px;
     margin: 0;
   }
 `;
@@ -60,6 +63,7 @@ export const LinkLogin = styled(NavLink)`
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.64px;
+  line-height: normal;
   width: 165px;
   height: 40px;
   margin-bottom: 12px;
