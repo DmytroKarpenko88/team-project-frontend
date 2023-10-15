@@ -9,7 +9,8 @@ export const Auth = styled.div`
   }
   @media (min-width: 768px) {
     display: flex;
-    margin-left: 8px;
+    justify-content: center;
+    align-items: center;
   }
 
   @media screen and (min-width: 1279px) {
@@ -37,7 +38,6 @@ export const LinkRegister = styled(NavLink)`
   cursor: pointer;
   transition: ${theme.transition};
   &:hover {
-    /* transform: scale(1.05); */
     transition: all ${theme.transition.main};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
@@ -50,7 +50,7 @@ export const LinkRegister = styled(NavLink)`
 
   @media (min-width: 768px) {
     width: 142px;
-    margin: 0;
+    margin: 0px;
   }
 `;
 
@@ -78,7 +78,6 @@ export const LinkLogin = styled(NavLink)`
     margin-left: 8px;
   }
   &:hover {
-    /* transform: scale(1.05); */
     transition: all ${theme.transition.main};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};

@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
-// import { AuthNav } from 'components/AuthNav/AuthNav';
 
 export const HeaderContainer = styled.div`
   /* width: calc(100% - 40px); */
   width: 100%;
-  /* height: 48px; */
   position: static;
   margin-left: auto;
   margin-right: auto;
@@ -14,17 +12,16 @@ export const HeaderContainer = styled.div`
   background-color: ${theme.colors.bgColor};
 
   @media screen and (max-width: 767px) {
-    /* width: calc(100% - 40px); */
     height: 24px;
   }
 
   @media (min-width: 768px) and (max-width: 1279px) {
-    max-width: 704px;
-    height: 44px;
+    /* width: 704px; */
+    height: 40px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 100%;
+    /* width: 100%; */
     margin-top: 0;
   }
 `;
@@ -35,7 +32,6 @@ export const HeaderWrapper = styled.div`
   height: 100%;
   align-items: center;
   display: flex;
-  /* flex-wrap: wrap; */
 
   @media screen and (max-width: 767px) {
     max-width: 480px;
@@ -43,46 +39,27 @@ export const HeaderWrapper = styled.div`
     justify-content: space-between;
   }
 
-  @media (min-width: ${theme.breakpoints.desktop}) and (max-width: 1279px){
-    justify-content: start;
-    max-width: 780px;
-    height: 44px;
+  @media (min-width: ${theme.breakpoints.desktop}) {
+    height: 40px;
   }
 
-  /* @media screen and (max-width: 1279px) {
-    max-width: 780px;
-    height: 44px;
-  } */
 `;
 
 export const HeaderMenu = styled.div`
-  
+  @media (min-width: ${theme.breakpoints.tablet}) and (max-width: 1279px) {
+    display: flex;
+    width: 375px;
+
+  }
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     flex-direction: row-reverse;
-    // margin-right: auto;
     max-width: 957px;
-    justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
   }
 `;
 
-// export const Auth = styled(AuthNav)`
-//   display: flex;
-// `;
-
-// export const AuthContainer = styled.div`
-
-//   @media screen and (max-width: 767px) {
-//     margin-bottom: 40px;
-//     display: block;
-//   }
-
-//   @media screen and (min-width: 768px) {
-//     display: flex;
-//   }
-// `;
 
 export const UserNavContainer = styled.div`
   @media screen and (min-width: 768px) {
