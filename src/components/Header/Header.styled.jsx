@@ -16,12 +16,10 @@ export const HeaderContainer = styled.div`
   }
 
   @media (min-width: 768px) and (max-width: 1279px) {
-    /* width: 704px; */
     height: 40px;
   }
 
   @media screen and (min-width: 1280px) {
-    /* width: 100%; */
     margin-top: 0;
   }
 `;
@@ -40,7 +38,7 @@ export const HeaderWrapper = styled.div`
   }
 
   @media (min-width: ${theme.breakpoints.desktop}) {
-    height: 40px;
+    height: 48px;
   }
 
 `;
@@ -82,7 +80,6 @@ export const IconOpenMenu = styled.div`
   display: none;
   @media screen and (max-width: 767px) {
     display: flex;
-    /* margin-left: auto; */
     align-items: center;
     transition: all ${theme.transition.main};
   }

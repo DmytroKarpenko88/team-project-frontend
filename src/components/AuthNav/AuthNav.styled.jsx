@@ -13,7 +13,10 @@ export const Auth = styled.div`
     align-items: center;
   }
 
-  @media screen and (min-width: 1279px) {
+  @media (min-width: 1279px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 270px;
   }
 `;
@@ -46,12 +49,18 @@ export const LinkRegister = styled(NavLink)`
     transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
+    border: none;
+
   }
 
   @media (min-width: 768px) {
     width: 142px;
+    height: 40px;
     margin: 0px;
   }
+  /* @media (min-width: 1279px) {
+    height: 38px;
+  } */
 `;
 
 export const LinkLogin = styled(NavLink)`
@@ -89,6 +98,7 @@ export const LinkLogin = styled(NavLink)`
     transition: all ${theme.transition.main};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
+    border: none;
     svg {
       fill: ${theme.colors.white};
     }
@@ -98,6 +108,9 @@ export const LinkLogin = styled(NavLink)`
     margin-bottom: 0px;
     margin-right: 20px;
   }
+  /* @media (min-width: 1279px) {
+    height: 38px;
+  } */
 `;
 
 export const Text = styled.p`
