@@ -55,7 +55,7 @@ export const LinkRegister = styled(NavLink)`
 
   @media (min-width: 768px) {
     width: 142px;
-    height: 40px;
+    height: 41px;
     margin: 0px;
   }
   /* @media (min-width: 1279px) {
@@ -107,6 +107,7 @@ export const LinkLogin = styled(NavLink)`
   @media (min-width: 768px) {
     margin-bottom: 0px;
     margin-right: 20px;
+        height: 40px;
   }
   /* @media (min-width: 1279px) {
     height: 38px;

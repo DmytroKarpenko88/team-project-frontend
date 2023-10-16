@@ -12,7 +12,7 @@ export const loginSchema = Yup.object({
     .required('Email field is required!')
     .min(10)
     .max(30)
-    .matches(emailReq, 'Invalid email format'),
+    .matches(emailReq, 'Enter a valid Email'),
 
   password: Yup.string()
     .required('Password field is required!')

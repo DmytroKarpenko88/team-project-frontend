@@ -50,10 +50,11 @@ export const HeaderMenu = styled.div`
 
   }
 
-  @media screen and (min-width: ${theme.breakpoints.desktop}) {
+  @media  (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     flex-direction: row-reverse;
-    max-width: 957px;
+    max-width: 100%;
+    height: 48px;
     align-items: center;
   }
 `;

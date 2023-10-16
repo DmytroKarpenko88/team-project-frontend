@@ -24,7 +24,7 @@ export const NavMenu = styled.ul.withConfig({
 
   @media screen and (max-width: 1279px) {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     position: absolute;
     left: 0;
     flex-direction: column-reverse;
@@ -36,6 +36,7 @@ export const NavMenu = styled.ul.withConfig({
   }
 
   @media screen and (min-width: 1280px) {
+    height: 100%;
     flex-direction: row-reverse;
   }
 `;
@@ -87,22 +88,26 @@ export const NavMenuItemLink = styled(Link)`
     font-style: normal;
     font-weight: 500;
     letter-spacing: 1.92px;
+    &:hover,
+    :focus {
+      color: ${theme.colors.yellow};
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 1.92px;
+    }
   }
   @media screen and (min-width: 1280px) {
     font-style: normal;
     font-size: 20px;
     font-weight: 500;
-    letter-spacing: 0.8px;
-  }
-  &:hover,
-  :focus {
-    color: ${theme.colors.yellow};
-    font-family: Manrope;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
     line-height: normal;
-    letter-spacing: 1.28px;
+    letter-spacing: 0.8px;
+    &:hover,
+    :focus {
+      color: ${theme.colors.yellow};
+    }
   }
 `;
 

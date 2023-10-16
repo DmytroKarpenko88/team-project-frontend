@@ -9,8 +9,8 @@ export const LoginContainer = styled.main`
     width: 768px;
     padding: 80px 80px 395px 80px;
   }
-  @media screen and (min-width: 1281px) {
-    width: 1280px;
-    padding: 80px 16px 141px 16px;
+  @media screen and (min-width: 1280px) {
+    width: 100%;
+    padding: 80px 0px 141px 0px;
   }
 `;

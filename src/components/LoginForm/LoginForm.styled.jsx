@@ -8,7 +8,7 @@ import { theme } from 'styles';
 export const MainLogForm = styled.div`
   position: relative;
   margin: 0 auto;
-  padding: 40px 12px;
+  padding: 40px 0px;
   text-align: center;
   justify-content: center;
   background-color: ${theme.colors.white};
@@ -24,7 +24,7 @@ export const MainLogForm = styled.div`
     border-radius: 40px;
     /* z-index: 99; */
   }
-  @media screen and (min-width: 1281px) {
+  @media screen and (min-width: 1280px) {
     height: 481px;
   }
 `;
@@ -35,9 +35,16 @@ export const Titel = styled.h1`
   margin-bottom: 20px;
   @media (min-width: 768px) {
     font-size: ${theme.fontSizes.xxl};
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 1.44px;
     margin-bottom: 40px;
   }
-  @media screen and (min-width: 1281px) {
+  @media (min-width: 1280px) {
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
   }
 `;
 
@@ -64,9 +71,9 @@ export const InputPasswordWraper = styled.div`
 `;
 
 export const InputForm = styled(Field)`
-  padding: 12px 16px;
+  padding: 12px 15px;
   width: 100%;
-  height: 48px;
+  height: 46px;
   font-size: ${theme.fontSizes.m};
   font-family: ${theme.fonts.main.regular};
   border: none;
@@ -74,7 +81,11 @@ export const InputForm = styled(Field)`
   @media (min-width: 768px) {
     font-size: ${theme.fontSizes.m};
   }
-  @media screen and (min-width: 1281px) {
+  @media screen and (min-width: 1280px) {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.64px;
   }
 `;
 
@@ -86,6 +97,7 @@ export const ErrorMess = styled(ErrorMessage)`
   top: 47px;
   @media (min-width: 768px) {
     font-size: 12px;
+    
   }
 `;
 
@@ -109,8 +121,8 @@ export const IconWraper = styled.div`
   left: 187px;
   @media (min-width: 768px) {
     width: 60px;
-    top: 12px;
-    left: 383px;
+    top: 10px;
+    left: 386px;
   }
 `;
 
@@ -164,6 +176,10 @@ export const Button = styled.button`
   margin-top: 96px;
   margin-bottom: 8px;
   font-size: ${theme.fontSizes.l};
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.8px;
   color: ${theme.colors.white};
   border-radius: 40px;
   background-color: ${theme.colors.blue};
@@ -177,7 +193,7 @@ export const Button = styled.button`
     margin-bottom: 20px;
     font-family: ${theme.fonts.main.semiBold};
   }
-  @media screen and (min-width: 1281px) {
+  @media screen and (min-width: 1280px) {
   }
 `;
 
@@ -185,12 +201,20 @@ export const ToRegister = styled.p`
   color: ${theme.colors.grey};
   font-size: ${theme.fontSizes.xs};
   font-family: ${theme.fonts.main.regular};
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.48px;
 `;
 
 export const LinkStyled = styled(NavLink)`
   color: ${theme.colors.blue};
   font-size: ${theme.fontSizes.xs};
   font-family: ${theme.fonts.main.regular};
-  margin-left: 4px;
+  margin-left: 3px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.48px;
   text-decoration: underline;
 `;
