@@ -91,14 +91,17 @@ export const InputForm = styled(Field)`
 
 export const ErrorMess = styled(ErrorMessage)`
   position: absolute;
-  font-size: 10px;
   color: ${theme.colors.red};
-  left: 10px;
-  top: 47px;
+  
+  @media (max-width: 767px) {
+    font-size: 10px;
+    top: 47px;
+    left: 10px;
+  }
   @media (min-width: 768px) {
     font-size: 12px;
-    left: 20px;
-    top: 27px;
+    top: 52px;
+    left: 15px;
   }
 `;
 
