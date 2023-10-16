@@ -132,7 +132,7 @@ export default function LoginForm() {
               </InputPasswordWraper>
 
               {!errors.password && touched.password ? (
-                <SuccessMessage>Success, password is valid!</SuccessMessage>
+                <SuccessMessage>Password is secure</SuccessMessage>
               ) : null}
 
               <IconWraper>

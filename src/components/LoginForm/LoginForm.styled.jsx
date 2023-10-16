@@ -8,7 +8,7 @@ import { theme } from 'styles';
 export const MainLogForm = styled.div`
   position: relative;
   margin: 0 auto;
-  padding: 40px 0px;
+  padding: 40px 12px;
   text-align: center;
   justify-content: center;
   background-color: ${theme.colors.white};
@@ -97,7 +97,8 @@ export const ErrorMess = styled(ErrorMessage)`
   top: 47px;
   @media (min-width: 768px) {
     font-size: 12px;
-    
+    left: 20px;
+    top: 27px;
   }
 `;
 
