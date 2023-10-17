@@ -12,8 +12,7 @@ export const NavMenu = styled.ul.withConfig({
   z-index: 5;
 
   @media screen and (max-width: 767px) {
-    padding: 40px 70px 219px 70px;
-    top: 50px;
+    padding: 38px 70px 219px 70px;
     height: 100%;
   }
 
@@ -25,7 +24,7 @@ export const NavMenu = styled.ul.withConfig({
 
   @media screen and (max-width: 1279px) {
     width: 100%;
-    heigh: 100vh;
+    height: 100%;
     position: absolute;
     left: 0;
     flex-direction: column-reverse;
@@ -37,6 +36,7 @@ export const NavMenu = styled.ul.withConfig({
   }
 
   @media screen and (min-width: 1280px) {
+    height: 100%;
     flex-direction: row-reverse;
   }
 `;
@@ -46,22 +46,20 @@ export const NavMenuItem = styled.li`
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 767px) {
+    text-align: center;
+    height: 43px;
+    &:not(:first-child) {
+      margin-bottom: 20px;
+    }
+  }
 
-  @media screen and (max-width: 1279px) {
+  @media (min-width: 768px) and (max-width: 1279px) {
     text-align: center;
 
     &:not(:first-child) {
       height: 66px;
       margin-bottom: 60px;
-    }
-  }
-
-  @media screen and (max-width: 767px) {
-    text-align: center;
-
-    &:not(:first-child) {
-      height: 44px;
-      margin-bottom: 20px;
     }
   }
 
@@ -79,36 +77,48 @@ export const NavMenuItemLink = styled(Link)`
   font-style: normal;
   font-family: ${theme.fonts.main.medium};
   font-size: 32px;
+  margin: 0px;
+  line-height: normal;
   font-weight: 500;
-  letter-spacing: 1.28px;
+  letter-spacing: 1.22px;
   transition: all ${theme.transition.main};
   @media (min-width: 768px) and (max-width: 1279px) {
-    margin: 0;
+    margin: 0px;
     font-size: 48px;
     font-style: normal;
     font-weight: 500;
     letter-spacing: 1.92px;
+    &:hover,
+    :focus {
+      color: ${theme.colors.yellow};
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: 1.92px;
+    }
   }
   @media screen and (min-width: 1280px) {
     font-style: normal;
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: 0.8px;
-  }
-  &:hover,
-  :focus {
-    color: ${theme.colors.yellow};
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    &:hover,
+    :focus {
+      color: ${theme.colors.yellow};
+    }
   }
 `;
 
 export const AuthContainerMobile = styled.div`
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-
   @media screen and (max-width: 767px) {
     margin-bottom: 40px;
-    display: visible;
+    display: block;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `;
 

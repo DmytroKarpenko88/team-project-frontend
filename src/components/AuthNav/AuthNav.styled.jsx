@@ -4,15 +4,20 @@ import { theme } from 'styles';
 
 export const Auth = styled.div`
 
+@media (max-width: 767px) {
+    display: block;
+  }
   @media (min-width: 768px) {
     display: flex;
-    margin-left: 8px;
-    // margin-right: 24px;
+    justify-content: center;
+    align-items: center;
   }
 
-  @media screen and (min-width: 1279px) {
+  @media (min-width: 1279px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-left: 270px;
-    /* margin-right: 18px; */
   }
 `;
 
@@ -23,8 +28,9 @@ export const LinkRegister = styled(NavLink)`
   font-family: ${theme.fonts.main.semiBold};
   font-style: normal;
   font-weight: 600;
+  line-height: normal;
   letter-spacing: 0.64px;
-  width: 142px;
+  width: 165px;
   height: 40px;
   margin-left: auto;
   margin-right: auto;
@@ -35,7 +41,6 @@ export const LinkRegister = styled(NavLink)`
   cursor: pointer;
   transition: ${theme.transition};
   &:hover {
-    /* transform: scale(1.05); */
     transition: all ${theme.transition.main};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
@@ -44,11 +49,18 @@ export const LinkRegister = styled(NavLink)`
     transition: ${theme.transition.duration};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
+    border: none;
+
   }
 
   @media (min-width: 768px) {
-    margin: 0;
+    width: 142px;
+    height: 41px;
+    margin: 0px;
   }
+  /* @media (min-width: 1279px) {
+    height: 38px;
+  } */
 `;
 
 export const LinkLogin = styled(NavLink)`
@@ -60,6 +72,7 @@ export const LinkLogin = styled(NavLink)`
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0.64px;
+  line-height: normal;
   width: 165px;
   height: 40px;
   margin-bottom: 12px;
@@ -74,7 +87,6 @@ export const LinkLogin = styled(NavLink)`
     margin-left: 8px;
   }
   &:hover {
-    /* transform: scale(1.05); */
     transition: all ${theme.transition.main};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
@@ -86,6 +98,7 @@ export const LinkLogin = styled(NavLink)`
     transition: all ${theme.transition.main};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
+    border: none;
     svg {
       fill: ${theme.colors.white};
     }
@@ -94,7 +107,11 @@ export const LinkLogin = styled(NavLink)`
   @media (min-width: 768px) {
     margin-bottom: 0px;
     margin-right: 20px;
+        height: 40px;
   }
+  /* @media (min-width: 1279px) {
+    height: 38px;
+  } */
 `;
 
 export const Text = styled.p`

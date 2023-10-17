@@ -35,7 +35,7 @@ const initialValues = {
 export default function LoginForm() {
   const [passwordShow, setPasswordShow] = useState(false);
   const togglePassword = () => setPasswordShow(prevState => !prevState);
-  const {isLoggedIn} = useAuth()
+  const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -61,56 +61,107 @@ export default function LoginForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({values ,errors, touched, resetForm, setFieldValue, isSubmitting}) => (
+        {({
+          values,
+          errors,
+          touched,
+          resetForm,
+          setFieldValue,
+          isSubmitting,
+        }) => (
           <Form>
             <Titel>Login</Titel>
             <FormField>
-            <InputEmailWraper style={{borderColor:  !touched.email ? `${theme.colors.blue}` : errors.email  ? `${theme.colors.red}` : `${theme.colors.green}`}}>
-              <InputForm
-                name="email"
-                type="email"
-                placeholder="Email"
-                autoComplete="on"
-              />
+              <InputEmailWraper
+                style={{
+                  borderColor: !touched.email
+                    ? `${theme.colors.blue}`
+                    : errors.email
+                    ? `${theme.colors.red}`
+                    : `${theme.colors.green}`,
+                }}
+              >
+                <InputForm
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  autoComplete="on"
+                />
               </InputEmailWraper>
-              { !errors.email && touched.email ? (<SuccessMessage>Success, email is valid!</SuccessMessage>) : null }
+              {!errors.email && touched.email ? (
+                <SuccessMessage>Success, email is valid!</SuccessMessage>
+              ) : null}
 
               <IconWraper>
-              { !touched.email ? null : !errors.email ? 
-              <IconCheck style={{marginLeft: "36px"}}><Check/></IconCheck> :
-               <IconCross style={{marginLeft: "36px"}} id="resetBtn" onClick={()=>{setFieldValue('email', '')}}><Cross/></IconCross>}
-             </IconWraper>
+                {!touched.email ? null : !errors.email ? (
+                  <IconCheck style={{ marginLeft: '32px' }}>
+                    <Check />
+                  </IconCheck>
+                ) : (
+                  <IconCross
+                    style={{ marginLeft: '32px' }}
+                    id="resetBtn"
+                    onClick={() => {
+                      setFieldValue('email', '');
+                    }}
+                  >
+                    <Cross />
+                  </IconCross>
+                )}
+              </IconWraper>
 
               <ErrorMess name="email" component="p" />
             </FormField>
 
             <FormField>
-            <InputPasswordWraper style={{borderColor: !touched.password ? `${theme.colors.blue}` : errors.password  ? `${theme.colors.red}` : `${theme.colors.green}`}}>
-              <InputForm
-                name="password"
-                type={passwordShow ? 'text' : 'password'}
-                placeholder="Password"
-                autoComplete="on"
-              />
+              <InputPasswordWraper
+                style={{
+                  borderColor: !touched.password
+                    ? `${theme.colors.blue}`
+                    : errors.password
+                    ? `${theme.colors.red}`
+                    : `${theme.colors.green}`,
+                }}
+              >
+                <InputForm
+                  name="password"
+                  type={passwordShow ? 'text' : 'password'}
+                  placeholder="Password"
+                  autoComplete="on"
+                />
               </InputPasswordWraper>
-              
-              { !errors.password && touched.password? (<SuccessMessage>Success, password is valid!</SuccessMessage>) : null }
+
+              {!errors.password && touched.password ? (
+                <SuccessMessage>Password is secure</SuccessMessage>
+              ) : null}
 
               <IconWraper>
-              { !touched.password ? null : !errors.password ? 
-              <IconCheck ><Check/></IconCheck> :
-               <IconCross id="resetBtn" onClick={()=>{setFieldValue('password', '')}}><Cross/></IconCross>}
+                {!touched.password ? null : !errors.password ? (
+                  <IconCheck>
+                    <Check />
+                  </IconCheck>
+                ) : (
+                  <IconCross
+                    id="resetBtn"
+                    onClick={() => {
+                      setFieldValue('password', '');
+                    }}
+                  >
+                    <Cross />
+                  </IconCross>
+                )}
 
-              <span id="visibilityBtn" onClick={togglePassword}>
-                {passwordShow ? <OnIcon /> : <OffIcon />}
-              </span>
+                <span id="visibilityBtn" onClick={togglePassword}>
+                  {passwordShow ? <OnIcon /> : <OffIcon />}
+                </span>
               </IconWraper>
-
 
               <ErrorMess name="password" component="p" />
             </FormField>
             <div>
-              <Button type="submit" disabled={isSubmitting}>Login</Button>
+              <Button type="submit" disabled={isSubmitting}>
+                Login
+              </Button>
             </div>
 
             <ToRegister>

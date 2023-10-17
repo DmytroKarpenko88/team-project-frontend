@@ -12,7 +12,7 @@ export const loginSchema = Yup.object({
     .required('Email field is required!')
     .min(10)
     .max(30)
-    .matches(emailReq, 'Invalid email format'),
+    .matches(emailReq, 'Enter a valid Email'),
 
   password: Yup.string()
     .required('Password field is required!')
@@ -24,7 +24,7 @@ export const registerSchema = Yup.object({
   name: Yup.string()
     .required('Name field is required!')
     .min(2, 'Name is too short')
-    .matches(/^[A-Za-z-\s]+$/, 'Name field can contain only latin letters'),
+    .matches(/^[A-Za-z-\s]+$/, 'Name field can contain only Latin letters'),
 
   email: Yup.string()
     .required('Email field is required!')
