@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/team-project-frontend/static/css/main.b735232c.css",
-    "main.js": "/team-project-frontend/static/js/main.7f291736.js",
+    "main.css": "/team-project-frontend/static/css/main.3f3a0688.css",
+    "main.js": "/team-project-frontend/static/js/main.f8744ec7.js",
     "static/js/812.1b842f33.chunk.js": "/team-project-frontend/static/js/812.1b842f33.chunk.js",
     "static/js/516.879e2d7e.chunk.js": "/team-project-frontend/static/js/516.879e2d7e.chunk.js",
     "static/js/414.28f5d475.chunk.js": "/team-project-frontend/static/js/414.28f5d475.chunk.js",
@@ -14,6 +14,7 @@
     "static/media/Inter-Medium.ttf": "/team-project-frontend/static/media/Inter-Medium.6dcbc9bed1ec438907ee.ttf",
     "static/media/Inter-Regular.ttf": "/team-project-frontend/static/media/Inter-Regular.e89cb19905e7db5591b0.ttf",
     "static/media/catdesktop2x.png": "/team-project-frontend/static/media/catdesktop2x.616a46c22c0e096370f4.png",
+    "static/media/Manrope-ExtraBold.ttf": "/team-project-frontend/static/media/Manrope-ExtraBold.5b0ae7100ad1d12e53c9.ttf",
     "static/media/Manrope-SemiBold.ttf": "/team-project-frontend/static/media/Manrope-SemiBold.310f108cc524df0e5ffc.ttf",
     "static/media/Manrope-Medium.ttf": "/team-project-frontend/static/media/Manrope-Medium.08894ccb04665d1a9d53.ttf",
     "static/media/Manrope-Regular.ttf": "/team-project-frontend/static/media/Manrope-Regular.a9b9e09fe6b69741f316.ttf",
@@ -51,8 +52,8 @@
     "static/media/buldogmobile1x.webp": "/team-project-frontend/static/media/buldogmobile1x.f06b374cf4da61096a8f.webp",
     "static/media/catmobile1x.webp": "/team-project-frontend/static/media/catmobile1x.370dbd4e201c9ab5cfe0.webp",
     "index.html": "/team-project-frontend/index.html",
-    "main.b735232c.css.map": "/team-project-frontend/static/css/main.b735232c.css.map",
-    "main.7f291736.js.map": "/team-project-frontend/static/js/main.7f291736.js.map",
+    "main.3f3a0688.css.map": "/team-project-frontend/static/css/main.3f3a0688.css.map",
+    "main.f8744ec7.js.map": "/team-project-frontend/static/js/main.f8744ec7.js.map",
     "812.1b842f33.chunk.js.map": "/team-project-frontend/static/js/812.1b842f33.chunk.js.map",
     "516.879e2d7e.chunk.js.map": "/team-project-frontend/static/js/516.879e2d7e.chunk.js.map",
     "414.28f5d475.chunk.js.map": "/team-project-frontend/static/js/414.28f5d475.chunk.js.map",
@@ -64,7 +65,7 @@
     "654.e06a92cc.chunk.js.map": "/team-project-frontend/static/js/654.e06a92cc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b735232c.css",
-    "static/js/main.7f291736.js"
+    "static/css/main.3f3a0688.css",
+    "static/js/main.f8744ec7.js"
   ]
 }
