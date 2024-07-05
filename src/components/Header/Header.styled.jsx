@@ -30,6 +30,7 @@ export const HeaderWrapper = styled.div`
   height: 100%;
   align-items: center;
   display: flex;
+  justify-content: space-between;
 
   @media screen and (max-width: 767px) {
     max-width: 480px;
@@ -40,17 +41,15 @@ export const HeaderWrapper = styled.div`
   @media (min-width: ${theme.breakpoints.desktop}) {
     height: 48px;
   }
-
 `;
 
 export const HeaderMenu = styled.div`
   @media (min-width: ${theme.breakpoints.tablet}) and (max-width: 1279px) {
     display: flex;
     width: 375px;
-
   }
 
-  @media  (min-width: ${theme.breakpoints.desktop}) {
+  @media (min-width: ${theme.breakpoints.desktop}) {
     display: flex;
     flex-direction: row-reverse;
     max-width: 100%;
@@ -58,7 +57,6 @@ export const HeaderMenu = styled.div`
     align-items: center;
   }
 `;
-
 
 export const UserNavContainer = styled.div`
   @media screen and (min-width: 768px) {

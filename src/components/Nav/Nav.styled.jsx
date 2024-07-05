@@ -11,6 +11,7 @@ export const NavMenu = styled.ul.withConfig({
   align-items: center;
   z-index: 5;
 
+
   @media screen and (max-width: 767px) {
     padding: 38px 70px 219px 70px;
     height: 100%;
@@ -45,6 +46,8 @@ export const NavMenuItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+
+
 
   @media screen and (max-width: 767px) {
     text-align: center;
@@ -104,6 +107,7 @@ export const NavMenuItemLink = styled(Link)`
     font-weight: 500;
     line-height: normal;
     letter-spacing: 0.8px;
+
     &:hover,
     :focus {
       color: ${theme.colors.yellow};
