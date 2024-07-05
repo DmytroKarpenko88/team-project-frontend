@@ -9,6 +9,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 padding: 8px 16px;
+
 // margin-bottom: 84px;
 
 @media and screen (max-width: 767px) {

@@ -43,6 +43,12 @@
     url('./fonts/Manrope/Manrope-Bold.ttf') format('truetype');
   font-weight: 700;
 }
+@font-face {
+  font-family: 'Manrope-ExtraBold';
+  src: local('Manrope-ExtraBold'),
+    url('./fonts/Manrope/Manrope-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+}
 
 :root {
   --header-items-color: #ffc107;

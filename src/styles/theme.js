@@ -24,6 +24,7 @@ export const theme = Object.freeze({
       medium: 'Manrope-Medium', //500
       semiBold: 'Manrope-SemiBold', //600
       bold: 'Manrope-Bold', //700
+      extraBold: 'Manrope-ExtraBold', //800
     },
     secondary: {
       regular: 'Inter-Regular', //400

@@ -9,9 +9,9 @@ export const LogoIcon = styled.img`
   @media (min-width: ${theme.breakpoints.tablet}) {
     width: 162px;
     height: 28px;
-    margin-right: 167px;
+    /* margin-right: 167px; */
   }
   @media (min-width: ${theme.breakpoints.desktop}) {
-    margin-right: 159px;
+    /* margin-right: 159px; */
   }
 `;

@@ -24,13 +24,13 @@ import catdesktop1x from '../../images/MainPage/desktop/catdesktop1x.webp';
 import catdesktop2x from '../../images/MainPage/desktop/catdesktop2x.webp';
 
 export const Container = styled.div`
-  padding-top: 60px;
+  // padding-top: 30px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
 
   max-width: 480px;
-  min-height: 100vh;
+  // min-height: 100vh;
   @media screen and (max-width: 767px) {
     flex-direction: column;
   }
@@ -40,24 +40,27 @@ export const Container = styled.div`
     max-width: 780px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    padding-top: 188px;
-    flex-direction: raw;
-    width: 1280px;
+
+    display: block;
+    max-width: 1280px;
   }
 `;
 export const ImagesContainer = styled.div`
-  position: relative;
-  overflow: visible;
-  max-width: 480px;
-  height: 390px;
+  position: absolute;
+  // overflow: visible;
+  overflow: hidden;
+  z-index: -1;
+  width: 480px;
+  height: 850px;
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    max-width: 768px;
-    height: 820px;
+    width: 768px;
+    // height: 820px;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
-    width: 1280px;
-    height: 570px;
-    top: 180px;
+   width: 917px;
+    // height: 670px;
+    left: 363px;
+    top: 68px;
   }
 `;
 export const ImgBuldog = styled.img`
@@ -87,16 +90,15 @@ export const ImgBuldog = styled.img`
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 380px;
-    bottom: 230px;
-    right: 540px;
+    top: 233px;
+    // bottom: 230px;
+    right: 531px;
     content: url('${buldogdesktop1x}');
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       content: url('${buldogdesktop2x}');
     }
-
-    padding-top: 188px;
   }
 `;
 export const ImgDog = styled.img`
@@ -125,8 +127,9 @@ export const ImgDog = styled.img`
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 490px;
-    bottom: 380px;
-    right: 30px;
+    top: 39px;
+    // bottom: 380px;
+    right: 26px;
     content: url('${dogdesktop1x}');
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -160,7 +163,7 @@ export const ImgCat = styled.img`
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 336px;
-    bottom: 110px;
+    top: 478px;
     right: 112px;
     content: url('${catdesktop1x}');
     @media (min-device-pixel-ratio: 2),
@@ -173,8 +176,8 @@ export const ImgCat = styled.img`
 
 export const Title = styled.h1`
   font-size: 32px;
-  font-family: ${theme.fonts.main.bold};
-  font-weight: 700;
+  font-family: ${theme.fonts.main.extraBold};
+  font-weight: 800;
   color: #000000;
   max-width: 280px;
   height: 88px;
@@ -187,10 +190,12 @@ export const Title = styled.h1`
     font-weight: 600;
   }
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
+    padding-top: 188px;
     max-width: 501px;
+    padding-left: 0;
     height: 264px;
     font-size: 68px;
     font-weight: 800;
-    line-height: 130%;
+    line-height: 88.4px;
   }
 `;
